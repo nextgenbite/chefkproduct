@@ -37,8 +37,8 @@ class PublicController extends Controller
         if ($request->has('brand')) {
             $query->where('brand_id', $request->brand);
         }
-
-        $products = $query->paginate(6);
+        $query->with('images','category' , 'brand');
+        $products = $query->paginate(8);
 
         return response()->json($products);
     }
@@ -95,11 +95,11 @@ class PublicController extends Controller
     public function searchProducts(Request $request)
 {
     $query = $request->input('query');
-    
+
     $products = Product::where('title', 'LIKE', "%$query%")
         ->orWhere('description', 'LIKE', "%$query%")
         ->get();
-    
+
     return response()->json($products);
 }
 }
