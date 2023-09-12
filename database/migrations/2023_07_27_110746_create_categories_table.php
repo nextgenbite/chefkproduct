@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('icon')->nullable();
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail')->default('images/no-image.png');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
