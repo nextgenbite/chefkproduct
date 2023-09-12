@@ -79,7 +79,18 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+    }
+    public function status(Request $request, $id)
+    {
+        $data = Order::findOrFail($id)->update([
+            'status' => $request->status
+        ]);
+        if ($data) {
+            return response()->json(['message' => 'Data Update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => 'Data Update Failed'], 404);
+        }
     }
 
     /**
@@ -92,4 +103,5 @@ class OrderController extends Controller
     {
         //
     }
+
 }

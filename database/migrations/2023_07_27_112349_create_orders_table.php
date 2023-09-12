@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

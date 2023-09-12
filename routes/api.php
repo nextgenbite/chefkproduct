@@ -64,6 +64,7 @@ Route::delete('/sliders/{id}', [SliderController::class, 'destroy']);
 Route::get('/orders', [OrderController::class, 'index']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::put('/orders/status/{id}', [OrderController::class, 'status']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 
