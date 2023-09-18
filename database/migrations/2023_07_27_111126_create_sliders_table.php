@@ -19,6 +19,7 @@ class CreateSlidersTable extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
+            $table->string('position')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

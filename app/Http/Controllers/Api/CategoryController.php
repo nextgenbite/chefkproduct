@@ -86,7 +86,6 @@ class CategoryController extends Controller
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
         $data->icon = $request->icon;
-        $data->title = $request->title;
         // Handle image update
         if ($request->newThumbnail) {
             $this->deleteImage($data->thumbnail);

@@ -14,7 +14,13 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        if ($request->phone  == '') {
+            $credentials = $request->only('email' , 'password');
+        } else {
+            $credentials = $request->only('phone' , 'password');
+
+        }
+
 
         if (auth('web')->attempt($credentials)) {
             $token = auth()->user()->createToken('auth-token')->plainTextToken;

@@ -3,16 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Page;
 use Illuminate\Http\Request;
-use App\Traits\ImageUploadTrait;
-class UserController extends Controller
+
+class PageController extends Controller
 {
-    use ImageUploadTrait;
-
-    private $imgLocation = "images/users";
-
-
     /**
      * Display a listing of the resource.
      *
@@ -20,22 +15,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return response()->json($data, 200);
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function customers()
-    {
-        $data = User::whereRole_id(3)->get();
-        return response()->json($data, 200);
+        $data = Page::all();
+        return response()->json($data,200);
     }
 
 
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -43,16 +28,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->authorize('User.create');
+        // $this->authorize('Page.create');
 
-        $avatar = "";
-        if ($request->avatar) {
-            $avatar = $this->uploadBase64Image($request->input('avatar'), $this->imgLocation);
-        }
-        $data = User::create([
-            'name' => $request->icon,
-            'phone' => $request->title,
-            'avatar' => $avatar
+
+        $data = Page::create([
+            'title' => $request->title,
+            'body' => $request->body,
         ]);
         if ($data) {
             return response()->json(['message' => 'Data Create successfully', 'data' => $data], 200);
@@ -69,7 +50,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $data = User::findOrFail($id);
+        $data = Page::findOrFail($id);
         if ($data) {
             return response()->json(['message' => 'Data successfully', 'data' => $data], 200);
         } else {
@@ -88,14 +69,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
-        $data = User::findOrFail($id);
-        $data->name = $request->name;
-        $data->phone = $request->phone;
-        // Handle image update
-        if ($request->newavatar) {
-            $this->deleteImage($data->avatar);
-            $data->avatar = $this->uploadBase64Image($request->newavatar, $this->imgLocation);
-        }
+        $data = Page::findOrFail($id);
+        $data->title = $request->title;
+        $data->body = $request->body;
         $data->update();
         if ($data) {
             return response()->json(['message' => 'Data Update successfully', 'data' => $data], 200);
@@ -112,8 +88,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $data = User::findOrFail($id);
-        $this->deleteImage($data->avatar);
+        $data = Page::findOrFail($id);
         $data->delete();
 
         if ($data) {

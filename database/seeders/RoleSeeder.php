@@ -22,5 +22,7 @@ class RoleSeeder extends Seeder
         $editor->permissions()->attach(
             Permission::where('name', '!=', 'category.delete')->pluck('id')
         );
+        $editor = Role::create(['name' => 'Customer']);
+
     }
 }

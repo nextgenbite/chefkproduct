@@ -44,8 +44,9 @@ class SliderController extends Controller
         }
         $data = Slider::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'category_id' => $request->category_id,
+            'slug' => Str::slug($request->title),
+            'position' => $request->position,
             'thumbnail' => $thumbnail
         ]);
         if ($data) {
@@ -86,6 +87,7 @@ class SliderController extends Controller
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
         $data->category_id = $request->category_id;
+        $data->position = $request->position;
         // Handle image update
         if ($request->newThumbnail) {
             $this->deleteImage($data->thumbnail);
@@ -93,7 +95,7 @@ class SliderController extends Controller
         }
         $data->update();
         if ($data) {
-            return response()->json(['message' => 'Data Update successfully', 'data' => $data], 200);
+            return response()->json(['message' => 'Data Update successfully','status'=> 200, 'data' => $data], 200);
         } else {
             return response()->json(['message' => 'Data Update Failed'], 404);
         }

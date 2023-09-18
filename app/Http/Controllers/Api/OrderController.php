@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class OrderController extends Controller
 {
@@ -30,31 +33,50 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "name" =>   ["required", "min:3"],
-            "phone" =>   ["required", "min:11"],
-            "address" =>   ["required"],
-            "carts" =>   ["required"],
+            "name" => ["required", "min:3"],
+            "phone" => ["required", "min:11"],
+            "address" => ["required"],
+            "carts" => ["required"],
         ]);
-        $data = Order::create([
-            "name" =>   $request->name,
-            "phone" =>   $request->phone,
-            "address" =>   $request->address,
-            "total" =>   $request->total,
-            "delivery_type" =>   $request->shipping_cost,
-            "order_date" =>   date("d/m/Y"),
-            "order_month" =>   date("m"),
-            "order_year" =>   date("Y"),
+
+        $user = User::firstOrNew(['phone' => $request->phone], [
+            "name" => $request->name,
+            "phone" => $request->phone,
+            "address" => $request->address,
         ]);
-        foreach($request->carts as $cart){
-            $price =$cart['price']-($cart['price']/100) * $cart['discount'];
-            OrderItem::create([
-                "order_id" =>   $data->id,
-                "product_id" =>  $cart['id'],
-                "qty" =>   $cart['quantity'],
-                "total" =>   $price * $cart['quantity'],
-            ]);
-        return response()->json( $data);
+
+        if (!$user->exists) {
+            $user->save();
         }
+
+        $data = Order::create([
+            "name" => $request->name,
+            'code' => date('Ymd-His') . rand(10, 99),
+            "phone" => $request->phone,
+            "address" => $request->address,
+            "total" => $request->total,
+            "shipping_cost" => $request->shipping_cost,
+            "order_date" => date("d/m/Y"),
+            "order_month" => date("m"),
+            "order_year" => date("Y"),
+        ]);
+
+        foreach ($request->carts as $cart) {
+            $product = Product::findOrFail($cart['id']);
+            $product->decrement('stock', $cart['quantity']);
+
+            $price = $cart['price'] - ($cart['price'] / 100) * $cart['discount'];
+
+            OrderItem::create([
+                "order_id" => $data->id,
+                "product_id" => $cart['id'],
+                "qty" => $cart['quantity'],
+                "total" => $price * $cart['quantity'],
+            ]);
+        }
+
+        return response()->json($data);
+
     }
 
     /**
@@ -79,7 +101,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        // $order->code = date('Ymd-His') . rand(10, 99);
     }
     public function status(Request $request, $id)
     {

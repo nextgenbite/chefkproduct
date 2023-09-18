@@ -13,6 +13,7 @@ class ProductController extends Controller
 {
     use ImageUploadTrait;
     private $imgLocation = 'images/products';
+
     /**
      * Display a listing of the resource.
      *
@@ -23,13 +24,6 @@ class ProductController extends Controller
         $data = Product::with('images','category' , 'brand')->get();
         return response()->json($data,200);
     }
-    public function pagination()
-    {
-        $data = Product::paginate(2);
-        return response()->json($data,200);
-    }
-
-
 
     /**
      * Store a newly created resource in storage.

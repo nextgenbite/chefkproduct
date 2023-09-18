@@ -4,10 +4,13 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PublicController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\ShippingCostController;
 use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +74,26 @@ Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 Route::get('/site-settings', [SettingController::class, 'index']);
 Route::post('/site-settings', [SettingController::class, 'store']);
 
+
+// user
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::get('/customers', [UserController::class, 'customers']);
+
+// shipping cost
+Route::get('/shipping-cost', [ShippingCostController::class, 'index']);
+Route::post('/shipping-cost', [ShippingCostController::class, 'store']);
+Route::put('/shipping-cost/{id}', [ShippingCostController::class, 'update']);
+Route::delete('/shipping-cost/{id}', [ShippingCostController::class, 'destroy']);
+// Page
+Route::get('/pages', [PageController::class, 'index']);
+Route::post('/pages', [PageController::class, 'store']);
+Route::put('/pages/{id}', [PageController::class, 'update']);
+Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+
+
 Route::get('public/sliders', [PublicController::class, 'sliders']);
 Route::get('public/categories', [PublicController::class, 'categories']);
 Route::get('public/brands', [PublicController::class, 'brands']);
@@ -78,6 +101,8 @@ Route::get('public/products', [PublicController::class, 'productQuery']);
 Route::get('public/details/{id}', [PublicController::class, 'ProductDetails']);
 Route::get('/search/products', [PublicController::class, 'searchProducts']);
 Route::get('public/settings', [PublicController::class, 'settings']);
+Route::post('/contact', [PublicController::class, 'contactEmail']);
+
 Route::post('/order', [OrderController::class, 'store']);
 
 

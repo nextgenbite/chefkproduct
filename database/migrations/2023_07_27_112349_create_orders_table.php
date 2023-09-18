@@ -16,14 +16,15 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->string('phone');
             $table->string('address');
-            $table->string('thana')->nullable();
-            $table->string('district')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->text('notes')->nullable();
             $table->float('total',8,2);
-            $table->float('coupon',8,2)->nullable();
-            $table->string('delivery_type');
+            $table->float('coupon',8,2)->default(0);
+            $table->string('shipping_cost')->default(0);
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');

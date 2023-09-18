@@ -18,12 +18,13 @@ class CreateSiteSettingsTable extends Migration
             $table->string('app_name');
             $table->string('favicon')->nullable();
             $table->string('logo')->nullable();
-            $table->string('email');
-            $table->text('address');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
-    $table->string('linkedin')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
         });
     }

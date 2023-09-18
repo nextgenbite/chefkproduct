@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SiteSetting;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PublicController extends Controller
 {
@@ -73,7 +75,7 @@ class PublicController extends Controller
     public function categorWiseProduct($id)
     {
         $category = Category::findOrFail($id);
-        $products = Product::whereCategory_id($id)->paginate(30);
+        $products = Product::with('images', 'category', 'brand')->whereCategory_id($id)->paginate(30);
         return view('categories', compact('products', 'category'));
     }
     public function prodcutSearch(Request $request)
@@ -101,5 +103,22 @@ class PublicController extends Controller
         ->get();
 
     return response()->json($products);
+}
+
+
+public function contactEmail(Request $request)
+{
+    // Validate the form data
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'message' => 'required',
+    ]);
+
+    // Send the email
+    Mail::to('your@email.com')->send(new ContactMail($request->all()));
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Message sent successfully!');
 }
 }
