@@ -26,6 +26,8 @@ class CreateProductsTable extends Migration
             $table->double('discount', 8, 2)->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('video')->nullable();
+            $table->boolean('top_sales')->default(false);
+            $table->boolean('trend')->default(false);
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
