@@ -112,7 +112,7 @@ class PublicController extends Controller
     }
     public function latestProduct()
     {
-        $products = Product::with('images', 'category', 'brand')->latest()->limit(10)->get();
+        $products = Product::whereStatus(1)->with('images', 'category', 'brand')->latest()->limit(10)->get();
         return response()->json($products);
     }
     public function productSearch(Request $request)
