@@ -51,7 +51,7 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 
 //products
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/pagination', [ProductController::class, 'pagination']);
+Route::get('/products/pagination', [PublicController::class, 'pagination']);
 Route::post('/products', [ProductController::class, 'store']);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
@@ -69,6 +69,7 @@ Route::post('/orders', [OrderController::class, 'store']);
 Route::put('/orders/{id}', [OrderController::class, 'update']);
 Route::put('/orders/status/{id}', [OrderController::class, 'status']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
+Route::get('/orders/invoice/{id}', [OrderController::class, 'invoice']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 
 Route::get('/site-settings', [SettingController::class, 'index']);
@@ -94,14 +95,20 @@ Route::put('/pages/{id}', [PageController::class, 'update']);
 Route::delete('/pages/{id}', [PageController::class, 'destroy']);
 
 
-Route::get('public/sliders', [PublicController::class, 'sliders']);
-Route::get('public/categories', [PublicController::class, 'categories']);
-Route::get('public/brands', [PublicController::class, 'brands']);
-Route::get('public/products', [PublicController::class, 'productQuery']);
-Route::get('public/details/{id}', [PublicController::class, 'ProductDetails']);
+Route::get('/public/sliders', [PublicController::class, 'sliders']);
+Route::get('/public/categories', [PublicController::class, 'categories']);
+Route::get('/public/categories/{slug}', [PublicController::class, 'categories']);
+Route::get('/header/categories', [PublicController::class, 'headCategories']);
+Route::get('/public/brands', [PublicController::class, 'brands']);
+Route::get('/public/products', [PublicController::class, 'productQuery']);
+Route::get('/trends/products', [PublicController::class, 'trendWiseProduct']);
+Route::get('/new/products', [PublicController::class, 'latestProduct']);
+Route::get('/public/details/{id}', [PublicController::class, 'ProductDetails']);
 Route::get('/search/products', [PublicController::class, 'searchProducts']);
-Route::get('public/settings', [PublicController::class, 'settings']);
+Route::get('/public/settings', [PublicController::class, 'settings']);
+Route::get('/public/shipping/cost', [PublicController::class, 'shippingCost']);
 Route::post('/contact', [PublicController::class, 'contactEmail']);
+Route::get('/public/page/{slug}', [PublicController::class, 'pages']);
 
 Route::post('/order', [OrderController::class, 'store']);
 

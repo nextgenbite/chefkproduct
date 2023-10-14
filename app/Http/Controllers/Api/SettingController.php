@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
     use ImageUploadTrait;
-    private $imgLocation = 'images/products';
+    private $imgLocation = 'images/settings';
     /**
      * Display a listing of the resource.
      *

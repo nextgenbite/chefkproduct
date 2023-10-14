@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as MPDF;
 
 class OrderController extends Controller
 {
@@ -87,7 +89,15 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+       return Order::findOrFail($id);
+    }
+    public function invoice($id)
+    {
+        $settings = SiteSetting::first();
+        $order = Order::findOrFail($id);
+    
+        $pdf = MPDf::chunkLoadView('<html-separator/>', 'pdf.order_pdf', ['order' => $order, 'setting' => $settings]);
+        return $pdf->download("{$order->code}.pdf");
     }
 
 
