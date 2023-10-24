@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
     use ImageUploadTrait;
-    private $imgLocation = 'images/settings';
+    private $imgLocation = 'images/settings/';
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +32,13 @@ class SettingController extends Controller
     {
 
 
-        $data = SiteSetting::firstOrFail();
+        $setting = SiteSetting::first();
+        if (isset($setting)) {
+            $data =$setting;
+        } else {
+            $data = new SiteSetting;
+        }
+
 
          $data->app_name=$request->app_name;
          $data->email=$request->email;
@@ -46,18 +52,22 @@ class SettingController extends Controller
     if ($request->newFavicon) {
         $this->deleteImage($data->favicon);
 
-        $newFavicon= $this->uploadBase64Image($request->newFavicon, $this->imgLocation);
+        $newFavicon= $this->uploadBase64Image($request->newFavicon, $this->imgLocation, 'png');
 
         $data->favicon  = $newFavicon;
     }
     if ($request->newLogo) {
         $this->deleteImage($data->logo);
 
-        $newLogo= $this->uploadBase64Image($request->newLogo, $this->imgLocation);
+        $newLogo= $this->uploadBase64Image($request->newLogo, $this->imgLocation,'png');
 
         $data->logo  = $newLogo;
     }
-    $data->update();
+    if (isset($setting)) {
+        $data->update();
+    } else {
+        $data->save();
+    }
     if ($data) {
         return response()->json(['message' => 'Data Update successfully', 'data'=> $data] ,200);
     } else {

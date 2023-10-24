@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('avatar')->default('images/no-image.png');
-            $table->tinyInteger('role_id')->default(3);
+            $table->foreignId('role_id')->constrained('roles')->default(3);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

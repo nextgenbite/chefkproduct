@@ -36,7 +36,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->authorize('category.create');
+        $this->authorize('category.create');
 
         $thumbnail = "";
         if ($request->thumbnail) {
@@ -81,7 +81,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $this->authorize('catgory.update');
         $data = Category::findOrFail($id);
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
