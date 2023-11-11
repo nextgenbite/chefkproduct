@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:3000','http://ecomnuxt.nextgenbite.xyz'],
+    'allowed_origins' => ['http://localhost:3000','https://ecomnuxt.nextgenbite.xyz'],
 
     'allowed_origins_patterns' => [],
 
