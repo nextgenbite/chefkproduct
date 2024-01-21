@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\Api\PublicController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get("/pdf",[PublicController::class,"pdf"])->name("showBanglaPdf");
+// Frontend
+Route::get('/', [PublicController::class, 'index']);
+Route::get('/products/{slug}', [PublicController::class, 'view']);
+Route::get('/shop', [PublicController::class, 'shop']);
+Route::get('/checkout', [PublicController::class, 'checkout']);
+
+// Backend
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+

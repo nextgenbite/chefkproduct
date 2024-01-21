@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\SiteSetting;
 use Illuminate\Support\ServiceProvider;
-
+use View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $setting = SiteSetting::first();
+        if ($setting) {
+            // config(['cart.tax' => $setting->tax]);
+            View::share('settings', $setting);
+         }
+         $categories =Category::limit(8)->get(['id', 'title','slug', 'icon']);
+        if ($categories) {
+            // config(['cart.tax' => $setting->tax]);
+            View::share('categories', $categories);
+         }
+
+         
     }
 }
