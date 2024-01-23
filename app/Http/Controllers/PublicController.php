@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ShippingCost;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class PublicController extends Controller
 {
@@ -46,6 +47,8 @@ class PublicController extends Controller
     function checkout()
     {
         $shipping_cost = ShippingCost::all();
-        return view('frontend.checkout', compact('shipping_cost'));    
+        $cart = session('cart');
+        // dd(session()->all());
+        return view('frontend.checkout', compact('shipping_cost', 'cart'));    
     }
 }

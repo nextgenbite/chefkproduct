@@ -13,8 +13,8 @@ if (!function_exists('discountPercentage')) {
     {
         function formatCurrency($amount) 
         {
-            $currencySymbol = SiteSetting::where('app_name', 'currency_symbol')->value('currency_symbol');
-            $currencySymbol = $currencySymbol ?: '$'; 
+            $setting = SiteSetting::first();
+            $currencySymbol = $setting->currency_symbol ? : '$'; 
 
             return $currencySymbol . number_format($amount, 2);
         }

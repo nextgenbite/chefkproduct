@@ -198,9 +198,9 @@
 <!-- ---- ADD TO CART BUTTON ---> 
 
 <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
-    <a href="#" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center " >
+    <a href="javascript:void(0)" id="{{$product->id}}" onclick="buyNow(this.id)" class="bg-primary border border-primary  text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center " >
          <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span>
-         Add to Cart
+         Buy Now
     </a>
 
     <a href="#" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center " >
@@ -343,5 +343,54 @@
          mobileMenu.classList.add('hidden')
     })
 
+</script>
+<script>
+            // Add a product to the cart
+            function buyNow(id) {
+            let quantity = 1;
+            const inputQty = $('input.input-qty.qty');
+            if (inputQty.length) {
+                quantity = inputQty.val();
+            }
+            // Get selected color and size values
+            // const selectedColor = $('input[name="color"]:checked').val() || null;
+            const selectedColor = $('.sku-variable-color.sku-variable-size-selected').attr('title');
+            const selectedSize = $('.sku-variable-size.sku-variable-size-selected').attr('title');
+          //  if(selectedColor && selectedSize){
+                $.ajax({
+                    type: 'post',
+                    url: "{{ url('/cart/add') }}",
+                    // _token: '{{ csrf_token() }}',
+                    data: {
+                        product_id: id,
+                        quantity: quantity,
+                        color: selectedColor,
+                        size: selectedSize
+                    },
+                    success: function(data) {
+                        // updateNavCart(data.count);
+                        alert(data.message);
+
+                        // showFrontendAlert('success', 'Successfully Product added to cart');
+                        window.location.href = '/checkout';
+                    },
+                    error: function(xhr, status, error) {
+                    console.error(error);
+                    alert("An error occurred. Please try again.");
+                }
+                })
+         //   }else{
+          //      showFrontendAlert('warning', 'Color and Size Require');
+
+           // }
+            // $.post("{{ url('/add-to-cart') }}", {
+            //     _token: '{{ csrf_token() }}',
+            //     id: id,
+            //     quantity: quantity
+            // }, function(data) {
+            //     showFrontendAlert('success', 'Successfully Product added to cart');
+            //     updateNavCart(data.count);
+            // });
+        }
 </script>
 @endpush

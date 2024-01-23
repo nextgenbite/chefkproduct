@@ -112,6 +112,37 @@
 
 @include('frontend.partials.footer')
 <!-- ---- End Footer   ----- -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+             // Set CSRF token globally for AJAX requests
+             $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+ 
+
+
+        $(document).ready(function () {
+            
+            $('.update-cart').on('click', function () {
+                var productId = $(this).data('product-id');
+                var quantity = $(this).closest('tr').find('.quantity').val();
+
+                $.ajax({
+                    url: '/cart/update/' + productId,
+                    type: 'PATCH',
+                    data: { quantity: quantity },
+                    success: function (response) {
+                        alert(response.message);
+                    }
+                });
+            });
+
+        });
+</script>
 @stack('custom-script')
     </body>
 </html>
