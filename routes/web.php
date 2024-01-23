@@ -30,7 +30,6 @@ Route::post('/cart/decrement', [CartController::class, 'decrement'])->name('cart
 Route::post('/cart/remove', [CartController::class, 'destroy'])->name('cart.destroy');
 Route::post('/cart/update-shipping', [CartController::class, 'updateShipping'])->name('cart.update-shipping');
 
-
 // Order
 Route::post('/place-order', [OrderController::class, 'store']);
 
