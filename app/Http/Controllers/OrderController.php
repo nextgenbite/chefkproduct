@@ -9,6 +9,7 @@ use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as MPDF;
 
 class OrderController extends Controller
@@ -51,6 +52,8 @@ class OrderController extends Controller
                 "order_date" => date("d/m/Y"),
                 "order_month" => date("m"),
                 "order_year" => date("Y"),
+                "order_year" => date("Y"),
+                'payment_mehood' => $request?->payment_method
             ]);
     
             foreach ($cart['data'] as $item) {
@@ -66,6 +69,25 @@ class OrderController extends Controller
                     "total" => $item['price'] * $item['quantity'],
                     // "total" => $price * $item['quantity'],
                 ]);
+            }
+            // return $request->payment_method;
+
+         
+            if ($request->payment_method == 'stripe') {
+                // $html = View::make('frontend.partials.modal', compact('data'))->render();
+
+                // return response()->json(['html' => $html]);
+
+               return (new StripePaymentController())->stripe($data);
+            //    if ( $stripeData) 
+            //    {
+            //     # code...
+            //     return view('frontend.order_success', compact('data'));
+            //    }
+            }elseif ($request->payment_method == 'paypal') {
+                return 'paypal';
+            }else{
+                return 'cash_on_delivary';
             }
     
             return response()->json(['message' => 'Order Place Successfully', 'data'=> $data]);

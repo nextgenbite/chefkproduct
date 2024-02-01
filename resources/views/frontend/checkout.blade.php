@@ -20,6 +20,8 @@
 
     <!-- ---- Shpping Cart Wrapper--->
     @if ($cart)
+    <form action="{{ url('/place-order') }}" method="post">
+        @csrf
         <div class="container items-start grid-cols-12 gap-6 pt-4 pb-16 lg:grid ">
             <!-- ---- Shipping Address--->
             <div class="xl:col-span-6 lg:col-span-6 ">
@@ -36,6 +38,7 @@
                             </svg>
                         </span>
                         <input type="text" id="customerName"
+                        name="name"
                             class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="elonmusk">
                     </div>
@@ -51,6 +54,7 @@
                             </svg>
                         </span>
                         <input type="text" id="customerPhone"
+                        name="phone"
                             class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="01700000000">
                     </div>
@@ -58,7 +62,7 @@
 
                     <label for="customerAddress" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
                         address</label>
-                    <textarea id="customerAddress" rows="4"
+                    <textarea id="customerAddress" rows="4" name="address"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Enter yor full address.."></textarea>
 
@@ -208,7 +212,7 @@
                 <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Choose Payment :</h3>
                 <ul class="grid w-full gap-6 md:grid-cols-3 mb-2 text-center">
                     <li>
-                        <input type="radio" name="payment" id="react-option" value="" class="hidden peer"
+                        <input type="radio" name="payment_method" id="react-option" value="stripe" class="hidden peer"
                             required="">
                         <label for="react-option"
                             class="inline-flex lg:flex-col items-center justify-between w-full p-4 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -220,7 +224,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="payment" id="flowbite-option" value="" class="hidden peer">
+                        <input type="radio" name="payment_method" id="flowbite-option" value="paypal" class="hidden peer">
                         <label for="flowbite-option"
                             class="inline-flex lg:flex-col items-center justify-between w-full p-4 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                             <div class="block">
@@ -231,7 +235,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="payment" id="angular-option" value="" class="hidden peer">
+                        <input type="radio" name="payment_method" id="angular-option" value="cash_on_delivary" class="hidden peer">
                         <label for="angular-option"
                             class="inline-flex lg:flex-col items-center justify-between w-full p-4 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                             <div class="block">
@@ -243,18 +247,25 @@
                     </li>
                 </ul>
 
-
-                <button type="submit" id="orderConfirm"
-                    class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary border-primary hover:bg-transparent hover:text-primary">
-                    Place Order
-                </button>
-
-
-            </div>
-
-
-            <!-- ---- End Order Summary--->
+     
+                <button type="submit" 
+                class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary border-primary hover:bg-transparent hover:text-primary">
+                Place Order
+            </button>
+            
         </div>
+  
+        
+        
+        <!-- ---- End Order Summary--->
+    </div>
+</form>
+<button type="submit" id="orderConfirm"
+class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary border-primary hover:bg-transparent hover:text-primary">
+Place Order ajax
+</button>
+    <!-- Payment Modal-->
+      @include('frontend.partials.modal')
     @else
         <div v-else class="container pt-4 pb-16">
             <div class="flex items-center justify-center">
@@ -268,6 +279,7 @@
 @endsection
 @push('custom-script')
     <script>
+
         // cart-actions.js
 
         function updateCart(action, productId, row) {
@@ -379,6 +391,7 @@
             const customerAddress = $('#customerAddress');
             const customerPhone = $('#customerPhone');
             const selectCourier = $('#shipping_cost option:selected');
+            const payment_method = $('input[name="payment_method"]:checked');
             const coupon = $('#coupon');
 
             // Validate customer information
@@ -446,9 +459,21 @@
                             'name': customerName.val(),
                             'phone': customerPhone.val(),
                             'address': customerAddress.val(),
+                            'payment_method': payment_method.val(),
                         },
                         success: function(data) {
-                            alert(data.message)
+                            <!-- Payment Modal-->
+                            // set the modal menu element
+const $targetEl = document.getElementById('payment_modal');
+
+
+const modal = new Modal($targetEl);
+// show the modal
+modal.show();
+                            $('#payment_modal_body').html(data.html);
+                            
+
+                            // alert(data.message)
                             // window.location.href = `/order-confirmed?order=${data.id}`;
                             // couponRemove_2();
                             // console.log(data.id);

@@ -28,6 +28,8 @@ class CreateOrdersTable extends Migration
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');
+            $table->string('payment_mehood')->default('cash_on_delivary');
+            $table->string('payment_status')->default('pending');
             $table->string('status')->default('pending');
             $table->timestamps();
         });
