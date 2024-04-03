@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 trait ImageUploadTrait
 {
@@ -41,6 +43,28 @@ exec("convert '$fullImagePath' -strip -interlace Plane -quality 85 '$fullImagePa
 
         return $image_url;
 
+    }
+    public function uploadImage(Request $request, $fieldName, $path, $width = 300, $height = 300)
+    {
+        if ($request->hasFile($fieldName)) {
+            $image = $request->file($fieldName);
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path($path);
+            
+            // Make the directory if it doesn't exist
+            if (!File::isDirectory($destinationPath)) {
+                File::makeDirectory($destinationPath, 0777, true, true);
+            }
+
+            $img = Image::make($image->getRealPath());
+            $img->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPath . '/' . $imageName);
+
+            return $path . '/' . $imageName;
+        } else {
+            return null;
+        }
     }
 
 

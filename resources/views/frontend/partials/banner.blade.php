@@ -6,10 +6,8 @@
         <swiper-container class="lg:w-[74%]  w-full h-full shadow-md rounded-md">
          @forelse ($mainBanner as $slider)
          <swiper-slide>
-              <a href="/categories/{{ $slider->category_id}}" v-if="sliders && sliders.length || item.thumbnail">
-    
-                   {{-- <NuxtImg   :src="item.thumbnail" :alt="item.title" class="w-full max-w-full object-cover rounded-md" /> --}}
-                   <img  src="{{  $slider->thumbnail}}" alt="{{  $slider->title}}" class="w-full max-w-full object-cover rounded-md" />
+              <a href="/categories/{{ $slider->category_id}}">
+                   <img  src="{{  $slider->thumbnail}}" alt="{{  $slider->title}}" height="360" width="640" loading="lazy" class="w-full max-w-full object-cover rounded-md" />
     
               </a>
          </swiper-slide>
@@ -39,7 +37,7 @@
         <div class="w-full lg:h-full lg:flex-1 shadow-md rounded-md" >
      @if ($rightTopBanner && $rightTopBanner->count() > 0 )
      <a href="/categories/ {{  $rightTopBanner->category_id}}">
-          <img  src="{{  $rightTopBanner->thumbnail}}" alt="{{  $rightTopBanner->title}}" class="w-full max-w-full h-auto object-cover rounded-md" />
+          <img  src="{{  $rightTopBanner->thumbnail}}" alt="{{  $rightTopBanner->title}}" height="360" width="640" loading="lazy" class="w-full max-w-full h-auto object-cover rounded-md" />
      </a>
 @else
      
@@ -58,7 +56,7 @@
         <div class="w-full lg:h-full lg:flex-1 shadow-md rounded-md" >
          @if ($rightBottomBanner && $rightBottomBanner->count() > 0 )
               <a href="/categories/ {{  $rightBottomBanner->category_id}}">
-                   <img  src="{{  $rightBottomBanner->thumbnail}}" alt="{{  $rightBottomBanner->title}}" class="w-full max-w-full h-auto object-cover rounded-md" />
+                   <img  src="{{  $rightBottomBanner->thumbnail}}" alt="{{  $rightBottomBanner->title}}" height="360" width="640" loading="lazy" class="w-full max-w-full h-auto object-cover rounded-md" />
               </a>
          @else
               

@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* // Fonts */
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
 @layer components {
     .size-selector input:checked + label{
-         @apply bg-primary text-white;
+         @apply bg-primary-light text-white;
     }
 
     .color-selector input:checked + label{
-         @apply ring-2 ring-primary;
+         @apply ring-2 ring-primary-light;
     }
 
     .input-box{
@@ -18,3 +19,8 @@
     }
 
 }
+
+img{
+     aspect-ratio: attr(width) / attr(height);
+}
+

@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\ShippingCost;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
 
 class PublicController extends Controller
 {
@@ -15,16 +14,21 @@ class PublicController extends Controller
     public function index(){
         // $settings =SiteSetting::first();
         // $categories =Category::limit(8)->get(['id', 'title', 'icon']);
-        $sliders =Slider::whereStatus(1)->with('category')->get();
+        $sliders = Slider::where('status', 1)
+        ->whereIn('position', ['main', 'right_top', 'right_bottom'])
+        ->with('category:id')
+        ->select('thumbnail', 'category_id', 'title', 'position')
+        ->get();
 
-        $mainBanner =$sliders->where('position', 'main');
-        $rightTopBanner =$sliders->where('position', 'right_top')->first();
-        $rightBottomBanner =$sliders->where('position', 'right_bottom')->first();
-        Brand::whereStatus(1)->with('products:id,brand_id')->get();
+$mainBanner = $sliders->where('position', 'main');
+$rightTopBanner = $sliders->firstWhere('position', 'right_top');
+$rightBottomBanner = $sliders->firstWhere('position', 'right_bottom');
 
-        $trendProducts =  Product::with('images', 'category', 'brand')->where(['status'=>true,'trend'=>true])->limit(10)->get();
+        // Brand::whereStatus(1)->with('products:id,brand_id')->get();
 
-        $newProducts = Product::whereStatus(1)->with('images', 'category', 'brand')->latest()->limit(10)->get();
+        $trendProducts =  Product::where(['status'=>true,'trend'=>true])->limit(10)->get();
+
+        $newProducts = Product::whereStatus(1)->latest()->limit(10)->get();
         $products = Product::whereStatus(1)->paginate(10);
         return view('frontend.index', compact('mainBanner','rightTopBanner', 'rightBottomBanner', 'trendProducts','newProducts', 'products'));
     }

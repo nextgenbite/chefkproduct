@@ -13,7 +13,7 @@ if (!function_exists('discountPercentage')) {
     {
         function formatCurrency($amount) 
         {
-            $setting = SiteSetting::first();
+            $setting = SiteSetting::select('currency_symbol')->first();
             $currencySymbol = $setting->currency_symbol ? : '$'; 
 
             return $currencySymbol . number_format($amount, 2);

@@ -7,7 +7,7 @@
  <!-- ---- BreadCrum ----- -->
  <div class="container py-4 flex justify-between " >
      <div class="flex gap-3 items-center ">
-          <a href="{{url('/')}}" class="text-primary text-base">
+          <a href="{{url('/')}}" class="text-primary-light text-base">
               <i class="fas fa-home"></i>
           </a>
           <span class="text-sm text-gray-500 ">
@@ -26,16 +26,16 @@
          <div class="divide-gray-300 divide-y space-y-5 relative">
          <!-- ---- Category filter --->
               <div class="relative">
-                   <div class="lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer ">
+                   <div class="lg:hidden text-gray-400 hover:text-primary-light text-lg absolute right-0 top-0 cursor-pointer ">
                    </div>
                    <h3 class="text-lg text-gray-800 mb-3 uppercase font-medium ">Categories </h3>
                    <div class="space-y-2">
                     @forelse ($categories as $item)
                                <!-- ----Single Category  --->
                         <div class="flex items-center">
-                         <input type="checkbox" id="category" value="{{$item->id}}" class="text-primary focus:ring-0 rounded-sm cursor-pointer peer" />
-                         <label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer capitalize peer-checked:text-primary peer-checked:font-semibold" >{{$item->title}}</label>
-                         <div class="ml-auto text-gray-600 text-sm peer-checked:text-primary peer-checked:font-semibold">({{$item->products->count()}})</div>
+                         <input type="checkbox" id="category" value="{{$item->id}}" class="text-primary-light focus:ring-0 rounded-sm cursor-pointer peer" />
+                         <label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer capitalize peer-checked:text-primary-light peer-checked:font-semibold" >{{$item->title}}</label>
+                         <div class="ml-auto text-gray-600 text-sm peer-checked:text-primary-light peer-checked:font-semibold">({{$item->products->count()}})</div>
 
                     </div>
                        <!-- ----End Single Category --->
@@ -57,9 +57,9 @@
      @forelse ($brands as $item)
      <!-- ----Single Brand  --->
 <div class="flex items-center">
-<input type="checkbox" id="brand" value="{{$item->id}}" class="text-primary focus:ring-0 rounded-sm cursor-pointer peer" />
-<label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer capitalize peer-checked:text-primary peer-checked:font-semibold">{{$item->title}}</label>
-<div class="ml-auto text-gray-600 text-sm peer-checked:text-primary peer-checked:font-semibold">({{$item->products->count()}})</div>
+<input type="checkbox" id="brand" value="{{$item->id}}" class="text-primary-light focus:ring-0 rounded-sm cursor-pointer peer" />
+<label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer capitalize peer-checked:text-primary-light peer-checked:font-semibold">{{$item->title}}</label>
+<div class="ml-auto text-gray-600 text-sm peer-checked:text-primary-light peer-checked:font-semibold">({{$item->products->count()}})</div>
 
 </div>
 <!-- ----End Single Brand --->
@@ -77,9 +77,9 @@
     <h3 class="text-lg text-gray-800 mb-3 uppercase font-medium ">Price </h3>
 
     <div class="mt-4 flex items-center ">
-         <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Min" />
+         <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary-light px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Min" />
          <span class="mx-3 text-gray-500"> - </span>
-         <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Mix" />
+         <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary-light px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Mix" />
     </div> 
 </div> 
 <!-- ---- End Price filter --->
@@ -175,14 +175,14 @@
 <div class="col-span-3">
      <!-- ---- Shorting --->
      <div class="mb-4 flex items-center ">
-         <select class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary " >
+         <select class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary-light focus:border-primary-light " >
               <option>Default sorting</option>
               <option>Price low-high</option>
               <option>Price high-low</option>
               <option>Latest product</option> 
          </select>
          <div class="flex gap-2 ml-auto ">
-              <div class="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer ">
+              <div class="border border-primary-light w-10 h-9 flex items-center justify-center text-white bg-primary-light rounded cursor-pointer ">
                    <i class="fas fa-th"></i>
               </div>
 

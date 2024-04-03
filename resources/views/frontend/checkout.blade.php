@@ -6,7 +6,7 @@
     <!-- ---- BreadCrum ----- -->
     <div class="container py-4 flex justify-between ">
         <div class="flex gap-3 items-center ">
-            <a href="{{ url('/') }}" class="text-primary text-base">
+            <a href="{{ url('/') }}" class="text-primary-light dark:text-white text-base">
                 <i class="fas fa-home"></i>
             </a>
             <span class="text-sm text-gray-500 ">
@@ -197,11 +197,11 @@
                 <!-- ---- Coupon --->
                 <div class="flex mb-4">
                     <input type="text"
-                        class="w-full px-3 py-2 pl-4 text-sm border border-r-0 border-primary rounded-l-md focus:ring-primary focus:border-primary "
+                        class="w-full px-3 py-2 pl-4 text-sm border border-r-0 border-primary-light rounded-l-md focus:ring-primary-light focus:border-primary-light "
                         placeholder="Coupon" />
 
                     <button type="submit"
-                        class=" bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover\:bg-transparent hover\:text-primary transition text-sm w-1/3 block text-center ">Apply</button>
+                        class=" bg-primary-light border border-primary-light text-white px-5 font-medium rounded-r-md hover\:bg-transparent hover\:text-primary-light transition text-sm w-1/3 block text-center ">Apply</button>
 
                 </div>
                 <!-- ---- End Coupon--->
@@ -249,7 +249,7 @@
 
      
                 <button type="submit" 
-                class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary border-primary hover:bg-transparent hover:text-primary">
+                class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary-light border-primary-light hover:bg-transparent hover:text-primary">
                 Place Order
             </button>
             
@@ -261,7 +261,7 @@
     </div>
 </form>
 <button type="submit" id="orderConfirm"
-class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary border-primary hover:bg-transparent hover:text-primary">
+class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary-light border-primary-light hover:bg-transparent hover:text-primary">
 Place Order ajax
 </button>
     <!-- Payment Modal-->

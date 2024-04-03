@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        
+     @include('layouts.title-meta', ['title' => $page_title ?? ''])
         @stack('meta')
 
-        <!-- favicon -->
-        <link rel="icon" type="image/x-icon" href="{{asset($settings->favicon)}}">        
+        
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         
@@ -24,7 +18,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body>
+    <body class="min-h-screen bg-white dark:bg-gray-800 dark:text-white">
         
     <!-- ---- Start Header ----- -->
 
