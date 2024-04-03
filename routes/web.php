@@ -12,8 +12,9 @@ use App\Http\Controllers\ShippingCostController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\UserController;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,10 @@ Route::prefix('tasks')->group(function() {
     });
     Route::get('config/update', function() {
 
-        Artisan::call('composer:update');
+   // Execute 'composer update' using exec
+   shell_exec('composer update');
+
+   return response()->json(['message' => 'composer updated']); 
 
     });
 
