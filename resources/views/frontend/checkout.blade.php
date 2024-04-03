@@ -260,10 +260,7 @@
         <!-- ---- End Order Summary--->
     </div>
 </form>
-<button type="submit" id="orderConfirm"
-class="block w-full px-4 py-3 text-sm font-medium text-center text-white uppercase transition border rounded-md bg-primary-light border-primary-light hover:bg-transparent hover:text-primary">
-Place Order ajax
-</button>
+
     <!-- Payment Modal-->
       @include('frontend.partials.modal')
     @else

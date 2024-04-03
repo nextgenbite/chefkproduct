@@ -49,7 +49,7 @@ Route::prefix('tasks')->group(function() {
 Route::get('/', [PublicController::class, 'index']);
 Route::get('/products/{slug}', [PublicController::class, 'view']);
 Route::get('/shop', [PublicController::class, 'shop']);
-Route::get('/checkout', [PublicController::class, 'checkout']);
+Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
 // Cart
 Route::post('/cart/add', [CartController::class, 'addToCart']);
