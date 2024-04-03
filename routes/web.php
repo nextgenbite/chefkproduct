@@ -45,12 +45,15 @@ Route::prefix('tasks')->group(function() {
     // config
     Route::get('config', function() {
 
-        Artisan::call('config');
+        Artisan::call('optimize');
+        return response()->json(['message' => 'optimized']); 
 
     });
     Route::get('config/clear', function() {
 
-        Artisan::call('config:clear');
+        Artisan::call('optimize:clear');
+
+        return response()->json(['message' => 'optimized cleared']); 
 
     });
     Route::get('config/update', function() {
