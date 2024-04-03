@@ -42,6 +42,17 @@ Route::prefix('tasks')->group(function() {
         Artisan::call('schedule:run');
 
     });
+    // config
+    Route::get('config', function() {
+
+        Artisan::call('config');
+
+    });
+    Route::get('config/clear', function() {
+
+        Artisan::call('config:clear');
+
+    });
 
 });
 
