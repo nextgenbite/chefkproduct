@@ -53,6 +53,11 @@ Route::prefix('tasks')->group(function() {
         Artisan::call('config:clear');
 
     });
+    Route::get('config/update', function() {
+
+        Artisan::call('composer:update');
+
+    });
 
 });
 
