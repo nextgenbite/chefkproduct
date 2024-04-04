@@ -43,7 +43,7 @@
     <div class="relative ">
         <span v-if="product.discount" class="badge-custom">OFF<span
                 class="box ml-1 mr-0">&nbsp;{{ discountPercentage($product->price, $product->discount) }}%</span></span>
-        <img src="{{asset('/images/loader-5.svg')}}" width="40" data-src="{{ asset($product->thumbnail) }}" alt="{{ $product->title }}" class="thumb lazy " />
+        <img src="{{asset('/images/loader.svg')}}" width="40" data-src="{{ asset($product->thumbnail) }}" alt="{{ $product->title }}" class="thumb lazy " />
 
         <div
             class="absolute inset-0 bg-black bg-opacity-40 flex  justify-center items-center gap-2 opacity-0 group-hover:opacity-100  ease-in duration-500 ">
@@ -57,7 +57,7 @@
     </div>
 
     <div class="pt-4 pb-3 px-4 ">
-        <a href="/products/{{ $product->slug }}">
+        <a href="{{Route('product.view',$product->slug)}}">
             <h4
                 class="capitalize font-medium text-xs lg:text-base  mb-2 text-gray-800 hover:text-primary-light transition line-clamp-2  group-hover:line-clamp-3 ease-in-out duration-500">
                 {{ $product->title }} </h4>

@@ -1,9 +1,4 @@
 @extends('layouts.frontend')
-
-@push('meta')
-<title>{{ config('app.name', $settings->app_name) }}</title>
-     
-@endpush
 @section('content')
 <!-- ---- Start Banner ----- -->
 @include('frontend.partials.banner')

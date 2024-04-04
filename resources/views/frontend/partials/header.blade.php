@@ -38,19 +38,21 @@
                             <i class="fas fa-user "></i> 
                        </div>
                   </a>  -->
-                  <button type="button" class="hidden  text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center lg:inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                  <button type="button" class="hidden  text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center lg:inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 " >
                       
                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 18">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
                           </svg>
                        <span class="sr-only">Icon description</span>
                        </button>
+                       <div class="hidden lg:inline">
                        @auth
-                            
-                       <a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" > Dashboard</a>
-                       @else
-                       <a title="login" href="{{Route('login')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" >Login</a>&nbsp|<a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" >Register</a>
-                       @endauth
+
+                                 <a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold " > Dashboard</a>
+                                 @else
+                                 <a title="login" href="{{Route('login')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold" >Login</a>&nbsp|<a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" >Register</a>
+                                 @endauth
+                              </div>
    <!-- 
                   <a title="title" href="#" class="md:block hidden text-center text-white md:text-gray-700 hover:text-primary-light transition relative " title="Cart">
                        <span class=" absolute -right-2 -top-1 w-4 h-4 lg:w-5 lg:h-5 xl:w-5 xl:h-5 rounded-full flex items-center justify-center  bg-primary-light text-white text-xs "> 5 </span>

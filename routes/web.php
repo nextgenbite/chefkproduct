@@ -70,7 +70,7 @@ Route::prefix('tasks')->group(function() {
 
 // Frontend
 Route::get('/', [PublicController::class, 'index']);
-Route::get('/products/{slug}', [PublicController::class, 'view']);
+Route::get('/products/{slug}', [PublicController::class, 'view'])->name('product.view');
 Route::get('/shop', [PublicController::class, 'shop']);
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
@@ -93,7 +93,12 @@ Route::controller(StripePaymentController::class)->group(function(){
 });
 // routes/web.php
 
-
+Route::get('/address', function () {
+    return view('address');
+});
+Route::get('/barcode', function () {
+    return view('barcode');
+});
 
 
 // Backend
