@@ -10,4 +10,10 @@ class Size extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
+    public function variants()
+    {
+        return $this->hasMany(Variation::class);
+    }
 }

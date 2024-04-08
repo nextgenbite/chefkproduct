@@ -166,7 +166,8 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
-        // Yajra\DataTables\DataTablesServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -234,7 +235,9 @@ return [
 
         // custom packeges
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-        // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 

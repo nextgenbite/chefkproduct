@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layouts.title-meta', ['title' => $page_title ?? ''])
-    @stack('meta')
+    @include('layouts.title-meta')
+
 
 
     <!-- Fonts -->
@@ -14,9 +14,9 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
+    @stack('css')
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
@@ -59,16 +59,17 @@
 
 
 
-        <nuxt-link to="/checkout" class="block text-center text-gray-700 hover:text-primary transition relative ">
+        <a href="javascript:void(0)" data-drawer-target="drawer-right-cart" data-drawer-show="drawer-right-cart"
+                        data-drawer-placement="right" aria-controls="drawer-right-cart" class="block text-center text-gray-700 hover:text-primary transition relative ">
             <span
-                class="absolute -right-3  -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs ">
-                0
+                class="absolute -right-3  -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary-light text-white text-xs ">
+                {{ count(session('cart')['data'] ?? []) > 0 ? count(session('cart')['data']) : 0 }}
             </span>
             <div class="text-2xl">
                 <i class="fas fa-shopping-bag"></i>
             </div>
             <div class="text-xs leading-3">Cart</div>
-        </nuxt-link>
+        </a>
 
     </div>
 
@@ -84,7 +85,7 @@
                 class="text-gray-400 hover:text-primary text-lg absolute right-3 top-3 cursor-pointer ">
                 <i class="fas fa-times"></i>
             </div>
-            <h3 class="text-xl font-semibold text-white mb-2 font-roboto pl-4 pt-4 pb-4 bg-primary ">Categories</h3>
+            <h3 class="text-xl font-semibold text-white mb-2 font-roboto pl-4 pt-4 pb-4 bg-primary-light ">Categories</h3>
             <div class="divide-y divide-gray-300">
                 {{-- <nuxt-link v-for="category in categories" :key="category.id" to="/" class="block px-4 py-4 font-medium transition hover:bg-gray-200 capitalize">
                 {{category.title}}
@@ -113,9 +114,37 @@
 
     @include('frontend.partials.footer')
     <!-- ---- End Footer   ----- -->
-
+ 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
+
+
+let menuBar = document.querySelector('#menuBar')
+        let mobileMenu = document.querySelector('#mobileMenu')
+        let closeMenu = document.querySelector('#closeMenu')
+
+        menuBar.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden')
+        })
+
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden')
+        })
+
+        document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('header').classList.add('fixed');
+        // add padding top to show content behind navbar
+        navbar_height = document.querySelector('#header').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('header').classList.remove('fixed');
+         // remove padding top from body
+        document.body.style.paddingTop = '0';
+      } 
+  });
+});
         // Set CSRF token globally for AJAX requests
         $.ajaxSetup({
             headers: {

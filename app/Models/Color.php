@@ -12,4 +12,9 @@ class Color extends Model
     protected $guarded = [];
 
 
+    public function variants()
+    {
+        return $this->hasMany(Variation::class);
+    }
+
 }

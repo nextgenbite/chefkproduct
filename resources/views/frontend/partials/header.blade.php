@@ -1,6 +1,6 @@
     <!-- ---- Start Header ----- -->
     
-    <header id="header" class="py-1  md:pt-2 shadow-sm bg-primary-light lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50">
+    <header id="header" class="py-1  md:pt-2 shadow-sm  bg-primary-light lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50">
         <div class="container flex items-center justify-between">
              <!-- logo  -->
              <a title="logo" href="{{URL::to('/')}}" class=" w-14 md:w-16 ">
@@ -50,7 +50,7 @@
 
                                  <a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold " > Dashboard</a>
                                  @else
-                                 <a title="login" href="{{Route('login')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold" >Login</a>&nbsp|<a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" >Register</a>
+                                 <a title="login" href="{{Route('login')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold" >Login</a>&nbsp|&nbsp<a title="register" href="{{Route('register')}}" class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline" >Register</a>
                                  @endauth
                               </div>
    <!-- 

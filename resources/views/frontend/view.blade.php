@@ -1,5 +1,61 @@
-@extends('layouts.frontend', ['page_title' => $product->title])
-@push('meta')
+@extends('layouts.frontend', ['meta' => [
+    'title' => 'Page Title'.  $product->title,
+    'description' => 'Page Description',
+    'og:title' => 'Open Graph Title',
+    'og:description' => 'Open Graph Description',
+    'og:image' => asset($product->thumbnail),
+    // Add more meta tags as needed
+]])
+@section('title', $product->title)
+@section('meta')
+    {{-- @php
+        $availability = "out of stock";
+        $qty = 0;
+        if($detailedProduct->variant_product) {
+            foreach ($detailedProduct->stocks as $key => $stock) {
+                $qty += $stock->qty;
+            }
+        }
+        else {
+            $qty = optional($detailedProduct->stocks->first())->qty;
+        }
+        if($qty > 0){
+            $availability = "in stock";
+        }
+    @endphp
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{ $detailedProduct->meta_title }}">
+    <meta itemprop="description" content="{{ $detailedProduct->meta_description }}">
+    <meta itemprop="image" content="{{ uploaded_asset($detailedProduct->meta_img) }}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@publisher_handle">
+    <meta name="twitter:title" content="{{ $detailedProduct->meta_title }}">
+    <meta name="twitter:description" content="{{ $detailedProduct->meta_description }}">
+    <meta name="twitter:creator" content="@author_handle">
+    <meta name="twitter:image" content="{{ uploaded_asset($detailedProduct->meta_img) }}">
+    <meta name="twitter:data1" content="{{ single_price($detailedProduct->unit_price) }}">
+    <meta name="twitter:label1" content="Price">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{ $detailedProduct->meta_title }}" />
+    <meta property="og:type" content="og:product" />
+    <meta property="og:url" content="{{ route('product', $detailedProduct->slug) }}" />
+    <meta property="og:image" content="{{ uploaded_asset($detailedProduct->meta_img) }}" />
+    <meta property="og:description" content="{{ $detailedProduct->meta_description }}" />
+    <meta property="og:site_name" content="{{ get_setting('meta_title') }}" />
+    <meta property="og:price:amount" content="{{ single_price($detailedProduct->unit_price) }}" />
+    <meta property="product:brand" content="{{ $detailedProduct->brand ? $detailedProduct->brand->name : env('APP_NAME') }}">
+    <meta property="product:availability" content="{{ $availability }}">
+    <meta property="product:condition" content="new">
+    <meta property="product:price:amount" content="{{ number_format($detailedProduct->unit_price, 2) }}">
+    <meta property="product:retailer_item_id" content="{{ $detailedProduct->slug }}">
+    <meta property="product:price:currency"
+        content="{{ get_system_default_currency()->code }}" />
+    <meta property="fb:app_id" content="{{ env('FACEBOOK_PIXEL_ID') }}"> --}}
+@endsection
+@push('css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/xzoom/example/css/xzoom.css') }}" media="all" />
 
     <link type="text/css" rel="stylesheet" media="all"
@@ -30,18 +86,18 @@
     <!-- ---- BreadCrum ----- -->
     <div class="container py-4 flex justify-between ">
         <div class="flex gap-3 items-center ">
-            <a href="{{ url('/') }}" class="text-primary-light text-base">
+            <a href="{{ url('/') }}" class="text-primary-light text-xs md:text-base">
                 <i class="fas fa-home"></i>
             </a>
-            <span class="text-sm text-gray-500 ">
+            <span class="text-xs md:text-sm text-gray-500 ">
                 <i class="fas fa-chevron-right"></i>
             </span>
-            <p class="text-primary-light font-medium uppercase">{{ $product->category->title }}</p>
+            <p class="text-primary-light font-medium  text-xs md:text-base capitalize">{{ $product->category->title }}</p>
 
-            <span class="text-sm text-gray-500 ">
+            <span class="text-xs md:text-sm text-gray-500 ">
                 <i class="fas fa-chevron-right"></i>
             </span>
-            <p class="text-gray-500 font-medium uppercase">{{ $product->title }}</p>
+            <p class="text-gray-500 text-xs md:text-base font-medium capitalize">{{ $product->title }}</p>
         </div>
 
     </div>
@@ -122,16 +178,23 @@
                         <span class="text-red-600"> Stock Out</span>
                     @endif
                 </p>
+                <div class="grid grid-cols-4  text-left">
+                    <span>Brand:</span>
+                    <span class="text-gray-600 capitalize col-span-3">{{ $product->brand?->title  }} </span>
+
+                </div>
                 @if ($product->brand)
-                    <p class="text-gray-800 font-semibold space-x-2 ">
-                        <span>Brand : </span>
-                        <span class="text-gray-600">{{ $product->brand->title }} </span>
+                    <p class="text-gray-800 font-semibold flex gap-2 ">
+                    </p>
+                    <p class="text-gray-800 font-semibold flex gap-2 ">
+                        <span>Category:</span>
+                        <span class="text-gray-600 capitalize">{{ $product->brand->title ?? null }} </span>
                     </p>
                 @endif
                 @if ($product->category)
-                    <p class="text-gray-800 font-semibold space-x-2 ">
-                        <span>Category : </span>
-                        <span class="text-gray-600">{{ $product->category->title }} </span>
+                    <p class="text-gray-800 font-semibold space-x-3 ">
+                        <span>Category</span>
+                        <span class="text-gray-600 capitalize">:{{ $product->category->title }} </span>
                     </p>
                 @endif
                 {{-- <p class="text-gray-800 font-semibold space-x-2 ">
@@ -152,118 +215,79 @@
             <!-- ---- Size filter --->
 
             <div class="pt-4">
-                <h3 class="text-lg text-gray-800 mb-3 uppercase font-medium ">Size </h3>
+                <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Size </h3>
                 <div class="flex items-center gap-2">
+                    @foreach ($product->variations->filter->size as $item)
                     <!-- ---- Single Size --->
                     <div class="size-selector">
-                        <input type="radio" name="size" class="hidden peer" id="size-s" />
-                        <label for="size-s"
-                            class="text-xs border peer-checked:bg-primary-light border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">S</label>
+                        <input type="radio" name="size" class="hidden peer" value="{{$item->size->id}}" id="{{$item->size->name}}" {{$loop->first ? "checked" : ''}}/>
+                        <label for="{{$item->size->name}}"
+                            class="text-xs border peer-checked:bg-primary-light  border-gray-200 rounded-lg h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 uppercase">{{$item->size->name}}</label>
                     </div>
                     <!-- ---- End Single Size --->
-
-                    <!-- ---- Single Size --->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-m" />
-                        <label for="size-m"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">M</label>
-                    </div>
-                    <!-- ---- End Single Size --->
-
-
-                    <!-- ---- Single Size --->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-l" />
-                        <label for="size-l"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">L</label>
-                    </div>
-                    <!-- ---- End Single Size --->
-
-
-                    <!-- ---- Single Size --->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-xs" />
-                        <label for="size-xs"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XS</label>
-                    </div>
-                    <!-- ---- End Single Size --->
-
-
-                    <!-- ---- Single Size --->
-                    <div class="size-selector">
-                        <input type="radio" name="size" class="hidden" id="size-xl" />
-                        <label for="size-xl"
-                            class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XL</label>
-                    </div>
-                    <!-- ---- End Single Size --->
+                    @endforeach
+  
 
                 </div>
             </div>
             <!-- ---- End Size filter --->
 
             <!-- ----  Color filter --->
+            @if (isset($product->variations))
             <div class="pt-4">
-                <h3 class="text-lg text-gray-800 mb-3 uppercase font-medium ">Color </h3>
+                <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Color </h3>
 
                 <div class="flex items-center gap-2">
-                    <!-- ---- Single Color --->
+                    @foreach ($product->variations->filter->color as $item)
+                          <!-- ---- Single Color --->
                     <div class="color-selector  ">
-                        <input type="radio" name="color" class="hidden" id="color-red" checked />
-                        <label for="color-red " style="background-color: brown;"
-                            class="text-xs border  border-gray-200 rounded-full h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+                        <input  type="radio" name="color" class="hidden" value="{{$item->color->id}}" id="{{$item->color->name}}" {{$loop->first ? "checked" : ''}} />
+                        <label for="{{$item->color->name}}" style="background-color:   {{$item->color->code}};"
+                            title="{{ucfirst($item->color->name)}}"  class="text-xs border  border-gray-200 shadow rounded-full h-5 w-5 flex items-center justify-center cursor-pointer"></label>
 
                     </div>
                     <!-- ----  End Single Color --->
-
-                    <!-- ---- Single Color --->
-                    <div class="color-selector">
-                        <input type="radio" name="color" class="hidden" id="color-white" />
-                        <label for="color-white" style="background-color:blueviolet;"
-                            class="text-xs border border-gray-200 rounded-full h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
-
-                    </div>
-                    <!-- ----  End Single Color --->
-
-
-                    <!-- ---- Single Color --->
-                    <div class="color-selector">
-                        <input type="radio" name="color" class="hidden" id="color-black" />
-                        <label for="color-black" style="background-color: #000000;"
-                            class="text-xs border border-gray-200 rounded-full h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
-
-                    </div>
-                    <!-- ----  End Single Color --->
+                    @endforeach
+                    
                 </div>
             </div>
-
+            @endif
             <!-- ---- End Color filter --->
 
             <!-- ---- Quantity --->
-            <div class="mt-4">
-                <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
-                <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max ">
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"> - </div>
-                    <div class="h-8 w-10 flex items-center justify-center"> 5 </div>
-                    <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"> + </div>
+            <div class="mt-4">                
 
-                </div>
+    <label for="quantity-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Quantity</label>
+    <div class="relative flex items-center max-w-[3rem]">
+        <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-2.5 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+            </svg>
+        </button>
+        <input type="text" id="quantity-input" data-input-counter aria-describedby="helper-text-explanation" data-input-counter-min="1" data-input-counter-max="5" class="bg-gray-50 border-x-0 border-gray-300 h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-10 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="1" required />
+        <button type="button" id="increment-button" data-input-counter-increment="quantity-input" class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2.5 h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+            </svg>
+        </button>
+    </div>
             </div>
             <!-- ---- End Quantity --->
 
 
             <!-- ---- ADD TO CART BUTTON --->
-
+            
+            
             <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
+                <a href="#"
+                    class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
+                    <span class="mr-2"><i class="fas fa-heart"></i> </span>
+                    Add To Cart
+                </a>
                 <a href="javascript:void(0)" id="{{ $product->id }}" onclick="buyNow(this.id)"
                     class="bg-primary-light border border-primary-light  text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
                     <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span>
                     Buy Now
-                </a>
-
-                <a href="#"
-                    class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
-                    <span class="mr-2"><i class="fas fa-heart"></i> </span>
-                    Whishlist
                 </a>
 
             </div>
@@ -524,58 +548,19 @@
     <!-- Include Fancybox JavaScript file (if using) -->
     <script src="{{ asset('assets/plugins/xzoom/example/fancybox/source/jquery.fancybox.js') }}"></script>
 
-    <script>
-        let mainImg = document.getElementById('main-img')
-        let imgBars = document.getElementsByClassName('single-img')
 
-
-        for (let imgBar of imgBars) {
-            imgBar.addEventListener('click', function() {
-                clearActive()
-                let imgPath = this.getAttribute('src')
-                mainImg.setAttribute('src', imgPath)
-                this.classList.add('opacity-50')
-            })
-        }
-
-        function clearActive() {
-            for (let imgBar of imgBars) {
-                imgBar.classList.remove('opacity-50')
-            }
-        }
-    </script>
-
-
-
-
-
-
-    <script>
-        let menuBar = document.querySelector('#menuBar')
-        let mobileMenu = document.querySelector('#mobileMenu')
-        let closeMenu = document.querySelector('#closeMenu')
-
-        menuBar.addEventListener('click', function() {
-            mobileMenu.classList.remove('hidden')
-        })
-
-        closeMenu.addEventListener('click', function() {
-            mobileMenu.classList.add('hidden')
-        })
-    </script>
     <script>
         // Add a product to the cart
         function buyNow(id) {
             let quantity = 1;
-            const inputQty = $('input.input-qty.qty');
+            const inputQty = $('#quantity-input');
             if (inputQty.length) {
                 quantity = inputQty.val();
             }
             // Get selected color and size values
-            // const selectedColor = $('input[name="color"]:checked').val() || null;
-            const selectedColor = $('.sku-variable-color.sku-variable-size-selected').attr('title');
-            const selectedSize = $('.sku-variable-size.sku-variable-size-selected').attr('title');
-            //  if(selectedColor && selectedSize){
+            const selectedColor = $('input[name=color]:checked').val()  || null;
+            const selectedSize = $('input[name=size]:checked').val()  || null;
+       
             $.ajax({
                 type: 'post',
                 url: "{{ url('/cart/add') }}",

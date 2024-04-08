@@ -19,4 +19,10 @@ if (!function_exists('discountPercentage')) {
             return $currencySymbol . number_format($amount, 2);
         }
     }
+    if(!function_exists('truncate'))
+    {
+        function truncate($string, $length, $dots = "...") {
+            return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
+        }
+    }
 }

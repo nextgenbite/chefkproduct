@@ -86,8 +86,6 @@ class OrderController extends Controller
             //    }
             }elseif ($request->payment_method == 'paypal') {
                 return 'paypal';
-            }else{
-                return 'cash_on_delivary';
             }
     
             return response()->json(['message' => 'Order Place Successfully', 'data'=> $data]);

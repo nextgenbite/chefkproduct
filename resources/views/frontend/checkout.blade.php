@@ -112,14 +112,14 @@
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="p-2 hidden md:inline">
                                         <img src="{{ asset($item['thumbnail']) }}"
-                                            class="md:w-16 md:ml-2 max-w-full max-h-full rounded " :alt="item.title" />
+                                            class="md:w-16 md:ml-2 max-w-full max-h-full rounded" alt="{{ $item['title'] }}" />
                                     </td>
-                                    <td class="md:px-2 py-1 font-semibold text-gray-900 dark:text-white text">
+                                    <td class="px-2 md:px-3 py-1 font-semibold text-gray-900 dark:text-white text">
                                         {{ $item['title'] }}
                                     </td>
                                     <td class=" md:px-2 py-1">
                                         <div class="relative flex items-center max-w-[6rem]">
-                                            <button type="button" onclick="decrement(this.id)"
+                                            <button type="button"
                                                 data-product-id="{{ $item['product_id'] }}"
                                                 class="decrement-cart bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-1 h-6  md:p-2 md:h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                                 <svg class="w-2 h-2 md:w-3 md:h-3 text-gray-900 dark:text-white"
@@ -132,8 +132,8 @@
                                             <input type="text" id="quantity-input" data-input-counter
                                                 aria-describedby="helper-text-explanation" value="{{ $item['quantity'] }}"
                                                 disabled
-                                                class="quantity bg-gray-50 border-x-0 border-gray-300 h-6 md:h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="999" required />
+                                                class="quantity bg-gray-50 border-x-0 border-gray-300 h-6 w-10 md:h-8 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block  py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                 required />
                                             <button type="button" data-product-id="{{ $item['product_id'] }}"
                                                 class="increment-cart bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-2 h-6  md:p-2 md:h-8 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                                 <svg class="w-2 h-2 md:w-3 md:h-3 text-gray-900 dark:text-white"
