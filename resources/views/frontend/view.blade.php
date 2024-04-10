@@ -178,23 +178,21 @@
                         <span class="text-red-600"> Stock Out</span>
                     @endif
                 </p>
-                <div class="grid grid-cols-4  text-left">
-                    <span>Brand:</span>
-                    <span class="text-gray-600 capitalize col-span-3">{{ $product->brand?->title  }} </span>
+                    {{-- <span>Brand:</span>
+                    <span class="text-gray-600 capitalize col-span-3">{{ $product->brand?->title  }} </span> --}}
 
-                </div>
+                
+      
                 @if ($product->brand)
-                    <p class="text-gray-800 font-semibold flex gap-2 ">
-                    </p>
-                    <p class="text-gray-800 font-semibold flex gap-2 ">
-                        <span>Category:</span>
-                        <span class="text-gray-600 capitalize">{{ $product->brand->title ?? null }} </span>
+                    <p class="text-gray-800 font-semibold space-x-3 ">
+                        <span>Brand:</span>
+                        <span class="text-gray-600 capitalize">{{ $product->brand->title }} </span>
                     </p>
                 @endif
                 @if ($product->category)
                     <p class="text-gray-800 font-semibold space-x-3 ">
-                        <span>Category</span>
-                        <span class="text-gray-600 capitalize">:{{ $product->category->title }} </span>
+                        <span>Category:</span>
+                        <span class="text-gray-600 capitalize">{{ $product->category->title }} </span>
                     </p>
                 @endif
                 {{-- <p class="text-gray-800 font-semibold space-x-2 ">
@@ -281,7 +279,7 @@
             <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
                 <a href="#"
                     class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
-                    <span class="mr-2"><i class="fas fa-heart"></i> </span>
+                    <span class="mr-2"><i class="fas fa-cart-plus"></i> </span>
                     Add To Cart
                 </a>
                 <a href="javascript:void(0)" id="{{ $product->id }}" onclick="buyNow(this.id)"

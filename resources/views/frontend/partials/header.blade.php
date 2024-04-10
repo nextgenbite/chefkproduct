@@ -68,7 +68,7 @@
                             <i class="fas fa-user "></i> 
                        </div>
                   </a>  -->
-                  <a title="title" href="#" id="menuBar" class="lg:hidden  text-center text-white lg:text-gray-700 hover:scale-75 transition relative " title="Account">
+                  <a title="title" href="#" data-drawer-target="drawer-sidebar" data-drawer-show="drawer-sidebar" aria-controls="drawer-sidebar" class="lg:hidden  text-center text-white lg:text-gray-700 hover:scale-75 transition relative " title="Account">
                        
                        <div class="text-xl lg:text-2xl ">
                             <i class="fas fa-bars "></i> 

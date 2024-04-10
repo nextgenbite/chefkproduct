@@ -69,9 +69,9 @@ Route::prefix('tasks')->group(function() {
 });
 
 // Frontend
-Route::get('/', [PublicController::class, 'index']);
+Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
 Route::get('/products/{slug}', [PublicController::class, 'view'])->name('product.view');
-Route::get('/shop', [PublicController::class, 'shop']);
+Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
 
 // Cart

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\ImageUploadTrait;
 
 class SliderController extends Controller
 {
@@ -19,7 +22,7 @@ class SliderController extends Controller
     public function index()
     {
         $data = Slider::with('category')->get();
-        return response()->json($data, 200);
+        return view('admin.slider.index', compact('data') );
     }
 
 
