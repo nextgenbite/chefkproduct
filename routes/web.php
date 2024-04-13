@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -70,6 +71,7 @@ Route::prefix('tasks')->group(function() {
 
 // Frontend
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
+Route::get('/categories/{slug}', [PublicController::class, 'showCategories'])->name('categories.show');
 Route::get('/products/{slug}', [PublicController::class, 'view'])->name('product.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
@@ -177,11 +179,15 @@ Route::prefix('user')->middleware(['auth'])->group(function (){
 Route::get('/profile', function () {
     return view('frontend.user.profile');
 });
+
 Route::get('/logout', function () {
     auth()->logout();
     return redirect('/login')->with(['message' => 'Data Deleted successfully', 'status' => 'success']);
 })->name('user.logout');
 });
+Route::get('/social-login/google/callback', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [AuthController::class, 'handleGoogleCallback']);
 require __DIR__.'/auth.php';
+
 
 

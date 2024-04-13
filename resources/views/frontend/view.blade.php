@@ -92,7 +92,7 @@
             <span class="text-xs md:text-sm text-gray-500 ">
                 <i class="fas fa-chevron-right"></i>
             </span>
-            <p class="text-primary-light font-medium  text-xs md:text-base capitalize">{{ $product->category->title }}</p>
+            <a href="{{ route('categories.show',$product->category->slug ) }}" class="text-primary-light font-medium  text-xs md:text-base capitalize">{{ $product->category->title }}</a>
 
             <span class="text-xs md:text-sm text-gray-500 ">
                 <i class="fas fa-chevron-right"></i>

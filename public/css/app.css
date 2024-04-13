@@ -1314,6 +1314,9 @@ input:checked + .toggle-bg {
 .ms-2 {
   margin-inline-start: 0.5rem;
 }
+.ms-3 {
+  margin-inline-start: 0.75rem;
+}
 .ms-auto {
   margin-inline-start: auto;
 }
@@ -1474,6 +1477,9 @@ input:checked + .toggle-bg {
 .w-11 {
   width: 2.75rem;
 }
+.w-12 {
+  width: 3rem;
+}
 .w-14 {
   width: 3.5rem;
 }
@@ -1557,6 +1563,9 @@ input:checked + .toggle-bg {
 }
 .max-w-full {
   max-width: 100%;
+}
+.max-w-lg {
+  max-width: 32rem;
 }
 .max-w-md {
   max-width: 28rem;
@@ -1972,6 +1981,9 @@ input:checked + .toggle-bg {
 .border-b-2 {
   border-bottom-width: 2px;
 }
+.border-e-0 {
+  border-inline-end-width: 0px;
+}
 .border-l-4 {
   border-left-width: 4px;
 }
@@ -2034,6 +2046,10 @@ input:checked + .toggle-bg {
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(26 86 219 / var(--tw-bg-opacity));
+}
+.bg-blue-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 66 159 / var(--tw-bg-opacity));
 }
 .bg-blue-900 {
   --tw-bg-opacity: 1;
@@ -2235,6 +2251,10 @@ input:checked + .toggle-bg {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -2261,6 +2281,9 @@ input:checked + .toggle-bg {
 }
 .pb-8 {
   padding-bottom: 2rem;
+}
+.pe-1 {
+  padding-inline-end: 0.25rem;
 }
 .pl-0 {
   padding-left: 0px;
@@ -2482,6 +2505,10 @@ input:checked + .toggle-bg {
 .text-purple-600 {
   --tw-text-opacity: 1;
   color: rgb(126 58 242 / var(--tw-text-opacity));
+}
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(240 82 82 / var(--tw-text-opacity));
 }
 .text-red-600 {
   --tw-text-opacity: 1;
@@ -3272,6 +3299,11 @@ img{
   color: rgb(144 97 249 / var(--tw-text-opacity));
 }
 
+:is(.dark .dark\:text-red-500) {
+  --tw-text-opacity: 1;
+  color: rgb(240 82 82 / var(--tw-text-opacity));
+}
+
 :is(.dark .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -3585,6 +3617,10 @@ img{
 
   .md\:mb-1 {
     margin-bottom: 0.25rem;
+  }
+
+  .md\:me-0 {
+    margin-inline-end: 0px;
   }
 
   .md\:ml-2 {

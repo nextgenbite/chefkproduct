@@ -7,7 +7,7 @@
          @forelse ($mainBanner as $slider)
          <swiper-slide>
               <a href="/categories/{{ $slider->category_id}}">
-                   <img  src="{{asset('/images/loader.svg')}}" data-src="{{ asset($slider->thumbnail) }}" alt="{{  $slider->title}}" height="360" width="640" class="w-full max-w-full object-cover rounded-md lazy" />
+                   <img  src="{{asset('/images/placeholder-image.png')}}" data-src="{{ asset($slider->thumbnail) }}" loading="lazy" alt="{{  $slider->title}}" height="300" width="400" class="w-full max-w-full object-cover rounded-md lazy" />
     
               </a>
          </swiper-slide>

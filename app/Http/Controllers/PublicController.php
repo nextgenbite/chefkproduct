@@ -39,7 +39,7 @@ $rightBottomBanner = $sliders->firstWhere('position', 'right_bottom');
         return view('frontend.shop', compact('products', 'brands'));
     }
     public function view($slug){
-        $product = Product::with('images', 'category:id,title', 'brand:id,title', 'variations:id,product_id,color_id,size_id')->where(['status'=>true,'slug'=>$slug])->first();
+        $product = Product::with('images', 'category:id,title,slug', 'brand:id,title', 'variations:id,product_id,color_id,size_id')->where(['status'=>true,'slug'=>$slug])->first();
         $relatedProduct = Product::where('category_id', $product->category_id)
         ->where('id', '!=', $product->id)
         ->orderBy('id', 'DESC')

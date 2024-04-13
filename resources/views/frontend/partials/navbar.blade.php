@@ -12,15 +12,15 @@
                     categories</span>
                 <div
                     class="absolute left-0 top-full w-full bg-white shadow-md py-3 invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
-                    @forelse ($categories as $category)
+                    @forelse ($categories as $item)
                         <!-- ---- Start single category ----- -->
-                        <a title="{{ $category->title }}" href="#"
+                        <a title="{{ $item->title }}" href="{{ route('categories.show',$item->slug ) }}"
                             class="px-6 py-3 flex items-center hover:bg-gray-100 transition duration-500 ease-in-out ">
                             <span class="material-symbols-sharp text-gray-700">
-                                {{ $category->icon }}
+                                {{ $item->icon ?? 'adjust' }}
                             </span>
                             <span class="ml-6 text-gray-700 text-sm font-semibold  capitalize">
-                                {{ $category->title }}</span>
+                                {{ $item->title }}</span>
                         </a>
                         <!-- ---- single category End ----- -->
                     @empty
@@ -34,13 +34,13 @@
 
             <div class="flex items-center justify-between flex-grow pl-12 ">
                 <div class="flex items-center space-x-10 text-base capitalize ">
-                    <a title="title" href="{{ url('/') }}"
+                    <a title="home" href="{{ url('/') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Home</a>
-                    <a title="title" href="{{ url('/shop') }}"
+                    <a title="shop" href="{{ url('/shop') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Shop</a>
-                    <a title="title" href="index.html"
+                    <a title="about" href="index.html"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">About</a>
-                    <a title="title" href="index.html"
+                    <a title="contact" href="{{ url('/contact') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Contact</a>
 
                 </div>
@@ -65,6 +65,8 @@
 
                     <!-- ---- Cart End ----- -->
                 </div>
+
+                
                 <button id="theme-toggle" type="button"
                     class="text-gray-500 dark:text-yellow-300 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
