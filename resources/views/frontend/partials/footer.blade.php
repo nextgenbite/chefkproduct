@@ -6,25 +6,22 @@
               <div class="space-y-1 xl:col-span-1 ">
                    <img alt="image" src="{{asset($settings->favicon)}}" alt="{{$settings->app_name}} " class="w-20" /> 
                    <p class="text-gray-500 text-base font-roboto " >
-                        phone: <a href="tel:+{{$settings->phone}}"></a> 
-                   </p>
-                   <p class="text-gray-500 text-base font-roboto flex" >
-                       <Address > {{$settings->address}}</Address>
-                   </p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing.
+                </p>
                    <div class="flex space-x-5">
-                        <a title="title" href="#" class="text-gray-400 hover:text-gray-500" >
+                        <a title="facebook" href="{{$settings->facebook}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-facebook-f"></i>
                         </a>
 
-                        <a title="title" href="#" class="text-gray-400 hover:text-gray-500" >
+                        <a title="twitter" href="{{$settings->twitter}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-twitter"></i>
                         </a>
 
-                        <a title="title" href="#" class="text-gray-400 hover:text-gray-500" >
+                        <a title="instagram" href="{{$settings->instagram}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-instagram"></i>
                         </a>
 
-                        <a title="title" href="#" class="text-gray-400 hover:text-gray-500" >
+                        <a title="linkedin" href="{{$settings->linkedin}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-linkedin-in"></i>
                         </a>
 
