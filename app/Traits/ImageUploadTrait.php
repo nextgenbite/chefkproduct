@@ -4,63 +4,60 @@ namespace App\Traits;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Str;
 trait ImageUploadTrait
 {
-
-    public function uploadBase64Image($base64Data, $destinationPath , $ext = 'webp')
+    
+    public function uploadBase64Image($base64Data, $destinationPath, $ext = 'webp')
     {
-
-        $name = time() . "." . $ext;
-        $img = Image::make($base64Data);
-
-        if (!file_exists($destinationPath)) {
-            mkdir($destinationPath, 0755, true);
+        $name = Str::random(10) . '.' . $ext; // Generate a random name for the image
+        $imagePath = public_path($destinationPath);
+    
+        // Make the directory if it doesn't exist
+        if (!file_exists($imagePath)) {
+            mkdir($imagePath, 0755, true);
         }
-
+    
         $image_url = $destinationPath . $name;
-
-        $height = $img->height();
-        $width = $img->width();
-
-        if ($width > $height && $width > 1500) {
-            $img->resize(1500, null, function ($constraint) {
+    
+        // Create an image instance from base64 data
+        $img = Image::make($base64Data);
+    
+        // Resize the image if it's larger than 1500px in width or height
+        if ($img->width() > 1500 || $img->height() > 1500) {
+            $img->resize(1500, 1500, function ($constraint) {
                 $constraint->aspectRatio();
-            });
-        } elseif ($height > 1500) {
-            $img->resize(null, 1500, function ($constraint) {
-                $constraint->aspectRatio();
+                $constraint->upsize();
             });
         }
-
-// // // Full path to the saved image
-$fullImagePath = public_path($image_url); // Assuming you're saving images in the public directory
-
-// // // Use ImageMagick's "convert" command to optimize the image
-exec("convert '$fullImagePath' -strip -interlace Plane -quality 85 '$fullImagePath'");
-
-        $img->save($image_url);
-
+    
+        // Save the image
+        $img->save(public_path($image_url));
+    
         return $image_url;
-
     }
-    public function uploadImage(Request $request, $fieldName, $path, $width = 300, $height = 300)
+    
+    
+    public function uploadImage(Request $request, $fieldName, $path, $width = 300, $height = 300, $quality = 80)
     {
         if ($request->hasFile($fieldName)) {
             $image = $request->file($fieldName);
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path($path);
-            
+    
             // Make the directory if it doesn't exist
             if (!File::isDirectory($destinationPath)) {
                 File::makeDirectory($destinationPath, 0777, true, true);
             }
-
+    
             $img = Image::make($image->getRealPath());
+            // Resize the image while maintaining aspect ratio
             $img->resize($width, $height, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save($destinationPath . '/' . $imageName);
-
+            });
+            // Save the optimized image with specified quality
+            $img->save($destinationPath . '/' . $imageName, $quality);
+    
             return $path . '/' . $imageName;
         } else {
             return null;

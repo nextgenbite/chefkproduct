@@ -22,7 +22,7 @@
 <!-- ---- Shop Wrapper --->
  <div class="container grid md:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
       <!-- ---- Sidebar --->
-      <div class="col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-hidden absolute  lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
+      <div class="col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-hidden absolute  lg:static left-0 lg:left-4 top-0 lg:top-16 z-10 w-fit lg:w-full lg:block">
          <div class="divide-gray-300 divide-y space-y-5 relative">
          <!-- ---- Category filter --->
               <div class="relative">
@@ -182,6 +182,9 @@
               <option>Latest product</option> 
          </select>
          <div class="flex gap-2 ml-auto ">
+              <div class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 rounded cursor-pointer ">
+                   <i class="fas fa-filter"></i>
+              </div>
               <div class="border border-primary-light w-10 h-9 flex items-center justify-center text-white bg-primary-light rounded cursor-pointer ">
                    <i class="fas fa-th"></i>
               </div>

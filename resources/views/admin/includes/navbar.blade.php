@@ -27,12 +27,17 @@ class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-80
         </svg>
       </button>
       <a href="/admin" v-if="settings" class="flex ml-2 md:mr-24">
-         <img  src="{{asset($settings->favicon)}}" class="h-10"  />
-     
-        <span
-          class="self-center text-xl font-semibold uppercase sm:text-2xl whitespace-nowrap dark:text-white"
-          >{{ $settings->app_name }}</span
-        >
+        @isset($settings['logo'])
+
+        <img  src="{{asset($settings['logo'] ?? 'images/no-image.png')}}" class="h-10"  />
+        @else
+        <img  src="{{asset($settings['favicon'] ?? 'images/no-image.png')}}" class="h-10"  />
+    
+       <span
+         class="self-center text-xl font-semibold uppercase sm:text-2xl whitespace-nowrap dark:text-white"
+         >{{ $settings['app_name'] ?? config('app.name') }}</span
+       >
+        @endisset
       </a>
       <a
         title="Visit Site" target="blank"

@@ -10,7 +10,7 @@
     {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
 
     <!-- icon -->
-    <link  rel="stylesheet"
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -18,7 +18,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 
 <body class="min-h-screen bg-white dark:bg-gray-800 dark:text-white">
@@ -47,8 +48,7 @@
             <div class="text-xs leading-3">Home</div>
         </NuxtLink>
 
-        <button data-drawer-target="drawer-sidebar" data-drawer-show="drawer-sidebar"
-        aria-controls="drawer-sidebar"
+        <button data-drawer-target="drawer-sidebar" data-drawer-show="drawer-sidebar" aria-controls="drawer-sidebar"
             class="flex flex-col items-center justify-center text-gray-700 hover:text-primary transition relative">
             <svg class="w-6 h-6 text-2xl text-gray-800 dark:text-white" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -57,7 +57,7 @@
             </svg>
             <div class="text-xs leading-3 mt-2">Category</div>
         </button>
-    
+
 
         <a href="javascript:void(0)" data-drawer-target="drawer-right-cart" data-drawer-show="drawer-right-cart"
             data-drawer-placement="right" aria-controls="drawer-right-cart"
@@ -72,15 +72,19 @@
             <div class="text-xs leading-3">Cart</div>
         </a>
 
-        <a href="{{route('login')}}"
-        class="flex flex-col items-center justify-center text-gray-700 hover:text-primary transition relative">
-    
-        <svg class="w-6 h-6 text-2xl text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-          </svg>
-          
-        <div class="text-xs leading-3 mt-2">Account</div>
-    </a>
+        <a href="{{ route('login') }}"
+            class="flex flex-col items-center justify-center text-gray-700 hover:text-primary transition relative">
+
+            <svg class="w-6 h-6 text-2xl text-gray-800 dark:text-white" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <div class="text-xs leading-3 mt-2">Account</div>
+        </a>
 
 
     </div>
@@ -161,11 +165,14 @@
         tabindex="-1" aria-labelledby="drawer-label">
         <h5 id="drawer-label"
             class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
-              <svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 9h6m-6 3h6m-6 3h6M6.996 9h.01m-.01 3h.01m-.01 3h.01M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
-              </svg>
-              Menu</h5>
-          
+            <svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 9h6m-6 3h6m-6 3h6M6.996 9h.01m-.01 3h.01m-.01 3h.01M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+            </svg>
+            Navigation
+        </h5>
+
         <button type="button" data-drawer-hide="drawer-sidebar" aria-controls="drawer-sidebar"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -207,11 +214,11 @@
 
 
                 <div class="text-sm font-medium text-gray-900  dark:text-white">
-                    <a href="{{route('frontend.home')}}" aria-current="true"
+                    <a href="{{ route('frontend.home') }}" aria-current="true"
                         class="block w-full px-4 py-2 text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">
                         Home
                     </a>
-                    <a href="{{route('frontend.home')}}"
+                    <a href="{{ route('frontend.home') }}"
                         class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                         Shop
                     </a>
@@ -219,7 +226,7 @@
                         class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
                         Contact
                     </a>
-                
+
                 </div>
 
 
@@ -233,18 +240,16 @@
                 <div
                     class=" text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     @forelse ($categories as $item)
-                        
-                    <a href=""
-                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                        <span class="material-symbols-sharp text-gray-700 me-2">
-                            {{ $item->icon ?? 'adjust' }}
-                        </span>
-                        <span class="capitalize">{{$item->title}}</span>
-                    </a>
+                        <a href=""
+                            class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                            <span class="material-symbols-sharp text-gray-700 me-2">
+                                {{ $item->icon ?? 'adjust' }}
+                            </span>
+                            <span class="capitalize">{{ $item->title }}</span>
+                        </a>
                     @empty
-                        
                     @endforelse
-                
+
                 </div>
             </div>
             {{-- end categories --}}
@@ -266,20 +271,27 @@
     @include('frontend.partials.footer')
     <!-- ---- End Footer   ----- -->
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
+
+
     <script>
-// <!--Start of Tawk.to Script-->
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6616a9c81ec1082f04e0de92/1hr48eec7';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-// <!--End of Tawk.to Script-->
+        @if (Session::has('messege'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            var message = "{{ Session::get('messege') }}";
+            showFrontendAlert(type, message);
+        @endif
+        // <!--Start of Tawk.to Script-->
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6616a9c81ec1082f04e0de92/1hr48eec7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+        // <!--End of Tawk.to Script-->
 
         document.addEventListener("DOMContentLoaded", function() {
             window.addEventListener('scroll', function() {

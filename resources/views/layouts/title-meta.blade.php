@@ -24,6 +24,6 @@
 @endif
 
 <!-- App favicon -->
-<link type="image/x-icon" rel="icon" href="{{isset($settings) && $settings->logo ? asset($settings->logo) : asset('/favicon.ico') }}">
+<link type="image/x-icon" rel="icon" href="{{isset($settings) && asset($settings->logo) ? asset($settings->logo) : asset('/favicon.ico') }}">
 
 

@@ -277,13 +277,13 @@
             
             
             <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
-                <a href="#"
-                    class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
+                <a href="javascript:void(0)" id="AddToCart"
+                    class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center add-to-cart">
                     <span class="mr-2"><i class="fas fa-cart-plus"></i> </span>
                     Add To Cart
                 </a>
-                <a href="javascript:void(0)" id="{{ $product->id }}" onclick="buyNow(this.id)"
-                    class="bg-primary-light border border-primary-light  text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center ">
+                <a href="javascript:void(0)" id="buyNow"
+                    class="bg-primary-light border border-primary-light  text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm flex items-center add-to-cart">
                     <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span>
                     Buy Now
                 </a>
@@ -357,30 +357,12 @@
                 <div class="lg:w-4/5 xl:w-3/5 pt-6">
                     <div class="space-y-3 text-gray-600">
                         <p>
-                            {{ $product->description }}
+                            {!! $product->description !!}
                         </p>
                     </div>
 
 
-                    <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
-                        <tr>
-                            <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Color</th>
-                            <td class="py-2 px-4 border border-gray-300  ">Black , Brown , Red </td>
-
-                        </tr>
-
-                        <tr>
-                            <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Size </th>
-                            <td class="py-2 px-4 border border-gray-300  ">XL, L, M, S </td>
-
-                        </tr>
-
-                        <tr>
-                            <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Weight </th>
-                            <td class="py-2 px-4 border border-gray-300  ">55kg </td>
-
-                        </tr>
-                    </table>
+                 
                 </div>
 
             </div>
@@ -391,119 +373,104 @@
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-settings" role="tabpanel"
                 aria-labelledby="settings-tab">
 
-                <div class="grid grid-cols-2">
-                    <div class="col-span-2 ">
-                        <div class="mw-100 overflow--hidden">
-                            <div class="grid grid-cols-12 no-gutters mt-3 ">
-                                <div class="col-span-1">
-                                    <i class="fa fa-phone" aria-hidden="true"
-                                        style="font-size: 18px;color: #8a8686;"></i>
-                                </div>
-                                <div class="col-span-4">
-                                    <div class="product-description-label">
-                                        Call:</div>
-                                </div>
-                                <div class="col-span-7">
-                                    <a href="tel:01650044628" target="_blank">
-                                        01650044628
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 mt-3">
-                                <div class="col-span-1">
-                                    <i class="fa fa-plane" aria-hidden="true"
-                                        style="font-size: 18px;color: #8a8686;"></i>
-                                </div>
-                                <div class="col-span-4">
-                                    <div class="product-description-label">
+                <div class="mw-100 overflow--hidden">
+                    <div class="grid grid-cols-12 no-gutters mt-3 ">
+                        <div class="col-span-1">
+                            <i class="fa fa-phone" aria-hidden="true"
+                                style="font-size: 18px;color: #8a8686;"></i>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="product-description-label">
+                                Call:</div>
+                        </div>
+                        <div class="col-span-7">
+                            <a href="tel:01650044628" target="_blank">
+                                01650044628
+                            </a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 mt-3">
+                        <div class="col-span-1">
+                            <i class="fa fa-plane" aria-hidden="true"
+                                style="font-size: 18px;color: #8a8686;"></i>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="product-description-label">
 
-                                        Outside Dhaka:</div>
-                                </div>
-                                <div class="col-span-7">
-                                    4-5 working days
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 mt-3">
-                                <div class="col-span-1">
-                                    <i class="fa fa-truck" aria-hidden="true"
-                                        style="font-size: 18px;color: #8a8686;"></i>
-                                </div>
-                                <div class="col-span-4">
-                                    <div class="product-description-label">
+                                Outside Dhaka:</div>
+                        </div>
+                        <div class="col-span-7">
+                            4-5 working days
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 mt-3">
+                        <div class="col-span-1">
+                            <i class="fa fa-truck" aria-hidden="true"
+                                style="font-size: 18px;color: #8a8686;"></i>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="product-description-label">
 
-                                        Inside Dhaka:</div>
-                                </div>
-                                <div class="col-span-7">
-                                    2-3 working days
+                                Inside Dhaka:</div>
+                        </div>
+                        <div class="col-span-7">
+                            2-3 working days
 
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 mt-3">
-                                <div class="col-span-1">
-                                    <i class="fa fa-money" aria-hidden="true"
-                                        style="font-size: 18px;color: #8a8686;"></i>
-                                    <span> </span>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-12 mt-3">
+                        <div class="col-span-1">
+                            <i class="fa fa-money" aria-hidden="true"
+                                style="font-size: 18px;color: #8a8686;"></i>
+                            <span> </span>
+                        </div>
 
-                                <div class="col-span-4">
-                                    <div class="product-description-label">
+                        <div class="col-span-4">
+                            <div class="product-description-label">
 
-                                        Cash on Delivery :</div>
-                                </div>
-                                <div class="col-span-4">
-                                    Available
-                                </div>
+                                Cash on Delivery :</div>
+                        </div>
+                        <div class="col-span-4">
+                            Available
+                        </div>
 
-                            </div>
+                    </div>
 
 
 
-                            <div class="grid grid-cols-12 mt-3">
-                                <div class="col-span-2">
-                                    <div class="product-description-label">Refund:</div>
-                                </div>
-                                <div class="col-span-10">
-                                    <a href="https://nobabieshop.com/returnpolicy" target="_blank"> <img
-                                            src="https://nobabieshop.com/public/frontend/images/refund-sticker.jpg"
-                                            height="36"> </a>
-                                    <a href="https://nobabieshop.com/returnpolicy" class="ml-2" target="_blank">View
-                                        Policy</a>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-12 mt-3">
-                                <div class="col-span-2">
-                                    <div class="product-description-label alpha-6">Payment:</div>
-                                </div>
-                                <div class="col-span-10">
-                                    <ul class="flex gap-2">
-                                        <li>
-                                            <img src="https://nobabieshop.com/public/frontend/images/icons/cards/visa.png"
-                                                data-src="https://nobabieshop.com/public/frontend/images/icons/cards/visa.png"
-                                                width="30" class=" ls-is-cached lazyloaded">
-                                        </li>
-                                        <li>
-                                            <img src="https://nobabieshop.com/public/frontend/images/icons/cards/mastercard.png"
-                                                data-src="https://nobabieshop.com/public/frontend/images/icons/cards/mastercard.png"
-                                                width="30" class=" ls-is-cached lazyloaded">
-                                        </li>
-                                        <li>
-                                            <img src="https://nobabieshop.com/public/frontend/images/icons/cards/maestro.png"
-                                                data-src="https://nobabieshop.com/public/frontend/images/icons/cards/maestro.png"
-                                                width="30" class=" ls-is-cached lazyloaded">
-                                        </li>
-                                        <li>
-                                            <img src="https://nobabieshop.com/public/frontend/images/icons/cards/paypal.png"
-                                                data-src="https://nobabieshop.com/public/frontend/images/icons/cards/paypal.png"
-                                                width="30" class=" ls-is-cached lazyloaded">
-                                        </li>
-                                        <li>
-                                            <img src="https://nobabieshop.com/public/frontend/images/icons/cards/cod.png"
-                                                data-src="https://nobabieshop.com/public/frontend/images/icons/cards/cod.png"
-                                                width="30" class=" ls-is-cached lazyloaded">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+            
+                    <div class="grid grid-cols-12 mt-3">
+                        <div class="col-span-2">
+                            <div class="product-description-label alpha-6">Payment:</div>
+                        </div>
+                        <div class="col-span-10">
+                            <ul class="flex gap-2">
+                                <li>
+                                    <img src="https://nobabieshop.com/public/frontend/images/icons/cards/visa.png"
+                                        data-src="https://nobabieshop.com/public/frontend/images/icons/cards/visa.png"
+                                        width="30" class=" lazyload">
+                                </li>
+                                <li>
+                                    <img src="https://nobabieshop.com/public/frontend/images/icons/cards/mastercard.png"
+                                        data-src="https://nobabieshop.com/public/frontend/images/icons/cards/mastercard.png"
+                                        width="30" class=" ls-is-cached lazyloaded">
+                                </li>
+                                <li>
+                                    <img src="https://nobabieshop.com/public/frontend/images/icons/cards/maestro.png"
+                                        data-src="https://nobabieshop.com/public/frontend/images/icons/cards/maestro.png"
+                                        width="30" class=" ls-is-cached lazyloaded">
+                                </li>
+                                <li>
+                                    <img src="https://nobabieshop.com/public/frontend/images/icons/cards/paypal.png"
+                                        data-src="https://nobabieshop.com/public/frontend/images/icons/cards/paypal.png"
+                                        width="30" class=" ls-is-cached lazyloaded">
+                                </li>
+                                <li>
+                                    <img src="https://nobabieshop.com/public/frontend/images/icons/cards/cod.png"
+                                        data-src="https://nobabieshop.com/public/frontend/images/icons/cards/cod.png"
+                                        width="30" class=" ls-is-cached lazyloaded">
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -549,7 +516,7 @@
 
     <script>
         // Add a product to the cart
-        function buyNow(id) {
+        $(document).on('click','.add-to-cart', function () {
             let quantity = 1;
             const inputQty = $('#quantity-input');
             if (inputQty.length) {
@@ -564,40 +531,26 @@
                 url: "{{ url('/cart/add') }}",
                 // _token: '{{ csrf_token() }}',
                 data: {
-                    product_id: id,
+                    product_id: '{{$product->id}}',
                     quantity: quantity,
                     color: selectedColor,
                     size: selectedSize
                 },
                 success: function(data) {
                     // updateNavCart(data.count);
-                    alert(data.message);
-
-                    // showFrontendAlert('success', 'Successfully Product added to cart');
-                    window.location.href = '/checkout';
+                    showFrontendAlert('success', 'Successfully added to cart');
+                    if ($(this).id = 'buyNow') {
+                        
+                        window.location.href = '/checkout';
+                    }
+                   
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
                     alert("An error occurred. Please try again.");
                 }
-            })
-            //   }else{
-            //      showFrontendAlert('warning', 'Color and Size Require');
-
-            // }
-            // $.post("{{ url('/add-to-cart') }}", {
-            //     _token: '{{ csrf_token() }}',
-            //     id: id,
-            //     quantity: quantity
-            // }, function(data) {
-            //     showFrontendAlert('success', 'Successfully Product added to cart');
-            //     updateNavCart(data.count);
-            // });
-        }
-
-
-
-
+            }) 
+        })
 
 
 

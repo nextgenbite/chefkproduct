@@ -9,20 +9,20 @@ if (!function_exists('discountPercentage')) {
         return round(($discountAmount / $price) * 100);
     }
 
-    if(!function_exists('formatCurrency'))
+}
+if(!function_exists('formatCurrency'))
+{
+    function formatCurrency($amount) 
     {
-        function formatCurrency($amount) 
-        {
-            $setting = SiteSetting::select('currency_symbol')->first();
-            $currencySymbol = $setting->currency_symbol ? : '$'; 
+        $setting = SiteSetting::select('currency_symbol')->first();
+        $currencySymbol = $setting->currency_symbol ? : '$'; 
 
-            return $currencySymbol . number_format($amount, 2);
-        }
+        return $currencySymbol . number_format($amount, 2);
     }
-    if(!function_exists('truncate'))
-    {
-        function truncate($string, $length, $dots = "...") {
-            return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
-        }
+}
+if(!function_exists('truncate'))
+{
+    function truncate($string, $length, $dots = "...") {
+        return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
     }
 }

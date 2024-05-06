@@ -6,7 +6,7 @@
 
                  <!-- ---- Start Features  ----- -->
 
-          <div class="container py-16 ">
+          <div class="container py-6 ">
                <div class="lg:w-10/12 grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-3 lg:gap-6 mx-auto justify-center ">
                     <!-- ---- Single Features  ----- -->
                     <div

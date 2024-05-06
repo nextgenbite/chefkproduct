@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
     use ImageUploadTrait;
+
+    private $title = ['Setting', 'setting'];
     private $imgLocation = 'images/settings/';
 
     public function overWriteEnvFile($type, $val)
@@ -55,8 +58,11 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $data = SiteSetting::firstOrFail();
-        return response()->json($data,200);
+        $title = $this-> title;
+   
+        $settings = Setting::all()->pluck('value', 'key');
+
+        return view('admin.settings.index', compact('title','settings'));
     }
 
         /**
@@ -65,15 +71,15 @@ class SettingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function update(Request $request)
     {
 
 
-        $setting = SiteSetting::first();
+        $setting = Setting::first();
         if (isset($setting)) {
             $data =$setting;
         } else {
-            $data = new SiteSetting;
+            $data = new Setting;
         }
 
 
@@ -112,5 +118,46 @@ class SettingController extends Controller
     }
 
 
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'key' => 'required|array',
+            'name' => 'required',
+        ]);
+
+        foreach ($request->key as $key => $value) {
+            if ($key == 'logo' || $key == 'favicon') {
+                // Process image upload
+
+                $setting = Setting::where('key', $key)->first();
+                if ($setting && file_exists(public_path($setting->value))) {
+                    unlink(public_path($setting->value));
+                }
+                $image_name = hexdec(uniqid());
+                $ext = strtolower($value->getClientOriginalExtension());
+                $image_full_name = $image_name . '.' . $ext;
+                $upload_path = 'images/setting/';
+                $image_url = $upload_path . $image_full_name;
+                $success = $value->move($upload_path, $image_full_name);
+
+                // Assign image URL to $value
+                $value = $image_url;
+            }
+
+            // Store configuration setting
+            Setting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+        }
+
+        $notification = [
+            'message' => 'Settings Updated Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
     }
 }
