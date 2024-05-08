@@ -4,8 +4,8 @@
         class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
 
         <!-- logo  -->
-        <a title="logo" href="{{ URL::to('/') }}" class=" w-12 md:w-16 ">
-            <img alt="image" src="{{ asset($settings->favicon) }}" alt="logo" class="w-full" />
+        <a title="logo" href="{{ URL::to('/') }}" class=" w-28 md:w-60">
+            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class="w-full" />
         </a>
         <!-- logo end  -->
         <!-- search   -->

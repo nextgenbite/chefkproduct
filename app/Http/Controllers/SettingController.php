@@ -60,7 +60,7 @@ class SettingController extends Controller
     {
         $title = $this-> title;
    
-        $settings = Setting::all()->pluck('value', 'key');
+        $settings = Setting::all()->pluck('svalue', 'skey');
 
         return view('admin.settings.index', compact('title','settings'));
     }
@@ -124,23 +124,21 @@ class SettingController extends Controller
     {
         $request->validate([
             'key' => 'required|array',
-            'name' => 'required',
         ]);
-
+//  return $request->dd();
         foreach ($request->key as $key => $value) {
             if ($key == 'logo' || $key == 'favicon') {
                 // Process image upload
 
-                $setting = Setting::where('key', $key)->first();
-                if ($setting && file_exists(public_path($setting->value))) {
-                    unlink(public_path($setting->value));
+                $setting = Setting::where('skey', $key)->first();
+                if ($setting && file_exists(public_path($setting->svalue))) {
+                    unlink(public_path($setting->svalue));
                 }
                 $image_name = hexdec(uniqid());
                 $ext = strtolower($value->getClientOriginalExtension());
                 $image_full_name = $image_name . '.' . $ext;
-                $upload_path = 'images/setting/';
-                $image_url = $upload_path . $image_full_name;
-                $success = $value->move($upload_path, $image_full_name);
+                $image_url = $this->imgLocation . $image_full_name;
+                $success = $value->move($this->imgLocation, $image_full_name);
 
                 // Assign image URL to $value
                 $value = $image_url;
@@ -148,8 +146,8 @@ class SettingController extends Controller
 
             // Store configuration setting
             Setting::updateOrCreate(
-                ['key' => $key],
-                ['value' => $value]
+                ['skey' => $key],
+                ['svalue' => $value]
             );
         }
 

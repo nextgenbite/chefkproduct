@@ -4,24 +4,24 @@
     <div class="container">
          <div class="xl:grid xl:grid-cols-5 xl:gap-8 ">
               <div class="space-y-1 xl:col-span-2 ">
-                   <img alt="image" src="{{asset($settings->favicon)}}" alt="{{$settings->app_name}} " class="w-20" /> 
+                   <img alt="image" src="{{asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="{{isset($settings['app_name']) ? $settings['app_name'] : config('app.name')}} " class=" w-60" /> 
                    <p class="text-gray-500 text-base font-roboto " >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing.
                 </p>
                    <div class="flex space-x-5">
-                        <a title="facebook" href="{{$settings->facebook}}" class="text-gray-400 hover:text-gray-500" >
+                        <a title="facebook" href="{{isset($settings['facebook']) ? $settings['facebook'] : ''}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-facebook-f"></i>
                         </a>
 
-                        <a title="twitter" href="{{$settings->twitter}}" class="text-gray-400 hover:text-gray-500" >
+                        <a title="twitter" href="{{isset($settings['twitter']) ? $settings['twitter'] : ''}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-twitter"></i>
                         </a>
 
-                        <a title="instagram" href="{{$settings->instagram}}" class="text-gray-400 hover:text-gray-500" >
+                        <a title="instagram" href="{{isset($settings['instagram']) ? $settings['instagram'] : ''}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-instagram"></i>
                         </a>
 
-                        <a title="linkedin" href="{{$settings->linkedin}}" class="text-gray-400 hover:text-gray-500" >
+                        <a title="linkedin" href="{{isset($settings['linkedin']) ? $settings['linkedin'] : ''}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-linkedin-in"></i>
                         </a>
 

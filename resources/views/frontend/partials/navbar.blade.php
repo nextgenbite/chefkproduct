@@ -1,5 +1,5 @@
 <!-- ---- Start NavBar ----- -->
-<nav class="bg-primary-light hidden lg:block">
+<nav class="bg-primary-light hidden lg:block w-full top-0 right-0 left-0 z-50" id="navbar">
     <div class="container">
         <div class="flex">
             <!-- ---- All Category ----- -->

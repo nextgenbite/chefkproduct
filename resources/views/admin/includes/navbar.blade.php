@@ -35,7 +35,7 @@ class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-80
     
        <span
          class="self-center text-xl font-semibold uppercase sm:text-2xl whitespace-nowrap dark:text-white"
-         >{{ $settings['app_name'] ?? config('app.name') }}</span
+         >{{isset($settings['app_name']) ? $settings['app_name'] : config('app.name')}}</span
        >
         @endisset
       </a>

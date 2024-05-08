@@ -20,6 +20,22 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+   const themeColor = '4, 87, 177'; // Assuming this is the correct format
+
+// Update the Tailwind CSS configuration with the theme color
+const customCSS = `
+    :root {
+        --color-primary: ${themeColor};
+        --alpha-value: 1; // Define your alpha value here
+    }
+`;
+
+// Create a style tag and append the custom CSS
+const styleTag = document.createElement('style');
+styleTag.textContent = customCSS;
+document.head.appendChild(styleTag);
+    </script>
 </head>
 
 <body class="min-h-screen bg-white dark:bg-gray-800 dark:text-white">
@@ -30,7 +46,6 @@
     @include('frontend.partials.header')
 
     <!-- ---- End Header ----- -->
-
 
     <!-- ---- Start NavBar ----- -->
     @include('frontend.partials.navbar')
@@ -95,7 +110,7 @@
 
     <!-- drawer cart component -->
     <div id="drawer-right-cart"
-        class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full duration-300 bg-white w-80 dark:bg-gray-800"
+        class="fixed top-0 right-0 z-30 h-screen p-4 overflow-y-auto transition-transform translate-x-full duration-300 bg-white w-80 dark:bg-gray-800"
         tabindex="-1" aria-labelledby="drawer-right-label">
         <h5 id="drawer-right-label"
             class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
@@ -121,7 +136,7 @@
         <hr>
 
         <div
-            class="w-full bg-white shadow-md py-3   transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
+            class="w-full bg-white shadow-md py-3   transition duration-300 z-20 divide-y divide-gray-300 divide-dashed  ">
             @if (session()->has('cart') && isset(session('cart')['data']))
 
                 @foreach (session('cart')['data'] as $item)
@@ -161,7 +176,7 @@
 
     <!-- drawer/sidebar component -->
     <div id="drawer-sidebar"
-        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+        class="fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
         tabindex="-1" aria-labelledby="drawer-label">
         <h5 id="drawer-label"
             class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
@@ -294,19 +309,32 @@
         // <!--End of Tawk.to Script-->
 
         document.addEventListener("DOMContentLoaded", function() {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    document.getElementById('header').classList.add('fixed');
-                    // add padding top to show content behind navbar
-                    navbar_height = document.querySelector('#header').offsetHeight;
-                    document.body.style.paddingTop = navbar_height + 'px';
-                } else {
-                    document.getElementById('header').classList.remove('fixed');
-                    // remove padding top from body
-                    document.body.style.paddingTop = '0';
-                }
-            });
-        });
+    window.addEventListener('scroll', function() {
+        // Detect device type dynamically on each scroll event
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        // Apply behavior based on scroll position and device type
+        if (window.scrollY > 50) {
+            if (isMobile) {
+                // Apply mobile behavior
+                document.getElementById('header').classList.add('fixed');
+            } else {
+                // Apply desktop behavior
+                document.getElementById('navbar').classList.add('fixed');
+                // add padding top to show content behind navbar
+                var navbar_height = document.querySelector('#navbar').offsetHeight;
+                document.body.style.paddingTop = navbar_height + 'px';
+            }
+        } else {
+            // Remove fixed class and reset padding if scroll position <= 50
+            document.getElementById('navbar').classList.remove('fixed');
+            document.getElementById('header').classList.remove('fixed');
+            document.body.style.paddingTop = '0';
+        }
+    });
+});
+
+
         // Set CSRF token globally for AJAX requests
         $.ajaxSetup({
             headers: {

@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use App\Models\Category;
-use App\Models\SiteSetting;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use View;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $setting = SiteSetting::first();
+        $setting = Setting::all()->pluck('svalue', 'skey');
         if ($setting) {
             // config(['cart.tax' => $setting->tax]);
             View::share('settings', $setting);
