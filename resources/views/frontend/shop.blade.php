@@ -1,8 +1,5 @@
 @extends('layouts.frontend')
-@push('meta')
-<title>{{ config('app.name', $settings->app_name.' | Shop') }}</title>
-     
-@endpush
+@section('title', 'Shop')
 @section('content')
  <!-- ---- BreadCrum ----- -->
  <div class="container py-4 flex justify-between " >
@@ -22,7 +19,7 @@
 <!-- ---- Shop Wrapper --->
  <div class="container grid md:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
       <!-- ---- Sidebar --->
-      <div class="col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-hidden absolute  lg:static left-0 lg:left-4 top-0 lg:top-16 z-10 w-fit lg:w-full lg:block">
+      <div class="hidden  col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-y-auto lg:overflow-hidden fixed h-screen lg:h-auto  lg:static left-0 lg:left-4 top-0 lg:top-0 z-40 w-fit lg:w-full lg:block">
          <div class="divide-gray-300 divide-y space-y-5 relative">
          <!-- ---- Category filter --->
               <div class="relative">
@@ -140,7 +137,7 @@
     <div class="color-selector">
          <input type="radio" name="color" class="hidden" id="color-red" checked />
          <label for="color-red" style="background-color: brown;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
-
+         <p class="text-sm">brown</p>
     </div>
 <!-- ----  End Single Color --->
 
@@ -148,6 +145,7 @@
 <div class="color-selector">
     <input type="radio" name="color" class="hidden" id="color-white"  />
     <label for="color-white" style="background-color:blueviolet;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
+    <p class="text-sm">violet</p>
 
 </div>
 <!-- ----  End Single Color --->
@@ -157,7 +155,7 @@
 <div class="color-selector">
     <input type="radio" name="color" class="hidden" id="color-black"  />
     <label for="color-black" style="background-color: #000000;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
-
+    <p class="text-sm text-gray-700 font-roboto">black</p>
 </div>
 <!-- ----  End Single Color --->
 </div> 

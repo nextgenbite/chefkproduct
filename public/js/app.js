@@ -2998,6 +2998,20 @@ function showFrontendAlert(type, message) {
   });
 }
 window.showFrontendAlert = showFrontendAlert;
+$(document).ready(function () {
+  $(document).on('click', '#loading-btn', function () {
+    $(this).prop('disabled', true); // Disable the button
+    $('#loading-spinner').removeClass('hidden'); // Show the loading spinner or animation
+    $('#loading-spinner').addClass('inline');
+    $(this).closest('form').submit(); // Submit the form
+    // Simulate an AJAX request (replace this with your actual AJAX call)
+    setTimeout(function () {
+      // After some delay, enable the button and hide the loading spinner
+      $(this).prop('disabled', false);
+      $('#loading-spinner').addClass('hidden');
+    }, 3000); // Simulate a 3-second delay
+  });
+});
 
 /***/ }),
 

@@ -1,7 +1,4 @@
 @extends('layouts.frontend')
-@push('meta')
-    <title>{{ config('app.name', $settings->app_name . ' | Shop') }}</title>
-@endpush
 @section('content')
     <!-- ---- BreadCrum ----- -->
     <div class="container py-4 flex justify-between ">

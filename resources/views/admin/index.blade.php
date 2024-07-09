@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('title')
-{{ config('app.name', $settings->app_name).' | Dashboard' }}
+{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name') .' | Dashboard'}}
 @endpush
 @section('content')
 <div class=" container h-screen flex justify-center items-center">

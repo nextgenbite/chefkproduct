@@ -26,3 +26,20 @@ if(!function_exists('truncate'))
         return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
     }
 }
+
+if(!function_exists('hexToRgb'))
+{
+     function hexToRgb($hex)
+    {
+   // Remove '#' if present
+   $hex = str_replace('#', '', $hex);
+
+   // Convert hexadecimal to RGB
+   $r = hexdec(substr($hex, 0, 2));
+   $g = hexdec(substr($hex, 2, 2));
+   $b = hexdec(substr($hex, 4, 2));
+
+   // Return RGB string
+   return "$r, $g, $b";
+    }
+}
