@@ -72,9 +72,10 @@ Route::prefix('tasks')->group(function() {
 // Frontend
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
 Route::get('/categories/{slug}', [PublicController::class, 'showCategories'])->name('categories.show');
-Route::get('/products/{slug}', [PublicController::class, 'view'])->name('product.view');
+Route::get('/product/{slug}', [PublicController::class, 'view'])->name('product.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
+Route::post('/nav/search/', [PublicController::class, 'navSearch'])->name('nav_search');
 
 // Cart
 Route::post('/cart/add', [CartController::class, 'addToCart']);

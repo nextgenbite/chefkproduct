@@ -59,4 +59,26 @@ class PublicController extends Controller
         // dd(session()->all());
         return view('frontend.checkout', compact('shipping_cost', 'cart'));
     }
+    public function navSearch(Request $request)
+    {
+        $searchTerm = $request->search;
+        
+        $result = Product::where('status', 1)
+            ->where(function($query) use ($searchTerm) {
+                $query->where('title', 'LIKE', '%' . $searchTerm . '%')
+                      ->orWhere('sku', 'LIKE', '%' . $searchTerm . '%')
+                      ->orWhere('description', 'LIKE', '%' . $searchTerm . '%');
+            })
+            ->get();
+        
+        if ($result->isEmpty()) {
+            return response()->json(['html' => '<li class="w-full px-4 py-2 text-center text-gray-500 border-b border-gray-200 rounded-t-lg dark:border-gray-600">No data found</li>']);
+        }
+    
+        $html = view('frontend.partials.search_result', compact('result'))->render();
+        
+        return response()->json(['html' => $html]);
+    }
+    
+    
 }

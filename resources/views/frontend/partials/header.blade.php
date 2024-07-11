@@ -13,7 +13,8 @@
             <!-- <span class="absolute left-4 top-3  lg:text-lg text-gray-400 ">
                        <i class="fas fa-search"></i>
                   </span> -->
-            <input type="text"
+            <input type="search"
+            id="nav-search"
                 class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-3 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
                 placeholder="what are you looking for..." />
             <button type="submit" title="search"
@@ -23,11 +24,12 @@
 
 
             <ul
-                class=" hidden w-full z-20 absolute top-full left-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Profile</li>
+            id="nav-search-result" style="max-height: 14rem"
+                class="hidden overflow-y-auto  w-full z-20  absolute top-full left-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                {{-- <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Profile</li>
                 <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Settings</li>
-                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Messages</li>
-                <li class="w-full px-4 py-2 rounded-b-lg">Download</li>
+                <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Messages</li> --}}
+                {{-- <li class="w-full px-4 py-2 rounded-b-lg">Download</li> --}}
             </ul>
 
         </div>
@@ -94,7 +96,7 @@
                     </div>
                 @else
                     <button type="button"
-                        class="hidden  text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center lg:inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500 ">
+                        class="hidden  text-gray-500 border border-gray-500 hover:bg-gray-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-full text-sm p-2 text-center lg:inline-flex items-center dark:border-primary-light dark:text-primary-light dark:hover:text-white dark:focus:ring-primary-light dark:hover:bg-primary-light ">
 
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 18">
@@ -104,9 +106,9 @@
                         <span class="sr-only">Icon description</span>
                     </button>
                     <a title="login" href="{{ Route('login') }}"
-                        class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold">Login</a>&nbsp|&nbsp<a
+                        class=" text-gray-500 text-sm dark:text-white hover:text-secondary transition ">Login</a><span class="text-gray-500">&nbsp|&nbsp</span><a
                         title="register" href="{{ Route('register') }}"
-                        class=" text-gray-800 dark:text-white hover:text-secondary transition font-semibold hidden lg:inline">Register</a>
+                        class=" text-gray-500 text-sm dark:text-white hover:text-secondary transition  hidden lg:inline">Register</a>
                 @endauth
             </div>
             <!--
