@@ -175,6 +175,92 @@ document.head.appendChild(styleTag);
     </div>
 
     <!-- drawer/sidebar component -->
+
+ <div id="drawer-sidebar" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+    <h5 id="drawer-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+        height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M11 9h6m-6 3h6m-6 3h6M6.996 9h.01m-.01 3h.01m-.01 3h.01M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+    </svg>Navigation</h5>
+    <button type="button" data-drawer-hide="drawer-sidebar" aria-controls="drawer-sidebar" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+       </svg>
+       <span class="sr-only">Close menu</span>
+    </button>
+       
+    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <ul class="flex  -mb-px text-sm font-medium text-center" id="default-styled-tab"
+            data-tabs-toggle="#default-styled-tab-content"
+            data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+            data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+            role="tablist">
+            <li class="w-full" role="presentation">
+                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="menu-styled-tab"
+                    data-tabs-target="#styled-menu" type="button" role="tab" aria-controls="menu"
+                    aria-selected="false">Menu</button>
+            </li>
+            <li class="w-full" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="categories-styled-tab" data-tabs-target="#styled-categories" type="button"
+                    role="tab" aria-controls="categories" aria-selected="false">Categories</button>
+            </li>
+
+        </ul>
+    </div>
+    <div id="default-styled-tab-content">
+        {{-- start menu --}}
+        <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-menu" role="tabpanel"
+            aria-labelledby="menu-tab">
+
+
+
+
+            <div class="text-sm font-medium text-gray-900  dark:text-white">
+                <a href="{{ route('frontend.home') }}" aria-current="true"
+                    class="block w-full px-4 py-2 text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">
+                    Home
+                </a>
+                <a href="{{ route('frontend.home') }}"
+                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                    Shop
+                </a>
+                <a href="#"
+                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                    Contact
+                </a>
+
+            </div>
+
+
+        </div>
+        {{-- end menu --}}
+        {{-- start categories --}}
+        <div class="hidden  rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-categories" role="tabpanel"
+            aria-labelledby="categories-tab">
+
+
+            <div
+                class=" text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                @forelse ($categories as $item)
+                    <a href=""
+                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                        <span class="material-symbols-sharp text-gray-700 me-2">
+                            {{ $item->icon ?? 'adjust' }}
+                        </span>
+                        <span class="capitalize">{{ $item->title }}</span>
+                    </a>
+                @empty
+                @endforelse
+
+            </div>
+        </div>
+        {{-- end categories --}}
+
+    </div>
+ </div>
+ 
     <div id="drawer-sidebar"
         class="fixed top-0 left-0 z-30 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
         tabindex="-1" aria-labelledby="drawer-label">
@@ -221,7 +307,7 @@ document.head.appendChild(styleTag);
             </ul>
         </div>
         <div id="default-styled-tab-content">
-            {{-- start menue --}}
+            {{-- start menu --}}
             <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-menu" role="tabpanel"
                 aria-labelledby="menu-tab">
 
