@@ -32,58 +32,51 @@
 
   <div class="flex justify-between  px-6 xl:col-span-3">
      <div>
-          <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > Solutions </h3>
-          <div class="mt-4 space-y-4 ">
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Marketing
-               </a>
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Analytics
-               </a>
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Commerce
-               </a>
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Insights
-               </a> 
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase"> CONTACT INFO </h3>
+          <div class="mt-4 space-y-4">
+               <div  class="block">
+                    <p class="text-xs text-gray-400 hover:text-gray-900 block font-semibold">Phone</p>
+                    <a href="tel:{{isset($settings['phone']) ? $settings['phone'] : ''}}" class="text-base text-gray-500 block">{{isset($settings['phone']) ? $settings['phone'] : ''}}</p>
+               </div>
+               <div  class="block">
+                    <p class="text-xs text-gray-400 hover:text-gray-900 block font-semibold">Email</p>
+                    <p class="text-base text-gray-500 block">{{isset($settings['email']) ? $settings['email'] : ''}}</p>
+               </div>
+               <div  class="block">
+                    <p class="text-xs text-gray-400 hover:text-gray-900 block font-semibold">Address</p>
+                    <p class="text-base text-gray-500 block">{{isset($settings['address']) ? $settings['address'] : ''}}</p>
+               </div>
+              
           </div>
      </div>
 
 
 
      <div class="mt-12 md:mt-0">
-          <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > Support </h3>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > USEFUL LINK </h3>
           <div class="mt-4 space-y-4 ">
                <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Pricing 
+                    Terms and Conditions 
                </a>
                <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Documentation
+                    Return Policy
                </a>
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    Guides
-               </a>
-               <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                    API Status
-               </a> 
+
           </div>
      </div> 
 
      <div class="mt-12 md:mt-0">
-       <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > Legal </h3>
+       <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > MY ACCOUNT </h3>
        <div class="mt-4 space-y-4 ">
-            <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                 Claim 
+            <a title="Login" href="{{Route('login')}}" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
+                 Login 
+            </a>
+            <a title="Account" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
+                 Account
             </a>
             <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                 Privacy
+                 Track Order
             </a>
-            <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                 Policy
-            </a>
-            <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
-                Terms
-            </a> 
        </div>
   </div> 
 

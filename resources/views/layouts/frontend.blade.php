@@ -380,19 +380,21 @@ document.head.appendChild(styleTag);
             var message = "{{ Session::get('messege') }}";
             showFrontendAlert(type, message);
         @endif
-        // <!--Start of Tawk.to Script-->
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/6616a9c81ec1082f04e0de92/1hr48eec7';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-        // <!--End of Tawk.to Script-->
+    //    <!--Start of Tawk.to Script-->
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/668fc27bc3fb85929e3e0d27/1i2govd23';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+//<!--End of Tawk.to Script-->
+
+
+
+
 
         document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('scroll', function() {

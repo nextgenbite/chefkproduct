@@ -60,7 +60,7 @@
     <div class="pt-4 pb-3 px-4 ">
         <a href="{{Route('product.view',$product->slug)}}">
             <h4
-                class="capitalize font-medium text-xs lg:text-base  mb-2 text-gray-800 hover:text-primary-light transition line-clamp-2  group-hover:line-clamp-3 ease-in-out duration-500">
+                class="capitalize font-medium text-xs lg:text-base  mb-2 text-gray-600 hover:text-primary-light transition line-clamp-2  group-hover:line-clamp-3 ease-in-out duration-500">
                 {{ $product->title }} </h4>
         </a>
 
