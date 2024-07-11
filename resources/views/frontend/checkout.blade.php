@@ -288,7 +288,7 @@
                     id: productId
                 },
                 success: function(response) {
-                    alert(response.message);
+                    showFrontendAlert('success', response.message);
                     quantityInput.val(response.quantity);
                     itemPrice.text(response.item_price);
                     subTotal.text(response.total_price);
@@ -327,7 +327,7 @@
                             id: productId
                         },
                         success: function(response) {
-                            alert(response.message);
+                            showFrontendAlert('success', response.message);
                             row.remove();
                             subTotal.text(response.total_price);
                         },
@@ -468,6 +468,7 @@ modal.show();
                             
 
                             // alert(data.message)
+                            showFrontendAlert('success', data.message);
                             // window.location.href = `/order-confirmed?order=${data.id}`;
                             // couponRemove_2();
                             // console.log(data.id);
