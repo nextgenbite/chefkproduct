@@ -53,12 +53,20 @@
      <div class="mt-12 md:mt-0">
           <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase " > USEFUL LINK </h3>
           <div class="mt-4 space-y-4 ">
+               @forelse ($pages as $item)
+                   
+               <a title="{{ $item->title}}" href="{{  url('/page/'.$item->slug)}}" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
+                    {{ $item->title}}
+               </a>
+               @empty
+                   
                <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
                     Terms and Conditions 
                </a>
                <a title="title" href="#" class="text-base text-gray-500 hover:text-gray-900 block font-semibold " >
                     Return Policy
                </a>
+               @endforelse
 
           </div>
      </div> 

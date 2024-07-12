@@ -94,7 +94,8 @@ class PageController extends Controller
     {
         $data = Page::create([
             'title'=> $request->title,
-            'body' => Str::slug($request->title),
+            'slug' => Str::slug($request->title),
+            'body' => $request->body,
             'status'=> $request->status ?: 0,
         ]);
     
