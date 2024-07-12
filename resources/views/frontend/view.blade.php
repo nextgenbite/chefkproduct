@@ -211,11 +211,11 @@
 
 
             <!-- ---- Size filter --->
-
+            @if (isset($product->variations))
             <div class="pt-4">
                 <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Size </h3>
                 <div class="flex items-center gap-2">
-                    @foreach ($product->variations->filter->size as $item)
+                    @forelse($product->variations->filter->size as $item)
                     <!-- ---- Single Size --->
                     <div class="size-selector">
                         <input type="radio" name="size" class="hidden peer" value="{{$item->size->id}}" id="{{$item->size->name}}" {{$loop->first ? "checked" : ''}}/>
@@ -223,20 +223,28 @@
                             class="text-xs border peer-checked:bg-primary-light  border-gray-200 rounded-lg h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 uppercase">{{$item->size->name}}</label>
                     </div>
                     <!-- ---- End Single Size --->
-                    @endforeach
-  
+                    @empty
+                     <!-- ---- Single Size --->
+                     <div class="size-selector">
+                        <input type="radio" name="size" class="hidden peer" disabled />
+                        <label for="size"
+                            class="text-xs border peer-checked:bg-primary-light  border-gray-200 rounded-lg h-6 p-1 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 uppercase">Regular</label>
+                    </div>
+                    <!-- ---- End Single Size --->
+                    @endforelse  
 
                 </div>
             </div>
+            @endif
             <!-- ---- End Size filter --->
 
             <!-- ----  Color filter --->
             @if (isset($product->variations))
             <div class="pt-4">
-                <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Color </h3>
+                <h3 class="text-md text-gray-800 mb-3 uppercase font-medium ">Color</h3>
 
                 <div class="flex items-center gap-2">
-                    @foreach ($product->variations->filter->color as $item)
+                    @forelse ($product->variations->filter->color as $item)
                           <!-- ---- Single Color --->
                     <div class="color-selector  ">
                         <input  type="radio" name="color" class="hidden" value="{{$item->color->id}}" id="{{$item->color->name}}" {{$loop->first ? "checked" : ''}} />
@@ -245,7 +253,17 @@
 
                     </div>
                     <!-- ----  End Single Color --->
-                    @endforeach
+                    @empty
+                          <!-- ---- Single Color --->
+                    <div class="color-selector  ">
+                        <input  type="radio" name="color" class="hidden" disabled />
+                        <label for="color" 
+                            title="Regular"  class="text-xs border  border-gray-200 shadow rounded-full h-5 w-5 flex items-center justify-center cursor-pointer"></label>
+
+                    </div>
+                    <!-- ----  End Single Color --->
+                    
+                    @endforelse
                     
                 </div>
             </div>
@@ -501,8 +519,6 @@
     </div>
 
 
-
-
     <!-- ---- End  Related Product --->
 @endsection
 
@@ -552,68 +568,68 @@
             }) 
         })
 
+        $(document).ready(function() {
 
+$('.xzoom4, .xzoom-gallery4').xzoom({
+    tint: '#006699',
+    Xoffset: 10,
+    lens: true, 
+    lensShape: 'circle',
+    smoothZoomMove: 1
+});
 
-        (function($) {
-            $(document).ready(function() {
+// Integration with hammer.js
+var isTouchSupported = 'ontouchstart' in window;
 
-                $('.xzoom4, .xzoom-gallery4').xzoom({
-                    tint: '#006699',
-                    Xoffset: 10,
-                    lens: true, 
-                    lensShape: 'circle',
-                    smoothZoomMove: 1
+if (isTouchSupported) {
+    // If touch device
+    $('.xzoom4').each(function() {
+        var xzoom = $(this).data('xzoom');
+        $(this).hammer().on("tap", function(event) {
+            event.pageX = event.gesture.center.pageX;
+            event.pageY = event.gesture.center.pageY;
+
+            var counter = 0;
+            xzoom.eventclick = function(element) {
+                element.hammer().on('tap', function() {
+                    counter++;
+                    if (counter == 1) setTimeout(openfancy, 300);
+                    event.gesture.preventDefault();
                 });
+            }
 
-                // Integration with hammer.js
-                var isTouchSupported = 'ontouchstart' in window;
-
-                if (isTouchSupported) {
-                    // If touch device
-                    $('.xzoom4').each(function() {
-                        var xzoom = $(this).data('xzoom');
-                        $(this).hammer().on("tap", function(event) {
-                            event.pageX = event.gesture.center.pageX;
-                            event.pageY = event.gesture.center.pageY;
-
-                            var counter = 0;
-                            xzoom.eventclick = function(element) {
-                                element.hammer().on('tap', function() {
-                                    counter++;
-                                    if (counter == 1) setTimeout(openfancy, 300);
-                                    event.gesture.preventDefault();
-                                });
-                            }
-
-                            function openfancy() {
-                                if (counter == 2) {
-                                    xzoom.closezoom();
-                                    $.fancybox.open(xzoom.gallery().cgallery);
-                                } else {
-                                    xzoom.closezoom();
-                                }
-                                counter = 0;
-                            }
-                            xzoom.openzoom(event);
-                        });
-                    });
+            function openfancy() {
+                if (counter == 2) {
+                    xzoom.closezoom();
+                    $.fancybox.open(xzoom.gallery().cgallery);
                 } else {
-                    // If not touch device
-                    $('#xzoom-fancy').bind('click', function(event) {
-                        var xzoom = $(this).data('xzoom');
-                        xzoom.closezoom();
-                        $.fancybox.open(xzoom.gallery().cgallery, {
-                            padding: 0,
-                            helpers: {
-                                overlay: {
-                                    locked: false
-                                }
-                            }
-                        });
-                        event.preventDefault();
-                    });
+                    xzoom.closezoom();
                 }
-            });
-        })(jQuery);
+                counter = 0;
+            }
+            xzoom.openzoom(event);
+        });
+    });
+} else {
+    // If not touch device
+    $('#xzoom-fancy').bind('click', function(event) {
+        var xzoom = $(this).data('xzoom');
+        xzoom.closezoom();
+        $.fancybox.open(xzoom.gallery().cgallery, {
+            padding: 0,
+            helpers: {
+                overlay: {
+                    locked: false
+                }
+            }
+        });
+        event.preventDefault();
+    });
+}
+});
+
+        // (function($) {
+           
+        // })(jQuery);
     </script>
 @endpush
