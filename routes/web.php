@@ -71,7 +71,7 @@ Route::prefix('tasks')->group(function() {
 
 // Frontend
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
-Route::get('/categories/{slug}', [PublicController::class, 'showCategories'])->name('categories.show');
+Route::get('/categories/{slug}', [PublicController::class, 'categoriesView'])->name('categories.show');
 Route::get('/product/{slug}', [PublicController::class, 'view'])->name('product.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
@@ -118,7 +118,7 @@ Route::get('/brands', [BrandController::class, 'index']);
 Route::post('/brands', [BrandController::class, 'store']);
 Route::put('/brands/{id}', [BrandController::class, 'update']);
 Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
-// brands
+// categories
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);

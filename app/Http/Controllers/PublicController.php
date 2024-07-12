@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ShippingCost;
 use App\Models\Slider;
 use Illuminate\Http\Request;
+use Mpdf\Tag\Tr;
 
 class PublicController extends Controller
 {
@@ -43,15 +45,33 @@ class PublicController extends Controller
     }
     public function view($slug)
     {
-        $product = Product::with('images', 'category:id,title,slug', 'brand:id,title', 'variations:id,product_id,color_id,size_id')->where(['status' => true, 'slug' => $slug])->first();
-        $relatedProduct = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->orderBy('id', 'DESC')
-            ->limit(10)
-            ->get();
+        try {
+            $product = Product::with('images', 'category:id,title,slug', 'brand:id,title', 'variations:id,product_id,color_id,size_id')->where(['status' => true, 'slug' => $slug])->first();
+            $relatedProduct = Product::where('category_id', $product->category_id)
+                ->where('id', '!=', $product->id)
+                ->orderBy('id', 'DESC')
+                ->limit(10)
+                ->get();
 
-        return view('frontend.view', compact('product', 'relatedProduct'));
+            return view('frontend.view', compact('product', 'relatedProduct'));
+        } catch (\Exception $exception) {
+            abort(404, 'Product Not found');
+        }
     }
+    public function categoriesView($slug)
+    {
+        try {
+            $data = Category::active()
+                ->where('slug', $slug)
+                ->with('products')
+                ->firstOrFail(); // Use firstOrFail to automatically handle not found scenarios
+
+            return view('frontend.category', compact('data'));
+        } catch (\Exception $exception) {
+            abort(404, 'Category Not found');
+        }
+    }
+
     function checkout()
     {
         $shipping_cost = ShippingCost::all();
@@ -62,23 +82,21 @@ class PublicController extends Controller
     public function navSearch(Request $request)
     {
         $searchTerm = $request->search;
-        
+
         $result = Product::where('status', 1)
-            ->where(function($query) use ($searchTerm) {
+            ->where(function ($query) use ($searchTerm) {
                 $query->where('title', 'LIKE', '%' . $searchTerm . '%')
-                      ->orWhere('sku', 'LIKE', '%' . $searchTerm . '%')
-                      ->orWhere('description', 'LIKE', '%' . $searchTerm . '%');
+                    ->orWhere('sku', 'LIKE', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'LIKE', '%' . $searchTerm . '%');
             })
             ->get();
-        
+
         if ($result->isEmpty()) {
             return response()->json(['html' => '<li class="w-full px-4 py-2 text-center text-gray-500 border-b border-gray-200 rounded-t-lg dark:border-gray-600">No data found</li>']);
         }
-    
+
         $html = view('frontend.partials.search_result', compact('result'))->render();
-        
+
         return response()->json(['html' => $html]);
     }
-    
-    
 }

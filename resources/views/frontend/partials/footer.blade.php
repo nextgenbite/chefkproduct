@@ -5,9 +5,7 @@
          <div class="xl:grid xl:grid-cols-5 xl:gap-8 ">
               <div class="space-y-1 xl:col-span-2 ">
                    <img alt="image" src="{{asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="{{isset($settings['app_name']) ? $settings['app_name'] : config('app.name')}} " class=" w-60" /> 
-                   <p class="text-gray-500 text-base font-roboto " >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing.
-                </p>
+                   <p class="text-gray-500 text-base font-roboto "> {{isset($settings['description']) ? $settings['description'] : ''  }}</p>
                    <div class="flex space-x-5">
                         <a title="facebook" href="{{isset($settings['facebook']) ? $settings['facebook'] : ''}}" class="text-gray-400 hover:text-gray-500" >
                             <i class="fab fa-facebook-f"></i>

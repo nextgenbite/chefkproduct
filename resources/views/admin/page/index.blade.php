@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('title')
-{{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
+    {{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @section('content')
     <!-- Include Tailwind CSS -->
@@ -34,7 +34,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <a href="#"
-                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0]}}</a>
+                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0] }}</a>
                             </div>
                         </li>
                         <li>
@@ -50,7 +50,7 @@
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0]}} List</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0] }} List</h1>
             </div>
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
@@ -74,13 +74,13 @@
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <button type="button" id="createData" data-modal-target="data-modal" data-modal-toggle="data-modal"
-                        class="flex items-center justify-center text-white bg-primary hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
                                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Add product
+                        Add {{$title[0]}}
                     </button>
                     <!-- Rest of the buttons and dropdowns -->
                 </div>
@@ -111,7 +111,6 @@
                 <tr>
                     <th>Sl</th>
                     <th>Title</th>
-                    <th>Icon</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -141,59 +140,36 @@
                         </svg>
                     </button>
                 </div>
-                <form id="dataForm" enctype="multipart/form-data">
+                <form id="dataForm">
                     <input type="hidden" name="data_id" id="data_id">
                     <!-- Modal body -->
                     <div class="p-6 space-y-6">
                         <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6 sm:col-span-3">
+                            <div class="col-span-6">
                                 <label for="title"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                                 <input type="text" name="title" id="title"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="Enter Title" required>
                             </div>
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="icon"
+                            <div class="col-span-6">
+                                <label for="body"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icon</label>
-                                <input type="text" name="icon" id="icon"
+                                <textarea type="text" name="body" id="body"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Enter icon" required>
+                                    placeholder="Enter body" required></textarea>
                             </div>
 
-                            <div class="col-span-6">
-                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            for="file_input">Thumbnail</label>
-                          <div class="relative ">
-                            <input
-                            name="thumbnail"                                   
-                              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                              aria-describedby="file_input_help" id="file_input" type="file">
-                              <img class="absolute top-0 right-0 w-10 h-10 rounded preview" 
-                              src="{{asset('/images/no-image.png')}}" alt="thumbnail">
-                          </div>
-                          <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX.
-                            250x250px).</p>
-                        </div>
-                         </div>
-                            <div class="col-span-6">
-                                <div>
-                                    <img id="croppedImage" src="#" alt="Cropped Image">
-                                    <button id="cropAndSave">Crop & Save</button>
-                                </div>
-                         </div>
+                    
                             </div>
 
 
+                            <button id="saveBtn" value="create"
+                                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                type="submit">Save Changes</button>
                         </div>
                     </div>
-                    <!-- Modal footer -->
-                    <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
-                        <button id="saveBtn" value="create"
-                            class="text-white bg-primary hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                            type="submit">Save Changes</button>
-                    </div>
+              
                 </form>
             </div>
         </div>
@@ -207,24 +183,7 @@
 
     <script>
         $(document).ready(function() {
-// Preview image on file selection for each file input
-$('input[type="file"]').on('change', function() {
-        var file = this.files[0];
-        var $preview = $(this).closest('.relative').find('.preview'); // Find the corresponding preview image
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $preview.attr('src', e.target.result);
-            }
-            reader.readAsDataURL(file);
-        } else {
-            // If no file is selected, revert to default image
-            $preview.attr('src', '{{asset('/images/no-image.png')}}');
-        }
-    });
 
-    // Trigger change event for each file input if there's already a file selected (for initial preview)
-    $('input[type="file"]').trigger('change');
 
 
             /*------------------------------------------
@@ -246,7 +205,7 @@ $('input[type="file"]').on('change', function() {
             let table = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('/admin/categories') }}",
+                ajax: "{{ url('/admin/pages') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -256,8 +215,10 @@ $('input[type="file"]').on('change', function() {
                         name: 'title'
                     },
                     {
-                        data: 'icon',
-                        name: 'icon'
+                        data: 'status',
+                        name: 'status',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'action',
@@ -288,7 +249,7 @@ $('input[type="file"]').on('change', function() {
         --------------------------------------------*/
             $('body').on('click', '.editData', function() {
                 var data_id = $(this).data('id');
-                $.get("{{ url('/admin/categories') }}" + '/' + data_id, function(data) {
+                $.get("{{ url('/admin/pages') }}" + '/' + data_id, function(data) {
                     $('#modelHeading').html("Edit Data");
                     $('#saveBtn').val("edit-Data");
                     //   $('#ajaxModel').modal('show');
@@ -306,12 +267,13 @@ $('input[type="file"]').on('change', function() {
             --------------------------------------------*/
             $('#saveBtn').click(function(e) {
                 e.preventDefault();
-                console.log(table);
+                alert('ok')
+                // console.log(table);
                 $(this).html('Sending..');
 
                 $.ajax({
                     data: $('#dataForm').serialize(),
-                    url: "{{ url('/admin/categories') }}",
+                    url: "{{ url('/admin/pages') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {

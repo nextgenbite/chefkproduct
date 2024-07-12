@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use App\Models\Category;
+use App\Models\Page;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,10 +32,15 @@ class AppServiceProvider extends ServiceProvider
             // config(['cart.tax' => $setting->tax]);
             View::share('settings', $setting);
          }
-         $categories =Category::limit(8)->get(['id', 'title','slug', 'icon']);
+         $categories =Category::active()->limit(8)->get(['id', 'title','slug', 'icon']);
         if ($categories) {
             // config(['cart.tax' => $setting->tax]);
             View::share('categories', $categories);
+         }
+         $pages =Page::limit(8)->get(['id', 'title']);
+        if ($pages) {
+            // config(['cart.tax' => $setting->tax]);
+            View::share('pages', $pages);
          }
 
          

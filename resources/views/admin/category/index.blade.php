@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('title')
-    {{ $settings->app_name . ' ' . $title }}
+{{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @section('content')
     <!-- Include Tailwind CSS -->
@@ -34,7 +34,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <a href="#"
-                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title }}</a>
+                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0]}}</a>
                             </div>
                         </li>
                         <li>
@@ -50,7 +50,7 @@
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title }} List</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0]}} List</h1>
             </div>
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
