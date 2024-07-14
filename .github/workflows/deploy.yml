@@ -20,6 +20,9 @@ jobs:
           php-version: '8.1' # Adjust to match the PHP version used by your Laravel project
           tools: 'composer'
 
+    - name: config clear
+      run: php artisan config:cache
+
     - name: Install PHP dependencies
       run: composer update --no-dev --optimize-autoloader
         
