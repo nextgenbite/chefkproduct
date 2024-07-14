@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        try{
         $setting = Setting::all()->pluck('svalue', 'skey');
         if ($setting) {
             // config(['cart.tax' => $setting->tax]);
@@ -42,6 +43,10 @@ class AppServiceProvider extends ServiceProvider
             // config(['cart.tax' => $setting->tax]);
             View::share('pages', $pages);
          }
+
+         } catch (\Exception $e) {
+        echo 'None';
+    }
 
          
     }
