@@ -1,41 +1,27 @@
-name: 🚀 Deploy website on push
+# name: 🚀 Deploy website on push
 
-on:
-  push:
-    branches:
-      - laravel
-  pull_request:
-    branches:
-      - laravel
+# on:
+#   push:
+#     branches:
+#       - laravel
+#   pull_request:
+#     branches:
+#       - laravel
 
       
-jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      - uses: actions/checkout@v2.1.0
-      with:
-        fetch-depth: 2 
-    - name: Build assets
-      run: npm install && npm run build
+# jobs:
+#   web-deploy:
+#     name: 🎉 Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: 🚚 Get latest code
+#       uses: actions/checkout@v3
 
-    - name: Install PHP and Composer
-      uses: shivammathur/setup-php@v2
-      with:
-          php-version: '8.1' # Adjust to match the PHP version used by your Laravel project
-          tools: 'composer'
-
-    - name: Install PHP dependencies
-      run: composer install --no-dev --optimize-autoloader
-        
-
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ftp.nextgenbite.xyz
-        username:  nextgenecomapi@ecomapi.nextgenbite.xyz
-        password: ${{ secrets.ftp_api_password }}
-      env:
-        GIT_TRACE: 1
+#     - name: 📂 Sync files
+#       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+#       with:
+#         server: ftp.nextgenbite.xyz
+#         username:  nextgenecomapi@ecomapi.nextgenbite.xyz
+#         password: ${{ secrets.ftp_api_password }}
+#       env:
+#         GIT_TRACE: 1
