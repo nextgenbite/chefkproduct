@@ -20,8 +20,8 @@ jobs:
           php-version: '8.1' # Adjust to match the PHP version used by your Laravel project
           tools: 'composer'
 
-    - name: Install PHP dependencies
-      run: composer install --no-dev --optimize-autoloader
+    # - name: Install PHP dependencies
+    #   run: composer install --no-dev --optimize-autoloader
         
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
