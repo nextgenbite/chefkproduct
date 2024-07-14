@@ -30,6 +30,10 @@ class Product extends Model
     {
        return $this->hasOne(ProductImages::class)->latestOfMany();
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 
 
 }
