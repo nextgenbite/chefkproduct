@@ -2966,6 +2966,25 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 // Import SweetAlert
 
+
+// Create a new PerformanceObserver instance
+var observer = new PerformanceObserver(function (list) {
+  var _latestEntry$element;
+  // Get the latest entry from the list of performance entries
+  var latestEntry = list.getEntries().at(-1);
+
+  // Check if the latest entry is an element with the 'loading' attribute set to 'lazy'
+  if ((latestEntry === null || latestEntry === void 0 || (_latestEntry$element = latestEntry.element) === null || _latestEntry$element === void 0 ? void 0 : _latestEntry$element.getAttribute('loading')) === 'lazy') {
+    // Log a warning to the console with the latest entry details
+    console.warn('Warning: LCP element was lazy loaded', latestEntry);
+  }
+});
+
+// Observe the 'largest-contentful-paint' performance entry type with buffered flag set to true
+observer.observe({
+  type: 'largest-contentful-paint',
+  buffered: true
+});
 function showFrontendAlert(type, message) {
   // Map 'danger' type to 'error' for consistency
   if (type === 'danger') {
