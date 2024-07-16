@@ -1,7 +1,15 @@
 @extends('layouts.frontend')
 @push('meta')
+
 <meta name="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
 <meta name="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+<!-- Open Graph data -->
+<meta property="og:title" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+<meta property="og:type" content="product" />
+<meta property="og:url" content="{{  config('app.url').'/public' }}" />
+<meta property="og:image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" />
+<meta property="og:description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+<meta property="og:site_name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
 
 <meta itemprop="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}">
 <meta itemprop="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}">
