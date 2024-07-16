@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 /* // Fonts */
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url('https://fonts.bunny.net/css?family=Inter');
+
 
 @layer components {
     .size-selector input:checked + label{
@@ -19,6 +20,8 @@
     }
 
 }
+
+
 
 img{
      aspect-ratio: attr(width) / attr(height);
