@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
          }
 
          } catch (\Exception $e) {
-        echo $e;
+            return $e->getMessage();
     }
          
     }
