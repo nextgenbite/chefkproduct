@@ -7,7 +7,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<meta name="description" content="{{ $meta['description'] ?? 'Laravel Ecommerce with POS' }}" />
 <meta name="author" content="{{ $meta['author'] ?? 'Nexgenbite' }}" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 

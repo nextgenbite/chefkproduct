@@ -30,27 +30,28 @@ class AppServiceProvider extends ServiceProvider
     {
         try{
          // Retrieve data from cache or database
-         $settings = Cache::remember('config_data', now()->addHours(24), function () {
+         $settings = Cache::remember('config_data', now()->addHours(4), function () {
             return Setting::get()->pluck('svalue', 'skey');
         });
         if ($settings->isNotEmpty()) {
             // Share settings with views
             View::share('settings', $settings);
         } 
-         $categories =Category::active()->limit(8)->get(['id', 'title','slug', 'icon', 'status']);
-        if ($categories->isNotEmpty()) {
-            // config(['cart.tax' => $setting->tax]);
-            View::share('categories', $categories);
-         }
-         $pages = Page::active()->limit(8)->get(['id', 'title', 'slug', 'status']);;
-         if ($pages->isNotEmpty()) {
-             View::share('pages', $pages);
-         }
-        
+        $this->cacheAndShare('categories', Category::class, 4, ['id', 'title', 'slug', 'icon', 'status']);
+        $this->cacheAndShare('pages', Page::class, 4, ['id', 'title', 'slug', 'status']);
 
          } catch (\Exception $e) {
             return $e->getMessage();
     }
          
+    }
+    protected function cacheAndShare($key, $model, $hours, $fields) {
+        $data = Cache::remember($key, now()->addHours($hours), function () use ($model, $fields) {
+            return $model::active()->limit(8)->get($fields);
+        });
+    
+        if ($data->isNotEmpty()) {
+            View::share($key, $data);
+        }
     }
 }

@@ -1,12 +1,38 @@
-@extends('layouts.frontend', ['meta' => [
-'title' => 'Page Title'. $product->title,
-'description' => 'Page Description',
-'og:title' => 'Open Graph Title',
-'og:description' => 'Open Graph Description',
-'og:image' => asset($product->thumbnail),
-// Add more meta tags as needed
-]])
+@extends('layouts.frontend')
 @section('title', $product->title)
+@push('meta')
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="{{ $product->title }}">
+<meta itemprop="description" content="{{ $product->description }}">
+<meta itemprop="image" content="{{ $product->thumbnail ? asset($product->thumbnail) : '' }}">
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="product">
+<meta name="twitter:site" content="@publisher_handle">
+<meta name="twitter:title" content="{{ $product->title }}">
+<meta name="twitter:description" content="{{ $product->description }}">
+<meta name="twitter:creator" content="@author_handle">
+<meta name="twitter:image" content="{{ $product->thumbnail ? asset($product->thumbnail) : '' }}">
+<meta name="twitter:data1" content="{{ $product->discount ?: $product->price }}">
+<meta name="twitter:label1" content="Price">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="{{ $product->title }}" />
+<meta property="og:type" content="product" />
+<meta property="og:url" content="{{ url('/product', $product->slug) }}" />
+<meta property="og:image" content="{{ $product->thumbnail ? asset($product->thumbnail) : '' }}" />
+<meta property="og:description" content="{{ $product->description }}" />
+<meta property="og:site_name" content="{{ config('app.name') }}" />
+<meta property="og:price:amount" content="{{ $product->discount ?: $product->price }}" />
+<meta property="product:brand" content="{{ $product->brand ? $product->brand->name : config('app.name') }}">
+<meta property="product:availability" content="{{ $product->stock > 0 ? 'in stock' : 'out of stock' }}">
+<meta property="product:condition" content="new">
+<meta property="product:price:amount" content="{{ $product->discount ?: $product->price }}">
+<meta property="product:retailer_item_id" content="{{ $product->slug }}">
+<meta property="product:price:currency" content="TK" />
+
+<meta property="fb:app_id" content="{{ env('FACEBOOK_PIXEL_ID') }}">
+@endpush
 @section('meta')
 {{-- @php
 $availability = "out of stock";

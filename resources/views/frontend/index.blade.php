@@ -1,4 +1,12 @@
 @extends('layouts.frontend')
+@push('meta')
+<meta name="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+<meta name="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+
+<meta itemprop="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}">
+<meta itemprop="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}">
+<meta itemprop="image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}">
+@endpush
 @section('content')
 <!-- ---- Start Banner ----- -->
 @include('frontend.partials.banner')
