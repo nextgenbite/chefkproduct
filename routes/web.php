@@ -12,7 +12,9 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingCostController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
@@ -73,8 +75,10 @@ Route::prefix('tasks')->group(function() {
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
 Route::get('/categories/{slug}', [PublicController::class, 'categoriesView'])->name('categories.show');
 Route::get('/product/{slug}', [PublicController::class, 'view'])->name('product.view');
+Route::get('/page/{slug}', [PublicController::class, 'pageView'])->name('page.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
+Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/nav/search/', [PublicController::class, 'navSearch'])->name('nav_search');
 
 // Cart
@@ -167,8 +171,17 @@ Route::delete('/shipping-cost/{id}', [ShippingCostController::class, 'destroy'])
 // Page
 Route::get('/pages', [PageController::class, 'index']);
 Route::post('/pages', [PageController::class, 'store']);
+Route::get('/pages/{id}', [PageController::class, 'show']);
 Route::put('/pages/{id}', [PageController::class, 'update']);
 Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+// test
+Route::prefix('/test')->group(function(){
+
+    Route::get('/crud', [TestController::class, 'index']);
+});
+// Route::post('/pages', [PageController::class, 'store']);
+// Route::put('/pages/{id}', [PageController::class, 'update']);
+// Route::delete('/pages/{id}', [PageController::class, 'destroy']);
 //Settings
 Route::resource('/settings', App\Http\Controllers\SettingController::class)->only('index', 'store');
 
