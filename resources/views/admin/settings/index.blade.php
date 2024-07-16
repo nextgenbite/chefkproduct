@@ -3,10 +3,7 @@
     {{ $settings['app_name'] ?? '' . ' ' . $title[0] }}
 @endpush
 @section('content')
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
-
-
+  
     <div
         class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="w-full mb-1">
@@ -104,7 +101,6 @@
             </div>
         
         </div>
-<button class="text-primary-light dark:text-primary-dark">text</button>
 @include('components.btn-loading',  ['type'=>'submit'])
     </div>
     {{-- <div class="row">
@@ -124,9 +120,6 @@
 @endsection
 
 @push('custom-script')
-    <!-- Include DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.js"></script>
 
     <script>
 
@@ -148,113 +141,6 @@
             $('input[type="file"]').trigger('change');
 
 
-            /*------------------------------------------
-            --------------------------------------------
-            Pass Header Token
-            --------------------------------------------
-            --------------------------------------------*/
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            /*------------------------------------------
-            --------------------------------------------
-            Render DataTable
-            --------------------------------------------
-            --------------------------------------------*/
-            let table = $('#dataTable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ url('/admin/categories') }}",
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex'
-                    },
-                    {
-                        data: 'title',
-                        name: 'title'
-                    },
-                    {
-                        data: 'icon',
-                        name: 'icon'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ]
-            });
-
-            /*------------------------------------------
-            --------------------------------------------
-            Click to Button
-            --------------------------------------------
-            --------------------------------------------*/
-            $('#createData').click(function() {
-                $('#saveBtn').val("create-data");
-                $('#data_id').val('');
-                $('#dataForm').trigger("reset");
-                $('#modelHeading').html("Create New data");
-                // $('#data-modal').modal('show');
-            });
-
-            /*------------------------------------------
-            --------------------------------------------
-            Click to Edit Button
-            --------------------------------------------
-            --------------------------------------------*/
-            $('body').on('click', '.editData', function() {
-                var data_id = $(this).data('id');
-                $.get("{{ url('/admin/categories') }}" + '/' + data_id, function(data) {
-                    $('#modelHeading').html("Edit Data");
-                    $('#saveBtn').val("edit-Data");
-                    //   $('#ajaxModel').modal('show');
-                    $('#data_id').val(data.data.id);
-                    $('#title').val(data.data.title);
-                    $('#icon').val(data.data.icon);
-                })
-            });
-
-
-            /*------------------------------------------
-            --------------------------------------------
-            Create Data Code
-            --------------------------------------------
-            --------------------------------------------*/
-            $('#saveBtn').click(function(e) {
-                e.preventDefault();
-                console.log(table);
-                $(this).html('Sending..');
-
-                $.ajax({
-                    data: $('#dataForm').serialize(),
-                    url: "{{ url('/admin/categories') }}",
-                    type: "POST",
-                    dataType: 'json',
-                    success: function(data) {
-
-                        $('#dataForm').trigger("reset");
-                        const $targetEl = document.getElementById('data-modal');
-
-
-                        const modal = new Modal($targetEl);
-                        modal.hide();
-                        table.draw();
-
-                    },
-                    error: function(data) {
-                        console.log('Error:', data);
-                        $('#saveBtn').html('Save Changes');
-                    }
-                });
-            });
-
-
-
-        });
+         
     </script>
 @endpush

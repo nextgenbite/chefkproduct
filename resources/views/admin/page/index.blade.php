@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @push('title')
-    {{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
+{{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @section('content')
     <!-- Include Tailwind CSS -->
@@ -34,7 +34,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <a href="#"
-                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0] }}</a>
+                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0]}}</a>
                             </div>
                         </li>
                         <li>
@@ -50,7 +50,7 @@
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0] }} List</h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0]}} List</h1>
             </div>
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
@@ -74,7 +74,7 @@
                 <div
                     class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                     <button type="button" id="createData" data-modal-target="data-modal" data-modal-toggle="data-modal"
-                        class="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        class="flex items-center justify-center text-white bg-primary-700  hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
@@ -90,6 +90,7 @@
     <div class="flex flex-col">
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full align-middle">
+                
                 <div class="overflow-hidden shadow">
                     {{-- <table id="dataTable" class="display">
                     <thead>
@@ -119,61 +120,61 @@
             </tbody>
         </table>
     </div>
-    <!-- Add Data Modal -->
-    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="data-modal">
-        <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
-                <!-- Modal header -->
-                <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
-                    <h3 class="text-xl font-semibold dark:text-white" id="modelHeading">
-                        Add new data
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
-                        data-modal-toggle="data-modal">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-                <form id="dataForm">
-                    <input type="hidden" name="data_id" id="data_id">
-                    <!-- Modal body -->
-                    <div class="p-6 space-y-6">
-                        <div class="grid grid-cols-6 gap-6">
-                            <div class="col-span-6">
-                                <label for="title"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                <input type="text" name="title" id="title"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Enter Title" required>
-                            </div>
-                            <div class="col-span-6">
-                                <label for="body"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icon</label>
-                                <textarea type="text" name="body" id="body"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Enter body" required></textarea>
-                            </div>
+     <!-- Add Data Modal -->
+     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+     id="data-modal">
+     <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
+         <!-- Modal content -->
+         <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+             <!-- Modal header -->
+             <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
+                 <h3 class="text-xl font-semibold dark:text-white" id="modelHeading">
+                     Add new data
+                 </h3>
+                 <button type="button"
+                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
+                     data-modal-toggle="data-modal">
+                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd"
+                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                             clip-rule="evenodd"></path>
+                     </svg>
+                 </button>
+             </div>
+             <form id="dataForm">
+                 <input type="hidden" name="data_id" id="data_id">
+                 <!-- Modal body -->
+                 <div class="p-6 space-y-6">
+                     <div class="grid grid-cols-6 gap-6">
+                         <div class="col-span-6">
+                             <label for="title"
+                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                             <input type="text" name="title" id="title"
+                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                 placeholder="Enter Title" required>
+                         </div>
+                         <div class="col-span-6">
+                             <label for="body"
+                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
+                             <textarea type="text" name="body" id="body"
+                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                 placeholder="Enter body" required></textarea>
+                         </div>
 
-                    
-                            </div>
+                 
+                         </div>
 
 
-                            <button id="saveBtn" value="create"
-                                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                                type="submit">Save Changes</button>
-                        </div>
-                    </div>
-              
-                </form>
-            </div>
-        </div>
-    </div>
+                         <button id="saveBtn" value="create"
+                             class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                             type="submit">Save Changes</button>
+                     </div>
+                 </div>
+           
+             </form>
+         </div>
+     </div>
+ </div>
 @endsection
 
 @push('custom-script')
@@ -183,7 +184,24 @@
 
     <script>
         $(document).ready(function() {
+// Preview image on file selection for each file input
+$('input[type="file"]').on('change', function() {
+        var file = this.files[0];
+        var $preview = $(this).closest('.relative').find('.preview'); // Find the corresponding preview image
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $preview.attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        } else {
+            // If no file is selected, revert to default image
+            $preview.attr('src', '{{asset('/images/no-image.png')}}');
+        }
+    });
 
+    // Trigger change event for each file input if there's already a file selected (for initial preview)
+    $('input[type="file"]').trigger('change');
 
 
             /*------------------------------------------
@@ -215,12 +233,6 @@
                         name: 'title'
                     },
                     {
-                        data: 'status',
-                        name: 'status',
-                        orderable: false,
-                        searchable: false
-                    },
-                    {
                         data: 'action',
                         name: 'action',
                         orderable: false,
@@ -239,7 +251,6 @@
                 $('#data_id').val('');
                 $('#dataForm').trigger("reset");
                 $('#modelHeading').html("Create New data");
-                // $('#data-modal').modal('show');
             });
 
             /*------------------------------------------
@@ -252,10 +263,14 @@
                 $.get("{{ url('/admin/pages') }}" + '/' + data_id, function(data) {
                     $('#modelHeading').html("Edit Data");
                     $('#saveBtn').val("edit-Data");
-                    //   $('#ajaxModel').modal('show');
+                    //   $('#data-modal').show();
+                      window
+    .FlowbiteInstances
+    .getInstance('Modal', 'data-modal')
+    ?.show();
                     $('#data_id').val(data.data.id);
                     $('#title').val(data.data.title);
-                    $('#icon').val(data.data.icon);
+                    $('#body').val(data.data.body);
                 })
             });
 
@@ -267,8 +282,7 @@
             --------------------------------------------*/
             $('#saveBtn').click(function(e) {
                 e.preventDefault();
-                alert('ok')
-                // console.log(table);
+                console.log(table);
                 $(this).html('Sending..');
 
                 $.ajax({

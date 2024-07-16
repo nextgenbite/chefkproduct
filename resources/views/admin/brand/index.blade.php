@@ -246,7 +246,7 @@ $('input[type="file"]').on('change', function() {
             let table = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ url('/admin/categories') }}",
+                ajax: "{{ url('/admin/brands') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -288,7 +288,7 @@ $('input[type="file"]').on('change', function() {
         --------------------------------------------*/
             $('body').on('click', '.editData', function() {
                 var data_id = $(this).data('id');
-                $.get("{{ url('/admin/categories') }}" + '/' + data_id, function(data) {
+                $.get("{{ url('/admin/brands') }}" + '/' + data_id, function(data) {
                     $('#modelHeading').html("Edit Data");
                     $('#saveBtn').val("edit-Data");
                     //   $('#ajaxModel').modal('show');
@@ -311,7 +311,7 @@ $('input[type="file"]').on('change', function() {
 
                 $.ajax({
                     data: $('#dataForm').serialize(),
-                    url: "{{ url('/admin/categories') }}",
+                    url: "{{ url('/admin/brands') }}",
                     type: "POST",
                     dataType: 'json',
                     success: function(data) {
