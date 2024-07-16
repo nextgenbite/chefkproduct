@@ -1,19 +1,28 @@
 @extends('layouts.frontend')
 @push('meta')
-
-<meta name="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
-<meta name="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
-<!-- Open Graph data -->
-<meta property="og:title" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
-<meta property="og:type" content="product" />
-<meta property="og:url" content="{{  config('app.url').'/public' }}" />
-<meta property="og:image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" />
-<meta property="og:description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
-<meta property="og:site_name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
-
 <meta itemprop="name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}">
 <meta itemprop="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}">
 <meta itemprop="image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}">
+
+<!-- Primary Meta Tags -->
+<meta name="title" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+<meta name="description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ config('app.url').'/public' }}" />
+<meta property="og:title" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+<meta property="og:description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+<meta property="og:image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" />
+<meta property="og:site_name" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="{{ config('app.url').'/public' }}" />
+<meta property="twitter:title" content="{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name')  }}" />
+<meta property="twitter:description" content="{{ isset($settings['about']) ? $settings['about'] : 'Laravel Ecommerce with POS' }}" />
+<meta property="twitter:image" content="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" />
+
 @endpush
 @section('content')
 <!-- ---- Start Banner ----- -->

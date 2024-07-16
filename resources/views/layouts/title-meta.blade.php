@@ -11,17 +11,6 @@
 
 @stack('meta')
 
-@if (isset($meta) && !empty($meta))
-    
-@foreach ($meta as $name => $content)
-    @if (!in_array($name, ['description', 'author']) && !str_starts_with($name, 'og:'))
-        <meta name="{{ $name }}" content="{{ $content }}" />
-    @elseif (str_starts_with($name, 'og:'))
-        <meta property="{{ $name }}" content="{{ $content }}" />
-    @endif
-@endforeach
-@endif
-
 <!-- App favicon -->
 <link type="image/x-icon" rel="icon" href="{{ asset(isset($settings['favicon']) ? $settings['favicon'] : '/favicon.ico') }}">
 
