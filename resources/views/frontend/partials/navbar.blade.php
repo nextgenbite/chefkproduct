@@ -1,5 +1,5 @@
 <!-- ---- Start NavBar ----- -->
-<nav class="bg-primary-light hidden lg:block w-full top-0 right-0 left-0 z-50" id="navbar">
+<nav class="bg-primary-light hidden lg:block w-full top-0 right-0 left-0 z-40" id="navbar">
     <div class="container">
         <div class="flex">
             <!-- ---- All Category ----- -->
@@ -11,20 +11,20 @@
                 <span class="capitalize text-primary-light dark:text-white font-semibold ml-[1.52rem]">All
                     categories</span>
                 <div
-                    class="absolute left-0 top-full w-full bg-white shadow-md py-3 invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
+                    class="absolute left-0 top-full text-gray-600 w-full bg-white shadow-md py-3 invisible rounded-b opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
                     @forelse ($categories as $item)
-                        <!-- ---- Start single category ----- -->
-                        <a title="{{ $item->title }}" href="{{ route('categories.show',$item->slug ) }}"
-                            class="px-6 py-3 flex items-center hover:bg-gray-100 transition duration-500 ease-in-out ">
-                            <span class="material-symbols-sharp text-gray-700">
-                                {{ $item->icon ?? 'adjust' }}
-                            </span>
-                            <span class="ml-6 text-gray-700 text-sm font-semibold  capitalize">
-                                {{ $item->title }}</span>
-                        </a>
-                        <!-- ---- single category End ----- -->
+                    <!-- ---- Start single category ----- -->
+                    <a title="{{ $item->title }}" href="{{ route('categories.show',$item->slug ) }}"
+                        class="px-4 py-2 flex items-center  hover:bg-gray-100 transition duration-500 ease-in-out ">
+                        <span class="material-symbols-sharp text-gray-700">
+                            {{ $item->icon ?? 'adjust' }}
+                        </span>
+                        <span class="ml-3 text-gray-700 text-sm font-semibold  capitalize">
+                            {{ $item->title }}</span>
+                    </a>
+                    <!-- ---- single category End ----- -->
                     @empty
-                        <div class="text-center text-red-600"> Item Not Found</div>
+                    <div class="text-center text-red-600"> Item Not Found</div>
                     @endforelse
 
                 </div>
@@ -38,48 +38,36 @@
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Home</a>
                     <a title="shop" href="{{ url('/shop') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Shop</a>
-                    <a title="about" href="index.html"
+                    <a title="about" href="{{ url('page/about') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">About</a>
                     <a title="contact" href="{{ url('/contact') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Contact</a>
+                    <a title="home-2" href="{{ url('/home-2') }}"
+                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Home-2</a>
 
                 </div>
 
 
-                <div class="ml-auto">
+                <div class=" ml-auto">
 
                     <!-- ---- Start Cart ----- -->
 
                     <button id="cartButton"
-                        class="flex px-4 py-4 items-center space-x-1 bg-blue-900 text-white  rounded-md"
+                        class="flex px-3 py-4 items-center space-x-1 bg-primary-800 text-white  rounded-md"
                         data-drawer-target="drawer-right-cart" data-drawer-show="drawer-right-cart"
                         data-drawer-placement="right" aria-controls="drawer-right-cart">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="mr-1"
-                            id="cartPrice">{{ formatCurrency(array_sum(array_column(session('cart')['data'] ?? [], 'price')) ?? 0) }}
+                        <span class="mr-1" id="cartPrice">{{
+                            formatCurrency(array_sum(array_column(session('cart')['data'] ?? [], 'price')) ?? 0) }}
                         </span>
-                        <span
-                            id="cartItemCount">({{ count(session('cart')['data'] ?? []) > 0 ? count(session('cart')['data']) : 0 }}
+                        <span id="cartItemCount">({{ count(session('cart')['data'] ?? []) > 0 ?
+                            count(session('cart')['data']) : 0 }}
                             items)</span>
                     </button>
 
                     <!-- ---- Cart End ----- -->
                 </div>
 
-                
-                <button id="theme-toggle" type="button"
-                    class="text-gray-500 dark:text-yellow-300 rounded-lg text-sm p-2.5">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                            fill-rule="evenodd" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
 
             </div>
 
@@ -122,23 +110,23 @@
     <div class="w-full bg-white shadow-md py-3   transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
         @if (session()->has('cart') && isset(session('cart')['data']))
 
-            @foreach (session('cart')['data'] as $item)
-                <!-- ---- Start single category ----- -->
-                <a title="{{ $item['title'] }}" href="#"
-                class="p-3 flex items-center justify-between hover:bg-gray-200 transition">
-                 <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
-                      class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
-                 <div class="px-2 w-40">
-                     <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
-                     <div class="text-gray-700 text-xs font-semibold">
-                         {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
-                     </div>
-                 </div>
-                 <button class="text-red-700 text-sm font-semibold"> <i class="fas fa-trash text-red-700"></i></button>
-             </a>
-             
-                <!-- ---- single category End ----- -->
-            @endforeach
+        @foreach (session('cart')['data'] as $item)
+        <!-- ---- Start single category ----- -->
+        <a title="{{ $item['title'] }}" href="#"
+            class="p-3 flex items-center justify-between hover:bg-gray-200 transition">
+            <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
+                class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
+            <div class="px-2 w-40">
+                <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
+                <div class="text-gray-700 text-xs font-semibold">
+                    {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
+                </div>
+            </div>
+            <button class="text-red-700 text-sm font-semibold"> <i class="fas fa-trash text-red-700"></i></button>
+        </a>
+
+        <!-- ---- single category End ----- -->
+        @endforeach
         @else
         @endif
         <div class="grid grid-cols-1  mt-3 pt-4">

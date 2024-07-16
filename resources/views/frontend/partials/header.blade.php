@@ -18,14 +18,14 @@
                 class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-3 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
                 placeholder="what are you looking for..." />
             <button type="submit" title="search"
-                class="lg:block hidden bg-primary-light border rounded-l-none border-primary-light text-white px-8 font-medium rounded-r-md hover:bg-transparent hover:text-primary-light transition  ">
+                class="lg:block hidden bg-primary-light border rounded-l-none border-primary-light text-white px-8 font-medium rounded-r-md hover:bg-primary-800  transition  duration-200 ease-in-out ">
                 <i class="fas fa-search"></i>
             </button>
 
 
             <ul
             id="nav-search-result" style="max-height: 14rem"
-                class="hidden overflow-y-auto  w-full z-20  absolute top-full left-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                class="hidden overflow-y-auto  w-full z-20  absolute top-full left-0 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white transition  duration-200 ease-in-out">
                 {{-- <li class="w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">Profile</li>
                 <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Settings</li>
                 <li class="w-full px-4 py-2 border-b border-gray-200 dark:border-gray-600">Messages</li> --}}

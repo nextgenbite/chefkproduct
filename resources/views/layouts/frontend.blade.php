@@ -7,35 +7,27 @@
 
 
     <!-- Fonts -->
-    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
-
+   
     <!-- icon -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
+<style>
+        :root {
+          /* --primary-light: 30, 66, 159; */
+          --primary-light: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
+          --primary-dark: #fff;
+          --primary-700: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
+          --primary-800: {{isset($settings['hover_color']) ? $settings['hover_color'] : '#1E429F'}};
+     }
+</style>
     @stack('css')
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-   const themeColor = '4, 87, 177'; // Assuming this is the correct format
 
-// Update the Tailwind CSS configuration with the theme color
-const customCSS = `
-    :root {
-        --color-primary: ${themeColor};
-        --alpha-value: 1; // Define your alpha value here
-    }
-`;
-
-// Create a style tag and append the custom CSS
-const styleTag = document.createElement('style');
-styleTag.textContent = customCSS;
-document.head.appendChild(styleTag);
-    </script>
 </head>
 
 <body class="min-h-screen bg-white dark:bg-gray-800 dark:text-white">
@@ -433,13 +425,14 @@ s0.parentNode.insertBefore(s1,s0);
 
         $(document).mouseup(function(e) 
 {
-    var container = $('#nav-search-result');
+    var containers = [ $('#nav-search-result')];
 
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {
-        container.hide();
-    }
+    $.each(containers, function(index, container) {
+        // if the target of the click isn't the container nor a descendant of the container
+        if (!$(container).is(e.target) && $(container).has(e.target).length === 0) {
+            $(container).hide();
+        }
+    });
 });
 
         $(document).ready(function() {

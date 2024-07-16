@@ -37,14 +37,14 @@
     }
 </style>
 
+@forelse ($products as $product)
 <!-- ---- Start Single Product  ----- -->
 <div
     class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hidden transition-all ease-in-out duration-300">
     <a href="{{Route('product.view',$product->slug)}}" class="relative ">
         <span v-if="product.discount" class="badge-custom">OFF<span class="box ml-1 mr-0">&nbsp;{{
                 discountPercentage($product->price, $product->discount) }}%</span></span>
-        <img src="{{asset('/images/loader.svg')}}" width="40"
-            data-src="{{ asset($product->thumbnail ?? 'images/no-image.png') }}" alt="{{ $product->title }}"
+        <img width="40" src="{{ asset($product->thumbnail ?? 'images/no-image.png') }}" alt="{{ $product->title }}"
             class="thumb lazy " />
 
         <div
@@ -100,3 +100,8 @@
 </div>
 
 <!-- ---- End Single Product  ----- -->
+
+
+@empty
+<div class="text-red-600 flex justify-center item-center text-bold">No Data Found</div>
+@endforelse
