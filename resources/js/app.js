@@ -6,22 +6,6 @@ import './dark-mood';
 // Import SweetAlert
 import Swal from 'sweetalert2';
 
-function lazyLoadImages() {
-    $('img[data-src]').each(function() {
-        var $img = $(this);
-        // Load image when it's about to enter the viewport
-        if ($img.offset().top < $(window).scrollTop() + $(window).height() + 200) {
-            $img.attr('src', $img.attr('data-src'));
-            $img.removeAttr('data-src');
-        }
-    });
-}
-// Lazy load images on initial page load
-lazyLoadImages();
-// Lazy load images on scroll
-$(window).scroll(function() {
-    lazyLoadImages();
-});
 
 
 function showFrontendAlert(type, message) {
@@ -45,6 +29,33 @@ timer: 3000,
 window.showFrontendAlert =showFrontendAlert;
 
 $(document).ready(function() {
+    function lazyLoadImages() {
+        $('img[data-src]').each(function() {
+            var $img = $(this);
+            if ($img.is(':visible') && $img.offset().top < $(window).scrollTop() + $(window).height() + 200) {
+                $img.attr('src', $img.attr('data-src'));
+                $img.removeAttr('data-src');
+            }
+        });
+    }
+
+    // Throttle function to limit the rate of function execution
+    function throttle(fn, wait) {
+        var time = Date.now();
+        return function() {
+            if ((time + wait - Date.now()) < 0) {
+                fn();
+                time = Date.now();
+            }
+        };
+    }
+
+    // Lazy load images on initial page load
+    lazyLoadImages();
+    
+    // Lazy load images on scroll with throttling
+    $(window).scroll(throttle(lazyLoadImages, 200));
+    
     $(document).on('click', '#loading-btn',function() {
 $(this).prop('disabled', true); // Disable the button
 $('#loading-spinner').removeClass('hidden'); // Show the loading spinner or animation
