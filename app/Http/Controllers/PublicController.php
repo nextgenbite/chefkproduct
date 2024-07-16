@@ -11,7 +11,7 @@ use App\Models\ShippingCost;
 use App\Models\Size;
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use Mpdf\Tag\Tr;
+// use Mpdf\Tag\Tr;
 
 class PublicController extends Controller
 {
@@ -20,7 +20,7 @@ class PublicController extends Controller
     {
         // $settings =SiteSetting::first();
         // $categories =Category::limit(8)->get(['id', 'title', 'icon']);
-        $sliders = Slider::where('status', 1)
+        $sliders = Slider::active()
             ->whereIn('position', ['main', 'right_top', 'right_bottom'])
             ->with('category:id')
             ->get(['thumbnail', 'category_id', 'title', 'position']);
@@ -32,11 +32,12 @@ class PublicController extends Controller
 
 
         // Brand::whereStatus(1)->with('products:id,brand_id')->get();
+        // Fetching recent, trend, and top products in a single query
+        $productsQuery = Product::query();
+        $trendProducts =  $productsQuery->active()->where('trend', 1)->limit(10)->get();
 
-        $trendProducts =  Product::where(['status' => true, 'trend' => true])->limit(10)->get();
-
-        $newProducts = Product::whereStatus(1)->latest()->limit(10)->get();
-        $products = Product::whereStatus(1)->paginate(10);
+        $newProducts = $productsQuery->active()->latest()->limit(10)->get();
+        $products = $productsQuery->active()->paginate(10);
         return view('frontend.index', compact('mainBanner', 'rightTopBanner', 'rightBottomBanner', 'trendProducts', 'newProducts', 'products'));
     }
 
@@ -139,15 +140,19 @@ class PublicController extends Controller
         $colors = Color::get(['id', 'name', 'code']);
         $size = Size::get(['id', 'name']);
         if ($request->ajax()) {
-           
-                $html = view('frontend.partials.product_grid_row', compact('products'))->render();
-           
+
+            $html = view('frontend.partials.product_grid_row', compact('products'))->render();
+
             return response()->json(['html' => $html]);
         }
 
         return view('frontend.shop', compact('products', 'brands', 'size', 'colors'));
+    }
+    public function contact()
+    {
 
-       
+
+        return view('frontend.contact');
     }
     // public function shop()
     // {

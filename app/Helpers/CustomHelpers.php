@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\SiteSetting;
+
+use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('discountPercentage')) {
     function discountPercentage($price, $discount)
@@ -10,13 +11,16 @@ if (!function_exists('discountPercentage')) {
     }
 
 }
+
 if(!function_exists('formatCurrency'))
 {
     function formatCurrency($amount) 
     {
-        $setting = SiteSetting::select('currency_symbol')->first();
-        $currencySymbol = $setting->currency_symbol ? : '$'; 
-
+        $config = Cache::get('config_data');
+        
+        // Use the currency symbol from the config if available, otherwise default to '$'
+        $currencySymbol = isset($config['currency_symbol']) ? $config['currency_symbol'] : '$'; 
+    
         return $currencySymbol . number_format($amount, 2);
     }
 }

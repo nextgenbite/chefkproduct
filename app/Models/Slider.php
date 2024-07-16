@@ -14,4 +14,8 @@ class Slider extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }
