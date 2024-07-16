@@ -1,27 +1,27 @@
-# name: 🚀 Deploy website on push
+name: 🚀 Deploy website on push
 
-# on:
-#   push:
-#     branches:
-#       - laravel
-#   pull_request:
-#     branches:
-#       - laravel
+on:
+  push:
+    branches:
+      - laravel
+  pull_request:
+    branches:
+      - laravel
 
       
-# jobs:
-#   web-deploy:
-#     name: 🎉 Deploy
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: 🚚 Get latest code
-#       uses: actions/checkout@v3
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
 
-#     - name: 📂 Sync files
-#       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-#       with:
-#         server: ftp.nextgenbite.xyz
-#         username:  nextgenecomapi@ecomapi.nextgenbite.xyz
-#         password: ${{ secrets.ftp_api_password }}
-#       env:
-#         GIT_TRACE: 1
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.nextgenbite.xyz
+        username:  nextgenecomapi@ecomapi.nextgenbite.xyz
+        password: ${{ secrets.ftp_api_password }}
+      env:
+        GIT_TRACE: 1
