@@ -37,7 +37,7 @@
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-               <img src="/images/icons/delivery-van.svg" class="lg:w-12 w-10 h-12 object-contain " />
+               <img src="/images/icons/delivery-van.svg" alt="Free Shipping" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg ">Free Shipping </h4>
                     <p class="text-gray-500 text-xs lg:text-sm "> Order Over ৳500 </p>
@@ -50,7 +50,7 @@
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-               <img src="/images/icons/money-back.svg" class="lg:w-12 w-10 h-12 object-contain " />
+               <img src="/images/icons/money-back.svg" alt="Money Returns" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg ">Money Returns </h4>
                     <p class="text-gray-500 text-xs lg:text-sm "> 14 Days Money Return </p>
@@ -64,7 +64,7 @@
           <div
                class="shadow-lg rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-               <img src="/images/icons/service-hours.svg" class="lg:w-12 w-10 h-12 object-contain " />
+               <img src="/images/icons/service-hours.svg" alt="24/7 Support" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg">24/7 Support </h4>
                     <p class="text-gray-500 text-xs lg:text-sm "> Customer Support </p>
