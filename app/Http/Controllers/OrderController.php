@@ -7,13 +7,94 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\SiteSetting;
 use App\Models\User;
+use App\Traits\BaseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as MPDF;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrderController extends Controller
 {
+
+    use  BaseTrait;
+    private $title = ['Order', 'orders'];
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $title = $this->title;
+
+        $data = Order::latest()->get();
+        if ($request->ajax()) {
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('checkbox', function ($row) {
+                    return $this->CrudCheckbox($row);
+                })
+                ->addColumn('status', function ($row) {
+                    return $this->CrudStatus($row);
+                })
+                ->addColumn('action', function ($row) {
+                    return $this->CrudAction($row);
+                })
+                ->rawColumns(['checkbox',  'action', 'status'])
+                ->make(true);
+        }
+        $columns = [
+            [
+                'data' => 'checkbox',
+                'name' => 'checkbox',
+                'title' =>  '<input type="checkbox" class="rounded-full" id="selectAll" />',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'order_date', 'name' => 'order_date', 'title' => 'Date', 'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'name', 'name' => 'name', 'title' => 'Name',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            ['data' => 'phone', 'name' => 'phone', 'title' => 'Phone'],
+            ['data' => 'total', 'name' => 'total', 'title' => 'Total'],
+            ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method'],
+            ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status'],
+            [
+                'data' => 'status', 'name' => 'status', 'title' => 'Status',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'action', 'name' => 'action', 'title' => 'Action',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            // [ 'data'=> 'user.name', 'name'=> 'user.name' ],
+            // Add more columns as needed
+        ];
+        $form = [
+            [
+                'type' => 'text',
+                'name' => 'title',
+                'label' =>  'Title',
+            ],
+            [
+                'type' => 'image',
+                'name' => 'thumbnail',
+                'label' =>  'Thumbnail',
+            ],
+
+        ];
+        return view('admin.category.index', compact('title', 'data', 'columns', 'form'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -28,8 +109,7 @@ class OrderController extends Controller
             "address" => ["required"],
         ]);
         $cart = session('cart');
-        if (isset($cart['data']) && is_array($cart['data'])) 
-        {
+        if (isset($cart['data']) && is_array($cart['data'])) {
 
             $user = User::firstOrNew(['phone' => $request->phone], [
                 "name" => $request->name,
@@ -37,11 +117,11 @@ class OrderController extends Controller
                 "address" => $request->address,
                 "password" => Hash::make($request->phone),
             ]);
-    
+
             if (!$user->exists) {
                 $user->save();
             }
-    
+
             $data = Order::create([
                 "name" => $request->name,
                 'code' => date('Ymd-His') . rand(10, 99),
@@ -53,15 +133,15 @@ class OrderController extends Controller
                 "order_month" => date("m"),
                 "order_year" => date("Y"),
                 "order_year" => date("Y"),
-                'payment_mehood' => $request?->payment_method
+                'payment_method' => $request?->payment_method
             ]);
-    
+
             foreach ($cart['data'] as $item) {
                 $product = Product::findOrFail($item['product_id']);
                 $product->decrement('stock', $item['quantity']);
-    
+
                 // $price = $item['price'] - ($item['price'] / 100) * $item['discount'];
-    
+
                 OrderItem::create([
                     "order_id" => $data->id,
                     "product_id" => $item['product_id'],
@@ -72,23 +152,24 @@ class OrderController extends Controller
             }
             // return $request->payment_method;
 
-         
+
             if ($request->payment_method == 'stripe') {
                 // $html = View::make('frontend.partials.modal', compact('data'))->render();
 
                 // return response()->json(['html' => $html]);
 
-               return (new StripePaymentController())->stripe($data);
-            //    if ( $stripeData) 
-            //    {
-            //     # code...
-            //     return view('frontend.order_success', compact('data'));
-            //    }
-            }elseif ($request->payment_method == 'paypal') {
+                return (new StripePaymentController())->stripe($data);
+                //    if ( $stripeData) 
+                //    {
+                //     # code...
+                //     return view('frontend.order_success', compact('data'));
+                //    }
+            } elseif ($request->payment_method == 'paypal') {
                 return 'paypal';
             }
-    
-            return response()->json(['message' => 'Order Place Successfully', 'data'=> $data]);
+            // session('cart')->delete();
+            return view('frontend.order_success', compact('data'));
+            return response()->json(['message' => 'Order Place Successfully', 'data' => $data]);
         }
 
         return response()->json(['message' => 'Product not found in the cart'], 404);
@@ -102,13 +183,13 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-       return Order::findOrFail($id);
+        return Order::findOrFail($id);
     }
     public function invoice($id)
     {
         $settings = SiteSetting::first();
         $order = Order::findOrFail($id);
-    
+
         $pdf = MPDf::chunkLoadView('<html-separator/>', 'pdf.order_pdf', ['order' => $order, 'setting' => $settings]);
         return $pdf->download("{$order->code}.pdf");
     }
@@ -148,5 +229,29 @@ class OrderController extends Controller
     {
         //
     }
+    public function multipleDelete(Request $request)
+    {
+        //    return  dd($request->selected_ids);
+        $selectedItems = $request->input('selected_ids', []);
 
+        // Delete selected items
+        $data = Order::whereIn('id', $selectedItems)->delete();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
+    public function statusUpdate(Request $request)
+    {
+
+        $page = Order::findOrFail($request->id);
+        $page->status = !$page->status;
+        $data = $page->save();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
 }

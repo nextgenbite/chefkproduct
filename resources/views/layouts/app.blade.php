@@ -53,6 +53,13 @@
     </div>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+          @if (Session::has('messege'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            var message = "{{ Session::get('messege') }}";
+            showFrontendAlert(type, message);
+        @endif
+    </script>
     @stack('custom-script')
 </body>
 

@@ -22,13 +22,13 @@ class CreateOrdersTable extends Migration
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->text('notes')->nullable();
-            $table->float('total',8,2);
-            $table->float('coupon',8,2)->default(0);
+            $table->decimal('total');
+            $table->decimal('discount')->default(0);
             $table->string('shipping_cost')->default(0);
             $table->string('order_date');
             $table->string('order_month');
             $table->string('order_year');
-            $table->string('payment_mehood')->default('cash_on_delivary');
+            $table->string('payment_method')->default('cash_on_delivary');
             $table->string('payment_status')->default('pending');
             $table->string('status')->default('pending');
             $table->timestamps();

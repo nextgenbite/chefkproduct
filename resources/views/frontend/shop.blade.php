@@ -20,7 +20,7 @@
 <div class="container grid md:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
      <!-- ---- Sidebar --->
      <div id="filter-bar"
-          class="hidden  col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-y-auto lg:overflow-hidden fixed h-screen lg:h-auto  lg:static left-0 lg:left-4 top-0 lg:top-0 z-40 w-fit lg:w-full lg:block">
+          class="hidden  col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-y-auto lg:overflow-hidden fixed h-screen lg:h-auto  lg:static left-0 lg:left-4 top-0 lg:top-0 z-40 md:z-10 w-fit lg:w-full lg:block">
           <div class="divide-gray-300 divide-y space-y-5 relative">
                <!-- ---- Category filter --->
                <div class="relative">
@@ -163,12 +163,12 @@
                          @forelse ($colors as $item)
 
                          <!-- ---- Single Color --->
-                         <div class="color-selector">
+                         <div class="color-selector flex flex-col items-center justify-start">
                               <input type="radio" value="{{$item->id}}" name="color" class="hidden"
                                    id="color-{{$item->name}}" checked />
                               <label for="color-{{$item->name}}" style="background-color: {{$item->code}};"
-                                   class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
-                              <p class="text-xs text-gray-400 capitalize">{{$item->name}}</p>
+                                   class="text-xs border border-gray-200 rounded h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+                              <p class="text-xs  capitalize">{{$item->name}}</p>
                          </div>
                          <!-- ----  End Single Color --->
                          @empty
@@ -226,29 +226,31 @@
 
           <!-- ----End Shorting --->
 
+<div id="product-list">
+     
+     <!-- ---Product Wrapper --->
+     <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6" >
 
-          <!-- ---Product Wrapper --->
-          <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6" id="product-list">
+          @forelse ($products as $product)
 
-               @forelse ($products as $product)
-
-               @include('frontend.partials.product-x', ['product' => $product])
-
-
-               @empty
-               <div class="text-red-600 text-center text-bold">No Data Found</div>
-               @endforelse
+          @include('frontend.partials.product-x', ['product' => $product])
 
 
+          @empty
+          <div class="text-red-600 text-center text-bold">No Data Found</div>
+          @endforelse
+
+
+     </div>
+     <!-- -- Product pagination --->
+     <div class="flex- justify-center">
+          {{$products->links()}}
           </div>
-          <!-- -- Product pagination --->
-          {{-- <div class="flex- justify-center"> --}}
-               {{-- {{$products->links()}} --}}
-               {{-- </div> --}}
 
-          <!-- -- End Product pagination --->
+     <!-- -- End Product pagination --->
 
-          <!-- --End Product Wrapper --->
+     <!-- --End Product Wrapper --->
+</div>
 
      </div>
 

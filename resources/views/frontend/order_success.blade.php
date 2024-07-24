@@ -1,9 +1,6 @@
 @extends('layouts.frontend')
 
-@push('meta')
-<title>{{ config('app.name', $settings->app_name) }}</title>
-     
-@endpush
+@section('title', 'Order Success')
 @section('content')
 
 <!-- component -->
@@ -15,11 +12,12 @@
           </path>
       </svg>
       <div class="text-center">
-          <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3>
-          <p class="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
+          {{-- <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment Done!</h3> --}}
+          <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">Order has been successfully completed!</h3>
+          <p class="text-gray-600 my-2">Thank you for  your Order.</p>
           <p> Have a great day!  </p>
           <div class="py-10 text-center">
-              <a href="#" class="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+              <a href="/" class="px-12 bg-primary-light hover:bg-primary-800 text-white font-semibold py-3">
                   GO BACK 
              </a>
           </div>

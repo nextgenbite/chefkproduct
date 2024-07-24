@@ -35,7 +35,7 @@
             <div class="flex items-center justify-between flex-grow pl-12 ">
                 <div class="flex items-center space-x-10 text-base capitalize ">
                     <a title="home" href="{{ url('/') }}"
-                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Home</a>
+                        class="text-gray-200 hover:text-white  font-semibold   hover:border-b transition-all ease-in-out  duration-300">Home</a>
                     <a title="shop" href="{{ url('/shop') }}"
                         class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Shop</a>
                     <a title="about" href="{{ url('page/about') }}"
@@ -108,27 +108,33 @@
     <hr>
 
     <div class="w-full bg-white shadow-md py-3   transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
-        @if (session()->has('cart') && isset(session('cart')['data']))
+        @if (session()->has('cart') && isset(session('cart')['data']) && count(session('cart')['data']) > 0)
+<table class="w-full">
 
-        @foreach (session('cart')['data'] as $item)
-        <!-- ---- Start single category ----- -->
-        <a title="{{ $item['title'] }}" href="#"
-            class="p-3 flex items-center justify-between hover:bg-gray-200 transition">
+    @foreach (session('cart')['data'] as $item)
+    <!-- ---- Start single category ----- -->
+    <tr title="{{ $item['title'] }}" 
+        class="p-2 flex items-center justify-between {{$loop->last ? '' : border-b}}  border-gray-400 hover:bg-gray-200 transition">
+        <td>
+
             <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
                 class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
-            <div class="px-2 w-40">
-                <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
-                <div class="text-gray-700 text-xs font-semibold">
-                    {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
-                </div>
+        </td>
+        <td class="px-2 w-40">
+            <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
+            <div class="text-gray-700 text-xs font-semibold">
+                {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
             </div>
-            <button class="text-red-700 text-sm font-semibold"> <i class="fas fa-trash text-red-700"></i></button>
-        </a>
+        </td>
+        <td>
 
-        <!-- ---- single category End ----- -->
-        @endforeach
-        @else
-        @endif
+            <button data-product-id="{{ $item['product_id'] }}" class="remove-from-cart text-red-700 text-sm font-semibold"> <i class="fas fa-trash text-red-700"></i></button>
+        </td>
+    </tr>
+
+    <!-- ---- single category End ----- -->
+    @endforeach
+</table>
         <div class="grid grid-cols-1  mt-3 pt-4">
 
             <a href="{{ Route('checkout') }}"
@@ -139,6 +145,9 @@
                         d="M1 5h12m0 0L9 1m4 4L9 9" />
                 </svg></a>
         </div>
+        @else
+        <p class="text-center text-red-600">Your cart is empty</p>
+        @endif
     </div>
 
 

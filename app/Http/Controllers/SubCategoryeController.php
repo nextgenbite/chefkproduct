@@ -9,9 +9,8 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class SubCategoryeController extends Controller
 {
-
     use ImageUploadTrait, BaseTrait;
 
     private $imgLocation = "images/categories";
@@ -28,7 +27,7 @@ class CategoryController extends Controller
     {
         $title = $this->title;
 
-        $data = Category::whereNull('parent_id')->latest()->get();
+        $data = Category::whereNotNull('parent_id')->latest()->get();
         if ($request->ajax()) {
 
             return DataTables::of($data)
@@ -79,7 +78,14 @@ class CategoryController extends Controller
             // [ 'data'=> 'user.name', 'name'=> 'user.name' ],
             // Add more columns as needed
         ];
+        $categories = Category::whereNull('parent_id')->latest()->get();
         $form = [
+            [
+                'type' => 'select',
+                'name' => 'parent_id',
+                'label' =>  'Category',
+                'data' =>  $categories,
+            ],
             [
                 'type' => 'text',
                 'name' => 'title',

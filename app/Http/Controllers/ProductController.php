@@ -4,23 +4,91 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductImages;
+use App\Traits\BaseTrait;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 class ProductController extends Controller
 {
-    use ImageUploadTrait;
+    use ImageUploadTrait, BaseTrait;
     private $imgLocation = 'images/products';
+    private $title = ['Product', 'products'];
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $title = $this->title;
         $data = Product::with('images','category' , 'brand')->get();
-        return response()->json($data,200);
+
+        if ($request->ajax()) {
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('checkbox', function ($row) {
+                    return $this->CrudCheckbox($row);
+                })
+                ->addColumn('thumbnail', function ($row) {
+                    return $this->CrudImage($row->thumbnail);
+                })
+                ->addColumn('status', function ($row) {
+                    return $this->CrudStatus($row);
+                })
+                ->addColumn('action', function ($row) {
+                    return $this->CrudAction($row);
+                })
+                ->rawColumns(['checkbox', 'thumbnail', 'action', 'status'])
+                ->make(true);
+        }
+        $columns = [
+            [
+                'data' => 'checkbox',
+                'name' => 'checkbox',
+                'title' =>  '<input type="checkbox" class="rounded-full" id="selectAll" />',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl', 'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'thumbnail', 'name' => 'thumbnail', 'title' => 'Thumbnail',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
+            [
+                'data' => 'status', 'name' => 'status', 'title' => 'Status',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'action', 'name' => 'action', 'title' => 'Action',
+                'orderable' => false,
+                'searchable' => false
+            ],
+            // [ 'data'=> 'user.name', 'name'=> 'user.name' ],
+            // Add more columns as needed
+        ];
+        $form = [
+            [
+                'type' => 'text',
+                'name' => 'title',
+                'label' =>  'Title',
+            ],
+            [
+                'type' => 'textarea',
+                'name' => 'body',
+                'label' =>  'Content',
+            ],
+
+        ];
+        return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
     }
 
     /**

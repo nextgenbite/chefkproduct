@@ -33,11 +33,11 @@ class PublicController extends Controller
 
         // Brand::whereStatus(1)->with('products:id,brand_id')->get();
         // Fetching recent, trend, and top products in a single query
-        $productsQuery = Product::query();
-        $trendProducts =  $productsQuery->active()->where('trend', 1)->limit(10)->get();
+        $productsQuery = Product::query()->active();
+        $trendProducts =  $productsQuery->where('trend', 1)->limit(10)->get();
 
-        $newProducts = $productsQuery->active()->latest()->limit(10)->get();
-        $products = $productsQuery->active()->paginate(10);
+        $newProducts = $productsQuery->latest()->limit(10)->get();
+        $products = $productsQuery->paginate(10);
         return view('frontend.index', compact('mainBanner', 'rightTopBanner', 'rightBottomBanner', 'trendProducts', 'newProducts', 'products'));
     }
 
@@ -60,8 +60,10 @@ class PublicController extends Controller
     {
         try {
             $data = Category::active()
+            ->with(['products'=> function($query){
+                $query->paginate(15);
+            }])
                 ->where('slug', $slug)
-                ->with('products')
                 ->firstOrFail(); // Use firstOrFail to automatically handle not found scenarios
 
             return view('frontend.category', compact('data'));
@@ -135,7 +137,7 @@ class PublicController extends Controller
         }
         $query->with('images', 'category', 'brand');
         // $products = $query->paginate(10);
-        $products = $query->limit(100)->get();
+        $products = $query->paginate(10);
         $brands = Brand::whereStatus(1)->get(['id', 'title']);
         $colors = Color::get(['id', 'name', 'code']);
         $size = Size::get(['id', 'name']);

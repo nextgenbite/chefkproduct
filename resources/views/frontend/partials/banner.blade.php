@@ -2,7 +2,7 @@
 
 <div class="mx-2 md:container lg:container ">
 
-    <div class="banner-card lg:flex lg:h-fit space-y-[2%] lg:space-y-0 lg:space-x-[1.9%]  mb-[30px] py-8">
+    <div class="banner-card lg:flex lg:h-fit space-y-[2%] lg:space-y-0 lg:space-x-[1.9%]  mb-[30px] py-2 lg:py-8">
         <swiper-container class="lg:w-[74.1%]  w-full h-full shadow-md rounded-md">
             @forelse ($mainBanner as $slider)
             <swiper-slide>

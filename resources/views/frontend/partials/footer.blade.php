@@ -66,7 +66,7 @@
                               @forelse ($pages as $item)
 
                               <a title="{{ $item->title}}" href="{{  url('/page/'.$item->slug)}}"
-                                   class="text-base text-gray-500 hover:text-gray-900 block font-semibold ">
+                                   class="text-base text-gray-500 capitalize hover:text-gray-900 block font-semibold ">
                                    {{ $item->title}}
                               </a>
                               @empty

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- <script src="{{asset('js/jquery.min.js')}}"></script> --}}
     <script src="{{ asset('js/app.min.js') }}"></script>
 
 </head>
@@ -478,6 +479,31 @@ s0.parentNode.insertBefore(s1,s0);
                         showFrontendAlert('success', response.message);
                     }
                 });
+            });
+            $('.remove-from-cart').on('click', function() {
+                var productId = $(this).data('product-id');
+                var row = $(this).closest('tr');
+                var subTotal = $('.sub-total');
+
+                var confirmation = confirm("Are you sure you want to remove this item from the cart?");
+                if (confirmation) {
+                    $.ajax({
+                        type: 'post',
+                        url: "{{ url('/cart/remove') }}",
+                        data: {
+                            id: productId
+                        },
+                        success: function(response) {
+                            showFrontendAlert('success', response.message);
+                            row.remove();
+                            subTotal.text(response.total_price);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            alert("An error occurred. Please try again.");
+                        }
+                    });
+                }
             });
 
         });

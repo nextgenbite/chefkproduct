@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
+use App\Models\Color;
+use Illuminate\Http\Request;
 use App\Traits\BaseTrait;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 
-class TestController extends Controller
+class ColorController extends Controller
 {
     use BaseTrait;
-    public $title = ["Page", 'page'];
+    public $title = ["Color", 'colors'];
     /**
      * Display a listing of the resource.
      *
@@ -26,14 +25,14 @@ class TestController extends Controller
      */
     public function create()
     {
-        $title = ["CRUD", 'crud'];
+        $title = $this->title;
         return view('admin.page.create', compact('title'));
     }
     public function index(Request $request)
     {
-        $title = ["CRUD", 'pages'];;
+        $title = $this->title;
 
-        $data = Page::latest()->get();
+        $data = Color::latest()->get();
         if ($request->ajax()) {
 
             return DataTables::of($data)
@@ -62,12 +61,9 @@ class TestController extends Controller
                 'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl', 'orderable' => false,
                 'searchable' => false
             ],
-            ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
-            [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status',
-                'orderable' => false,
-                'searchable' => false
-            ],
+            ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
+            ['data' => 'code', 'code' => 'code', 'title' => 'Code',  'orderable' => false,
+            'searchable' => false],
             [
                 'data' => 'action', 'name' => 'action', 'title' => 'Action',
                 'orderable' => false,
@@ -100,17 +96,16 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Page::create([
+        $data = Color::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'body' => $request->body,
             'status' => $request->status ?: 0,
         ]);
 
         if ($data) {
-            return response()->json(['message' => 'Brand Update successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' Create successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Brand Update Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Create Failed'], 404);
         }
     }
 
@@ -123,21 +118,21 @@ class TestController extends Controller
     public function show($id)
     {
 
-        $data = Page::findOrFail($id);
+        $data = Color::findOrFail($id);
         if ($data) {
-            return response()->json(['message' => 'Data successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Data Get Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Color  $Color
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function edit(Color $page)
     {
         $title = $this->title;
         $data = $page;
@@ -148,35 +143,59 @@ class TestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Color  $Color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $id)
     {
+
         $req = $request->all();
-        $req['slug'] =  Str::slug($request->title);
-        $page->update($req);
-        $notification = array(
-            'messege' => 'page is update successfully!',
-            'alert-type' => 'success'
-        );
-        return redirect('/admin/page')->with($notification);
+        $data = Color::findOrFail($id)->update($req);
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' Update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Update Failed'], 404);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Page  $page
+     * @param  \App\Models\Color  $Color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Page $page)
+    public function destroy($id)
     {
-        $page->delete();
-        $notification = array(
-            'messege' => 'page is delete successfully!',
-            'alert-type' => 'success'
-        );
-        return redirect()->back()->with($notification);
+        $data = Color::findOrFail($id)->delete();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
     }
-    
+    public function multipleDelete(Request $request)
+    {
+          //    return  dd($request->selected_ids);
+          $selectedItems = $request->input('selected_ids', []);
+
+          // Delete selected items
+          $data = Color::whereIn('id', $selectedItems)->delete();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
+    public function statusUpdate(Request $request)
+    {
+
+        $color = Color::findOrFail($request->id);
+            $color->status= !$color->status;
+            $data = $color->save();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
 }

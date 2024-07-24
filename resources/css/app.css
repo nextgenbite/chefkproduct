@@ -7,23 +7,32 @@
 
 
 @layer components {
-    .size-selector input:checked + label{
-         @apply bg-primary-light text-white;
-    }
+     .size-selector input:checked+label {
+          @apply bg-primary-light text-white;
+     }
 
-    .color-selector input:checked + label{
-         @apply ring-2 ring-primary-light;
-    }
+     .color-selector{
+          @apply flex flex-col justify-center items-center;
+     }
+     .color-selector p{
+          @apply text-gray-600;
+     }
+     .color-selector input:checked+label+p {
+          @apply text-primary-light;
+     }
 
-    .input-box{
-         @apply w-full block border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary-light placeholder-gray-400
-    }
+     .color-selector input:checked+label {
+          @apply ring-2 ring-primary-light text-white;
+     }
+
+     .input-box {
+          @apply w-full block border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary-light placeholder-gray-400
+     }
 
 }
 
 
 
-img{
+img {
      aspect-ratio: attr(width) / attr(height);
 }
-

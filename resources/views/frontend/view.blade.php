@@ -588,6 +588,7 @@ $availability = "in stock";
     // Add a product to the cart
         $(document).on('click','.add-to-cart', function () {
             let quantity = 1;
+            let btn = $(this).attr('id');
             const inputQty = $('#quantity-input');
             if (inputQty.length) {
                 quantity = inputQty.val();
@@ -609,7 +610,8 @@ $availability = "in stock";
                 success: function(data) {
                     // updateNavCart(data.count);
                     showFrontendAlert('success', 'Successfully added to cart');
-                    if ($(this).id = 'buyNow') {
+                   
+                    if (btn == 'buyNow') {
                         
                         window.location.href = '/checkout';
                     }

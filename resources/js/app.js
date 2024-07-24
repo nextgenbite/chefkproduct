@@ -26,10 +26,11 @@ timer: 3000,
     });
 }
 
+window.Swal =Swal;
 window.showFrontendAlert =showFrontendAlert;
 
 $(document).ready(function() {
-    function lazyLoadImages() {
+  function lazyLoadImages() {
         $('img[data-src]').each(function() {
             var $img = $(this);
             if ($img.is(':visible') && $img.offset().top < $(window).scrollTop() + $(window).height() + 200) {

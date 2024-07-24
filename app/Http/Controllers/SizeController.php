@@ -2,29 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Size;
 use App\Traits\BaseTrait;
-use App\Traits\ImageUploadTrait;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
-class BrandController extends Controller
+class SizeController extends Controller
 {
-
-    use ImageUploadTrait, BaseTrait;
-    public $title = ["Brand", 'brands'];
-    private $imgLocation = "images/brands";
+    use BaseTrait;
+    public $title = ["Size", 'sizes'];
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $title = $this->title;
+        return view('admin.Size.create', compact('title'));
+    }
     public function index(Request $request)
     {
         $title = $this->title;
 
-        $data = Brand::latest()->get();
+        $data = Size::latest()->get();
         if ($request->ajax()) {
 
             return DataTables::of($data)
@@ -32,13 +40,10 @@ class BrandController extends Controller
                 ->addColumn('checkbox', function ($row) {
                     return $this->CrudCheckbox($row);
                 })
-                ->addColumn('status', function ($row) {
-                    return $this->CrudStatus($row);
-                })
                 ->addColumn('action', function ($row) {
                     return $this->CrudAction($row);
                 })
-                ->rawColumns(['checkbox', 'action', 'status'])
+                ->rawColumns(['checkbox', 'action'])
                 ->make(true);
         }
         $columns = [
@@ -53,12 +58,7 @@ class BrandController extends Controller
                 'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl', 'orderable' => false,
                 'searchable' => false
             ],
-            ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
-            [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status',
-                'orderable' => false,
-                'searchable' => false
-            ],
+            ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
             [
                 'data' => 'action', 'name' => 'action', 'title' => 'Action',
                 'orderable' => false,
@@ -70,19 +70,13 @@ class BrandController extends Controller
         $form = [
             [
                 'type' => 'text',
-                'name' => 'title',
-                'label' =>  'Title',
+                'name' => 'name',
+                'label' =>  'Name',
             ],
-            [
-                'type' => 'textarea',
-                'name' => 'body',
-                'label' =>  'Content',
-            ],
-
+            
         ];
         return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -92,91 +86,88 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $thumbnail = "";
-        if ($request->thumbnail) {
-            $thumbnail = $this->uploadImage($request, 'thumbnail', $this->imgLocation, 300, 300);
-        }
-        $data = Brand::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'thumbnail' => $thumbnail ?? null,
+        $data = Size::create([
+            'name' => $request->name,
         ]);
+
         if ($data) {
-            return response()->json(['message' => 'Brand Update successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' Create successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Brand Update Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Create Failed'], 404);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $data = Brand::findOrFail($id);
+
+        $data = Size::findOrFail($id);
         if ($data) {
-            return response()->json(['message' => 'Brand Get successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Brand Get Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Size  $size
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Size $size)
+    {
+        $title = $this->title;
+        $data = $size;
+        return view('admin.Size.edit', compact('data', 'title'));
+    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $data = Brand::findOrFail($id);
-        $data->title = $request->title;
-        $data->slug = Str::slug($request->title);
-        // Handle image update
-        if ($request->newThumbnail) {
-            $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadBase64Image($request->newThumbnail, 'images/brands');
-        }
-        $data->update();
+
+        $req = $request->all();
+        $data = Size::findOrFail($id)->update($req);
         if ($data) {
-            return response()->json(['message' => 'Brand Update successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' Update successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Brand Update Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Update Failed'], 404);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Brand::findOrFail($id);
-        $this->deleteImage($data->thumbnail);
-        $data->delete();
-
+        $data = Size::findOrFail($id)->delete();
         if ($data) {
-            return response()->json(['message' => 'Brand Delete successfully', 'data' => $data], 200);
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
         } else {
-            return response()->json(['message' => 'Brand Delete Failed'], 404);
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
     }
-
     public function multipleDelete(Request $request)
     {
-        //    return  dd($request->selected_ids);
-        $selectedItems = $request->input('selected_ids', []);
+          //    return  dd($request->selected_ids);
+          $selectedItems = $request->input('selected_ids', []);
 
-        // Delete selected items
-        $data = Brand::whereIn('id', $selectedItems)->delete();
+          // Delete selected items
+          $data = Size::whereIn('id', $selectedItems)->delete();
         if ($data) {
             return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
         } else {
@@ -186,9 +177,9 @@ class BrandController extends Controller
     public function statusUpdate(Request $request)
     {
 
-        $page = Brand::findOrFail($request->id);
-        $page->status = !$page->status;
-        $data = $page->save();
+        $size = Size::findOrFail($request->id);
+            $size->status= !$size->status;
+            $data = $size->save();
         if ($data) {
             return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
         } else {

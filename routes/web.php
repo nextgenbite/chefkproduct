@@ -122,12 +122,32 @@ Route::get('/brands', [BrandController::class, 'index']);
 Route::post('/brands', [BrandController::class, 'store']);
 Route::put('/brands/{id}', [BrandController::class, 'update']);
 Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
+Route::post('/brands/status', [BrandController::class, 'statusUpdate']);
+Route::delete('/brands/multiple/delete', [BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');
+
 // categories
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
+Route::post('/categories/status', [CategoryController::class, 'statusUpdate']);
+Route::delete('/categories/multiple/delete', [CategoryController::class, 'multipleDelete'])->name('multiple.categories.delete');
+
+//sub categories
+Route::resource('/sub-categories', App\Http\Controllers\SubCategoryeController::class);
+Route::post('/sub-categories/status', [App\Http\Controllers\SubCategoryeController::class, 'statusUpdate']);
+Route::delete('/sub-categories/multiple/delete', [App\Http\Controllers\SubCategoryeController::class, 'multipleDelete'])->name('multiple.colors.delete');
+// colors
+Route::resource('/colors', App\Http\Controllers\ColorController::class);
+Route::post('/colors/status', [App\Http\Controllers\ColorController::class, 'statusUpdate']);
+Route::delete('/colors/multiple/delete', [App\Http\Controllers\ColorController::class, 'multipleDelete'])->name('multiple.colors.delete');
+// Size
+Route::resource('/sizes', App\Http\Controllers\SizeController::class);
+Route::post('/sizes/status', [App\Http\Controllers\SizeController::class, 'statusUpdate']);
+Route::delete('/sizes/multiple/delete', [App\Http\Controllers\SizeController::class, 'multipleDelete'])->name('multiple.sizes.delete');
+
+
 
 //products
 Route::get('/products', [ProductController::class, 'index']);
@@ -136,13 +156,20 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+Route::post('/products/status', [ProductController::class, 'statusUpdate']);
+Route::delete('/products/multiple/delete', [ProductController::class, 'multipleDelete'])->name('multiple.products.delete');
+
 
 //sliders
-Route::get('/sliders', [SliderController::class, 'index']);
-Route::post('/sliders', [SliderController::class, 'store']);
-Route::put('/sliders/{id}', [SliderController::class, 'update']);
-Route::get('/sliders/{id}', [SliderController::class, 'show']);
-Route::delete('/sliders/{id}', [SliderController::class, 'destroy']);
+// Route::get('/sliders', [SliderController::class, 'index']);
+// Route::post('/sliders', [SliderController::class, 'store']);
+// Route::put('/sliders/{id}', [SliderController::class, 'update']);
+// Route::get('/sliders/{id}', [SliderController::class, 'show']);
+// Route::delete('/sliders/{id}', [SliderController::class, 'destroy']);
+Route::resource('/sliders', App\Http\Controllers\SliderController::class);
+Route::post('/sliders/status', [App\Http\Controllers\SliderController::class, 'statusUpdate']);
+Route::delete('/sliders/multiple/delete', [App\Http\Controllers\SliderController::class, 'multipleDelete'])->name('multiple.sliders.delete');
+
 //orders
 Route::get('/orders', [OrderController::class, 'index']);
 Route::post('/orders', [OrderController::class, 'store']);
@@ -151,6 +178,10 @@ Route::put('/orders/status/{id}', [OrderController::class, 'status']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders/invoice/{id}', [OrderController::class, 'invoice']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
+Route::post('/orders/status', [OrderController::class, 'statusUpdate']);
+Route::delete('/orders/multiple/delete', [OrderController::class, 'multipleDelete'])->name('multiple.orders.delete');
+
+
 
 Route::get('/site-settings', [SettingController::class, 'index']);
 Route::post('/site-settings', [SettingController::class, 'store']);
@@ -174,6 +205,8 @@ Route::post('/pages', [PageController::class, 'store']);
 Route::get('/pages/{id}', [PageController::class, 'show']);
 Route::put('/pages/{id}', [PageController::class, 'update']);
 Route::delete('/pages/{id}', [PageController::class, 'destroy']);
+Route::post('/pages/status', [PageController::class, 'statusUpdate']);
+Route::delete('/pages/multiple/delete', [PageController::class, 'multipleDelete'])->name('multiple.pages.delete');
 // test
 Route::prefix('/test')->group(function(){
 

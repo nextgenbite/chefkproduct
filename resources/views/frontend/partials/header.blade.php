@@ -4,9 +4,11 @@
         class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
 
         <!-- logo  -->
-        <a title="logo" href="{{ URL::to('/') }}" class=" w-28 md:w-60">
-            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class="w-full" />
+        <a title="logo" href="{{ URL::to('/') }}" class="">
+            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class=" w-2/3 hidden lg:inline" />
+            <img alt="mobile logo" src="{{ asset(isset($settings['favicon']) ? $settings['favicon'] : '/favicon.ico') }}" alt="logo" class="w-16 lg:hidden" />
         </a>
+       
         <!-- logo end  -->
         <!-- search   -->
         <div class="w-full xl:max-w-xl lg:max-w-lg lg:flex relative  ">
@@ -14,6 +16,7 @@
                        <i class="fas fa-search"></i>
                   </span> -->
             <input type="search"
+            autocomplete="disable"
             id="nav-search"
                 class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-3 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
                 placeholder="what are you looking for..." />
