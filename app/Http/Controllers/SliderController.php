@@ -69,12 +69,12 @@ class SliderController extends Controller
             ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
             ['data' => 'position', 'name' => 'position', 'title' => 'Position'],
             [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status',
+                'data' => 'status', 'name' => 'status', 'title' => 'Status', 'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
             [
-                'data' => 'action', 'name' => 'action', 'title' => 'Action',
+                'data' => 'action', 'name' => 'action', 'title' => 'Action', 'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],

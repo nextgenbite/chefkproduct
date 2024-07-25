@@ -14,7 +14,7 @@ class SubCategoryeController extends Controller
     use ImageUploadTrait, BaseTrait;
 
     private $imgLocation = "images/categories";
-    private $title = ['Sub category', 'sub-categories'];
+    private $title = ['Sub Category', 'sub-categories'];
 
 
 
