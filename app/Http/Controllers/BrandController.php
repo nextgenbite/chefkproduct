@@ -32,13 +32,16 @@ class BrandController extends Controller
                 ->addColumn('checkbox', function ($row) {
                     return $this->CrudCheckbox($row);
                 })
+                ->addColumn('thumbnail', function ($row) {
+                    return $this->CrudImage($row->thumbnail);
+                })
                 ->addColumn('status', function ($row) {
                     return $this->CrudStatus($row);
                 })
                 ->addColumn('action', function ($row) {
                     return $this->CrudAction($row);
                 })
-                ->rawColumns(['checkbox', 'action', 'status'])
+                ->rawColumns(['checkbox', 'thumbnail', 'action', 'status'])
                 ->make(true);
         }
         $columns = [
@@ -51,6 +54,11 @@ class BrandController extends Controller
             ],
             [
                 'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl', 'orderable' => false,
+                'searchable' => false
+            ],
+            [
+                'data' => 'thumbnail', 'name' => 'thumbnail', 'title' => 'Thumbnail',
+                'orderable' => false,
                 'searchable' => false
             ],
             ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
@@ -74,9 +82,9 @@ class BrandController extends Controller
                 'label' =>  'Title',
             ],
             [
-                'type' => 'textarea',
-                'name' => 'body',
-                'label' =>  'Content',
+                'type' => 'image',
+                'name' => 'thumbnail',
+                'label' =>  'Thumbnail',
             ],
 
         ];

@@ -118,12 +118,15 @@ Route::prefix('admin')->middleware(['auth',  'role:superadmin,admin'])->group(fu
 
 
     // brands
-Route::get('/brands', [BrandController::class, 'index']);
-Route::post('/brands', [BrandController::class, 'store']);
-Route::put('/brands/{id}', [BrandController::class, 'update']);
-Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
-Route::post('/brands/status', [BrandController::class, 'statusUpdate']);
-Route::delete('/brands/multiple/delete', [BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');
+// Route::get('/brands', [BrandController::class, 'index']);
+// Route::post('/brands', [BrandController::class, 'store']);
+// Route::put('/brands/{id}', [BrandController::class, 'update']);
+// Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
+// Route::post('/brands/status', [BrandController::class, 'statusUpdate']);
+// Route::delete('/brands/multiple/delete', [BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');
+Route::resource('/brands', App\Http\Controllers\BrandController::class);
+Route::post('/brands/status', [App\Http\Controllers\BrandController::class, 'statusUpdate']);
+Route::delete('/brands/multiple/delete', [App\Http\Controllers\BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');
 
 // categories
 Route::get('/categories', [CategoryController::class, 'index']);
@@ -137,7 +140,7 @@ Route::delete('/categories/multiple/delete', [CategoryController::class, 'multip
 //sub categories
 Route::resource('/sub-categories', App\Http\Controllers\SubCategoryeController::class);
 Route::post('/sub-categories/status', [App\Http\Controllers\SubCategoryeController::class, 'statusUpdate']);
-Route::delete('/sub-categories/multiple/delete', [App\Http\Controllers\SubCategoryeController::class, 'multipleDelete'])->name('multiple.colors.delete');
+Route::delete('/sub-categories/multiple/delete', [App\Http\Controllers\SubCategoryeController::class, 'multipleDelete'])->name('multiple.sub-categories.delete');
 // colors
 Route::resource('/colors', App\Http\Controllers\ColorController::class);
 Route::post('/colors/status', [App\Http\Controllers\ColorController::class, 'statusUpdate']);

@@ -111,7 +111,6 @@ class CategoryController extends Controller
             $thumbnail = $this->uploadImage($request, 'thumbnail', $this->imgLocation, 300, 300);
         }
         $data = Category::create([
-            'parent_id' => $request->parent_id ?: '',
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'icon' => $request->icon,
@@ -152,9 +151,7 @@ class CategoryController extends Controller
     {
         // $this->authorize('catgory.update');
         $data = Category::findOrFail($id);
-        if ($request->has('parent_id')) {
-            $data->parent_id = $request->parent_id;
-        }
+     
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
         $data->icon = $request->icon;

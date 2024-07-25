@@ -176,7 +176,7 @@
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
 
-            <div class="overflow-x-auto shadow">
+            <div class="overflow-auto shadow">
                 <table id="dataTable" class=" dark:text-white " data-columns="{{json_encode($columns)}}"
                     data-url="{{request()->url()}}">
                     <tbody>
@@ -253,8 +253,8 @@
                         <div class="col-span-6">
                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                for="{{$item['name']}}">{{$item['label']}}</label>
-                             <div class="relative ">
-                               <input
+                             <div class="relative">
+                               <input accept="image/*"
                                name="{{$item['name']}}"                                   
                                  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                  aria-describedby="file_input_help" id="{{$item['name']}}" type="file">
@@ -294,15 +294,30 @@
 
 <script>
     $(document).ready(function () {
-    // All checkbox select        
+    /*------------------------------------------
+    --------------------------------------------
+    Pass Header Token
+    --------------------------------------------
+    --------------------------------------------*/
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    /*------------------------------------------
+    --------------------------------------------
+    All checkbox select 
+    --------------------------------------------
+    --------------------------------------------*/    
     $(document).on('click', '#selectAll', function (e) {
         var table = $(e.target).closest('table');
         $('td input:checkbox.select', table).prop('checked', this.checked);
     })
-
-
-
-    // Preview image on file selection for each file input
+    /*------------------------------------------
+    --------------------------------------------
+    Preview image on file selection for each file input
+    --------------------------------------------
+    --------------------------------------------*/
     $('input[type="file"]').on('change', function () {
         var file = this.files[0];
         var $preview = $(this).closest('.relative').find('.preview'); // Find the corresponding preview image
@@ -343,16 +358,6 @@
     });
 
 
-    /*------------------------------------------
-    --------------------------------------------
-    Pass Header Token
-    --------------------------------------------
-    --------------------------------------------*/
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
     /*------------------------------------------
     --------------------------------------------
@@ -376,6 +381,7 @@
         $('#ajax-btn').text("Create");
         $('#data_id').val('');
         $('#dataForm').trigger("reset");
+        $('.preview').attr('src', "{{asset('/images/no-image.png')}}");
         $('#modelHeading').text("Create New data");
         window
             .FlowbiteInstances
@@ -388,28 +394,34 @@
 Click to Edit Button
 --------------------------------------------
 --------------------------------------------*/
-    $('body').on('click', '.editData', function () {
-        var data_id = $(this).data('id');
-        let form = $('#dataForm').data('form');
-        $.get("{{ url('/admin/'.$title[1]) }}" +'/'  + data_id, function (data) {
-            $('#modelHeading').html("Edit Data");
-            $('#ajax-btn').val("edit-Data");
-            window
-                .FlowbiteInstances
-                .getInstance('Modal', 'data-modal')
-                ?.show();
-                $('#dataForm').data('id', data.data.id)
-                form.forEach(element => {
-                    if (element.name === 'image') {
-                        var $preview = $( '#'+element.name).closest('.relative').find('.preview'); // Find the corresponding preview image
-                        $preview.attr('src', `{{asset('${data.data[element.name]}')}}`);
-                    }else{
-                    $( '#'+element.name).val(data.data[element.name]);
-                    }
-                });
-            
-        })
+$(document).on('click', '.editData', function () {
+    var data_id = $(this).data('id');
+    let form = $('#dataForm').data('form');
+    
+    $.get("{{ url('/admin/'.$title[1]) }}/" + data_id, function (data) {
+        $('#modelHeading').html("Edit Data");
+        $('#ajax-btn').val("edit-Data");
+        
+        window.FlowbiteInstances
+            .getInstance('Modal', 'data-modal')
+            ?.show();
+        
+        $('#dataForm').data('id', data.data.id);
+        
+        // Iterate over form elements and update their values
+        form.forEach(element => {
+            if (['image', 'thumbnail', 'avatar'].includes(element.name)) {
+                // Update image preview
+                var $preview = $('#' + element.name).closest('.relative').find('.preview');
+                $preview.attr('src', `{{ asset('${data.data[element.name]}') }}`);
+            } else {
+                // Update other form input values
+                $('#' + element.name).val(data.data[element.name]);
+            }
+        });
     });
+});
+
 
 
     /*------------------------------------------
@@ -427,18 +439,23 @@ Click to Edit Button
         if ($btn.val() == 'edit-Data') {
             let id = $('#dataForm').data('id')
             url = `{{ url('/admin/'.$title[1].'/${id}') }}`;
-            type = 'PUT';
+            method = 'PUT';
         } else {
             url = `{{ url('/admin/'.$title[1]) }}`;
-            type = 'POST';
+            method = 'POST';
 
         }
-console.log($('#dataForm').serialize());
-
+        var formElement = document.getElementById('dataForm');
+        var formData = new FormData(formElement);
+        if (method === 'PUT') {
+    formData.append('_method', 'PUT');
+}
         $.ajax({
-            data: $('#dataForm').serialize(),
+            data: formData,
             url,
-            type,
+            type: 'POST',
+            contentType: false,
+            processData: false,
             success: function (data) {
                  showFrontendAlert('success', data.message);
                 table.draw()
