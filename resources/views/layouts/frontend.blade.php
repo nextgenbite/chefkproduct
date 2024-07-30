@@ -381,7 +381,7 @@
     <!-- ---- End Footer   ----- -->
 </div>
 
-<div role="status" id="loading" class="fixed flex justify-center items-center h-screen w-screen bg-primary-light">
+<div role="status" id="loading" class="fixed flex justify-center items-center h-screen w-screen bg-primary-light bg-opacity-25">
    <img src="{{asset('images/loader.svg')}}" alt="">
 </div>
   

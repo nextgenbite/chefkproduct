@@ -182,8 +182,8 @@
     </div>
 </div> --}}
 <div class="container mx-auto">
-    <div class="overflow-x-auto mx-2">
-        <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
+    <div class="mx-2">
+        <table id="dataTable" class="dark:text-white" width="70%"
             data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
             <tbody>
             </tbody>
@@ -390,6 +390,7 @@
     let table = $('#dataTable').DataTable({
         processing: true,
         serverSide: true,
+        scrollX: true,
         ajax: "{{request()->url()}}",
     });
 

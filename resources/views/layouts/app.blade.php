@@ -21,7 +21,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
- 
+ body{
+  width: 100vw;
+  overflow-x: hidden;
+ }
       :root {
         /* --primary-light: 30, 66, 159; */
         --primary-light: {{ hexToRgb($settings['color'] ?? '30 66 159') }};
@@ -35,8 +38,8 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-white dark:bg-slate-800">
+<body class="font-sans">
+    <div class=" bg-white dark:bg-slate-800">
         {{-- navbar --}}
         @include('admin.includes.navbar')
         {{-- sidebar --}}
