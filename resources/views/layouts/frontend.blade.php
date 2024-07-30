@@ -14,25 +14,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <style>
         :root {
-          /* --primary-light: 30, 66, 159; */
-          --primary-light: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
+          --primary-light: {{ hexToRgb($settings['color'] ?? '30 66 159') }} ;
+          /* --primary-light: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}}; */
           --primary-dark: #fff;
           --primary-700: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
           --primary-800: {{isset($settings['hover_color']) ? $settings['hover_color'] : '#1E429F'}};
      }
+     body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#loading {
+   
+    /* background: rgb(116, 116, 116); */
+
+    /* align-items: center; */
+    z-index: 1000;
+}
 </style>
     @stack('css')
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
     {{-- <script src="{{asset('js/jquery.min.js')}}"></script> --}}
     <script src="{{ asset('js/app.min.js') }}"></script>
 
 </head>
 
-<body class="min-h-screen bg-white dark:bg-gray-800 dark:text-white">
-
+<body class="min-h-screen bg-white dark:bg-slate-800 dark:text-white">
+<div id="content" style="display:none;">
+    
     <!-- ---- Start Header ----- -->
 
     {{-- <TopBar :cartcount="cartItemCount" :settings="settings"/> --}}
@@ -155,7 +169,7 @@
             <div class="grid grid-cols-1  mt-3 pt-4">
 
                 <a href="{{ Route('checkout') }}"
-                    class="inline-flex items-center mx-auto px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout
+                    class="inline-flex items-center mx-auto px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-primary-LIGHT dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout
                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -352,9 +366,10 @@
 
     </div>
 
-
+   
+    
     <!-- ---- End Mobile Side Bar ----- -->
-    <main class="font-sans text-gray-900 antialiased">
+    <main class="font-sans text-gray-900 antialiased" >
         @yield('content')
     </main>
 
@@ -364,9 +379,12 @@
 
     @include('frontend.partials.footer')
     <!-- ---- End Footer   ----- -->
+</div>
 
-
-
+<div role="status" id="loading" class="fixed flex justify-center items-center h-screen w-screen bg-primary-light">
+   <img src="{{asset('images/loader.svg')}}" alt="">
+</div>
+  
     <script>
         @if (Session::has('messege'))
             var type = "{{ Session::get('alert-type', 'info') }}";
@@ -437,7 +455,6 @@ s0.parentNode.insertBefore(s1,s0);
 });
 
         $(document).ready(function() {
-            
             $('#nav-search').on('input', function () {
                 let resultContainer  =$('#nav-search-result');
                 $.ajax({
@@ -508,7 +525,7 @@ s0.parentNode.insertBefore(s1,s0);
 
         });
     </script>
-    @stack('custom-script')
+    @stack('scripts')
 </body>
 
 </html>

@@ -131,7 +131,7 @@
 </div>
 
 @endsection
-@push('custom-scripts')
+@push('scriptss')
 <script>
     function printDiv()
  {

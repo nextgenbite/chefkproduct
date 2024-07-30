@@ -271,7 +271,7 @@
 
     <!-- ---- End Cart Wrapper --->
 @endsection
-@push('custom-script')
+@push('scripts')
     <script>
 
         // cart-actions.js

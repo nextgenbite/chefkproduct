@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @push('title')
-{{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
+{{ isset($settings['app_name']) ? $title[0]. ' | '. $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @push('css')
 <!-- Include Tailwind CSS -->
-<link href="https://cdn.datatables.net/1.13.7/css/dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/2.1.2/css/dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/2.1.2/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+
 @endpush
 @section('content')
 <div
@@ -37,17 +38,6 @@
                             <a href="#"
                                 class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{
                                 $title[0]}}</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">List</span>
                         </div>
                     </li>
                 </ol>
@@ -172,13 +162,13 @@
         </div>
     </div>
 </div>
-<div class="flex flex-col">
+{{-- <div class="flex flex-col">
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
 
-            <div class="overflow-auto shadow">
-                <table id="dataTable" class=" dark:text-white " data-columns="{{json_encode($columns)}}"
-                    data-url="{{request()->url()}}">
+            <div class="overflow-hidden shadow">
+                <table id="dataTable" class="display dark:text-white " width="100%"
+                    data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
                     <tbody>
                     </tbody>
                 </table>
@@ -186,8 +176,15 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="container mx-auto">
+ <div class="overflow-hidden grid grid-cols-1">
+    <table id="dataTable" class=" dark:text-white w-full" width="70%"
+    data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
+    <tbody>
+    </tbody>
+</table>
+ </div>
 </div>
 <!-- Add Data Modal -->
 <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
@@ -215,27 +212,18 @@
                 <div class="p-6 space-y-6">
                     <div class="grid grid-cols-6 gap-6">
                         @foreach ($form as $item)
-                        @if ($item['type'] === 'text' )
+                        @if($item['type'] === 'select')
+                        <div class="{{$item['class'] ?? 'col-span-6'}}">
 
-                        <div class="col-span-6">
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <input type="{{$item['type']}}" name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Enter {{$item['label']}}" required>
-                        </div>
-                        @elseif($item['type'] === 'select')
-                        <div class="col-span-6">
-                            
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
 
-                                <select name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        
+                            <select name="{{$item['name']}}" id="{{$item['name']}} select-single"
+                                class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                                 <option selected disabled>Select {{$item['label']}}</option>
                                 @forelse ($item['data'] as $item)
-                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @empty
                                 @endforelse
                             </select>
@@ -249,21 +237,28 @@
                                 placeholder="Enter {{$item['label']}}" required></textarea>
                         </div>
                         @elseif($item['type'] === 'image')
-                     
+
                         <div class="col-span-6">
-                               <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                               for="{{$item['name']}}">{{$item['label']}}</label>
-                             <div class="relative">
-                               <input accept="image/*"
-                               name="{{$item['name']}}"                                   
-                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                 aria-describedby="file_input_help" id="{{$item['name']}}" type="file">
-                                 <img class="absolute top-0 right-0 w-10 h-10 rounded preview" 
-                                 src="{{asset('/images/no-image.png')}}" alt="{{$item['name']}}">
-                             </div>
-                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX.
-                               250x250px).</p>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                for="{{$item['name']}}">{{$item['label']}}</label>
+                            <div class="relative">
+                                <input accept="image/*" name="{{$item['name']}}"
+                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    aria-describedby="file_input_help" id="{{$item['name']}}" type="file">
+                                <img class="absolute top-0 right-0 w-10 h-10 rounded preview"
+                                    src="{{asset('/images/no-image.png')}}" alt="{{$item['name']}}">
                             </div>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX.
+                                250x250px).</p>
+                        </div>
+                        @else
+                        <div class="{{$item['class'] ?? 'col-span-6'}}">
+                            <label for="{{$item['name']}}"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+                            <input type="{{$item['type'] ?? 'text'}}" name="{{$item['name']}}" id="{{$item['name']}}"
+                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Enter {{$item['label']}}" required>
+                        </div>
                         @endif
                         @endforeach
 
@@ -287,13 +282,14 @@
     </div>
 </div>
 @endsection
-@push('custom-script')
+@push('scripts')
 <!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.js"></script>
+<script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.2/js/dataTables.tailwindcss.js"></script>
 
 <script>
     $(document).ready(function () {
+
     /*------------------------------------------
     --------------------------------------------
     Pass Header Token
@@ -368,7 +364,7 @@
         processing: true,
         serverSide: true,
         ajax: "{{request()->url()}}",
-    
+    "scrollX": true // Enable horizontal scrolling
     });
 
     /*------------------------------------------

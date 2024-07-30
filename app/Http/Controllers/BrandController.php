@@ -63,12 +63,12 @@ class BrandController extends Controller
             ],
             ['data' => 'title', 'name' => 'title', 'title' => 'Title'],
             [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status',
+                'data' => 'status', 'name' => 'status', 'title' => 'Status', 'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
             [
-                'data' => 'action', 'name' => 'action', 'title' => 'Action',
+                'data' => 'action', 'name' => 'action', 'title' => 'Action', 'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
@@ -101,8 +101,8 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $thumbnail = "";
-        if ($request->thumbnail) {
-            $thumbnail = $this->uploadImage($request, 'thumbnail', $this->imgLocation, 300, 300);
+        if ($request->has('thumbnail')) {
+            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
         $data = Brand::create([
             'title' => $request->title,
@@ -147,9 +147,9 @@ class BrandController extends Controller
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
         // Handle image update
-        if ($request->newThumbnail) {
+        if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadBase64Image($request->newThumbnail, 'images/brands');
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
         $data->update();
         if ($data) {

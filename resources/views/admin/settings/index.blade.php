@@ -119,7 +119,7 @@
     </div>
 @endsection
 
-@push('custom-script')
+@push('scripts')
 
     <script>
 

@@ -576,7 +576,7 @@ $availability = "in stock";
 <!-- ---- End  Related Product --->
 @endsection
 
-@push('custom-script')
+@push('scripts')
 <script src="{{ asset('assets/plugins/xzoom/xzoom.min.js') }}"></script>
 <!-- Include Hammer.js library -->
 <script src="{{ asset('assets/plugins/xzoom/example/hammer.js/1.0.5/jquery.hammer.min.js') }}"></script>

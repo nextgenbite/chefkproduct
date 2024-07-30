@@ -37,13 +37,11 @@ class OrderController extends Controller
                 ->addColumn('checkbox', function ($row) {
                     return $this->CrudCheckbox($row);
                 })
-                ->addColumn('status', function ($row) {
-                    return $this->CrudStatus($row);
-                })
+           
                 ->addColumn('action', function ($row) {
                     return $this->CrudAction($row);
                 })
-                ->rawColumns(['checkbox',  'action', 'status'])
+                ->rawColumns(['checkbox',  'action'])
                 ->make(true);
         }
         $columns = [
@@ -64,16 +62,12 @@ class OrderController extends Controller
                 'searchable' => false
             ],
             ['data' => 'phone', 'name' => 'phone', 'title' => 'Phone'],
-            ['data' => 'total', 'name' => 'total', 'title' => 'Total'],
-            ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method'],
-            ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status'],
+            ['data' => 'total', 'name' => 'total', 'title' => 'Total', 'sClass' => 'text-right'],
+            ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method', 'sClass' => 'text-center'],
+            ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status', 'sClass' => 'text-center'],
+  
             [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status',
-                'orderable' => false,
-                'searchable' => false
-            ],
-            [
-                'data' => 'action', 'name' => 'action', 'title' => 'Action',
+                'data' => 'action', 'name' => 'action', 'title' => 'Action' , 'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],

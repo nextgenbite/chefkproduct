@@ -1,14 +1,14 @@
 <!-- ---- Start NavBar ----- -->
-<nav class="bg-primary-light hidden lg:block w-full top-0 right-0 left-0 z-40" id="navbar">
+<nav class="bg-primary-light bg-opacity-10 hidden lg:block w-full top-0 right-0 left-0 z-40" id="navbar">
     <div class="container">
         <div class="flex">
             <!-- ---- All Category ----- -->
             <div
-                class="px-9 2xl:px-[7rem] py-4 bg-white dark:bg-gray-800 flex items-center cursor-pointer  group relative ">
+                class="px-9 2xl:px-[7rem] py-4 bg-white bg-opacity-80 dark:bg-gray-800 flex items-center cursor-pointer  group relative ">
                 <span class=" text-primary-light dark:text-white ">
                     <i class="fas fa-bars"></i>
                 </span>
-                <span class="capitalize text-primary-light dark:text-white font-semibold ml-[1.52rem]">All
+                <span class="capitalize text-primary-light  dark:text-white font-semibold ml-[1.52rem]">All
                     categories</span>
                 <div
                     class="absolute left-0 top-full text-gray-600 w-full bg-white shadow-md py-3 invisible rounded-b opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
@@ -35,15 +35,15 @@
             <div class="flex items-center justify-between flex-grow pl-12 ">
                 <div class="flex items-center space-x-10 text-base capitalize ">
                     <a title="home" href="{{ url('/') }}"
-                        class="text-gray-200 hover:text-white  font-semibold   hover:border-b transition-all ease-in-out  duration-300">Home</a>
+                        class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Home</a>
                     <a title="shop" href="{{ url('/shop') }}"
-                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Shop</a>
+                        class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Shop</a>
                     <a title="about" href="{{ url('page/about') }}"
-                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">About</a>
+                        class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">About</a>
                     <a title="contact" href="{{ url('/contact') }}"
-                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Contact</a>
+                        class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Contact</a>
                     <a title="home-2" href="{{ url('/home-2') }}"
-                        class="text-gray-200 hover:text-white  font-semibold  hover:border-b transition-all ease-in-out  duration-300">Home-2</a>
+                        class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Home-2</a>
 
                 </div>
 
@@ -53,7 +53,7 @@
                     <!-- ---- Start Cart ----- -->
 
                     <button id="cartButton"
-                        class="flex px-3 py-4 items-center space-x-1 bg-primary-800 text-white  rounded-md"
+                        class="flex px-3 py-4 items-center space-x-1 bg-primary-light  text-white  rounded-md"
                         data-drawer-target="drawer-right-cart" data-drawer-show="drawer-right-cart"
                         data-drawer-placement="right" aria-controls="drawer-right-cart">
                         <i class="fas fa-shopping-cart"></i>

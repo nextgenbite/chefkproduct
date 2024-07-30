@@ -44,6 +44,6 @@ if(!function_exists('hexToRgb'))
    $b = hexdec(substr($hex, 4, 2));
 
    // Return RGB string
-   return "$r, $g, $b";
+   return "$r $g $b";
     }
 }

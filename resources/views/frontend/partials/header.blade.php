@@ -1,12 +1,12 @@
     <!-- ---- Start Header ----- -->
 
     <header id="header"
-        class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
+        class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light bg-opacity-10 lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
 
         <!-- logo  -->
         <a title="logo" href="{{ URL::to('/') }}" class="">
-            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class=" w-2/3 hidden lg:inline" />
-            <img alt="mobile logo" src="{{ asset(isset($settings['favicon']) ? $settings['favicon'] : '/favicon.ico') }}" alt="logo" class="w-16 lg:hidden" />
+            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class=" w-64 hidden lg:inline" />
+            <img alt="mobile logo" src="{{ asset(isset($settings['favicon']) ? $settings['favicon'] : '/favicon.ico') }}" alt="logo" class=" w-14 lg:hidden" />
         </a>
        
         <!-- logo end  -->
@@ -131,7 +131,7 @@
                   </a>  -->
             <button data-drawer-target="drawer-sidebar" data-drawer-show="drawer-sidebar"
                 aria-controls="drawer-sidebar"
-                class="lg:hidden  text-center text-white lg:text-gray-700 hover:scale-75 transition duration-300 ease-in-out relative "
+                class="lg:hidden  text-center text-primary-light lg:text-gray-700 hover:scale-75 transition duration-300 ease-in-out relative "
                 title="Account">
 
                 <div class="text-xl lg:text-2xl ">

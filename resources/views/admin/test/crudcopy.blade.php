@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @push('title')
-{{ isset($settings['app_name']) ? $title[0]. ' | '. $settings['app_name'] : '' . ' ' . $title[0] }}
-@endpush
-@push('css')
-<!-- Include Tailwind CSS -->
-<link href="https://cdn.datatables.net/1.13.9/css/dataTables.tailwindcss.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('plugins/fileUpload/fileUpload.css')}}">
-<!-- Material Icons -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
-
+{{ isset($settings['app_name']) ? $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @section('content')
+<!-- Include Tailwind CSS -->
+<link href="https://cdn.datatables.net/1.13.7/css/dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
 
 
 <div
@@ -42,6 +37,17 @@
                             <a href="#"
                                 class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{
                                 $title[0]}}</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">List</span>
                         </div>
                     </li>
                 </ol>
@@ -102,7 +108,7 @@
                         <div class="py-1">
                             <a href="javascript:void(0)" id="multi-delete"
                                 class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                            </a>
+                                </a>
                         </div>
                     </div>
                     {{-- <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
@@ -166,13 +172,13 @@
         </div>
     </div>
 </div>
-{{-- <div class="flex flex-col">
+<div class="flex flex-col">
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
 
-            <div class="overflow-hidden shadow">
-                <table id="dataTable" class="display dark:text-white " width="100%"
-                    data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
+            <div class="overflow-x-auto shadow">
+                <table id="dataTable" class="display dark:text-white " data-columns="{{json_encode($columns)}}"
+                    data-url="{{request()->url()}}">
                     <tbody>
                     </tbody>
                 </table>
@@ -180,15 +186,14 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 <div class="container mx-auto">
-    <div class="overflow-x-auto mx-2">
-        <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
-            data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+    {{-- <table id="dataTable" class="display dark:text-white" style="width:100%"
+        data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
+        <tbody>
+            <!-- Your table rows here -->
+        </tbody>
+    </table> --}}
 </div>
 <!-- Add Data Modal -->
 <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
@@ -211,88 +216,24 @@
                     </svg>
                 </button>
             </div>
-            <form id="dataForm" data-form="{{json_encode($form)}}" enctype="multipart/form-data">
+            <form id="dataForm">
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
                     <div class="grid grid-cols-6 gap-6">
-                        @foreach ($form as $item)
-                        @if($item['type'] === 'select')
-                        <div class=" {{$item['class'] ?? ''}} ">
-
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-
-                            <select name="{{$item['name']}}" id="{{$item['name']}} select-single"
-                                class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                <option selected disabled>Select {{$item['label']}}</option>
-                                @forelse ($item['data'] as $item)
-                                <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                @empty
-                                @endforelse
-                            </select>
-                        </div>
-                        @elseif($item['type'] === 'textarea')
                         <div class="col-span-6">
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <textarea rows="4" name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="textarea shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Enter {{$item['label']}}" required></textarea>
-                        </div>
-                        @elseif($item['type'] === 'image')
-
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                for="{{$item['name']}}">{{$item['label']}}</label>
-                            <div class="relative">
-                                <input accept="image/*" name="{{$item['name']}}"
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    aria-describedby="file_input_help" id="{{$item['name']}}" type="file">
-                                <img class="absolute top-0 right-0 w-10 h-10 rounded preview"
-                                    src="{{asset('/images/no-image.png')}}" alt="{{$item['name']}}">
-                            </div>
-                            @if (isset($item['helper_text']))
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
-                            @endif
-                        </div>
-                        @elseif($item['type'] === 'multi-image')
-                        <div class="col-span-6">
-                            <label for="{{$item['name']}}"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <div id="fileUpload" class="file-container ">
-                                <label for="fileUpload-1" class="file-upload dark:bg-gray-700">
-                                  <div class="dark:bg-slate-400">
-                                    <i class="material-icons-outlined">cloud_upload</i>
-                                    <p>Drag &amp; Drop Files Here</p>
-                                    <span>OR</span>
-                                    <div>Browse Files</div>
-                                  </div>
-                                  <input type="file" accept="image/*" id="fileUpload-1" name="images[]" multiple="" hidden="">
-                                </label>
-                              </div>
-                              @if (isset($item['helper_text']))
-                              <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
-                              @endif
-                        </div>
-                        @else
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <input type="{{$item['type'] ?? 'text'}}" name="{{$item['name']}}" id="{{$item['name']}}"
+                            <label for="title"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                            <input type="text" name="title" id="title"
                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Enter {{$item['label']}}" required>
+                                placeholder="Enter Title" required>
                         </div>
-                        @endif
-                        @endforeach
-               
-                        {{-- <div class="col-span-6">
+                        <div class="col-span-6">
                             <label for="body"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
                             <textarea type="text" name="body" id="body"
                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Enter body" required></textarea>
-                        </div> --}}
+                        </div>
 
 
                     </div>
@@ -306,41 +247,23 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
 <!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.9/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
-{{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
-<script src="{{asset('plugins/fileUpload/fileUpload.js')}}"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.tailwindcss.js"></script>
+
 <script>
     $(document).ready(function () {
-        $(function(){ 
-  $("#fileUpload").fileUpload();
-});
-    /*------------------------------------------
-    --------------------------------------------
-    Pass Header Token
-    --------------------------------------------
-    --------------------------------------------*/
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    /*------------------------------------------
-    --------------------------------------------
-    All checkbox select 
-    --------------------------------------------
-    --------------------------------------------*/    
+    // All checkbox select        
     $(document).on('click', '#selectAll', function (e) {
         var table = $(e.target).closest('table');
         $('td input:checkbox.select', table).prop('checked', this.checked);
     })
-    /*------------------------------------------
-    --------------------------------------------
-    Preview image on file selection for each file input
-    --------------------------------------------
-    --------------------------------------------*/
+
+
+
+    // Preview image on file selection for each file input
     $('input[type="file"]').on('change', function () {
         var file = this.files[0];
         var $preview = $(this).closest('.relative').find('.preview'); // Find the corresponding preview image
@@ -365,7 +288,7 @@
         let url = $(this).data('url');
         $.ajax({
             data: { id: data_id, status: $(this).val() },
-            url: "{{ url('/admin/'.$title[1].'/status') }}",
+            url: "{{request()->url()}}",
             type: 'post',
             dataType: 'json',
             success: function (response) {
@@ -381,6 +304,16 @@
     });
 
 
+    /*------------------------------------------
+    --------------------------------------------
+    Pass Header Token
+    --------------------------------------------
+    --------------------------------------------*/
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     /*------------------------------------------
     --------------------------------------------
@@ -390,7 +323,8 @@
     let table = $('#dataTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{request()->url()}}",
+        ajax: "{{ url('/admin/pages') }}",
+    
     });
 
     /*------------------------------------------
@@ -403,7 +337,6 @@
         $('#ajax-btn').text("Create");
         $('#data_id').val('');
         $('#dataForm').trigger("reset");
-        $('.preview').attr('src', "{{asset('/images/no-image.png')}}");
         $('#modelHeading').text("Create New data");
         window
             .FlowbiteInstances
@@ -411,39 +344,29 @@
             ?.show();
     });
 
-/*------------------------------------------
+    /*------------------------------------------
 --------------------------------------------
 Click to Edit Button
 --------------------------------------------
 --------------------------------------------*/
-$(document).on('click', '.editData', function () {
-    var data_id = $(this).data('id');
-    let form = $('#dataForm').data('form');
-    
-    $.get("{{ url('/admin/'.$title[1]) }}/" + data_id, function (data) {
-        $('#modelHeading').html("Edit Data");
-        $('#ajax-btn').val("edit-Data");
-        
-        window.FlowbiteInstances
-            .getInstance('Modal', 'data-modal')
-            ?.show();
-        
-        $('#dataForm').data('id', data.data.id);
-        
-        // Iterate over form elements and update their values
-        form.forEach(element => {
-            if (['image', 'thumbnail', 'avatar'].includes(element.name)) {
-                // Update image preview
-                var $preview = $('#' + element.name).closest('.relative').find('.preview');
-                $preview.attr('src', `{{ asset('${data.data[element.name]}') }}`);
-            } else {
-                // Update other form input values
-                $('#' + element.name).val(data.data[element.name]);
-            }
-        });
-    });
-});
+    $('body').on('click', '.editData', function () {
+        var data_id = $(this).data('id');
+        $.get("{{ url('/admin/pages') }}" + '/' + data_id, function (data) {
+            $('#modelHeading').html("Edit Data");
+            $('#ajax-btn').val("edit-Data");
+            // $('#ajax-btn').text("Update");
 
+            //   $('#data-modal').show();
+            window
+                .FlowbiteInstances
+                .getInstance('Modal', 'data-modal')
+                ?.show();
+            $('#data_id').val(data.data.id);
+            $('#dataForm').data('id', data.data.id)
+            $('#title').val(data.data.title);
+            $('#body').val(data.data.body);
+        })
+    });
 
 
     /*------------------------------------------
@@ -459,25 +382,22 @@ $(document).on('click', '.editData', function () {
         $btn.prop('disabled', true);
         e.preventDefault();
         if ($btn.val() == 'edit-Data') {
+            //   let id =  $('#data_id').val()
             let id = $('#dataForm').data('id')
-            url = `{{ url('/admin/'.$title[1].'/${id}') }}`;
-            method = 'PUT';
+            url = `{{ url('/admin/pages/${id}') }}`;
+            type = 'PUT';
         } else {
-            url = `{{ url('/admin/'.$title[1]) }}`;
-            method = 'POST';
+            url = `{{ url('/admin/pages') }}`;
+            type = 'POST';
 
         }
-        var formElement = document.getElementById('dataForm');
-        var formData = new FormData(formElement);
-        if (method === 'PUT') {
-    formData.append('_method', 'PUT');
-}
+
+
         $.ajax({
-            data: formData,
+            data: $('#dataForm').serialize(),
             url,
-            type: 'POST',
-            contentType: false,
-            processData: false,
+            type,
+            dataType: 'json',
             success: function (data) {
                  showFrontendAlert('success', data.message);
                 table.draw()

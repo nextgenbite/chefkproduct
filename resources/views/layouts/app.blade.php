@@ -16,25 +16,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">    <!-- icon -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
+ 
       :root {
         /* --primary-light: 30, 66, 159; */
-        --primary-light: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
+        --primary-light: {{ hexToRgb($settings['color'] ?? '30 66 159') }};
         --primary-dark: #fff;
         --primary-700: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
         --primary-800: {{isset($settings['hover_color']) ? $settings['hover_color'] : '#1E429F'}};
    }
 </style>
+@stack('css')
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    {{-- <script src="{{ asset('js/dark-mood.js') }}" defer></script> --}}
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-white dark:bg-gray-800">
+    <div class="min-h-screen bg-white dark:bg-slate-800">
         {{-- navbar --}}
         @include('admin.includes.navbar')
         {{-- sidebar --}}
@@ -52,15 +54,20 @@
         </div>
     </div>
     <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+              $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
           @if (Session::has('messege'))
             var type = "{{ Session::get('alert-type', 'info') }}";
             var message = "{{ Session::get('messege') }}";
             showFrontendAlert(type, message);
         @endif
     </script>
-    @stack('custom-script')
+    @stack('scripts')
 </body>
 
 </html>

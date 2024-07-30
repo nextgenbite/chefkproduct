@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductImages;
+use App\Models\Size;
 use App\Traits\BaseTrait;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
@@ -74,7 +78,7 @@ class ProductController extends Controller
                 'data' => 'title',
                 'name' => 'title',
                 'title' => 'Title',
-                'width' => '50%',  // Set width for title column
+                'width' => '35%',  // Set width for title column
                 'sClass' => 'truncate w-25'
             ],
             [
@@ -93,20 +97,98 @@ class ProductController extends Controller
                 'searchable' => false
             ],
         ];
+        $categories = Category::latest()->get();
+        $brands = Brand::active()->latest()->get();
+        $colors = Color::get();
+        $sizes = Size::get();
         $form = [
             [
                 'type' => 'text',
                 'name' => 'title',
                 'label' =>  'Title',
+                'class' => 'col-span-6',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'category_id',
+                'label' =>  'Category',
+                'data' =>  $categories->whereNull('parent_id'),
+                'key' =>  'title',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'category_id',
+                'label' =>  'Sub Category',
+                'data' =>  $categories->whereNotNull('parent_id'),
+                'key' =>  'title',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'brand_id',
+                'label' =>  'Brand',
+                'data' =>  $brands,
+                'key' =>  'title',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'price',
+                'label' =>  'Price',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'discount',
+                'label' =>  'Discount Price',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'stock',
+                'label' =>  'Stock',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'color_id',
+                'label' =>  'Color',
+                'data' =>  $colors,
+                'key' =>  'name',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'size_id',
+                'label' =>  'Size',
+                'data' =>  $sizes,
+                'key' =>  'name',
+                'class' => 'col-span-2',
+            ],
+            [
+                'type' => 'image',
+                'name' => 'thumbnail',
+                'label' =>  'Thumbnail',
+                'class' => 'col-span-2',
+                'helper_text' => 'PNG, JPG(600x600px).',
+            ],
+            [
+                'type' => 'multi-image',
+                'name' => 'images',
+                'label' =>  'Multiple Image',
+                'class' => 'col-span-6',
+                'helper_text' => 'PNG, JPG(800x800px).',
             ],
             [
                 'type' => 'textarea',
-                'name' => 'body',
-                'label' =>  'Content',
+                'name' => 'description',
+                'label' =>  'Description',
+                'class' => 'col-span-6',
             ],
 
         ];
-        return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
+        return view('admin.product.crud', compact('title', 'data', 'columns', 'form'));
     }
 
     /**
@@ -119,8 +201,8 @@ class ProductController extends Controller
     {
 
         $thumbnail = "";
-        if ($request->thumbnail) {
-            $thumbnail = $this->uploadBase64Image($request->input('thumbnail'), $this->imgLocation);
+        if ($request->has('thumbnail')) {
+            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 600, 600);
         }
         $data = Product::create([
             'category_id' => $request->category_id,
@@ -134,14 +216,17 @@ class ProductController extends Controller
             'thumbnail' => $thumbnail,
         ]);
         $magesData = '';
-        if ($request->input('productImages')) {
-            foreach ($request->input('productImages') as $mimage) {
-                $image = $this->uploadBase64Image($mimage, 'images/products');
-                $magesData =  ProductImages::create([
-                    'product_id' => $data->id,
-                    'path' => $image
+        if ($request->has('images')) {
+            foreach ($request->file('images') as $image) {
+                // Calling the improved uploadImage method
+                $uploadImage = $this->uploadImage( $image, $this->imgLocation, 800, 800);
 
-                ]);
+                if ($uploadImage) {
+                    $magesData =   ProductImages::create([
+                        'product_id' => $data->id,
+                        'path' => $uploadImage
+                    ]);
+                }
             }
         }
         if ($data) {
@@ -160,7 +245,12 @@ class ProductController extends Controller
     public function show($id)
     {
         $data = Product::with('images', 'category', 'brand')->whereId($id)->first();
-        return response()->json($data, 200);
+
+        if ($data) {
+            return response()->json(['message' => 'Data successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => 'Data Get Failed'], 404);
+        }
     }
 
     /**
@@ -183,16 +273,14 @@ class ProductController extends Controller
         $data->discount = $request->discount;
         $data->description = $request->description;
         // Handle image update
-        if ($request->newThumbnail) {
+        if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-
-            $newThumbnail = $this->uploadBase64Image($request->newThumbnail, $this->imgLocation);
-
-            $data->thumbnail  = $newThumbnail;
+            $data->thumbnail =$this->uploadImage($request->thumbnail, $this->imgLocation, 600, 600);
+  
         }
         $data->update();
-
-        if ($request->input('productImages')) {
+        $magesData ='';
+        if ($request->has('images')) {
             $productImages = ProductImages::where('product_id', $id)->get();
             if (!$productImages->isEmpty()) {
                 foreach ($productImages as $image) {
@@ -200,18 +288,20 @@ class ProductController extends Controller
                     $image->delete();
                 }
             }
-            foreach ($request->input('productImages') as $mimage) {
-                $image = $this->uploadBase64Image($mimage, 'images/products');
-                $magesData =  ProductImages::create([
-                    'product_id' => $id,
-                    'path' => $image
+            foreach ($request->file('images') as $image) {
 
-                ]);
+                $uploadImage = $this->uploadImage($image, $this->imgLocation, 800, 800);
+                if ($uploadImage) {
+                    $magesData =  $data->images()->create([
+                        'path' => $uploadImage
+
+                    ]);
+                }
             }
         }
         if ($data) {
             return response()->json(
-                ['message' => 'Data Update successfully', 'data' => $data, 'magesData' => $productImages ?? null],
+                ['message' => 'Data Update successfully', 'data' => $data, 'magesData' => $magesData],
                 200
             );
         } else {
@@ -235,6 +325,31 @@ class ProductController extends Controller
             return response()->json(['message' => 'Data Deleted successfully', 'data' => $data], 200);
         } else {
             return response()->json(['message' => 'Data Delete Failed'], 500);
+        }
+    }
+    public function multipleDelete(Request $request)
+    {
+        //    return  dd($request->selected_ids);
+        $selectedItems = $request->input('selected_ids', []);
+
+        // Delete selected items
+        $data = Product::whereIn('id', $selectedItems)->delete();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
+    public function statusUpdate(Request $request)
+    {
+
+        $page = Product::findOrFail($request->id);
+        $page->status = !$page->status;
+        $data = $page->save();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
     }
 }

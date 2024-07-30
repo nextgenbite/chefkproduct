@@ -75,13 +75,13 @@ class ColorController extends Controller
         $form = [
             [
                 'type' => 'text',
-                'name' => 'title',
-                'label' =>  'Title',
+                'name' => 'name',
+                'label' =>  'Name',
             ],
             [
-                'type' => 'textarea',
-                'name' => 'body',
-                'label' =>  'Content',
+                'type' => 'color',
+                'name' => 'code',
+                'label' =>  'Code',
             ],
             
         ];
@@ -97,9 +97,8 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         $data = Color::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'status' => $request->status ?: 0,
+            'name' => $request->name,
+            'code' => $request->code,
         ]);
 
         if ($data) {
