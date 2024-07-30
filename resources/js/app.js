@@ -1,6 +1,7 @@
 window.prototype = this;
 require('./bootstrap');
 import 'flowbite';
+
 import './dark-mood';
 
 // Import SweetAlert
@@ -28,8 +29,17 @@ timer: 3000,
 
 window.Swal =Swal;
 window.showFrontendAlert =showFrontendAlert;
-
 $(document).ready(function() {
+ 
+});
+$(document).ready(function() {
+    $(window).on('load', function() {
+        $('#loading').fadeOut('slow', function() {
+            $('#content').fadeIn('slow');
+             // Lazy load images on initial page load
+    lazyLoadImages();
+        });
+    });
   function lazyLoadImages() {
         $('img[data-src]').each(function() {
             var $img = $(this);
@@ -51,8 +61,7 @@ $(document).ready(function() {
         };
     }
 
-    // Lazy load images on initial page load
-    lazyLoadImages();
+   
     
     // Lazy load images on scroll with throttling
     $(window).scroll(throttle(lazyLoadImages, 200));
