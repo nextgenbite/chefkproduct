@@ -216,16 +216,24 @@
                 <div class="p-6 space-y-2">
                     
                     <div class="grid grid-cols-6 gap-6">
-                        @foreach ($form as $item)
+                        @foreach ($form as $key=> $item)
                         @if($item['type'] === 'select')
                         <div class="{{ $item['class'] ?? '' }}">
                             <label for="{{ $item['name'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
-                            <select name="{{ $item['name'] }}" id="{{ $item['name'] }}" class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected disabled>Select {{ $item['label'] }}</option>
-                                @forelse ($item['data'] as $option)
-                                    <option value="{{ $option->id }}">{{ $option[$item['key']] }}</option>
-                                @empty
-                                @endforelse
+                            <select  name="{{ $item['name'] }}" id="{{ $item['name'] }}" class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-placeholder="Select {{ $item['label'] }}">
+                                <option></option>
+                              
+                                    @foreach ($item['data'] as $option)
+                                        @if (isset($item['child']) && isset($option[$item['child']]) && count($option[$item['child']]) > 0)
+                                            <optgroup  label="Main: {{ ucwords($option[$item['key']]) }}">
+                                                @foreach ($option[$item['child']] as $child)
+                                                    <option value="{{ $child->id }}">{{ ucwords($child->title) }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @else
+                                            <option class="capitalize px-1" value="{{ $option->id }}">{{ ucwords($option[$item['key']]) }}</option>
+                                        @endif
+                                    @endforeach
                             </select>
                         </div>
                         @elseif($item['type'] === 'textarea')
@@ -312,8 +320,12 @@
 <script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
 {{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
 <script src="{{asset('plugins/fileUpload/fileUpload.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
+        $('select.select-single').select2({
+        // placeholder:$( this ).data( 'placeholder' )
+    });
         $(function(){ 
   $("#fileUpload").fileUpload();
 });

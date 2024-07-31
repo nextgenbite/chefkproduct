@@ -97,7 +97,7 @@ class ProductController extends Controller
                 'searchable' => false
             ],
         ];
-        $categories = Category::latest()->get();
+        $categories = Category::with('children')->latest()->get();
         $brands = Brand::active()->latest()->get();
         $colors = Color::get();
         $sizes = Size::get();
@@ -112,17 +112,11 @@ class ProductController extends Controller
                 'type' => 'select',
                 'name' => 'category_id',
                 'label' =>  'Category',
-                'data' =>  $categories->whereNull('parent_id'),
+                'data' =>  $categories,
                 'key' =>  'title',
+                'child' =>  'children',
                 'class' => 'col-span-2',
-            ],
-            [
-                'type' => 'select',
-                'name' => 'category_id',
-                'label' =>  'Sub Category',
-                'data' =>  $categories->whereNotNull('parent_id'),
-                'key' =>  'title',
-                'class' => 'col-span-2',
+                
             ],
             [
                 'type' => 'select',

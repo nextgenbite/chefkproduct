@@ -114,7 +114,7 @@ class SubCategoryeController extends Controller
 
         $thumbnail = "";
         if ($request->thumbnail) {
-            $thumbnail = $this->uploadImage($request, 'thumbnail', $this->imgLocation, 300, 300);
+            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
         $data = Category::create([
             'parent_id' => $request->parent_id ?: '',
@@ -168,7 +168,7 @@ class SubCategoryeController extends Controller
 
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadImage($request, 'thumbnail', $this->imgLocation, 300, 300);
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
         $data->update();
         if ($data) {
