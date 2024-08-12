@@ -8,11 +8,13 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ShippingCostController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\User\UserController as UserUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -110,7 +112,7 @@ Route::get('/barcode', function () {
 
 // Backend
 
-Route::prefix('admin')->middleware(['auth',  'role:superadmin,admin'])->group(function (){
+Route::prefix('admin')->middleware(['auth', 'role:superadmin|admin|Admin'])->group(function (){
 
     Route::get('/', function () {
         return view('admin.index');
@@ -138,9 +140,9 @@ Route::post('/categories/status', [CategoryController::class, 'statusUpdate']);
 Route::delete('/categories/multiple/delete', [CategoryController::class, 'multipleDelete'])->name('multiple.categories.delete');
 
 //sub categories
-Route::resource('/sub-categories', App\Http\Controllers\SubCategoryeController::class);
-Route::post('/sub-categories/status', [App\Http\Controllers\SubCategoryeController::class, 'statusUpdate']);
-Route::delete('/sub-categories/multiple/delete', [App\Http\Controllers\SubCategoryeController::class, 'multipleDelete'])->name('multiple.sub-categories.delete');
+Route::resource('/sub-categories', App\Http\Controllers\SubCategoryController::class);
+Route::post('/sub-categories/status', [App\Http\Controllers\SubCategoryController::class, 'statusUpdate']);
+Route::delete('/sub-categories/multiple/delete', [App\Http\Controllers\SubCategoryController::class, 'multipleDelete'])->name('multiple.sub-categories.delete');
 // colors
 Route::resource('/colors', App\Http\Controllers\ColorController::class);
 Route::post('/colors/status', [App\Http\Controllers\ColorController::class, 'statusUpdate']);
@@ -180,6 +182,7 @@ Route::put('/orders/{id}', [OrderController::class, 'update']);
 Route::put('/orders/status/{id}', [OrderController::class, 'status']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders/invoice/{id}', [OrderController::class, 'invoice']);
+Route::get('/orders/invoice/download/{id}', [OrderController::class, 'invoiceDownload']);
 Route::delete('/orders/{id}', [OrderController::class, 'destroy']);
 Route::post('/orders/status', [OrderController::class, 'statusUpdate']);
 Route::delete('/orders/multiple/delete', [OrderController::class, 'multipleDelete'])->name('multiple.orders.delete');
@@ -194,8 +197,20 @@ Route::post('/site-settings', [SettingController::class, 'store']);
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{id}', [UserController::class, 'update']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
+Route::post('/users/status', [OrderController::class, 'statusUpdate']);
+Route::delete('/users/multiple/delete', [OrderController::class, 'multipleDelete'])->name('multiple.users.delete');
+
 Route::get('/customers', [UserController::class, 'customers']);
+// role
+// Route::resource('/roles', App\Http\Controllers\RoleController::class);
+Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+Route::get('/roles/{id}', [RoleController::class, 'show'])->name('roles.show');
+Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
+Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.delete');
+
 
 // shipping cost
 Route::get('/shipping-cost', [ShippingCostController::class, 'index']);
@@ -229,9 +244,13 @@ Route::resource('/settings', App\Http\Controllers\SettingController::class)->onl
 //users route
 Route::prefix('user')->middleware(['auth'])->group(function (){
 
-Route::get('/profile', function () {
-    return view('frontend.user.profile');
-});
+Route::get('/dashboard', [App\Http\Controllers\User\UserController::class, 'dashboard'])->name('user.dashboard');
+Route::get('/orders', [App\Http\Controllers\User\UserController::class, 'orders'])->name('user.orders');
+Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('user.profile');
+Route::post('/profile', [App\Http\Controllers\User\UserController::class, 'profileUpdate'])->name('user.profile.update');
+Route::get('/password-change', [App\Http\Controllers\User\UserController::class, 'passwordUpdate'])->name('user.password.change');
+Route::post('/password-change', [App\Http\Controllers\User\UserController::class, 'passwordUpdateStore'])->name('user.password.update');
+
 
 Route::get('/logout', function () {
     auth()->logout();

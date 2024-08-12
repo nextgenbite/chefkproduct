@@ -4,11 +4,15 @@
 @endpush
 @push('css')
 <!-- Include Tailwind CSS -->
-<link href="https://cdn.datatables.net/2.1.2/css/dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/2.1.2/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.13.9/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('plugins/fileUpload/fileUpload.css')}}">
+<!-- Material Icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
 
 @endpush
 @section('content')
+
+
 <div
     class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
     <div class="w-full mb-1">
@@ -178,13 +182,13 @@
     </div>
 </div> --}}
 <div class="container mx-auto">
- <div class="overflow-hidden grid grid-cols-1">
-    <table id="dataTable" class=" dark:text-white w-full" width="70%"
-    data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
-    <tbody>
-    </tbody>
-</table>
- </div>
+    <div class="overflow-x-auto mx-2">
+        <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
+            data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- Add Data Modal -->
 <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
@@ -213,7 +217,7 @@
                     <div class="grid grid-cols-6 gap-6">
                         @foreach ($form as $item)
                         @if($item['type'] === 'select')
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
+                        <div class=" {{$item['class'] ?? ''}} ">
 
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
@@ -232,13 +236,13 @@
                         <div class="col-span-6">
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <textarea name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            <textarea rows="4" name="{{$item['name']}}" id="{{$item['name']}}"
+                                class="textarea shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Enter {{$item['label']}}" required></textarea>
                         </div>
                         @elseif($item['type'] === 'image')
 
-                        <div class="col-span-6">
+                        <div class="{{$item['class'] ?? 'col-span-6'}}">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="{{$item['name']}}">{{$item['label']}}</label>
                             <div class="relative">
@@ -248,8 +252,28 @@
                                 <img class="absolute top-0 right-0 w-10 h-10 rounded preview"
                                     src="{{asset('/images/no-image.png')}}" alt="{{$item['name']}}">
                             </div>
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG(MAX.
-                                250x250px).</p>
+                            @if (isset($item['helper_text']))
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
+                            @endif
+                        </div>
+                        @elseif($item['type'] === 'multi-image')
+                        <div class="col-span-6">
+                            <label for="{{$item['name']}}"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+                            <div id="fileUpload" class="file-container ">
+                                <label for="fileUpload-1" class="file-upload dark:bg-gray-700">
+                                  <div class="dark:bg-slate-400">
+                                    <i class="material-icons-outlined">cloud_upload</i>
+                                    <p>Drag &amp; Drop Files Here</p>
+                                    <span>OR</span>
+                                    <div>Browse Files</div>
+                                  </div>
+                                  <input type="file" accept="image/*" id="fileUpload-1" name="images[]" multiple="" hidden="">
+                                </label>
+                              </div>
+                              @if (isset($item['helper_text']))
+                              <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
+                              @endif
                         </div>
                         @else
                         <div class="{{$item['class'] ?? 'col-span-6'}}">
@@ -261,7 +285,7 @@
                         </div>
                         @endif
                         @endforeach
-
+               
                         {{-- <div class="col-span-6">
                             <label for="body"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
@@ -284,12 +308,15 @@
 @endsection
 @push('scripts')
 <!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/2.1.2/js/dataTables.tailwindcss.js"></script>
-
+<script src="https://cdn.datatables.net/1.13.9/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
+{{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
+<script src="{{asset('plugins/fileUpload/fileUpload.js')}}"></script>
 <script>
     $(document).ready(function () {
-
+        $(function(){ 
+  $("#fileUpload").fileUpload();
+});
     /*------------------------------------------
     --------------------------------------------
     Pass Header Token
@@ -363,8 +390,8 @@
     let table = $('#dataTable').DataTable({
         processing: true,
         serverSide: true,
+        scrollX: true,
         ajax: "{{request()->url()}}",
-    "scrollX": true // Enable horizontal scrolling
     });
 
     /*------------------------------------------

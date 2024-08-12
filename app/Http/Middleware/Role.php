@@ -22,11 +22,11 @@ class Role
         }
 
         // Check if user has the required role
-        foreach ($roles as $role) {
-            if (strtolower($request->user()->role->name) === strtolower($role)) {
+        // foreach ($roles as $role) {
+        //     if (strtolower($request->user()->role->name) === strtolower($role)) {
                 return $next($request);
-            }
-        }
+        //     }
+        // }
 
         // User doesn't have the required role, redirect or abort as needed
         return abort(403, 'Unauthorized');

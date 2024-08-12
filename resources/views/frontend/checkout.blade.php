@@ -1,4 +1,5 @@
 @extends('layouts.frontend')
+@section('title', 'Checkout')
 @section('content')
     <!-- ---- BreadCrum ----- -->
     <div class="container py-4 flex justify-between ">

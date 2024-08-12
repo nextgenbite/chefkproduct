@@ -93,6 +93,9 @@
 
             </div>
            
+            <div class="col-span-6">
+                @include('components.input-text' , ['type'=>'text', 'name'=> 'key[currency_symbol]', 'label'=> 'currency symbol',  'value'=> old('color', $settings['currency_symbol'] ?? '')])
+            </div>
             <div class="col-span-6 sm:col-span-3">
                 @include('components.input-text' , ['type'=>'color', 'name'=> 'key[color]', 'label'=> 'color', 'class'=> 'p-0', 'value'=> old('color', $settings['color'] ?? '')])
             </div>

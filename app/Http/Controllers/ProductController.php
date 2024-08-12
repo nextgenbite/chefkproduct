@@ -55,8 +55,7 @@ class ProductController extends Controller
                 'name' => 'checkbox',
                 'title' =>  '<input type="checkbox" class="rounded-full" id="selectAll" />',
                 'orderable' => false,
-                'searchable' => false,
-                'width' => '5%'
+                'searchable' => false
             ],
             [
                 'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl',
@@ -115,6 +114,7 @@ class ProductController extends Controller
                 'data' =>  $categories,
                 'key' =>  'title',
                 'child' =>  'children',
+                'mode' =>  'select-single',
                 'class' => 'col-span-2',
                 
             ],
@@ -151,6 +151,7 @@ class ProductController extends Controller
                 'data' =>  $colors,
                 'key' =>  'name',
                 'class' => 'col-span-2',
+                'mode' =>  'select-mulitple',
             ],
             [
                 'type' => 'select',
@@ -159,6 +160,7 @@ class ProductController extends Controller
                 'data' =>  $sizes,
                 'key' =>  'name',
                 'class' => 'col-span-2',
+                'mode' =>  'select-mulitple',
             ],
             [
                 'type' => 'image',

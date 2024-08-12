@@ -51,38 +51,33 @@
 </head>
 <body>
 	<div>
-        @php
-        $settings= App\Models\SiteSetting::firstOrFail();
-         @endphp
+
 		<div style="background: #eceff4;padding: 1rem;">
 			<table>
 				<tr>
 					<td>
-						@if($settings->logo != null)
-                        <img src="{{asset('/storage/'.$settings->logo)}}" alt="{{asset('/storage/'.$settings->logo)}}" height="30" style="display:inline-block;">
-                        @else
-							<img src="https://s3.eu-central-1.amazonaws.com/zl-clients-sharings/90Tech.png" height="30" style="display:inline-block;">
-						@endif
+                        <img src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" height="30" style="display:inline-block;">
+                      
 					</td>
 					<td style="font-size: 1.5rem;" class="text-right strong">INVOICE</td>
 				</tr>
 			</table>
 			<table>
 				<tr>
-					<td style="font-size: 1rem;" class="strong">{{ $settings->app_name }}</td>
+					<td style="font-size: 1rem;" class="strong">{{ isset($settings['app_name']) ? $settings['app_name'] : 'Nextgenbite' }}</td>
 					<td class="text-right"></td>
 				</tr>
 				<tr>
-					<td class="gry-color small">{{  $settings->address }}</td>
+					<td class="gry-color small">{{ isset($settings['address']) ? $settings['address'] : ''}}</td>
 					<td class="text-right"></td>
 				</tr>
 				<tr>
-					<td class="gry-color small"> Email: {{ $settings->email }}</td>
+					<td class="gry-color small"> Email: {{ isset($settings['email']) ? $settings['email'] : '' }}</td>
 					<td class="text-right small"><span class="gry-color small">Order ID:</span> <span class="strong">{{ $order->code }}</span></td>
 				</tr>
 				<tr>
-					<td class="gry-color small"> Phone: {{  $settings->phone }}</td>
-					<td class="text-right small"><span class="gry-color small"> Order Date:</span> <span class=" strong">{{  $order->order_date }}</span></td>
+					<td class="gry-color small"> Phone: {{  isset($settings['phone']) ? $settings['phone'] : '' }}</td>
+					<td class="text-right small"><span class="gry-color small"> Order Date:</span> <span class=" strong">{{  $order->created_at->format('d/m/y') }}</span></td>
 				</tr>
 				<tr>
 					<td class="gry-color small"></td>

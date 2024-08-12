@@ -2,6 +2,7 @@ window.prototype = this;
 require('./bootstrap');
 import 'flowbite';
 
+// import './flowbiteTable';
 import './dark-mood';
 
 // Import SweetAlert

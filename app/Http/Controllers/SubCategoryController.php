@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
-class SubCategoryeController extends Controller
+class SubCategoryController extends Controller
 {
     use ImageUploadTrait, BaseTrait;
 
@@ -83,6 +83,7 @@ class SubCategoryeController extends Controller
             [
                 'type' => 'select',
                 'name' => 'parent_id',
+                'key' => 'title',
                 'label' =>  'Category',
                 'data' =>  $categories,
             ],
@@ -98,7 +99,7 @@ class SubCategoryeController extends Controller
             ],
 
         ];
-        return view('admin.category.index', compact('title', 'data', 'columns', 'form'));
+        return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
     }
 
 
@@ -138,7 +139,7 @@ class SubCategoryeController extends Controller
      */
     public function show($id)
     {
-        $data = Category::findOrFail($id);
+        $data = Category::with('parent')->findOrFail($id);
         if ($data) {
             return response()->json(['message' => 'Data successfully', 'data' => $data], 200);
         } else {

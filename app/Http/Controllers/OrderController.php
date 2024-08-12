@@ -29,7 +29,7 @@ class OrderController extends Controller
     {
         $title = $this->title;
 
-        $data = Order::latest()->get();
+        $data = Order::with('user')->latest()->get();
         if ($request->ajax()) {
 
             return DataTables::of($data)
@@ -37,11 +37,20 @@ class OrderController extends Controller
                 ->addColumn('checkbox', function ($row) {
                     return $this->CrudCheckbox($row);
                 })
-           
-                ->addColumn('action', function ($row) {
-                    return $this->CrudAction($row);
+
+                ->addColumn('payment_method', function ($row) {
+                    return $this->OrderPaymentMethod($row);
                 })
-                ->rawColumns(['checkbox',  'action'])
+                ->addColumn('payment_status', function ($row) {
+                    return $this->OrderPaymentStatus($row);
+                })
+                ->addColumn('status', function ($row) {
+                    return $this->OrderStatus($row);
+                })
+                ->addColumn('action', function ($row) {
+                    return $this->OrderAction($row);
+                })
+                ->rawColumns(['checkbox','payment_method','payment_status', 'status',  'action'])
                 ->make(true);
         }
         $columns = [
@@ -53,11 +62,16 @@ class OrderController extends Controller
                 'searchable' => false
             ],
             [
-                'data' => 'order_date', 'name' => 'order_date', 'title' => 'Date', 'orderable' => false,
+                'data' => 'order_date',
+                'name' => 'order_date',
+                'title' => 'Date',
+                'orderable' => false,
                 'searchable' => false
             ],
             [
-                'data' => 'name', 'name' => 'name', 'title' => 'Name',
+                'data' => 'user.name',
+                'name' => 'user.name',
+                'title' => 'Name',
                 'orderable' => false,
                 'searchable' => false
             ],
@@ -65,9 +79,13 @@ class OrderController extends Controller
             ['data' => 'total', 'name' => 'total', 'title' => 'Total', 'sClass' => 'text-right'],
             ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method', 'sClass' => 'text-center'],
             ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status', 'sClass' => 'text-center'],
-  
+            ['data' => 'status', 'name' => 'status', 'title' => 'Delivery Status', 'sClass' => 'text-center'],
+
             [
-                'data' => 'action', 'name' => 'action', 'title' => 'Action' , 'sClass' => 'text-center',
+                'data' => 'action',
+                'name' => 'action',
+                'title' => 'Action',
+                'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
@@ -87,7 +105,7 @@ class OrderController extends Controller
             ],
 
         ];
-        return view('admin.category.index', compact('title', 'data', 'columns', 'form'));
+        return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
     }
     /**
      * Store a newly created resource in storage.
@@ -117,6 +135,7 @@ class OrderController extends Controller
             }
 
             $data = Order::create([
+                "user_id" => $user ?? '',
                 "name" => $request->name,
                 'code' => date('Ymd-His') . rand(10, 99),
                 "phone" => $request->phone,
@@ -180,6 +199,11 @@ class OrderController extends Controller
         return Order::findOrFail($id);
     }
     public function invoice($id)
+    {
+        $data = Order::findOrFail($id);
+return view('admin.orders.show', ['order'=> $data]);
+    }
+    public function invoiceDownload($id)
     {
         $settings = SiteSetting::first();
         $order = Order::findOrFail($id);
@@ -247,5 +271,62 @@ class OrderController extends Controller
         } else {
             return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
+    }
+    public function OrderPaymentMethod($row)
+    {
+        switch ($row->payment_method) {
+            case 'pending':
+               return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+                break;
+            case 'cash_on_delivary':
+                return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">COD</span>';
+                break;
+            default:
+            return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+
+        }
+    }
+    public function OrderPaymentStatus($row)
+    {
+        switch ($row->payment_status) {
+            case 'pending':
+               return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+                break;
+            case 'paid':
+                return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Paid</span>';
+                break;
+            default:
+            return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+
+        }
+    }
+    public function OrderStatus($row)
+    {
+        switch ($row->status) {
+            case 'pending':
+               return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+                break;
+            case 'completed':
+                return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Completed</span>';
+                break;
+            default:
+            return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+
+        }
+    }
+
+    public function OrderAction($row)
+    {
+        return ' <div class="inline-flex rounded-md shadow-sm" role="group">
+                 <a href="/admin/orders/invoice/' . $row->id . '" class="inline-flex items-center px-2 py-1 text-sm font-medium text-green-600 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                     <span class="material-symbols-sharp w-1 h-1 ">visibility</span>
+                 </a>
+                 <button title="edit" data-id="' . $row->id . '" type="button" class="editData inline-flex items-center px-2 py-1 text-sm font-medium text-teal-600 bg-transparent border-t border-b border-gray-900 hover:bg-gray-800 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                     <span class="material-symbols-sharp w-1 h-1 ">edit_note</span>
+                 </button>
+                 <button type="button" data-id="' . $row->id . '" id="delete" class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-600 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+                     <span class="material-symbols-sharp w-1 h-1 ">delete</span>
+                 </button>
+             </div>';
     }
 }

@@ -31,10 +31,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $role = auth()->user()->role->name;
-        if (strtolower($role) === 'admin' || strtolower($role) === 'superadmin') {
+        // $role = auth()->user()->role('admin');
+        if (auth()->user()->hasRole(['admin', 'Admin', 'superadmin'])) {
             return redirect( '/admin');
-        } elseif (strtolower($role) === 'customer') {
+        } else {
             return redirect('/user/profile');
         }
     }

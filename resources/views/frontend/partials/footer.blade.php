@@ -1,14 +1,14 @@
 <!-- ---- Start Footer  ----- -->
 <Footer class=" bg-slate-200 pt-16 pb-12 mt-3 border-t border-gray-100 ">
      <div class="container">
-          <div class="xl:grid xl:grid-cols-5 xl:gap-8 ">
-               <div class="space-y-1 xl:col-span-2 ">
+          <div class="grid-cols-1 lg:grid lg:grid-cols-5 lg:gap-8 ">
+               <div class="space-y-1 col-span-1 lg:col-span-2 ">
                     <img alt="image" src="{{asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}"
                          alt="{{isset($settings['app_name']) ? $settings['app_name'] : config('app.name')}} "
-                         class="w-60" />
-                    <p class="text-gray-500 text-base font-roboto "> {{isset($settings['about']) ? $settings['about'] :
+                         class="w-60 mx-auto lg:mx-0" />
+                    <p class="text-gray-500 text-base font-roboto text-center lg:text-left"> {{isset($settings['about']) ? $settings['about'] :
                          '' }}</p>
-                    <div class="flex space-x-5">
+                    <div class="flex space-x-5 justify-center lg:justify-start">
                          <a title="facebook" href="{{isset($settings['facebook']) ? $settings['facebook'] : ''}}"
                               class="text-gray-400 hover:text-gray-500">
                               <i class="fab fa-facebook-f"></i>
@@ -34,7 +34,7 @@
 
                <!-- ---- Footer link   ----- -->
 
-               <div class="flex justify-between  px-6 xl:col-span-3">
+               <div class="flex  lg:justify-between flex-col lg:flex-row  px-6 lg:col-span-3">
                     <div>
                          <h3 class="text-sm font-semibold text-gray-400 tracking-wide uppercase"> CONTACT INFO </h3>
                          <div class="mt-4 space-y-2">

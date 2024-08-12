@@ -1,16 +1,16 @@
-@extends('layouts.frontend',['page_title' => 'Profile of '. auth()->user()->name] )
-
+@extends('layouts.frontend')
+@section('title','Profile of '. auth()->user()->name)
 @section('content')
-    <!-- ---- BreadCrum ----- -->
- <div class="container py-4 flex justify-between " >
+<!-- ---- BreadCrum ----- -->
+<div class="container py-4 md:px-16 flex justify-between ">
     <div class="flex gap-3 items-center ">
-         <a href="index.html" class="text-primary text-base">
-             <i class="fas fa-home"></i>
-         </a>
-         <span class="text-sm text-gray-500 ">
-             <i class="fas fa-chevron-right" ></i>
-         </span>
-         <p class="text-gray-500 font-medium uppercase">My Account</p>
+        <a href="/" class="text-primary-light text-base">
+            <i class="fas fa-home"></i>
+        </a>
+        <span class="text-sm text-gray-500 ">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <p class="text-gray-500 font-medium uppercase">My Profile</p>
     </div>
 
 </div>
@@ -18,150 +18,92 @@
 
 <!-- ---- Account Wrapper--->
 
-<div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16 ">
-      <!-- ---- Sidebar --->
-      <div class="col-span-3">
-           <!-- ---- User Profile --->
-           <div class="px-4 py-3 shadow flex bg-gray-100 items-center gap-4 ">
-                <div class="flex-shrink-0"> 
-                     <img src="{{asset(auth()->user()->avatar ? auth()->user()->avatar : '/images/no-image.png')}}" class="rounded-full w-14 h14 p-1 border border-gray-200 object-cover " /> 
-                </div>
-                <div>
-                     <p class="text-gray-600">Hello..</p>
-                     <h4 class="text-gray-800 capitalize font-semibold">{{auth()->user()->name}}</h4>
-                </div>
+<div class="bg-white w-full flex flex-col gap-5 px-3 md:px-16  md:flex-row text-primary-light">
+    <!-- ---- Sidbar--->
+    @include('frontend.partials.user_sidebar')
+    <!-- ---- End Sidbar--->
 
-           </div>
-           <!-- ----End User Profile --->
+    <div class="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4 mx-auto">
+        <div class="p-2 md:p-4">
+            <div class="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
+                <h2 class="text-base col-span-3 my-1 md:text-lg font-medium text-gray-800 capitalize">
+                    Account Information
+                    <hr class="w-1/3 h-0.5 my-1 bg-gray-200 border-0 dark:bg-gray-700">
+                </h2>
+                <form method="POST" accept="{{route('user.profile.update')}}" enctype="multipart/form-data"
+                    class="grid max-w-2xl mx-auto mt-8">
+                    @csrf
+                    <div class="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
 
-<!-- ---- Profile Link --->
-<div class="mt-6 bg-gray-100 shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600 ">
-      <!-- ---- single Link --->
-      <div class="space-y-1 pl-8">
-           <a href="#" class="relative text-base font-medium capitalize hover:text-primary transition block text-primary">
-              Manage Account 
-              <span class="absolute -left-8 top-0 text-base ">
-                   <i class="far fa-address-card"></i>
-              </span>
-           </a>
-           <a href="#" class="hover:text-primary transition capitalize block" >Profile Information </a>
-           <a href="#" class="hover:text-primary transition capitalize block" >Manage Address  </a>
-           <a href="#" class="hover:text-primary transition capitalize block" >Change password </a> 
-      </div> 
-       <!-- ---- End single Link --->
+                        <img class="object-cover w-40 h-40 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-indigo-500"
+                            src="{{asset(auth()->user()->avatar ?? './images/no-image.png')}}" alt="Bordered avatar">
 
+                        <div class="flex flex-col space-y-5 sm:ml-8">
 
-        <!-- ---- single Link --->
-      <div class="space-y-1 pl-8 pt-4">
-         <a href="#" class="relative text-base font-medium capitalize hover:text-primary transition block text-primary">
-            My order History
-            <span class="absolute -left-8 top-0 text-base ">
-                 <i class="fas fa-gift"></i>
-            </span>
-         </a>
-         <a href="#" class="hover:text-primary transition capitalize block" >My returns </a>
-         <a href="#" class="hover:text-primary transition capitalize block" >my cancellations  </a>
-         <a href="#" class="hover:text-primary transition capitalize block" >my review </a> 
-    </div> 
-     <!-- ---- End single Link --->
+                            <div class="relative">
+                                <label title="Click to upload" for="button2"
+                                    class="cursor-pointer flex items-center gap-2 py-3 px-6  rounded-lg border border-indigo-200 before:border-gray-400/60 hover:before:border-gray-300 group before:bg-gray-100 before:absolute before:inset-0 before:rounded-3xl before:border before:border-dashed before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95">
+                                    <div class="w-max relative">
+                                        <svg class="w-10 h-10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01" />
+                                        </svg>
 
+                                    </div>
+                                    <div class="relative">
+                                        <span
+                                            class="block text-base font-semibold relative text-blue-900 group-hover:text-blue-500">
+                                            Change picture
+                                        </span>
+                                        <span class="mt-0.5 block text-sm text-gray-500">Max 2 MB</span>
+                                    </div>
+                                </label>
+                                <input hidden="" accept="image/*" type="file" name="button2" id="button2">
+                            </div>
+                            {{-- <button type="button"
+                                class="py-3 px-6 text-base font-medium text-primary-800 focus:outline-none bg-white rounded-lg border border-indigo-200 hover:bg-indigo-100 hover:text-primary-light  focus:z-10 focus:ring-4 focus:ring-indigo-200 ">
+                                Delete picture
+                            </button> --}}
+                        </div>
+                    </div>
+                    <div class="items-center mt-8 sm:mt-14 text-primary-light ">
+                        <div
+                            class="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                            <div class="w-full">
+                                @include('components.input-text' , ['type'=>'text', 'name'=> 'name', 'label'=> 'Name',
+                                'value'=> old('name', $data->name ?? '')])
+                            </div>
+                            <div class="w-full">
+                                @include('components.input-text' , ['type'=>'tel', 'name'=> 'phone', 'label'=> 'Phone',
+                                'value'=> old('phone', $data->phone ?? '')])
+                            </div>
+                        </div>
+                        <div class="mb-2 sm:mb-6">
+                            @include('components.input-text' , ['type'=>'email', 'name'=> 'email', 'label'=> 'Email',
+                            'value'=> old('email', $data->email ?? '')])
+                        </div>
+                        <div class="mb-6">
+                            @include('components.input-textarea' , ['name'=> 'address', 'label'=> 'Address', 'value'=>
+                            old('address', $data->address ?? '')])
+                        </div>
 
-       <!-- ---- single Link --->
-       <div class="space-y-1 pl-8 pt-4">
-         <a href="#" class="relative text-base font-medium capitalize hover:text-primary transition block text-primary">
-           Payment Method 
-            <span class="absolute -left-8 top-0 text-base ">
-                 <i class="far fa-credit-card"></i>
-            </span>
-         </a>
-         <a href="#" class="hover:text-primary transition capitalize block" >Voucher</a>
-         
-    </div> 
-     <!-- ---- End single Link --->
+                        <div class="flex justify-end">
+                            @include('components.btn-loading', ['type'=>'submit'])
+                        </div>
 
-
-       <!-- ---- single Link --->
-       <div class="space-y-1 pl-8 pt-4">
-         <a href="#" class="relative text-base font-medium capitalize hover:text-primary transition block text-primary">
-        My wishlist
-            <span class="absolute -left-8 top-0 text-base ">
-                 <i class="far fa-heart"></i>
-            </span>
-         </a> 
-         
-    </div> 
-     <!-- ---- End single Link --->
-
-
-         <!-- ---- single Link --->
-         <div class="space-y-1 pl-8 pt-4">
-              <a href="{{route('user.logout')}}" class="relative text-base font-medium capitalize hover:text-primary transition block text-primary">
-             Logout 
-                 <span class="absolute -left-8 top-0 text-base ">
-                      <i class="fas fa-sign-out-alt"></i>
-                 </span>
-              </a> 
-              
-         </div> 
-          <!-- ---- End single Link ---> 
-</div> 
-
- <!-- ----End Profile Link ---> 
-      </div>
-       <!-- ----End Sidebar--->
-
-<!-- ----Account Content --->
-<div class="col-span-9 grid md:grid-cols-3 gap-4 mt-6 lg:mt-0 ">
-     <!-- ----single card --->
-    <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
-         <div class="flex justify-between items-center mb-4 ">
-              <h3 class="font-medium capitalize text-gray-800 text-lg">Personal Profile </h3>
-              <a href="#" class="text-primary">Edit</a> 
-         </div>
-         <div class="space-y-1">
-              <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
-              <p class=""text-gray-800 >ariyan@gmail.com</p>
-              <p class=""text-gray-800 >(123)3434-43434</p>
-         </div> 
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-      <!-- ----End single card --->
 
 
-       <!-- ----single card --->
-    <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
-         <div class="flex justify-between items-center mb-4 ">
-              <h3 class="font-medium capitalize text-gray-800 text-lg">Shipping Address </h3>
-              <a href="#" class="text-primary">Edit</a> 
-         </div>
-         <div class="space-y-1">
-              <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
-              <p class=""text-gray-800 >ariyan@gmail.com</p>
-              <p class=""text-gray-800 >(123)3434-43434</p>
-         </div> 
-    </div>
-      <!-- ----End single card --->
+    <!-- ----End Account Content--->
 
-
-       <!-- ----single card --->
-    <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
-         <div class="flex justify-between items-center mb-4 ">
-              <h3 class="font-medium capitalize text-gray-800 text-lg">Builling Address </h3>
-              <a href="#" class="text-primary">Edit</a> 
-         </div>
-         <div class="space-y-1">
-              <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
-              <p class=""text-gray-800 >ariyan@gmail.com</p>
-              <p class=""text-gray-800 >(123)3434-43434</p>
-         </div> 
-    </div>
-      <!-- ----End single card --->
 
 </div>
 
- <!-- ----End Account Content---> 
-
-
-</div> 
-
- <!-- ---- End Account Wrapper ---> 
+<!-- ---- End Account Wrapper --->
 @endsection

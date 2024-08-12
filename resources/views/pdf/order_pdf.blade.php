@@ -124,7 +124,7 @@
         }
 
         .table-c tr th {
-            background: #486FF0;
+            background: {{ $settings['color'] ?? '#486FF0' }};
             color: #fff;
             text-align: left;
             font-size: .9em;
@@ -145,7 +145,7 @@
             padding: 5px 10px;
         }
 
-        .td-right-align tr td {
+        .td-right-align tr td, .td-right-align tr th {
             text-align: right;
             padding: 5px 0;
         }
@@ -189,6 +189,17 @@
         .store_name{
             text-transform: capitalize
         }
+        .qrcode svg{
+            max-width: 20px;
+            text-align: left
+        }
+        .text-left{
+			text-align:left;
+		}
+		.text-right{
+			text-align: right;
+		}
+        
     </style>
 </head>
 <body style="padding: 30px;">
@@ -196,11 +207,11 @@
     <tr>
         <td>
             <div style="max-width: 350px;">
-                <img style="height: 25px; width: auto; margin-bottom: 10px"
-                     src="{{ storage_path('app/public/'.$setting->logo)}}">
-                <h4 class="mt-10 mb-10 store_name">{{ $setting->app_name }}</h4>
-                <p> {{$setting->address}}</p>
-                <p>{{__('lang.phone')}}: {{ $setting->phone }}</p>
+                <img style="height: 40px; width: auto; margin-bottom: 10px"
+                     src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}">
+                <h4 class="mt-10 mb-10 store_name">{{ isset($settings['app_name']) ? $settings['app_name'] : 'Nextgenbite' }}</h4>
+                <p> {{isset($settings['address']) ? $settings['address'] : ''}}</p>
+                <p>{{__('lang.phone')}}: {{isset($settings['phone']) ? $settings['phone'] : '01715808563' }}</p>
             </div>
         </td>
         <td>
@@ -256,67 +267,80 @@
         <th>{{__('lang.total')}}</th>
     </tr>
 
-    @foreach ($order->orderitem as $op)
+    @foreach ($order->orderitem as $item)
         <tr>
             <td>
-               {{ $op->product->title }}
-                {{-- <span class="mt-5 f-9 block">{{ \App\Models\Helper\MailHelper::generatingAttribute($op) }}</span> --}}
+               {{ $item->product->title }}
+                {{-- <span class="mt-5 f-9 block">{{ \App\Models\Helper\MailHelper::generatingAttribute($item) }}</span> --}}
             </td>
             {{-- <td>
                 {{ $setting->currency_icon }}
-                {{ \App\Models\Helper\MailHelper::shippingPrice($op->shipping_place, $op->shipping_type) }}
+                {{ \App\Models\Helper\MailHelper::shippingPrice($item->shipping_place, $item->shipping_type) }}
             </td> --}}
-            <td>{{ $op->qty }}</td>
+            <td>{{ $item->qty }}</td>
 
-            <td>{{ $op->total/$op->qty }}</td>
-            <td>{{$op->total }}</td>
+            <td>{{ formatCurrency($item->total/$item->qty) }}</td>
+            <td>{{formatCurrency($item->total) }}</td>
         </tr>
 
     @endforeach
 </table><!--table-->
-
-<div style="width: 100%; clear: both; display: block;">
-    <table class="border-tr td-right-align" style="margin-left: auto; width: 180px; max-width: 180px;">
-        <tr>
-            <td style="min-width: 110px">{{__('lang.subtotal')}}</td>
-            <td style="min-width: 40px">{{ $order->total}}</td>
-        </tr>
-        <tr>
-            <td>{{__('lang.shipping_cost')}}</td>
-            <td>{{ $order->shipping_cost }}</td>
-        </tr>
-
-        {{-- @if ((int) $order->calculated_price['bundle_offer'] > 0)
+<div style="padding:0 1.5rem;">
+    <table class="text-right sm-padding small strong">
+        <thead>
             <tr>
-                <td>{{__('lang.bundle_offer')}}</td>
-                <td>{{ $setting->currency_icon }}{{ $order->calculated_price['bundle_offer'] }}</td>
+                <th width="60%"></th>
+                <th width="40%"></th>
             </tr>
-        @endif
-
-        @if ((int) $order->calculated_price['voucher_price'] > 0)
+        </thead>
+        <tbody>
+            @php
+            $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
+            // $qrCode = base64_encode(str_replace($removedXML,"", SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(100)->generate($order->code)));
+        @endphp
             <tr>
-                <td>{{__('lang.voucher')}}</td>
-                <td>{{ $setting->currency_icon }}{{ $order->calculated_price['voucher_price'] }}</td>
+                <td class="text-left">
+                    {{-- <div class="qrcode">
+                        {!! str_replace($removedXML,"", SimpleSoftwareIO\QrCode\Facades\QrCode::size(40)->generate($order->code)) !!}
+                    </div> --}}
+                    {{-- {!! QrCode::format('svg')->size(100)->generate($order->code) !!} --}}
+                    <img style="width: 100px" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{ urlencode($order->code) }}" alt="QR Code">
+                    {{-- {!! str_replace($removedXML, "", SimpleSoftwareIO\QrCode\Facades\QrCode::format('svg')->size(50)->generate($order->code)) !!} --}}
+                </td>
+            <td>
+                    <table class="text-right sm-padding small strong td-right-align">
+                        <tbody>
+                           
+                            <tr>
+                                <th class="gry-color text-left">{{__('lang.subtotal')}}</th>
+                                <td class="currency">{{ formatCurrency($order->total) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="gry-color text-left">{{__('lang.shipping_cost')}}</th>
+                                <td class="currency">{{ formatCurrency($order->shipping_cost) }}</td>
+                            </tr>
+                            {{-- <tr class="border-bottom">
+                                <th class="gry-color text-left">Total Tax</th>
+                                <td class="currency">{{ single_price($order->orderDetails->sum('tax')) }}</td>
+                            </tr> --}}
+                            <tr class="border-bottom">
+                                <th class="gry-color text-left">{{__('lang.discount')}}</th>
+                                <td class="currency">{{ formatCurrency($order->coupon) }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left strong">{{__('lang.total')}}</th>
+                                <td class="currency">{{ formatCurrency($order->total+$order->shipping_cost) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
-        @endif
-
-        @if ((int) $order->calculated_price['tax'] > 0)
-            <tr>
-                <td>{{__('lang.tax')}}</td>
-                <td>0</td>
-            </tr>
-        @endif --}}
-
-        <tr>
-            <td>{{__('lang.total')}}</td>
-            <td>{{ $order->total+$order->shipping_cost }}</td>
-        </tr>
+        </tbody>
     </table>
 </div>
 
 
-
-<div style="width: 100%; clear: both; display: block; padding-top: 150px;">
+<div style="width: 100%; clear: both; display: block; padding-top: 50px;">
     <table class="table-c" style="width: 50%;">
         <tr>
             <th>{{__('lang.notes')}}</th>
@@ -328,13 +352,11 @@
                     {{__('lang.order_number')}}
                 </p>
                 <p>
-                    {{__('lang.question_str')}}: {{ $setting->phone }}
+                    {{__('lang.question_str')}}: {{ isset($settings['phone']) ? $settings['phone'] : '01715808563'  }}
                 </p>
             </td>
         </tr>
     </table><!--table-->
 </div>
-
-
-
 </body>
+<html>

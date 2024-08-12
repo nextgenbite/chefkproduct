@@ -1,137 +1,132 @@
-@extends('admin.master')
-@push('custom-css')
-<style>
-    @media print {
-  body * {
-    visibility: hidden;
-  }
-  #printArea,
-  #printArea * {
-    visibility: visible;
-  }
-  #printArea {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-}
-</style>
+@extends('layouts.app')
+@push('title')
+{{ isset($settings['app_name']) ? $settings['app_name'] : config('app.name') .' | Dashboard'}}
 @endpush
 @section('content')
-<div class="content-wrapper">
-<div class="row">
-    <div class="col-lg-12">
-      <div class="card" >
-        <div class="card-body" id="printArea">
-            <div class="container-fluid position-relative">
-                <img style="left: 0;top:-20px;width: 6rem" class=" position-absolute" src="{{asset('logo-2.png')}}"  alt="" >
-                <h3 class="text-right my-5">Invoice #8{{$order->id}}</h3>
-                <hr>
-            </div>
-            {{-- <h1 class="text-center text-info mt-3">QBDbox.com</h1> --}}
-          {{-- <div class="container-fluid d-flex justify-content-between">
-              <div class=" pl-0">
-                  <p class="mt-5 mb-2"><b>{{$order->name}}</b></p>
-                  <p>{{$order->phone}}</p>
-                  <p>{{$order->address}}</p>
-                  <p>{{$order->note}}</p>
-              </div>
-              <div class=" pr-0">
-                  <p class="mt-5 mb-2 text-right bold h4 {{$order->status == 0? 'text-danger' : $order->status == 1? 'text-info': 'text-success'}}"><b>{{$order->status == 0? 'Pending' : $order->status == 1? 'Confirm': 'Delivered'}}</b></p>
+<div class="mb-10 rounded-sm border text-gray-700 border-gray-200 bg-white shadow-md dark:border-gray-700  dark:bg-slate-800">
+  {{-- <div class="border-b border-gray-200 px-4 py-4 dark:border-gray-700  sm:px-6 xl:px-9">
+    <h3 class="font-medium  dark:text-white">Style 1</h3>
+  </div> --}}
+  {{-- <h3 class="font-medium  dark:text-white">Style 1</h3> --}}
 
-              </div>
-            </div> --}}
-            <div class="container-fluid d-flex justify-content-between">
-                <div class=" pl-0">
-                    <p class="mb-0  mt-2">Order Date : {{$order->order_date}}</p>
-
-                </div>
-                <div class=" pr-0">
-                    <p class="mb-0 mt-2  text-left  ">Order Status : <b class="{{($order->status == 0) ? 'text-danger' : (($order->status == 1) ? 'text-info' : 'text-success')}}">{{$order->status == 0? 'Pending' : ($order->status == 1? 'Confirm': 'Delivered')}}</b></p>
-
-              </div>
-            </div>
-
-          <div class="container-fluid d-flex justify-content-between">
-            <div class=" pl-0">
-                <p class="mt-2 mb-0 text-bold"><b>From</b></p>
-                <p class=" text-bold">Quick BD Box (qbdbox.com)</p>
-                <p class="">01777666178</p>
-                <p>South Banasree,<br>Dhaka, Bangladesh.</p>
-                <p class=" text-capitalize">7 Days replacement and 2 years service warranty</p>
-                <small>Conditions apply*</small>
-            </div>
-            <div class=" pr-0">
-                <p class="mt-2 mb-0 text-left"><b>Invoice to</b></p>
-                <p   class="text-left">Customer : <b>{{$order->name}}</b></p>
-                <p  class="text-left">Mobile No.:{{$order->phone}}</p>
-                <p  class="text-left">Address :{{$order->address}}</p>
-                <p  class="text-left">Thana :{{$order->thana}}</p>
-                <p  class="text-left">District :{{$order->district}}</p>
-                <p  class="text-left">Note:{{$order->notes}}</p>
-            </div>
+  <div class="p-4 sm:p-6 xl:p-9">
+    <div class="flex flex-col-reverse gap-5 xl:flex-row xl:justify-between">
+      <div class="flex flex-col gap-4 sm:flex-row xl:gap-9">
+        <div>
+          <p class="mb-1.5 font-medium text-black dark:text-white">
+            From
+          </p>
+          <h4 class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white">
+            {{ isset($settings['app_name']) ? $settings['app_name'] : 'Nextgenbite' }}
+          </h4>
+          <a href="#" class="block"><span class="font-medium">Email:</span>
+            {{ isset($settings['email']) ? $settings['email'] : '' }}</a>
+          <span class="mt-2 block"><span class="font-medium">Address:</span> 2972
+          {{ isset($settings['address']) ? $settings['address'] : '' }}</span>
         </div>
-          <div class="container-fluid mt-2 d-flex justify-content-center w-100">
-              <div class="table-responsive table-bordered  w-100" >
-                <table class="table">
-                    <thead>
-                        <tr class="">
-                          <th>#</th>
-                          <th>Title</th>
-                          <th>Image</th>
-                          <th class="text-right">Quantity</th>
-                          <th class="text-right">Unit cost</th>
-                          <th class="text-right">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($order->orderitem()->get() as $key=>$item)
-
-                      <tr class="text-right">
-                          <td class="text-left">{{$key+1}}</td>
-                          <td class="text-left">
-                            {{$item->product->product_name}} <br>
-                            @if (isset($item->color))
-
-                            Color: <small>{{$item->color}}</small><br>
-                            @endif
-                            @if (isset($item->size))
-
-                            Size: <small>{{$item->size}}</small>
-                            @endif
-                        </td>
-                          <td><img style="width: 4rem; height:4rem" src="{{asset($item->product->product_image)}} " class="img-rounded" width="100px" alt="sadd"> </td>
-                          <td>{{$item->qty}}</td>
-                          <td>{{$item->price}}</td>
-                          <td>{{$item->price * $item->qty}}</td>
-                      </tr>
-                      @endforeach
-
-                    </tbody>
-                </table>
-              <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-          </div>
-          <div class="container-fluid mt-2 w-100">
-
-              <p class="text-right">Delivery Cost : {{$order->delivery_type}} TK</p>
-              <p class="text-right"> Discount : {{$order->coupon}} TK</p>
-              <h4 class="text-right mb-5">Total : {{$order->delivery_type+$order->amount}} TK</h4>
-              <hr>
-          </div>
-          <strong> Visit for more Proudcts: <b class="">www.qbdbox.com</b></strong>
+        <div>
+          <p class="mb-1.5 font-medium text-black dark:text-white">
+            To
+          </p>
+          <h4 class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white">
+            {{ $order->name }}
+          </h4>
+          <a href="#" class="block"><span class="font-medium">Email:</span>
+            {{ $order->phone }}</a>
+          <span class="mt-2 block"><span class="font-medium">Address:</span> {{ $order->address }}
+          </span>
+        </div>
       </div>
-      <div class="card-body">
+      <h3 class="text-2xl font-medium text-black dark:text-white">
+        Order #{{ $order->code }}
+      </h3>
+    </div>
 
-          <button class="btn btn-primary float-right" id="printButton" >Print</button>
+    <div class="my-10 rounded-sm border border-gray-200 p-5 dark:border-gray-700 divide-y-2 divide-slate-200">
+      @foreach ($order->orderitem as $item)
+      <div class="items-center sm:flex">
+        <div class="mb-3 mr-6 h-20 w-20 sm:mb-0">
+          <img src="{{asset($item->product->thumbnail)}}" alt="product" class="h-full w-full rounded-sm object-cover object-center">
+        </div>
+        <div class="w-full items-center justify-between md:flex">
+          <div class="mb-3 md:mb-0">
+            <a href="#" class="inline-block font-medium text-black hover:text-primary dark:text-white">
+              {{$item->product->title}}
+            </a>
+            <p class="flex text-sm font-medium">
+              {{-- <span class="mr-5"> Color: White </span>
+              <span class="mr-5"> Size: Medium </span> --}}
+            </p>
+          </div>
+          <div class="flex items-center md:justify-end">
+            <p class="mr-20 font-medium text-black dark:text-white">
+              Qty: {{$item->qty}}
+            </p>
+            <p class="mr-5 font-medium text-black dark:text-white">
+              {{formatCurrency($item->total)}}
+            </p>
+          </div>
+        </div>
       </div>
+      @endforeach
+    </div>
+
+    <div class="-mx-4 flex flex-wrap">
+      <div class="w-full px-4 sm:w-1/2 xl:w-3/12">
+        <div class="mb-10">
+          <h4 class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white md:text-2xl">
+            Shipping Method
+          </h4>
+          <p class="font-medium">
+            FedEx - Take up to 3 <br>
+            working days.
+          </p>
+        </div>
+      </div>
+      <div class="w-full px-4 sm:w-1/2 xl:w-3/12">
+        <div class="mb-10">
+          <h4 class="mb-4 text-title-sm2 font-medium leading-[30px] text-black dark:text-white md:text-2xl">
+            Payment Method
+          </h4>
+          <p class="font-medium">
+            Apply Pay Mastercard <br>
+            **** **** **** 5874
+          </p>
+        </div>
+      </div>
+      <div class="w-full px-4 xl:w-6/12">
+        <div class="mr-10 text-right md:ml-auto">
+          <div class="ml-auto sm:w-1/2">
+            <p class="mb-4 flex justify-between font-medium text-black dark:text-white">
+              <span> Subtotal </span>
+              <span> {{ formatCurrency($order->total) }} </span>
+            </p>
+            <p class="mb-4 flex justify-between font-medium text-black dark:text-white">
+              <span> Shipping Cost (+) </span>
+              <span> {{ formatCurrency($order->shipping_cost) }} </span>
+            </p>
+            <p class="mb-4 mt-2 flex justify-between border-t border-gray-200 pt-6 font-medium text-black dark:border-gray-700  dark:text-white">
+              <span> Total Payable </span>
+              <span> {{ formatCurrency($order->total+$order->shipping_cost) }} </span>
+            </p>
+          </div>
+
+          <div class="mt-10 flex flex-col justify-end gap-4 sm:flex-row">
+            <a href="/admin/orders/invoice/download/{{$order->id}}" class="flex items-center justify-center rounded border border-primary px-8 py-2.5 text-center font-medium text-primary hover:opacity-90">
+              Download Invoice
+            </a>
+            {{-- <button class="flex items-center justify-center rounded bg-primary px-8 py-2.5 text-center font-medium text-gray hover:bg-opacity-90">
+              Send Invoice
+            </button> --}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
 @endsection
-@push('scriptss')
+@push('scripts')
 <script>
     function printDiv()
  {

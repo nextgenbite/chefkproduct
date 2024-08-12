@@ -5,7 +5,7 @@
 
         <!-- logo  -->
         <a title="logo" href="{{ URL::to('/') }}" class="">
-            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class=" w-64 hidden lg:inline" />
+            <img alt="image" src="{{ asset(isset($settings['logo']) ? $settings['logo'] : '/favicon.ico') }}" alt="logo" class=" max-w-64 hidden lg:inline" />
             <img alt="mobile logo" src="{{ asset(isset($settings['favicon']) ? $settings['favicon'] : '/favicon.ico') }}" alt="logo" class=" w-14 lg:hidden" />
         </a>
        
@@ -18,7 +18,7 @@
             <input type="search"
             autocomplete="disable"
             id="nav-search"
-                class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-3 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
+                class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-2 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
                 placeholder="what are you looking for..." />
             <button type="submit" title="search"
                 class="lg:block hidden bg-primary-light border rounded-l-none border-primary-light text-white px-8 font-medium rounded-r-md hover:bg-primary-800  transition  duration-200 ease-in-out ">
@@ -54,7 +54,7 @@
 
 
                     <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName"
-                        class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                        class="flex items-center text-sm pe-1 font-medium text-gray-900 rounded-lg hover:text-primary-light dark:hover:text-primary-800 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
                         type="button">
                         <span class="sr-only">Open user menu</span>
                         <img class="w-8 h-8 me-2 rounded-full capitalize"

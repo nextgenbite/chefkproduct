@@ -416,18 +416,18 @@ s0.parentNode.insertBefore(s1,s0);
         if (window.scrollY > 50) {
             if (isMobile) {
                 // Apply mobile behavior
-                document.getElementById('header').classList.add('fixed');
+                document.getElementById('header').classList.add('sticky');
             } else {
                 // Apply desktop behavior
-                document.getElementById('navbar').classList.add('fixed');
+                document.getElementById('navbar').classList.add('sticky');
                 // add padding top to show content behind navbar
                 var navbar_height = document.querySelector('#navbar').offsetHeight;
                 document.body.style.paddingTop = navbar_height + 'px';
             }
         } else {
             // Remove fixed class and reset padding if scroll position <= 50
-            document.getElementById('navbar').classList.remove('fixed');
-            document.getElementById('header').classList.remove('fixed');
+            document.getElementById('navbar').classList.remove('sticky');
+            document.getElementById('header').classList.remove('sticky');
             document.body.style.paddingTop = '0';
         }
     });

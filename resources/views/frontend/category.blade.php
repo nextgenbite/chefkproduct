@@ -1,4 +1,5 @@
 @extends('layouts.frontend')
+@section('title', $data->title)
 @section('content')
  
   

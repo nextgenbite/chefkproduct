@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Permission;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\QueryException;
@@ -27,17 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        try {
-            foreach (Permission::pluck('name') as $permission) {
-                Gate::define($permission, function ($user) use ($permission) {
-                    return $user->roles()->whereHas('permissions', function ($q) use ($permission) {
-                        $q->where('name', $permission);
-                    })->exists();
-                });
-            }
-        } catch (QueryException $e) {
-            // Handle any exceptions that may occur during the permission-based policy registration
-        }
     }
 
 }

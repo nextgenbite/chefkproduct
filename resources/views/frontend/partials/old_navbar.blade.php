@@ -4,7 +4,7 @@
         <div class="flex">
             <!-- ---- All Category ----- -->
             <div
-                class="px-9 2xl:px-[7rem] py-3 bg-white bg-opacity-80 dark:bg-gray-800 flex items-center cursor-pointer  group relative ">
+                class="px-9 2xl:px-[7rem] py-4 bg-white bg-opacity-80 dark:bg-gray-800 flex items-center cursor-pointer  group relative ">
                 <span class=" text-primary-light dark:text-white ">
                     <i class="fas fa-bars"></i>
                 </span>
@@ -33,7 +33,7 @@
             <!-- ---- All Category End ----- -->
 
             <div class="flex items-center justify-between flex-grow pl-12 ">
-                {{-- <div class="flex items-center space-x-10 text-base capitalize ">
+                <div class="flex items-center space-x-10 text-base capitalize ">
                     <a title="home" href="{{ url('/') }}"
                         class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Home</a>
                     <a title="shop" href="{{ url('/shop') }}"
@@ -45,33 +45,15 @@
                     <a title="home-2" href="{{ url('/home-2') }}"
                         class="text-primary-light hover:text-white  font-semibold  hover:border-primary-light  hover:border-b-2 transition-all ease-in-out  duration-300">Home-2</a>
 
-                </div> --}}
-                <div class="hidden md:inline-flex justify-start items-center gap-2.5 lg:gap-4 xl:gap-8 grow">
-                    <a aria-current="page" href="/"
-                        class="{{ Request::is('/') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }} h-10 py-2 border-b-2 text-base font-normal ">
-                        Home </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
-                    <a href="/shop"
-                        class="h-10 py-2 {{ Request::is('shop') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }} border-b-2  text-base font-normal ">
-                        Shop </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
-                        <a href="{{ url('page/about') }}"
-                            class="h-10 py-2 border-b-2  text-base font-normal {{ Request::is('page/about') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }}">
-                            About
-                        </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
-                    <a href="/contact"
-                        class="h-10 py-2 border-b-2  text-base font-normal {{ Request::is('contact') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }}">
-                        Contact
-                    </a>
                 </div>
+
 
                 <div class=" ml-auto">
 
                     <!-- ---- Start Cart ----- -->
 
                     <button id="cartButton"
-                        class="flex px-3 py-3 items-center space-x-1 bg-primary-light  text-white  rounded-md"
+                        class="flex px-3 py-4 items-center space-x-1 bg-primary-light  text-white  rounded-md"
                         data-drawer-target="drawer-right-cart" data-drawer-show="drawer-right-cart"
                         data-drawer-placement="right" aria-controls="drawer-right-cart">
                         <i class="fas fa-shopping-cart"></i>
@@ -96,7 +78,6 @@
     </div>
 
 </nav>
-
 <!-- ---- End NavBar ----- -->
 
 
@@ -128,34 +109,32 @@
 
     <div class="w-full bg-white shadow-md py-3   transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
         @if (session()->has('cart') && isset(session('cart')['data']) && count(session('cart')['data']) > 0)
-        <table class="w-full">
+<table class="w-full">
 
-            @foreach (session('cart')['data'] as $item)
-            <!-- ---- Start single category ----- -->
-            <tr title="{{ $item['title'] }}"
-                class="p-2 flex items-center justify-between {{$loop->last ? '' : border-b}}  border-gray-400 hover:bg-gray-200 transition">
-                <td>
+    @foreach (session('cart')['data'] as $item)
+    <!-- ---- Start single category ----- -->
+    <tr title="{{ $item['title'] }}" 
+        class="p-2 flex items-center justify-between {{$loop->last ? '' : border-b}}  border-gray-400 hover:bg-gray-200 transition">
+        <td>
 
-                    <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
-                        class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
-                </td>
-                <td class="px-2 w-40">
-                    <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
-                    <div class="text-gray-700 text-xs font-semibold">
-                        {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
-                    </div>
-                </td>
-                <td>
+            <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
+                class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
+        </td>
+        <td class="px-2 w-40">
+            <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
+            <div class="text-gray-700 text-xs font-semibold">
+                {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
+            </div>
+        </td>
+        <td>
 
-                    <button data-product-id="{{ $item['product_id'] }}"
-                        class="remove-from-cart text-red-700 text-sm font-semibold"> <i
-                            class="fas fa-trash text-red-700"></i></button>
-                </td>
-            </tr>
+            <button data-product-id="{{ $item['product_id'] }}" class="remove-from-cart text-red-700 text-sm font-semibold"> <i class="fas fa-trash text-red-700"></i></button>
+        </td>
+    </tr>
 
-            <!-- ---- single category End ----- -->
-            @endforeach
-        </table>
+    <!-- ---- single category End ----- -->
+    @endforeach
+</table>
         <div class="grid grid-cols-1  mt-3 pt-4">
 
             <a href="{{ Route('checkout') }}"

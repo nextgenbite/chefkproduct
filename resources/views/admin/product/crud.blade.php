@@ -8,7 +8,18 @@
 <link rel="stylesheet" href="{{asset('plugins/fileUpload/fileUpload.css')}}">
 <!-- Material Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
+ <!-- Select2 CSS -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet" />
+ 
+   <!-- Custom CSS for Select2 -->
+   <style>
+	.select2-container .select2-selection--single {
+		/* Selection box itself */
+		height: 100% !important;
+		width: 100% !important;
+	}
 
+  </style>
 @endpush
 @section('content')
 
@@ -183,11 +194,11 @@
 </div> --}}
 <div class="container mx-auto">
     <div class="mx-2">
-        <table id="dataTable" class="dark:text-white" width="70%"
-            data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
-            <tbody>
-            </tbody>
-        </table>
+        <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
+        data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
+        <tbody>
+        </tbody>
+    </table>
     </div>
 </div>
 <!-- Add Data Modal -->
@@ -218,9 +229,9 @@
                     <div class="grid grid-cols-6 gap-6">
                         @foreach ($form as $key=> $item)
                         @if($item['type'] === 'select')
-                        <div class="{{ $item['class'] ?? '' }}">
+                        <div class="col-span-6 {{'lg:'.$item['class'] ?? 'col-span-6'}}">
                             <label for="{{ $item['name'] }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
-                            <select  name="{{ $item['name'] }}" id="{{ $item['name'] }}" class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-placeholder="Select {{ $item['label'] }}">
+                            <select   name="{{ $item['name'] }}" id="{{ $item['name'] }}" {{isset($item['mode']) && $item['mode'] == 'select-mulitple' ? 'multiple="multiple"' : ''}} class="{{isset($item['mode']) ? $item['mode'] : ''}} bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" data-placeholder="Select {{ $item['label'] }}">
                                 <option></option>
                               
                                     @foreach ($item['data'] as $option)
@@ -237,7 +248,7 @@
                             </select>
                         </div>
                         @elseif($item['type'] === 'textarea')
-                        <div  class=" {{$item['class'] ?? ''}} ">
+                        <div  class="col-span-6 {{'lg:'.$item['class'] ?? 'col-span-6'}}">
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
                             <textarea rows="4" name="{{$item['name']}}" id="{{$item['name']}}"
@@ -280,7 +291,7 @@
                               @endif
                         </div>
                         @else
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
+                        <div class="col-span-6 {{'lg:'.$item['class'] ?? 'col-span-6'}}">
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
                             <input type="{{$item['type'] ?? 'text'}}" name="{{$item['name']}}" id="{{$item['name']}}"
@@ -320,11 +331,18 @@
 <script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
 {{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
 <script src="{{asset('plugins/fileUpload/fileUpload.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<!-- Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
 <script>
+
     $(document).ready(function () {
         $('select.select-single').select2({
-        // placeholder:$( this ).data( 'placeholder' )
+        placeholder:$( this ).data( 'placeholder' ),
+        // theme: 'tailwind'
+    });
+        $('select.select-mulitple').select2({
+        placeholder:$( this ).data( 'placeholder' ),
+        // theme: 'tailwind'
     });
         $(function(){ 
   $("#fileUpload").fileUpload();
@@ -344,10 +362,16 @@
     All checkbox select 
     --------------------------------------------
     --------------------------------------------*/    
-    $(document).on('click', '#selectAll', function (e) {
-        var table = $(e.target).closest('table');
-        $('td input:checkbox.select', table).prop('checked', this.checked);
-    })
+//     $(document).on('click', '#selectAll', function (e) {
+//     console.log('Select All clicked');
+//     var table = $(e.target).closest('table');
+//     console.log('Table found:', table.length > 0);
+//     var checkboxes = $('td input:checkbox.select', table);
+//     console.log('Checkboxes found:', checkboxes.length); // Check if the checkboxes are found
+//     checkboxes.prop('checked', this.checked);
+// });
+
+
     /*------------------------------------------
     --------------------------------------------
     Preview image on file selection for each file input
@@ -446,18 +470,22 @@ $(document).on('click', '.editData', function () {
         const form = JSON.parse(document.getElementById('dataForm').dataset.form);
 
 form.forEach(element => {
-    if (['image', 'thumbnail', 'avatar'].includes(element.name)) {
-        // Update image preview
-        var $preview = $('#' + element.name).closest('.relative').find('.preview');
-        $preview.attr('src', `{{ asset('${data.data[element.name]}') }}`);
-    } else if (['category_id', 'brand_id'].includes(element.name)) {
-        // Update dropdown selection for category_id or brand_id
-        $(`#${element.name} option[value='${data.data[element.name]}']`).prop('selected', true);
+    const elementType = element.type;  // Use 'type' instead of 'name'
+    const elementId = element.name;    // Still use 'name' to target the element by ID
+
+    if (['file'].includes(elementType)) {
+        // Update image preview for file inputs
+        var $preview = $('#' + elementId).closest('.relative').find('.preview');
+        $preview.attr('src', `{{ asset('${data.data[elementId]}') }}`);
+    } else if (['select'].includes(elementType)) {
+        // Update dropdown selection for select inputs
+        $(`#${elementId} option[value='${data.data[elementId]}']`).prop('selected', true);
     } else {
-        // Update other form input values
-        $('#' + element.name).val(data.data[element.name]);
+        // Update other form input values for text, number, etc.
+        $('#' + elementId).val(data.data[elementId]);
     }
 });
+
 
 
     });
@@ -598,6 +626,14 @@ form.forEach(element => {
                             });
     
                 });
+                $(document).on('click', '#selectAll', function (e) {
+        let selectTable = $(e.target).closest('table');
+      let checkboxes =  $('#select', selectTable);
+      console.log(checkboxes.length);
+      
+      checkboxes.prop('checked', this.checked);
+    })
         });
 </script>
+
 @endpush

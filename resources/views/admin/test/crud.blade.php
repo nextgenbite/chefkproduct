@@ -216,24 +216,27 @@
                 <div class="p-6 space-y-6">
                     <div class="grid grid-cols-6 gap-6">
                         @foreach ($form as $item)
+                        @php
+                            $class = array_key_exists('class', $item) ? $item['class'] : 'col-span-6';
+                        @endphp
                         @if($item['type'] === 'select')
-                        <div class=" {{$item['class'] ?? ''}} ">
+                        <div class="col-span-6 {{'lg:'. $class}}">
 
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
 
-                            <select name="{{$item['name']}}" id="{{$item['name']}} select-single"
+                            <select name="{{$item['name']}}" id="{{ $item['name'] }}"
                                 class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option selected disabled>Select {{$item['label']}}</option>
-                                @forelse ($item['data'] as $item)
-                                <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                @forelse ($item['data'] as $option)
+                                <option value="{{ $option->id }}">{{ ucwords($option[$item['key']]) }}</option>
                                 @empty
                                 @endforelse
                             </select>
                         </div>
                         @elseif($item['type'] === 'textarea')
-                        <div class="col-span-6">
+                        <div class="col-span-6 {{'lg:'. $class}}">
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
                             <textarea rows="4" name="{{$item['name']}}" id="{{$item['name']}}"
@@ -242,7 +245,7 @@
                         </div>
                         @elseif($item['type'] === 'image')
 
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
+                        <div class="col-span-6 {{'lg:'. $class}}">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="{{$item['name']}}">{{$item['label']}}</label>
                             <div class="relative">
@@ -257,7 +260,7 @@
                             @endif
                         </div>
                         @elseif($item['type'] === 'multi-image')
-                        <div class="col-span-6">
+                        <div class="col-span-6 {{'lg:'. $class}}">
                             <label for="{{$item['name']}}"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
                             <div id="fileUpload" class="file-container ">
@@ -276,7 +279,7 @@
                               @endif
                         </div>
                         @else
-                        <div class="{{$item['class'] ?? 'col-span-6'}}">
+                        <div class="col-span-6 {{'lg:'. $class}}">
                             <label for="{{$item['name']}}"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
                             <input type="{{$item['type'] ?? 'text'}}" name="{{$item['name']}}" id="{{$item['name']}}"
@@ -418,7 +421,7 @@ Click to Edit Button
 --------------------------------------------*/
 $(document).on('click', '.editData', function () {
     var data_id = $(this).data('id');
-    let form = $('#dataForm').data('form');
+    // let form = $('#dataForm').data('form');
     
     $.get("{{ url('/admin/'.$title[1]) }}/" + data_id, function (data) {
         $('#modelHeading').html("Edit Data");
@@ -430,17 +433,31 @@ $(document).on('click', '.editData', function () {
         
         $('#dataForm').data('id', data.data.id);
         
-        // Iterate over form elements and update their values
-        form.forEach(element => {
-            if (['image', 'thumbnail', 'avatar'].includes(element.name)) {
-                // Update image preview
-                var $preview = $('#' + element.name).closest('.relative').find('.preview');
-                $preview.attr('src', `{{ asset('${data.data[element.name]}') }}`);
-            } else {
-                // Update other form input values
-                $('#' + element.name).val(data.data[element.name]);
-            }
-        });
+        const form = JSON.parse(document.getElementById('dataForm').dataset.form);
+
+form.forEach(element => {
+    const elementType = element.type;  // Use 'type' to determine the type of form element
+    const elementId = element.name;    // The ID of the form element is still based on 'name'
+    const elementValue = data.data[elementId]; // The value we need to set
+    if (elementValue) {
+    if (['image', 'file'].includes(elementType)) {
+        // Handle file input by updating the image preview
+        var $preview = $('#' + elementId).closest('.relative').find('.preview');
+        $preview.attr('src', `{{ asset('${elementValue}') }}`);
+    } else if (elementType === 'select') {
+        // Handle select input by setting the selected option
+            console.log(elementValue);
+            
+            $(`#${elementId}`).val(elementValue).change();
+       
+    } else {
+        // Handle other input types like text, number, etc.
+        $('#' + elementId).val(elementValue);
+    }
+    }
+});
+
+
     });
 });
 
