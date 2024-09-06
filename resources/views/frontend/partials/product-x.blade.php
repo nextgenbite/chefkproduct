@@ -39,8 +39,10 @@
 
 <!-- ---- Start Single Product  ----- -->
 <div
-    class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hidden transition-all ease-in-out duration-300">
-    <a href="{{Route('product.view',$product->slug)}}" class="relative ">
+class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hidden transition-all ease-in-out duration-300">
+<a href="{{Route('product.view',$product->slug)}}">
+
+    <div class="relative ">
         <span v-if="product.discount" class="badge-custom">OFF<span class="box ml-1 mr-0">&nbsp;{{
                 discountPercentage($product->price, $product->discount) }}%</span></span>
         <img src="{{asset('/images/loader.svg')}}" width="40"
@@ -59,15 +61,12 @@
 
             </button>
         </div>
-    </a>
+    </div>
 
     <div class="pt-4 pb-3 px-4 ">
-        <a href="{{Route('product.view',$product->slug)}}">
             <h4
                 class="capitalize font-medium text-xs lg:text-base  mb-2 text-gray-600 hover:text-primary-light transition line-clamp-2  group-hover:line-clamp-3 ease-in-out duration-500">
                 {{ $product->title }} </h4>
-        </a>
-
         <div class="flex items-baseline mb-1 space-x-2 ">
             <p class="text-sm lg:text-xl text-red-600 font-roboto font-semibold ">
                 {{ $product->discount ? formatCurrency($product->discount) : formatCurrency($product->price) }}
@@ -77,17 +76,21 @@
             @endif
             </p>
         </div>
-        <!-- <div class="flex items-center ">
-              <div class="flex gap-1 text-sm text-yellow-400 ">
-               <span><i class="fas fa-star"></i> </span>
-               <span><i class="fas fa-star"></i> </span>
-               <span><i class="fas fa-star"></i> </span>
-               <span><i class="fas fa-star"></i> </span>
-               <span><i class="fas fa-star"></i> </span>
+        <div class="flex items-center ">
+              <div class="flex gap-1 text-sm text-yellow-300 ">
+                @for ($i = 1; $i <= 5; $i++)
+                <span>
+                    @if ($i <= round($product->averageReview()))
+                        <i class="fas fa-star"></i> <!-- Filled star -->
+                    @else
+                        <i class="far fa-star"></i> <!-- Empty star -->
+                    @endif
+                </span>
+            @endfor
               </div>
-              <div class="text-xs text-gray-500 ml-3 ">(120)</div>
+              <div class="text-xs text-gray-500 ml-3 ">({{$product->reviews()->count()}})</div>
 
-         </div> -->
+         </div> 
     </div>
 
     {{-- <button @click="addToCart(product)"
@@ -97,6 +100,6 @@
     {{--
     <Buttons @click="addToCart(product)" productCard /> --}}
 
+</a>
 </div>
-
 <!-- ---- End Single Product  ----- -->

@@ -1,7 +1,7 @@
     <!-- ---- Start Header ----- -->
 
     <header id="header"
-        class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light bg-opacity-10 lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
+        class="py-1  md:pt-2 shadow-sm space-x-2  bg-primary-light bg-opacity-20 lg:bg-white lg:dark:bg-gray-800  w-full top-0 right-0 left-0 z-50 container flex items-center justify-between">
 
         <!-- logo  -->
         <a title="logo" href="{{ URL::to('/') }}" class="">

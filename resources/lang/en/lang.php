@@ -15,6 +15,7 @@ return [
     'order_amount' => 'Order amount',
     'ship_to' => 'Ship To',
     'order_method' => 'Order Method',
+    'address' => 'Address',
     'email' => 'Email',
     'title' => 'Title',
     'delivery_fee' => 'Delivery Fee',

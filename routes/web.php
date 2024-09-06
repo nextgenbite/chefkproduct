@@ -14,9 +14,7 @@ use App\Http\Controllers\ShippingCostController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\User\UserController as UserUserController;
 use App\Http\Controllers\UserController;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Artisan;
@@ -31,7 +29,8 @@ use Illuminate\Support\Facades\Artisan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/bkash/payment/create', [App\Http\Controllers\BkashController::class, 'createPayment']);
+Route::post('/bkash/payment/execute', [App\Http\Controllers\BkashController::class,'executePayment']);
 // Tasks
 Route::prefix('tasks')->group(function() {
 

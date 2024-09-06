@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\SiteSetting;
 use App\Models\User;
+use App\Services\BkashService;
 use App\Traits\BaseTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -114,79 +115,153 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            "name" => ["required", "min:3"],
-            "phone" => ["required", "min:11"],
-            "address" => ["required"],
+{
+    // Validate the request
+    $this->validate($request, [
+        "name" => ["required", "min:3"],
+        "phone" => ["required", "min:11"],
+        "address" => ["required"],
+    ]);
+
+    $cart = session('cart');
+    if (isset($cart['data']) && is_array($cart['data'])) {
+
+        // Find or create the user
+        $user = User::firstOrNew(['phone' => $request->phone], [
+            "name" => $request->name,
+            "phone" => $request->phone,
+            "address" => $request->address,
+            "password" => Hash::make($request->phone),
         ]);
-        $cart = session('cart');
-        if (isset($cart['data']) && is_array($cart['data'])) {
 
-            $user = User::firstOrNew(['phone' => $request->phone], [
-                "name" => $request->name,
-                "phone" => $request->phone,
-                "address" => $request->address,
-                "password" => Hash::make($request->phone),
-            ]);
-
-            if (!$user->exists) {
-                $user->save();
-            }
-
-            $data = Order::create([
-                "user_id" => $user ?? '',
-                "name" => $request->name,
-                'code' => date('Ymd-His') . rand(10, 99),
-                "phone" => $request->phone,
-                "address" => $request->address,
-                "total" => $cart['total_price'],
-                "shipping_cost" => $cart['shipping_cost'],
-                "order_date" => date("d/m/Y"),
-                "order_month" => date("m"),
-                "order_year" => date("Y"),
-                "order_year" => date("Y"),
-                'payment_method' => $request?->payment_method
-            ]);
-
-            foreach ($cart['data'] as $item) {
-                $product = Product::findOrFail($item['product_id']);
-                $product->decrement('stock', $item['quantity']);
-
-                // $price = $item['price'] - ($item['price'] / 100) * $item['discount'];
-
-                OrderItem::create([
-                    "order_id" => $data->id,
-                    "product_id" => $item['product_id'],
-                    "qty" => $item['quantity'],
-                    "total" => $item['price'] * $item['quantity'],
-                    // "total" => $price * $item['quantity'],
-                ]);
-            }
-            // return $request->payment_method;
-
-
-            if ($request->payment_method == 'stripe') {
-                // $html = View::make('frontend.partials.modal', compact('data'))->render();
-
-                // return response()->json(['html' => $html]);
-
-                return (new StripePaymentController())->stripe($data);
-                //    if ( $stripeData) 
-                //    {
-                //     # code...
-                //     return view('frontend.order_success', compact('data'));
-                //    }
-            } elseif ($request->payment_method == 'paypal') {
-                return 'paypal';
-            }
-            // session('cart')->delete();
-            return view('frontend.order_success', compact('data'));
-            return response()->json(['message' => 'Order Place Successfully', 'data' => $data]);
+        if (!$user->exists) {
+            $user->save();
         }
 
-        return response()->json(['message' => 'Product not found in the cart'], 404);
+        // Create the order
+        $order = Order::create([
+            "user_id" => $user->id ?? '',
+            "name" => $request->name,
+            'code' => date('Ymd-His') . rand(10, 99),
+            "phone" => $request->phone,
+            "address" => $request->address,
+            "total" => $cart['total_price'],
+            "shipping_cost" => $cart['shipping_cost'],
+            "order_date" => date("d/m/Y"),
+            "order_month" => date("m"),
+            "order_year" => date("Y"),
+            'payment_method' => $request->payment_method
+        ]);
+
+        // Add order items and decrement product stock
+        foreach ($cart['data'] as $item) {
+            $product = Product::findOrFail($item['product_id']);
+            $product->decrement('stock', $item['quantity']);
+
+            OrderItem::create([
+                "order_id" => $order->id,
+                "product_id" => $item['product_id'],
+                "qty" => $item['quantity'],
+                "total" => $item['price'] * $item['quantity'],
+            ]);
+        }
+
+        // Handle payment based on the selected method
+        switch ($request->payment_method) {
+            case 'stripe':
+                return (new StripePaymentController())->stripe($order);
+
+            case 'paypal':
+                return (new PayPalPaymentController())->payWithPayPal($order);
+
+            case 'bkash':
+                // return (new BkashController())->createPayment($order);
+                return (new BkashController(new BkashService))->createPayment($order);
+
+            default:
+                return response()->json(['message' => 'Invalid payment method'], 400);
+        }
     }
+
+    return response()->json(['message' => 'Product not found in the cart'], 404);
+}
+
+    // public function store(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         "name" => ["required", "min:3"],
+    //         "phone" => ["required", "min:11"],
+    //         "address" => ["required"],
+    //     ]);
+    //     $cart = session('cart');
+    //     if (isset($cart['data']) && is_array($cart['data'])) {
+
+    //         $user = User::firstOrNew(['phone' => $request->phone], [
+    //             "name" => $request->name,
+    //             "phone" => $request->phone,
+    //             "address" => $request->address,
+    //             "password" => Hash::make($request->phone),
+    //         ]);
+
+    //         if (!$user->exists) {
+    //             $user->save();
+    //         }
+
+    //         $data = Order::create([
+    //             "user_id" => $user->id ?? '',
+    //             "name" => $request->name,
+    //             'code' => date('Ymd-His') . rand(10, 99),
+    //             "phone" => $request->phone,
+    //             "address" => $request->address,
+    //             "total" => $cart['total_price'],
+    //             "shipping_cost" => $cart['shipping_cost'],
+    //             "order_date" => date("d/m/Y"),
+    //             "order_month" => date("m"),
+    //             "order_year" => date("Y"),
+    //             "order_year" => date("Y"),
+    //             'payment_method' => $request?->payment_method
+    //         ]);
+
+    //         foreach ($cart['data'] as $item) {
+    //             $product = Product::findOrFail($item['product_id']);
+    //             $product->decrement('stock', $item['quantity']);
+
+    //             // $price = $item['price'] - ($item['price'] / 100) * $item['discount'];
+
+    //             OrderItem::create([
+    //                 "order_id" => $data->id,
+    //                 "product_id" => $item['product_id'],
+    //                 "qty" => $item['quantity'],
+    //                 "total" => $item['price'] * $item['quantity'],
+    //                 // "total" => $price * $item['quantity'],
+    //             ]);
+    //         }
+    //         // return $request->payment_method;
+
+
+    //         if ($request->payment_method == 'stripe') {
+    //             // $html = View::make('frontend.partials.modal', compact('data'))->render();
+
+    //             // return response()->json(['html' => $html]);
+
+    //             return (new StripePaymentController())->stripe($data);
+    //             //    if ( $stripeData) 
+    //             //    {
+    //             //     # code...
+    //             //     return view('frontend.order_success', compact('data'));
+    //             //    }
+    //         } elseif ($request->payment_method == 'paypal') {
+    //             return 'paypal';
+    //         }elseif ($request->payment_method == 'bkash') {
+    //             return (new BkashController())->createPayment($data);
+    //         }
+    //         // session('cart')->delete();
+    //         return view('frontend.order_success', compact('data'));
+    //         return response()->json(['message' => 'Order Place Successfully', 'data' => $data]);
+    //     }
+
+    //     return response()->json(['message' => 'Product not found in the cart'], 404);
+    // }
 
     /**
      * Display the specified resource.
@@ -282,7 +357,7 @@ return view('admin.orders.show', ['order'=> $data]);
                 return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">COD</span>';
                 break;
             default:
-            return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+            return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 uppercase">'.$row->payment_method.'</span>';
 
         }
     }

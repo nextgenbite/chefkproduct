@@ -50,8 +50,18 @@ class PublicController extends Controller
                 ->orderBy('id', 'DESC')
                 ->limit(10)
                 ->get();
+                $shareButtons = \Share::page(
+                    url('/'.$slug),
+                    $product->title,['class' => 'text-primary-light hover:animate-pulse hover:text-primary-800 h-8 w-8 mx-2 rounded-full border border-gray-300 flex items-center justify-center', 'rel' => 'nofollow noopener noreferrer']
+                )
+                ->facebook()
+                ->twitter()
+                ->linkedin()
+                ->telegram()
+                ->whatsapp()        
+                ->reddit();
 
-            return view('frontend.view', compact('product', 'relatedProduct'));
+            return view('frontend.view', compact('product', 'relatedProduct', 'shareButtons'));
         } catch (\Exception $exception) {
             abort(404, 'Product Not found');
         }

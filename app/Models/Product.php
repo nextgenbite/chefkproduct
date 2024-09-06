@@ -26,6 +26,18 @@ class Product extends Model
     {
         return $this->hasMany(ProductImages::class);
     }
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+    public function averageReview()
+    {
+        return $this->reviews()->avg('star_rating');
+    }
     public function latestImages()
     {
        return $this->hasOne(ProductImages::class)->latestOfMany();

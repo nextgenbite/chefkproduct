@@ -2963,6 +2963,8 @@ window.prototype = undefined;
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
+// import './flowbiteTable';
+
 
 // Import SweetAlert
 

@@ -1,5 +1,5 @@
 <!-- ---- Start NavBar ----- -->
-<nav class="bg-primary-light bg-opacity-10 hidden lg:block w-full top-0 right-0 left-0 z-40" id="navbar">
+<nav class="bg-primary-light bg-opacity-20 hidden lg:block w-full top-0 right-0 left-0 z-40" id="navbar">
     <div class="container">
         <div class="flex">
             <!-- ---- All Category ----- -->
@@ -50,16 +50,16 @@
                     <a aria-current="page" href="/"
                         class="{{ Request::is('/') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }} h-10 py-2 border-b-2 text-base font-normal ">
                         Home </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
+                    <div class="w-[0px] h-4 border border-primary-light "></div>
                     <a href="/shop"
                         class="h-10 py-2 {{ Request::is('shop') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }} border-b-2  text-base font-normal ">
                         Shop </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
+                    <div class="w-[0px] h-4 border border-primary-light"></div>
                         <a href="{{ url('page/about') }}"
                             class="h-10 py-2 border-b-2  text-base font-normal {{ Request::is('page/about') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }}">
                             About
                         </a>
-                    <div class="w-[0px] h-4 border border-slate-200"></div>
+                    <div class="w-[0px] h-4 border border-primary-light"></div>
                     <a href="/contact"
                         class="h-10 py-2 border-b-2  text-base font-normal {{ Request::is('contact') ? 'border-primary-light text-primary-light' : 'text-slate-600 border-transparent hover:border-primary-light hover:text-primary-light' }}">
                         Contact
@@ -133,7 +133,7 @@
             @foreach (session('cart')['data'] as $item)
             <!-- ---- Start single category ----- -->
             <tr title="{{ $item['title'] }}"
-                class="p-2 flex items-center justify-between {{$loop->last ? '' : border-b}}  border-gray-400 hover:bg-gray-200 transition">
+                class="p-2 flex items-center justify-between {{$loop->last ? '' : 'border-b'}}  border-gray-400 hover:bg-gray-200 transition">
                 <td>
 
                     <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
@@ -159,7 +159,7 @@
         <div class="grid grid-cols-1  mt-3 pt-4">
 
             <a href="{{ Route('checkout') }}"
-                class="inline-flex items-center mx-auto px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout
+                class="inline-flex items-center mx-auto px-4 py-2 text-sm font-medium text-center text-white bg-primary-light rounded-lg hover:bg-primary-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout
                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

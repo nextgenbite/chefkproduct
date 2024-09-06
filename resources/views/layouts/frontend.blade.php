@@ -63,12 +63,12 @@
     <div
         class="fixed w-full border-t border-gray-200 shadow-sm bg-white py-3 bottom-0 left-0 flex justify-around items-center px-6 lg:hidden z-40  ">
 
-        <NuxtLink to="/" class="block text-center text-gray-700 hover:text-primary transition relative ">
+        <a href="/" class="block text-center text-gray-700 hover:text-primary transition relative ">
             <div class="text-2xl">
                 <i class="fas fa-home"></i>
             </div>
             <div class="text-xs leading-3">Home</div>
-        </NuxtLink>
+        </a>
 
         <button data-drawer-target="drawer-sidebar" data-drawer-show="drawer-sidebar" aria-controls="drawer-sidebar"
             class="flex flex-col items-center justify-center text-gray-700 hover:text-primary transition relative">
@@ -183,7 +183,7 @@
 
     <!-- drawer/sidebar component -->
 
- <div id="drawer-sidebar" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+ <div id="drawer-sidebar" class="fixed top-0 left-0 z-50 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
     <h5 id="drawer-label" class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
         height="24" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -199,7 +199,7 @@
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul class="flex  -mb-px text-sm font-medium text-center" id="default-styled-tab"
             data-tabs-toggle="#default-styled-tab-content"
-            data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+            data-tabs-active-classes="text-primary-light hover:text-primary-light dark:text-purple-500 dark:hover:text-purple-500 border-primary-light dark:border-purple-500"
             data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
             role="tablist">
             <li class="w-full" role="presentation">
@@ -226,15 +226,19 @@
 
             <div class="text-sm font-medium text-gray-900  dark:text-white">
                 <a href="{{ route('frontend.home') }}" aria-current="true"
-                    class="block w-full px-4 py-2 text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">
+                    class="block w-full px-4 py-2 {{ Request::is('/') ? 'text-white bg-primary-light rounded-t-lg dark:bg-primary-800' : 'hover:bg-gray-100 hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white' }}  border-b border-gray-200 cursor-pointer  dark:border-gray-600">
                     Home
                 </a>
-                <a href="{{ route('frontend.home') }}"
-                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                <a href="{{ url('/shop') }}" aria-current="true"
+                    class="block w-full px-4 py-2 {{ Request::is('shop') ? 'text-white bg-primary-light rounded-lg dark:bg-primary-800' : 'hover:bg-gray-100 hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white' }}  border-b border-gray-200 cursor-pointer  dark:border-gray-600">
                     Shop
                 </a>
-                <a href="#"
-                    class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                <a href="{{ url('/page/about') }}" aria-current="true"
+                    class="block w-full px-4 py-2 {{ Request::is('page/about') ? 'text-white bg-primary-light rounded-lg dark:bg-primary-800' : 'hover:bg-gray-100 hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white' }}  border-b border-gray-200 cursor-pointer  dark:border-gray-600">
+                    About
+                </a>
+                <a href="{{ url('/contact') }}" aria-current="true"
+                    class="block w-full px-4 py-2 {{ Request::is('contact') ? 'text-white bg-primary-light rounded-b-lg dark:bg-primary-800' : 'hover:bg-gray-100 hover:text-primary-light focus:outline-none focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white' }}  border-b border-gray-200 cursor-pointer  dark:border-gray-600">
                     Contact
                 </a>
 
@@ -296,7 +300,7 @@
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul class="flex  -mb-px text-sm font-medium text-center" id="default-styled-tab"
                 data-tabs-toggle="#default-styled-tab-content"
-                data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+                data-tabs-active-classes="text-primary-light hover:text-primary-light dark:text-purple-500 dark:hover:text-purple-500 border-primary-light dark:border-purple-500"
                 data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
                 role="tablist">
                 <li class="w-full" role="presentation">

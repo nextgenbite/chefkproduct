@@ -244,7 +244,7 @@
         <td style="width: 50%;">
             <div style="max-width: 300px;">
                 <h5 class="mb-5">{{ $order->name }}</h5>
-                <p>{{  $order->address }}</p>
+                <p>{{__('lang.address')}}:{{  $order->address }}</p>
 
                 @if($order->user)
                     <p>{{__('lang.email')}}: {{ $order->user->email }}</p>
@@ -254,7 +254,7 @@
                 <p>{{__('lang.phone')}}: {{ $order->phone }}</p>
             </div>
         </td>
-        <td style="width: 50%;">Cash On Delivery</td>
+        <td style="width: 50%;text-transform: capitalize;">{{ $order->payment_method == 'cash_on_delivary' ? 'Cash On Delivery' : $order->payment_method }}</td>
     </tr>
 </table><!--table-->
 

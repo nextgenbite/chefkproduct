@@ -27,7 +27,7 @@
             // Create a table containing file information
             function createTable() {
                 table = $(`
-                    <table>
+                    <table class="multipleImages">
                         <thead>
                             <tr>
                                 <th>#</th>

@@ -469,20 +469,69 @@ $(document).on('click', '.editData', function () {
         
         const form = JSON.parse(document.getElementById('dataForm').dataset.form);
 
-form.forEach(element => {
-    const elementType = element.type;  // Use 'type' instead of 'name'
-    const elementId = element.name;    // Still use 'name' to target the element by ID
-
-    if (['file'].includes(elementType)) {
-        // Update image preview for file inputs
+        form.forEach(element => {
+    const elementType = element.type;  // Use 'type' to determine the type of form element
+    const elementId = element.name;    // The ID of the form element is still based on 'name'
+    const elementValue = data.data[elementId]; // The value we need to set
+    if (elementValue) {
+    if (['image', 'file'].includes(elementType)) {
+        // Handle file input by updating the image preview
         var $preview = $('#' + elementId).closest('.relative').find('.preview');
-        $preview.attr('src', `{{ asset('${data.data[elementId]}') }}`);
-    } else if (['select'].includes(elementType)) {
-        // Update dropdown selection for select inputs
-        $(`#${elementId} option[value='${data.data[elementId]}']`).prop('selected', true);
+        $preview.attr('src', `{{ asset('${elementValue}') }}`);
+    } else if (elementType === "multi-image") {
+    // Assuming elementValue is an array of objects, each containing a 'path' key
+    if (Array.isArray(elementValue)) {
+        let tableBody = $(`#fileUpload-1`).closest('#fileUpload').find('tbody');
+        if (tableBody) {
+            console.log(tableBody);
+            
+        }
+        
+        tableBody.empty();
+
+        elementValue.forEach((file, index) => {
+            var fileName = `Image ${index + 1}`;
+            var fileType = 'image/*';
+            var filePath = file.path ? `{{ asset('${file.path}') }}` : '';
+            var preview = `<img src="${filePath}" alt="${fileName}" height="30" class=" h-12">`;
+
+            var row = $(`
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${fileName}</td>
+                    <td>${preview}</td>
+                    <td>N/A</td>
+                    <td>${fileType}</td>
+                    <td><button type="button" class="deleteBtn"><i class="material-icons-outlined">delete</i></button></td>
+                </tr>
+            `);
+
+            row.find(".deleteBtn").click(function () {
+                $(this).closest("tr").remove();
+                if (tableBody.find("tr").length === 0) {
+                    tableBody.append('<tr><td colspan="6" class="no-file">No files selected!</td></tr>');
+                }
+            });
+
+            tableBody.append(row);
+        });
+
+        if (elementValue.length === 0) {
+            tableBody.append('<tr><td colspan="6" class="no-file">No files selected!</td></tr>');
+        }
+    }
+
+      
+       
+    }  else if (elementType === 'select') {
+        // Handle select input by setting the selected option
+                
+            $(`#${elementId}`).val(elementValue).change();
+       
     } else {
-        // Update other form input values for text, number, etc.
-        $('#' + elementId).val(data.data[elementId]);
+        // Handle other input types like text, number, etc.
+        $('#' + elementId).val(elementValue);
+    }
     }
 });
 

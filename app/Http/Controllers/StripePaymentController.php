@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
+
 use Stripe;
 
 
@@ -61,7 +62,7 @@ class StripePaymentController extends Controller
     
       $data=  Stripe\Charge::create ([
     
-                "amount" =>  round($order->total),
+                "amount" =>  round($order->total) * 100,
     
                 "currency" => "usd",
     
