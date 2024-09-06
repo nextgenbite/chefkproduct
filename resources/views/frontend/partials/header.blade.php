@@ -16,7 +16,7 @@
                        <i class="fas fa-search"></i>
                   </span> -->
             <input type="search"
-            autocomplete="disable"
+            autocomplete="off"
             id="nav-search"
                 class=" border w-full md:max-lg:border-r-0 md:border-primary-light p-2 md:p-2 md:rounded-r-none rounded-md text-xs md:text-base  focus:ring-primary-light "
                 placeholder="what are you looking for..." />

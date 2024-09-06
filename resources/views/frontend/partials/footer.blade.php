@@ -40,7 +40,7 @@
                          <div class="mt-4 space-y-2">
                               <div class="block">
                                    <p class="text-xs text-gray-400 hover:text-gray-900 block font-semibold">Phone</p>
-                                   <a href="tel:{{isset($settings['phone']) ? $settings['phone'] : ''}}"
+                                   <a title="phone" href="tel:{{isset($settings['phone']) ? $settings['phone'] : ''}}"
                                         class="text-base text-gray-500 block">{{isset($settings['phone']) ?
                                         $settings['phone'] : ''}}</p>
                               </div>
