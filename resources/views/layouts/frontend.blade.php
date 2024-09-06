@@ -13,6 +13,10 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <style>
+    html,
+:host {
+    -webkit-text-size-adjust: 100%;
+}
         :root {
           --primary-light: {{ hexToRgb($settings['color'] ?? '30 66 159') }} ;
           /* --primary-light: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}}; */
@@ -20,6 +24,7 @@
           --primary-700: {{isset($settings['color']) ? $settings['color'] : '#1E429F'}};
           --primary-800: {{isset($settings['hover_color']) ? $settings['hover_color'] : '#1E429F'}};
      }
+     
      body, html {
     height: 100%;
     margin: 0;
@@ -115,71 +120,6 @@
 
     <!-- ---- Mobile Side Bar ----- -->
 
-    <!-- drawer cart component -->
-    <div id="drawer-right-cart"
-        class="fixed top-0 right-0 z-30 h-screen p-4 overflow-y-auto transition-transform translate-x-full duration-300 bg-white w-80 dark:bg-gray-800"
-        tabindex="-1" aria-labelledby="drawer-right-label">
-        <h5 
-            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
-
-            <svg class="w-6 h-6 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
-            </svg>
-
-            Cart
-        </h5>
-        <button type="button" data-drawer-hide="drawer-right-cart" aria-controls="drawer-right-cart"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-            <span class="sr-only">Close menu</span>
-        </button>
-
-        <hr>
-
-        <div
-            class="w-full bg-white shadow-md py-3   transition duration-300 z-20 divide-y divide-gray-300 divide-dashed  ">
-            @if (session()->has('cart') && isset(session('cart')['data']))
-
-                @foreach (session('cart')['data'] as $item)
-                    <!-- ---- Start single category ----- -->
-                    <a title="{{ $item['title'] }}" href="#"
-                        class="p-3 flex items-center justify-between hover:bg-gray-200 transition">
-                        <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
-                            class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
-                        <div class="px-2 w-40">
-                            <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
-                            <div class="text-gray-700 text-xs font-semibold">
-                                {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
-                            </div>
-                        </div>
-                        <button class="text-red-700 text-sm font-semibold"> <i
-                                class="fas fa-trash text-red-700"></i></button>
-                    </a>
-
-                    <!-- ---- single category End ----- -->
-                @endforeach
-            @else
-            @endif
-            <div class="grid grid-cols-1  mt-3 pt-4">
-
-                <a href="{{ Route('checkout') }}"
-                    class="inline-flex items-center mx-auto px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-primary-LIGHT dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Checkout
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg></a>
-            </div>
-        </div>
-
-
-    </div>
 
     <!-- drawer/sidebar component -->
 
