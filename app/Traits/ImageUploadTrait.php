@@ -40,10 +40,11 @@ trait ImageUploadTrait
     }
 
 
-    private function uploadImage($image, $path, $width = 300, $height = 300, $quality = 80)
+    private function uploadImage($image, $path, $width = 300, $height = 300, $quality = 80, $ext = 'webp')
     {
         if ($image) {
-            $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
+            $imageName = Str::random(10) . '.' . $ext;
+            // $imageName = Str::random(10) . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path($path);
 
             // Make the directory if it doesn't exist

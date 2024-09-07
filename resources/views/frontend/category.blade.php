@@ -9,7 +9,7 @@
                          {{$data->title}} 
                          <hr class="w-1/3 h-0.5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
                     </h2>
-                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+                    <div class="grid grid-cols-2 lg:grid-cols-5  gap-1 lg:gap-3">
                          @forelse ($data->products as $product)
 
                                    @include('frontend.partials.product-x', ['product' => $product])

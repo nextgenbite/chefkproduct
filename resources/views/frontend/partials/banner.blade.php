@@ -68,7 +68,7 @@
             <div class="swiper-button-prev"></div>
         </div>
     </div>
-    <div class="col-span-4 lg:col-span-1 flex flex-col sm:flex-row lg:flex-col gap-4 lg:gap-3">
+    <div class="col-span-4 lg:col-span-1 flex  sm:flex-row lg:flex-col gap-2 lg:gap-3">
         <div class="flex-1">
             @if ($rightTopBanner && $rightTopBanner->count() > 0)
             <a href="/categories/{{ $rightTopBanner->category_id }}" class="block overflow-hidden">

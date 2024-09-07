@@ -46,12 +46,79 @@
             display: inline-block;
             margin: 1rem 0;
         }          
-    
+       /* For checked stars */
+       input:checked + svg {
+      color: #f59e0b; /* yellow-400 */
+    }
     </style>
 @endpush
 @section('content')
 <div class="container">
-
+  <div class="rating flex space-x-2">
+    <label>
+      <input type="radio" name="rating" value="1" class="hidden" />
+      <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    </label>
+    <label>
+      <input type="radio" name="rating" value="2" class="hidden" />
+      <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    </label>
+    <label>
+      <input type="radio" name="rating" value="3" class="hidden" />
+      <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    </label>
+    <label>
+      <input type="radio" name="rating" value="4" class="hidden" />
+      <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    </label>
+    <label>
+      <input type="radio" name="rating" value="5" class="hidden" />
+      <svg class="w-8 h-8 text-gray-300 hover:text-yellow-400 cursor-pointer fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+      </svg>
+    </label>
+  </div>
+  <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Choose technology:</h3>
+  <ul class="grid w-full gap-6 md:grid-cols-3">
+      <li>
+          <input type="checkbox" id="react-option" value="" class="hidden peer" required="">
+          <label for="react-option" class="cursor-pointer   hover:text-yellow-300">                           
+            
+                <svg class="h-6 w-6 text-gray-300 peer-checked:text-yellow-300 hover:text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                </svg>
+          </label>
+      </li>
+      <li>
+          <input type="checkbox" id="flowbite-option" value="" class="hidden peer">
+          <label for="flowbite-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div class="block">
+                  <svg class="mb-2 text-green-400 w-7 h-7" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M356.9 64.3H280l-56 88.6-48-88.6H0L224 448 448 64.3h-91.1zm-301.2 32h53.8L224 294.5 338.4 96.3h53.8L224 384.5 55.7 96.3z"/></svg>
+                  <div class="w-full text-lg font-semibold">Vue Js</div>
+                  <div class="w-full text-sm">Vue.js is an model–view front end JavaScript framework.</div>
+              </div>
+          </label>
+      </li>
+      <li>
+          <input type="checkbox" id="angular-option" value="" class="hidden peer">
+          <label for="angular-option" class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div class="block">
+                  <svg class="mb-2 text-red-600 w-7 h-7" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M185.7 268.1h76.2l-38.1-91.6-38.1 91.6zM223.8 32L16 106.4l31.8 275.7 176 97.9 176-97.9 31.8-275.7zM354 373.8h-48.6l-26.2-65.4H168.6l-26.2 65.4H93.7L223.8 81.5z"/></svg>
+                  <div class="w-full text-lg font-semibold">Angular</div>
+                  <div class="w-full text-sm">A TypeScript-based web application framework.</div>
+              </div>
+          </label>
+      </li>
+  </ul>
+  
     <!-- default start -->
     <div class="large-5 column">
         {{-- <div class="xzoom-container grid lg:grid-cols-2">
@@ -607,7 +674,7 @@
                     <div class="flex items-center justify-between rounded-t border-b border-gray-200 p-4 dark:border-gray-700 md:p-5">
                       <div>
                         <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Add a review for:</h3>
-                        <a href="#" class="font-medium text-primary-700 hover:underline dark:text-primary-500">Apple iMac 24" All-In-One Computer, Apple M1, 8GB RAM, 256GB SSD</a>
+                        <a href="#" class="font-medium text-primary-700 hover:underline dark:text-primary-500">{{$product->title}}</a>
                       </div>
                       <button type="button" class="absolute right-5 top-5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="review-modal">
                         <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
