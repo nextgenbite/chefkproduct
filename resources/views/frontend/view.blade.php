@@ -54,6 +54,7 @@
 @endpush
 @section('content')
 <div class="container">
+  {{-- 
   <div class="rating flex space-x-2">
     <label>
       <input type="radio" name="rating" value="1" class="hidden" />
@@ -118,7 +119,7 @@
           </label>
       </li>
   </ul>
-  
+  --}}
     <!-- default start -->
     <div class="large-5 column">
         {{-- <div class="xzoom-container grid lg:grid-cols-2">
