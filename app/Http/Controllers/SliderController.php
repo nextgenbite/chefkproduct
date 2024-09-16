@@ -140,7 +140,7 @@ class SliderController extends Controller
 
         $thumbnail = "";
         if ($request->has('thumbnail')) {
-            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
+            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 800, 300);
         }
 
         $data = Slider::create([
@@ -192,7 +192,7 @@ class SliderController extends Controller
         // Handle image update
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 800, 300);
         }
         $data->update();
         if ($data) {
@@ -218,6 +218,18 @@ class SliderController extends Controller
             return response()->json(['message' => 'Data Deleted successfully', 'data' => $data], 200);
         } else {
             return response()->json(['message' => 'Data Delete Failed'], 500);
+        }
+    }
+    public function statusUpdate(Request $request)
+    {
+
+        $page = Slider::findOrFail($request->id);
+        $page->status = !$page->status;
+        $data = $page->save();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
         }
     }
 }

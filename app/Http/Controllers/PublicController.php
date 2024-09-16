@@ -23,6 +23,7 @@ class PublicController extends Controller
         $sliders = Slider::active()
             ->whereIn('position', ['main', 'right_top', 'right_bottom'])
             ->with('category:id')
+            ->latest()
             ->get(['thumbnail', 'category_id', 'title', 'position']);
 
 
