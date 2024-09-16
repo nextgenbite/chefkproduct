@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Slider;
 use App\Traits\BaseTrait;
 use Illuminate\Support\Str;
@@ -81,11 +82,40 @@ class SliderController extends Controller
             // [ 'data'=> 'user.name', 'name'=> 'user.name' ],
             // Add more columns as needed
         ];
+        $categories = Category::with('children')->latest()->get();
+        $position = collect([
+            ['id'=> 'main','title'=> 'main banner'],
+            ['id'=> 'right_bottom','title'=> 'right bottom'],
+            ['id'=> 'right_top','title'=> 'right top'],
+        ]);
+        // foreach($position->all() as $item)
+        // {
+
+        //     return $item['id'];
+        // }
         $form = [
             [
                 'type' => 'text',
                 'name' => 'title',
                 'label' =>  'Title',
+            ],
+            [
+                'type' => 'select',
+                'name' => 'category_id',
+                'label' =>  'Category',
+                'data' =>  $categories,
+                'key' =>  'title',
+                'class' => 'col-span-3',
+                
+            ],
+            [
+                'type' => 'select',
+                'name' => 'position',
+                'label' =>  'Position',
+                'data' =>  $position->all(),
+                'key' =>  'title',
+                'class' => 'col-span-3',
+                
             ],
             [
                 'type' => 'image',
@@ -94,7 +124,7 @@ class SliderController extends Controller
             ],
 
         ];
-        return view('admin.category.index', compact('title', 'data', 'columns', 'form'));
+        return view('admin.test.crud', compact('title', 'data', 'columns', 'form'));
     }
 
 
@@ -109,9 +139,10 @@ class SliderController extends Controller
         // $this->authorize('Slider.create');
 
         $thumbnail = "";
-        if ($request->thumbnail) {
-            $thumbnail = $this->uploadBase64Image($request->input('thumbnail'), $this->imgLocation);
+        if ($request->has('thumbnail')) {
+            $thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
+
         $data = Slider::create([
             'title' => $request->title,
             'category_id' => $request->category_id,
@@ -159,9 +190,9 @@ class SliderController extends Controller
         $data->category_id = $request->category_id;
         $data->position = $request->position;
         // Handle image update
-        if ($request->newThumbnail) {
+        if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadBase64Image($request->newThumbnail, $this->imgLocation);
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 300, 300);
         }
         $data->update();
         if ($data) {

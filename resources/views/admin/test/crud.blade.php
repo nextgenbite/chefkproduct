@@ -230,7 +230,7 @@
 
                                 <option selected disabled>Select {{$item['label']}}</option>
                                 @forelse ($item['data'] as $option)
-                                <option value="{{ $option->id }}">{{ ucwords($option[$item['key']]) }}</option>
+                                <option value="{{ $option['id'] }}">{{ ucwords($option[$item['key']]) }}</option>
                                 @empty
                                 @endforelse
                             </select>
