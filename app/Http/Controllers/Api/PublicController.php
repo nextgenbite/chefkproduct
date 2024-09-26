@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\Page;
-use App\Models\Product;
-use App\Models\ShippingCost;
+use App\Models\{Brand, Category,Order, Page, Product,Slider, Setting, ShippingCost, Size};
+
 use App\Models\SiteSetting;
-use App\Models\Slider;
+use Illuminate\Support\Facades\Cache;
 // use Barryvdh\DomPDF\Facade\Pdf;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as MPDF;
 use Illuminate\Http\Request;
@@ -125,9 +121,16 @@ class PublicController extends Controller
         )->paginate(20);
         return response()->json($products);
     }
-    function settings()
+    function publicSettings()
     {
         $data = SiteSetting::firstOrFail();
+        return response()->json($data, 200);
+    }
+    function settings()
+    {
+        $data = Cache::remember('config_data', now()->addHours(4), function () {
+            return Setting::get()->pluck('svalue', 'skey');
+        });
         return response()->json($data, 200);
     }
 

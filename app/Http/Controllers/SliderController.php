@@ -192,7 +192,7 @@ class SliderController extends Controller
         // Handle image update
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 800, 300);
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 900, 400);
         }
         $data->update();
         if ($data) {

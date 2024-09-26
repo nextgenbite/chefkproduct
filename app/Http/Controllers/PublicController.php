@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Color;
-use App\Models\Page;
-use App\Models\Product;
-use App\Models\ShippingCost;
-use App\Models\Size;
-use App\Models\Slider;
+use App\Models\{Brand, Category, Color, Page, Product,Slider, ShippingCost, Size};
+
 use Illuminate\Http\Request;
 // use Mpdf\Tag\Tr;
 
