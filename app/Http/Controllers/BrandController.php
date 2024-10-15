@@ -115,7 +115,6 @@ class BrandController extends Controller
             return response()->json(['message' => 'Brand Update Failed'], 404);
         }
     }
-
     /**
      * Display the specified resource.
      *
