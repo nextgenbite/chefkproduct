@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://nuxt-3-ecom.netlify.app', 'https://ecomnuxt.nextgenbite.xyz', 'http://localhost:3000'],
+    'allowed_origins' => ['https://nuxt-3-ecom.netlify.app', 'https://ecomnuxt.nextgenbite.xyz','.nextgenbite.xyz', 'http://localhost:3000'],
 
     'allowed_origins_patterns' => [],
 
