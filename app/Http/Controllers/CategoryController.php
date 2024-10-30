@@ -113,7 +113,7 @@ class CategoryController extends Controller
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'icon' => $request->icon,
-            'thumbnail' => $thumbnail
+            'thumbnail' => $thumbnail ?? null
         ]);
         if ($data) {
             return response()->json(['message' => 'Data Create successfully', 'data' => $data], 200);
