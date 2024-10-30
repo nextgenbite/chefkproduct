@@ -102,6 +102,9 @@
             <div class="col-span-6 sm:col-span-3">
                 @include('components.input-text' , ['type'=>'color', 'name'=> 'key[hover_color]', 'label'=> 'hover color','class'=> 'p-0', 'value'=> old('hover_color', $settings['hover_color'] ?? '')])
             </div>
+            <div class="col-span-6 sm:col-span-3">
+                @include('components.input-text' , [ 'name'=> 'key[pixel_id]', 'label'=> 'Facebook Pixel' , 'value'=> old('pixel_id', $settings['pixel_id'] ?? '')])
+            </div>
         
         </div>
 @include('components.btn-loading',  ['type'=>'submit'])

@@ -40,34 +40,22 @@
 <!-- ---- Start Single Product  ----- -->
 <div
 class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hidden transition-all ease-in-out duration-300">
-<a href="{{Route('product.view',$product->slug)}}">
+<a  href="{{Route('product.view',$product->slug)}}">
 
-    <div class="relative ">
+    <div  class="overflow-hidden relative">
         <span v-if="product.discount" class="badge-custom">OFF<span class="box ml-1 mr-0">&nbsp;{{
                 discountPercentage($product->price, $product->discount) }}%</span></span>
         <img src="{{asset('/images/loader.svg')}}" width="40"
             data-src="{{ asset($product->thumbnail ?? 'images/no-image.png') }}" alt="{{ $product->title }}"
-            class="thumb lazy " />
-
-        <div
-            class="absolute inset-0 bg-black bg-opacity-40 flex  justify-center items-center gap-2 opacity-0 group-hover:opacity-100  ease-in duration-500 ">
-            <button title="Quick View"
-                class="text-white hover:text-red-500 mt-4 me-1 text-lg w-10 h-10 rounded  ease-out duration-300 flex  items-center justify-center ">
-                <svg class="w-7 h-7 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 4H4m0 0v4m0-4 5 5m7-5h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5m7 5h4m0 0v-4m0 4-5-5" />
-                </svg>
-
-            </button>
-        </div>
+            class="thumb lazy group-hover:scale-125 ease-in duration-500" />
     </div>
+</a>
 
     <div class="pt-4 pb-3 px-4 ">
-            <h4
+            <a href="{{Route('product.view',$product->slug)}}"
                 class="capitalize font-medium text-xs lg:text-base  mb-2 text-gray-600 hover:text-primary-light transition line-clamp-2  group-hover:line-clamp-3 ease-in-out duration-500">
-                {{ $product->title }} </h4>
-        <div class="flex items-baseline mb-1 space-x-2 ">
+                {{ $product->title }} </a>
+        <div class="flex justify-between items-baseline mb-1 space-x-1 ">
             <p class="text-sm lg:text-xl text-red-600 font-roboto font-semibold ">
                 {{ $product->discount ? formatCurrency($product->discount) : formatCurrency($product->price) }}
                 @if ($product->discount)
@@ -75,9 +63,12 @@ class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hid
             </p>
             @endif
             </p>
+            <button type="button" data-id="{{$product->id}}" class="add-to-cart text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                <i class="fas fa-cart-plus"></i>
+                </button>
         </div>
         <div class="flex items-center ">
-              <div class="flex gap-1 text-sm text-yellow-300 ">
+              <div class="flex gap-1 text-sm text-amber-500 ">
                 @for ($i = 1; $i <= 5; $i++)
                 <span>
                     @if ($i <= round($product->averageReview()))
@@ -93,13 +84,6 @@ class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hid
          </div> 
     </div>
 
-    {{-- <button @click="addToCart(product)"
-        class="block w-full py-1 text-center sm:text-xs text-white bg-primary-light border border-primary-light rounded-b font-medium hover:bg-transparent hover:text-primary-light transition ease-in duration-500">
-        Buy Now
-    </button> --}}
-    {{--
-    <Buttons @click="addToCart(product)" productCard /> --}}
 
-</a>
 </div>
 <!-- ---- End Single Product  ----- -->

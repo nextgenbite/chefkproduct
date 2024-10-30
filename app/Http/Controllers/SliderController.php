@@ -220,6 +220,19 @@ class SliderController extends Controller
             return response()->json(['message' => 'Data Delete Failed'], 500);
         }
     }
+    public function multipleDelete(Request $request)
+    {
+        //    return  dd($request->selected_ids);
+        $selectedItems = $request->input('selected_ids', []);
+
+        // Delete selected items
+        $data = Slider::whereIn('id', $selectedItems)->delete();
+        if ($data) {
+            return response()->json(['message' => $this->title[0] . ' delete successfully', 'data' => $data], 200);
+        } else {
+            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        }
+    }
     public function statusUpdate(Request $request)
     {
 

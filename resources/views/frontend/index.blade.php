@@ -32,7 +32,7 @@
 <!-- ---- Start Features  ----- -->
 
 <div class="container py-6 ">
-     <div class="lg:w-10/12 grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-3 lg:gap-6 mx-auto justify-center ">
+     <div class="lg:w-11/12 grid md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-3 mx-auto justify-center ">
           <!-- ---- Single Features  ----- -->
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
@@ -40,23 +40,35 @@
                <img src="/images/icons/delivery-van.svg" alt="Free Shipping" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg ">Free Shipping </h4>
-                    <p class="text-gray-500 text-xs lg:text-sm "> Order Over ৳500 </p>
+                    <p class="text-gray-500 text-xs lg:text-sm "> Order Over {{formatCurrency(500)}} </p>
                </div>
           </div>
           <!-- ----End  Single Features  ----- -->
-
-
+          
           <!-- ---- Single Features  ----- -->
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
                <img src="/images/icons/money-back.svg" alt="Money Returns" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
-                    <h4 class="font-medium capitalize text-sm lg:text-lg ">Money Returns </h4>
-                    <p class="text-gray-500 text-xs lg:text-sm "> 14 Days Money Return </p>
+                    <h4 class="font-medium capitalize text-sm lg:text-lg ">BBB & FDA Registered® </h4>
+                    <p class="text-gray-500 text-xs lg:text-sm capitalize">our products are certified from BBB & FDA </p>
                </div>
           </div>
           <!-- ----End  Single Features  ----- -->
+          <!-- ---- Single Features  ----- -->
+          <div
+               class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
+
+               <img src="/images/icons/delivery-van.svg" alt="Free Shipping" class="lg:w-12 w-10 h-12 object-contain " />
+               <div>
+                    <h4 class="font-medium capitalize text-sm lg:text-lg">halal & no alcohol</h4>
+                    <p class="text-gray-500 text-xs lg:text-sm capitalize">no preservatives or alcohol used </p>
+               </div>
+          </div>
+          <!-- ----End  Single Features  ----- -->
+
+
 
 
 
@@ -128,4 +140,25 @@
      </div>
 </div>
 <!-- ---- End All Products  ----- -->
+<div class="flex justify-center my-2">
+
+     <a href="{{url('/shop')}}" title="See More" class="text-white bg-primary-light hover:bg-primary-light/80 focus:ring-4 focus:outline-none focus:ring-primary-light/30 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+     See More
+     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+     </svg>
+     </a>
+</div>
+           <!-- ---- Start Sartup Modal  ----- -->
+
+
+           {{-- @include('frontend.partials.startup_modal') --}}
+           <!-- ---- End Sartup Modal   ----- -->  
 @endsection
+@push('scripts')
+     <script>
+          // set the modal menu element
+// const $targetEl = document.getElementById('static-modal');
+// new Modal($targetEl).show()
+     </script>
+@endpush

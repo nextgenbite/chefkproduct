@@ -21,7 +21,7 @@ if(!function_exists('formatCurrency'))
         // Use the currency symbol from the config if available, otherwise default to '$'
         $currencySymbol = isset($config['currency_symbol']) ? $config['currency_symbol'] : '$'; 
     
-        return $currencySymbol . number_format($amount, 2);
+        return $currencySymbol . round($amount);
     }
 }
 if(!function_exists('truncate'))
@@ -45,5 +45,19 @@ if(!function_exists('hexToRgb'))
 
    // Return RGB string
    return "$r $g $b";
+    }
+}
+
+if (!function_exists('static_asset')) {
+    /**
+     * Generate an asset path for the application.
+     *
+     * @param string $path
+     * @param bool|null $secure
+     * @return string
+     */
+    function static_asset($path, $secure = null)
+    {
+        return app('url')->asset('/' . $path, $secure);
     }
 }

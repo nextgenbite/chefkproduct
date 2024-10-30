@@ -170,6 +170,23 @@
 
 
                             <td class="p-4 space-x-2 whitespace-nowrap">
+                                
+
+<div class="inline-flex rounded-md shadow-sm" role="group">
+    <button type="button" data-id="{{ $item->id }}" class="view-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-eye w-4 h-4 mr-2"></i>
+    </button>
+    <button type="button" data-modal-target="edit-data-modal"
+    data-modal-toggle="edit-data-modal" data-id="{{ $item->id }}"  class="edit-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-pencil w-4 h-4 mr-2"></i>
+    </button>
+    <button type="button" data-modal-target="delete-data-modal"
+    data-modal-toggle="delete-data-modal" data-id="{{ $item->id }}" class="delete-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-trash w-4 h-4 mr-2"></i>
+    </button>
+  </div>
+  
+                          
                                 <button type="button" data-modal-target="edit-data-modal"
                                     data-modal-toggle="edit-data-modal" data-id="{{ $item->id }}"
                                     class="edit-data inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">

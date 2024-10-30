@@ -50,10 +50,11 @@ class CartController extends Controller
         // Calculate the total price for the cart
         $totalPrice = $this->calculateTotalPrice($cart);
         $cart['total_price'] = $totalPrice;
+        $cart['currency_total_price'] = formatCurrency($totalPrice);
 
         // Store the updated cart in the session
+        $cart['sidebar'] = view('frontend.partials.sidebar_cart',compact('cart'))->render();
         session(['cart' => $cart]);
-
         return response()->json(['message' => 'Item added to the cart', 'data' =>  $cart]);
     }
 

@@ -13,18 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        // Schema::create('users', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->string('email')->nullable();
-        //     $table->string('phone')->nullable();
-        //     $table->string('address')->nullable();
-        //     $table->string('avatar')->nullable();
-        //     $table->foreignId('role_id')->constrained('roles')->default(3);
-        //     $table->string('password');
-        //     $table->rememberToken();
-        //     $table->timestamps();
-        // });
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('avatar')->nullable();
+            $table->foreignId('role_id')->constrained('roles')->default(3);
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**

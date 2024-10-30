@@ -326,3 +326,37 @@ img {
 	/* Have no idea what this is for */
   @apply cursor-default block;
   padding: 6px; }
+
+
+  .border-container {
+    position: relative; /* For positioning the borders */
+    display: inline-block; /* To contain the heading */
+width: 100%;
+}
+
+.border-container::before,
+.border-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Align to the bottom of the container */
+    height: 5px; /* Height of the border */
+}
+
+.border-container::before {
+    left: 0; /* Align to the left */
+    width: 30%; /* 50% width */
+    background-color: green; /* Left color */
+}
+
+.border-container::after {
+    right: 0; /* Align to the right */
+    width: 70%; /* 50% width */
+	display: block;
+    background-color: rgb(221, 22, 22); /* Right color */
+}
+
+h3 {
+    margin: 0; /* Remove default margin */
+    padding-bottom: 5px; /* Space for the border */
+}
+

@@ -21,16 +21,18 @@ trait BaseTrait {
         
     }
     public function CrudAction($row) {
-   return ' <div class="inline-flex rounded-md shadow-sm" role="group">
-            <button type="button" class="inline-flex items-center px-2 py-1 text-sm font-medium text-green-600 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                <span class="material-symbols-sharp w-1 h-1 ">visibility</span>
-            </button>
-            <button title="edit" data-id="' . $row->id . '" type="button" class="editData inline-flex items-center px-2 py-1 text-sm font-medium text-teal-600 bg-transparent border-t border-b border-gray-900 hover:bg-gray-800 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                <span class="material-symbols-sharp w-1 h-1 ">edit_note</span>
-            </button>
-            <button type="button" data-id="' . $row->id . '" id="delete" class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-600 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                <span class="material-symbols-sharp w-1 h-1 ">delete</span>
-            </button>
-        </div>';
+   return '        
+        <div class="inline-flex rounded-md shadow-sm" role="group">
+    <button type="button" data-id="' . $row->id . '" class="view-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-eye w-4 h-4 mr-2"></i>
+    </button>
+    <button type="button" title="edit" data-id="' . $row->id . '"  class="editData px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-pencil w-4 h-4 mr-2"></i>
+    </button>
+    <button type="button"  data-id="' . $row->id . '" id="delete" class="delete-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    <i class="fa-solid fa-trash w-4 h-4 mr-2"></i>
+    </button>
+  </div>
+        ';
     }
 }

@@ -49,7 +49,7 @@
         <div class="p-1 lg:ml-64">
 
             <div
-            class="border-2 border-gray-200  rounded-lg dark:border-gray-700 mt-14"
+            class="border-2 border-gray-200  rounded-lg dark:border-gray-700 mt-14 min-h-screen"
           >
            
             @yield('content')
@@ -69,6 +69,8 @@
             var message = "{{ Session::get('messege') }}";
             showFrontendAlert(type, message);
         @endif
+
+
     </script>
     @stack('scripts')
 </body>

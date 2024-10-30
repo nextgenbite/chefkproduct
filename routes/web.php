@@ -73,14 +73,28 @@ Route::prefix('tasks')->group(function() {
 });
 
 // Frontend
+Route::get('/mail',function(){
+    
+    $data = App\Models\Order::with('orderitem')->first();
+    return view('emails.admin_order', compact('data'));
+});
+
+// Route::get('/rate', [OrderController::class, 'calculateShippingRate'])->name('calculateShippingRate');
+
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
 Route::get('/categories/{slug}', [PublicController::class, 'categoriesView'])->name('categories.show');
 Route::get('/product/{slug}', [PublicController::class, 'view'])->name('product.view');
 Route::get('/page/{slug}', [PublicController::class, 'pageView'])->name('page.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
+Route::post('/shipping-price', [OrderController::class, 'calculateShippingRate'])->name('shppinig.price');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
+Route::post('/contact', [PublicController::class, 'contactStore'])->name('contact.store');
 Route::post('/nav/search/', [PublicController::class, 'navSearch'])->name('nav_search');
+Route::get('/be-a-partner-with-us', [PublicController::class, 'partnership'])->name('partnership');
+Route::post('/be-a-partner-with-us', [PublicController::class, 'partnershipStore'])->name('partnership.store');
+Route::get('/about-us', [PublicController::class, 'about'])->name('about');
+Route::get('/stores', [PublicController::class, 'stores'])->name('stores');
 
 // Cart
 Route::post('/cart/add', [CartController::class, 'addToCart']);
