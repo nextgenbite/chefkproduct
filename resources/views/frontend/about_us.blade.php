@@ -4,25 +4,25 @@
 
 
     <!-- ---- Start Category  ----- -->
-    <div class="mx-4 my-2 py-2 md:container lg:container">
-        <h1 class="text-base my-2 md:text-3xl  font-medium text-gray-800 uppercase text-center">
+    <div class="lg:mx-4 my-2 py-2 container">
+        <h1 class="text-2xl my-2 lg:text-4xl  font-medium text-gray-800 uppercase text-center">
             {{ $title }}
             <hr class="w-1/4 mx-auto h-0.5 my-2 bg-gray-200 border-0 dark:bg-gray-700">
         </h1>
 
 
         <div
-            class="p-16 mx-16 hover:shadow-2xl ring-0 hover:ring-2 ring-primary-light bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all ease-in-out duration-500">
-            <div class="grid grid-cols-3">
+            class="p-2  mx-2 lg:p-16 lg:mx-16 hover:shadow-2xl ring-0 hover:ring-2 ring-primary-light bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all ease-in-out duration-500">
+            <div class="grid gap-1 grid-cols-1 lg:grid-cols-3">
                 <img class=" w-56 mx-auto rounded-full shadow-lg hover:shadow-xl ring-2 ring-slate-200 dark:ring-gray-500"
                     src="{{ asset('images/static/founder-presedent.webp') }}" alt="founder">
-                <div class=" col-span-2">
-                    <h2 class="mb-2  text-2xl font-semibold text-gray-900 dark:text-white">Karen Alexis Williams is the
+                <div class=" lg:col-span-2">
+                    <h2 class="mb-2 text-base lg:text-2xl font-semibold text-gray-900 dark:text-white">Karen Alexis Williams is the
                         Founder and
                         President of Chef K Product.</h2>
 
                     <p
-                        class="max-w-5xl mb-3 text-gray-500 dark:text-gray-400 text-justify ">
+                        class="max-w-5xl mb-3 text-xs lg:text-base text-gray-500 dark:text-gray-400 text-justify ">
                         Join us in spreading the love for unique, healthy
                         Ms. Williams, hales from the parish of Trelawny, Jamaica West Indies. The fifth of eleven children
                         of an extremely poor family in the countryside. While she was a go-getter, earning the title of the
@@ -35,7 +35,7 @@
                     <div class="flex justify-end mt-4">
 
                         <a href="{{ url('/karen-alexis-williams') }}"
-                            class="btn  px-4 py-2 bg-primary-light text-white rounded-lg text-end">Continue Reading</a>
+                            class="btn px-2 py-1 lg:px-4 lg:py-2 bg-primary-light text-white rounded-lg text-end">Continue Reading</a>
                     </div>
                 </div>
             </div>
@@ -44,13 +44,13 @@
         </div>
         <hr class="w-3/4 mx-auto h-0.5 my-2 lg:my-6 bg-gray-200 border-0 dark:bg-gray-700">
         <div
-            class="p-16 mx-16 hover:shadow-2xl ring-0 hover:ring-2 ring-primary-light bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all ease-in-out duration-500">
-            <div class="grid grid-cols-3">
-                <div class=" col-span-2">
-                    <h2 class="mb-2  text-2xl font-semibold text-gray-900 dark:text-white">Chef K Product: Mission Statement</h2>
+            class="p-2 lg:p-16 mx-2 lg:mx-16 hover:shadow-2xl ring-0 hover:ring-2 ring-primary-light bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 transition-all ease-in-out duration-500">
+            <div class="grid gap-1 grid-cols-1 lg:grid-cols-3">
+                <div class=" lg:col-span-2">
+                    <h2 class="mb-2  text-base lg:text-2xl font-semibold text-gray-900 dark:text-white">Chef K Product: Mission Statement</h2>
 
                     <p
-                        class="max-w-5xl mb-3 text-gray-500 dark:text-gray-400 text-justify">
+                        class="max-w-5xl mb-3 text-xs lg:text-base text-gray-500 dark:text-gray-400 text-justify">
                         Chef K mission is to tackle the changes and expectations of the consumers in the food and beverage
                         industry, by creating a Safe, Gluten Free, Non GMO, Health and Tasty product. And by Establishing a
                         dominant Market share in the health and wellness Food and beverage market, by using natural
@@ -64,10 +64,10 @@
                 <img class=" w-56 mx-auto rounded-full shadow-lg hover:shadow-xl ring-2 ring-slate-200 dark:ring-gray-500"
                     src="{{ asset('images/static/founder-icon.webp') }}" alt="founder">
             </div>
-            <h2 class="mb-2  text-2xl font-semibold text-gray-900 dark:text-white">Chef K Product: Our Vision</h2>
+            <h2 class="mb-2  text-base lg:text-2xl font-semibold text-gray-900 dark:text-white">Chef K Product: Our Vision</h2>
 
             <p
-                class="max-w-5xl mb-3 text-gray-500 dark:text-gray-400 text-justify ">
+                class="max-w-5xl text-xs lg:text-base mb-3 text-gray-500 dark:text-gray-400 text-justify ">
                 Our vision is to create a product line of foods and Beverages for customers who are now eating and drinking to take care of a specific type of problem they may have now or want to prevent in the future.
             </p>
 
@@ -76,16 +76,16 @@
         <hr class="w-3/4 mx-auto h-0.5 my-2 lg:my-6 bg-gray-200 border-0 dark:bg-gray-700">
 
 
-        <section class="p-16 mx-16 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200">
+        <section class="p-2 lg:p-16 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
                 <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                    <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">MEET OUR TEAM MEMBERS</h2>
+                    <h2 class="mb-4 text-xl  lg:text-3xl tracking-tight font-bold text-gray-900 dark:text-white">MEET OUR TEAM MEMBERS</h2>
                     <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
                 </div> 
                 <div class="grid gap-8 lg:gap-8 sm:grid-cols-2 md:grid-cols-3 ">
                     <div class="px-2 py-4 bg-white hover:bg-slate-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group hover:shadow-xl">
                         <img class="mx-auto mb-4  w-48 h-48  rounded-full group-hover:ring-2 group-hover:ring-primary-light transition-all duration-300 ease-in-out group-hover:scale-110" src="{{asset('images/static/CEO.webp')}}" alt="Bonnie Avatar">
-                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h3 class="mb-1  text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Karen Williams</a>
                         </h3>
                         <p>Founder and President</p>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="px-2 py-4 bg-white hover:bg-slate-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group hover:shadow-xl">
                         <img class="mx-auto mb-4  w-48 h-48  rounded-full group-hover:ring-2 group-hover:ring-primary-light transition-all duration-300 ease-in-out group-hover:scale-110" src="{{asset('images/static/VP-copy.webp')}}" alt="Bonnie Avatar">
-                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h3 class="mb-1 text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Alejandra P.singh</a>
                         </h3>
                         <p>VP</p>
@@ -147,7 +147,7 @@
                     </div>
                     <div class="px-2 py-4 bg-white hover:bg-slate-200 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 group hover:shadow-xl">
                         <img class="mx-auto mb-4  w-48 h-48  rounded-full group-hover:ring-2 group-hover:ring-primary-light transition-all duration-300 ease-in-out group-hover:scale-110" src="{{asset('images/static/Operation-Manager.webp')}}" alt="Operation-Manager">
-                        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h3 class="mb-1 text-lg lg:text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             <a href="#">Phillip Fraser</a>
                         </h3>
                         <p>Operations Manager</p>

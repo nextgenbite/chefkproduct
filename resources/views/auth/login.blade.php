@@ -23,7 +23,7 @@
               </svg>
               
           </span>
-          <input type="email" id="email" name="email" placeholder="Enter your email" class=" rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="admin@admin.com">
+          <input type="email" id="email" name="email" placeholder="Enter your email" class=" rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         @error('email')
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
@@ -39,7 +39,7 @@
               </svg>
           </span>
           
-          <input type="password" id="password" name="password" value="password" autocomplete="current-password" placeholder="Enter your password" class=" rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <input type="password" id="password" name="password"  autocomplete="current-password" placeholder="Enter your password" class=" rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         @error('password')
         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
