@@ -59,11 +59,11 @@ class="group rounded bg-white my-1 shadow-lg border border-gray-200 overflow-hid
             <p class="text-sm lg:text-xl text-red-600 font-roboto font-semibold ">
                 {{ $product->discount ? formatCurrency($product->discount) : formatCurrency($product->price) }}
                 @if ($product->discount)
-            <p class="text-sm text-gray-400 font-roboto  line-through "> {{ formatCurrency($product->price) }}
-            </p>
+            <span class="text-sm text-gray-400 font-roboto  line-through "> {{ formatCurrency($product->price) }}
+            </span>
             @endif
             </p>
-            <button type="button" data-id="{{$product->id}}" class="add-to-cart text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center inline-flex items-center me-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+            <button type="button" data-id="{{$product->id}}" class="add-to-cart text-primary-light border border-primary-light hover:bg-primary-light hover:text-white focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs lg:text-base p-1 lg:p-3 text-center inline-flex items-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
                 <i class="fas fa-cart-plus"></i>
                 </button>
         </div>

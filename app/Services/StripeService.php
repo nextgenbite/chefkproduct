@@ -37,16 +37,8 @@ class StripeService
                     "description" => "Test payment from nextgenbite.com."
 
                 ]);
-                if ($data->status == "succeeded") {
-                    // $order->update(['payment_status' => 'paid']);
-                    Session::flash('success', 'Payment successful!');
-                    return view('frontend.order_success', compact('order'));
-                } else {
-                    Session::flash('success', 'Payment faild!');
-                    Log::error('Failed to create stripe payment:', ['response' => $data]);
-                    throw new Exception('Failed to create stripe payment: ' . ($data['errorMessage'] ?? 'Unknown error'));
-                }
                 return $data;
+                            
             } catch (Exception $e) {
                 Log::error('stripe Payment Creation Failed:', ['error' => $e->getMessage()]);
                 throw $e;

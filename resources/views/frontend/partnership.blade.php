@@ -80,10 +80,7 @@
                     </div>
 
                     <div>
-                        @include('components.input-text', [
-                            'name' => 'zip',
-                            'label' => 'Zip Code',
-                        ])
+                        @include('components.input-text', [ 'name' => 'zip','label' => 'Zip Code',])
                     </div>
                     <div>
                         @include('components.input-text', ['name' => 'city', 'label' => 'City'])

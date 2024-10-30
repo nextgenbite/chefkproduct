@@ -50,7 +50,7 @@
 
             <div class="hidden lg:inline">
                 <a href="{{route('partnership')}}"
-                    class="bg-primary-light border border-primary-light  text-white px-6 w-full lg:w-auto lg:px-4 py-2.5 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition text-sm inline-flex justify-center items-center">
+                    class="bg-primary-light border border-primary-light  text-white px-2 w-full lg:w-auto lg:px-4 py-2.5 font-medium rounded uppercase hover:bg-transparent hover:text-primary-light transition truncate text-xs inline-flex justify-center items-center">
                     BE A PARTNER WITH US
                 </a>
             </div>

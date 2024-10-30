@@ -76,7 +76,7 @@ Route::prefix('tasks')->group(function() {
 Route::get('/mail',function(){
     
     $data = App\Models\Order::with('orderitem')->first();
-    return view('emails.admin_order', compact('data'));
+    return view('emails.contact', compact('data'));
 });
 
 // Route::get('/rate', [OrderController::class, 'calculateShippingRate'])->name('calculateShippingRate');

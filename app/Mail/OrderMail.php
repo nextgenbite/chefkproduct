@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable
+class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,9 +29,7 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->data['email'])
-                    ->subject('Chefkproduct - New Contact Form Submission')
-                    ->view('emails.contact')
-                    ->with(['data' => $this->data]);
+        return $this->view($this->data);
+    
     }
 }

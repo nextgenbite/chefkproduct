@@ -21,7 +21,7 @@ if(!function_exists('formatCurrency'))
         // Use the currency symbol from the config if available, otherwise default to '$'
         $currencySymbol = isset($config['currency_symbol']) ? $config['currency_symbol'] : '$'; 
     
-        return $currencySymbol . round($amount);
+        return $currencySymbol . $amount;
     }
 }
 if(!function_exists('truncate'))
