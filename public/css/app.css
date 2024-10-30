@@ -671,8 +671,8 @@ video {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 10px;
+  padding-left: 10px;
 }@media (min-width: 640px) {.container {
     max-width: 640px;
   }
@@ -3094,8 +3094,8 @@ width: 100%;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 10px;
+    padding-left: 10px;
   }@media (min-width: 640px) {.md\:container {
       max-width: 640px;
     }
@@ -3116,8 +3116,8 @@ width: 100%;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 10px;
+    padding-left: 10px;
   }@media (min-width: 640px) {.lg\:container {
       max-width: 640px;
     }
