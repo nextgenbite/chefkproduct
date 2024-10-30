@@ -16,9 +16,8 @@
                         <!-- ---- Start single category ----- -->
                         <a title="{{ $item->title }}" href="{{ route('categories.show', $item->slug) }}"
                             class="px-4 py-2 flex items-center  hover:bg-gray-100 transition duration-500 ease-in-out ">
-                            <span class="material-symbols-sharp text-gray-700">
-                                {{ $item->icon ?? 'adjust' }}
-                            </span>
+                         
+                            <img alt="image" src="{{asset('/images/loader.svg')}}" data-src="{{ asset($item->thumbnail ?? 'images/no-image.png') }}" alt="{{ $item->title }}" class="w-5 h-5 object-contain ">
                             <span class="ml-3 text-gray-700 text-sm font-semibold  capitalize">
                                 {{ $item->title }}</span>
                         </a>
