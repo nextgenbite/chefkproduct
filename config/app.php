@@ -170,7 +170,7 @@ return [
         Milon\Barcode\BarcodeServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
-        \sbamtr\LaravelSourceEncrypter\SourceEncryptServiceProvider::class,
+        // \sbamtr\LaravelSourceEncrypter\SourceEncryptServiceProvider::class,
 
         /*
          * Application Service Providers...
