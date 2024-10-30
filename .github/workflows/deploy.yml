@@ -26,6 +26,6 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ftp.nnu.96a.mytemp.website
-        username:  chefkproduct@chefkproduct.nnu.96a.mytemp.website
+        server: ftp.chefkproduct.com
+        username: chefkproduct@chefkproduct.com
         password: ${{ secrets.ftp_api_password }}
