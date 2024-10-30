@@ -206,9 +206,7 @@
                         @forelse ($categories as $item)
                             <a href=""
                                 class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
-                                <span class="material-symbols-sharp text-gray-700 me-2">
-                                    {{ $item->icon ?? 'adjust' }}
-                                </span>
+                                <img alt="image" src="{{asset('/images/loader.svg')}}" data-src="{{ asset($item->thumbnail ?? 'images/no-image.png') }}" alt="{{ $item->title }}" class="w-5 h-5 object-contain ">
                                 <span class="capitalize">{{ $item->title }}</span>
                             </a>
                         @empty
