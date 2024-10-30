@@ -27,5 +27,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ftp.chefkproduct.com
-        username: chefkproduct@chefkproduct.com
+        username: main@chefkproduct.com
         password: ${{ secrets.ftp_api_password }}
