@@ -235,7 +235,7 @@
         @include('frontend.partials.footer')
         <!-- ---- End Footer   ----- -->
 
-        <div class=" fixed bottom-4 right-4 z-10">
+        <div class=" fixed bottom-16 lg:bottom-4 right-1 lg:right-4 z-10">
                 
             <a href="https://wa.me/+{{ str_replace("-", "", $settings['phone']) ?? '0171508563'}}" target="_blank" title="whatsapp" data-popover-target="popover-left" data-popover-placement="left" type="button" class=" text-primary-light hover:text-primary-light/90 font-medium rounded-lg text-sm text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
              

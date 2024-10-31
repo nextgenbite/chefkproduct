@@ -28,13 +28,24 @@ class PublicController extends Controller
         $rightTopBanner = $sliders->where('position', 'right_top')->first();
         $rightBottomBanner = $sliders->firstWhere('position', 'right_bottom');
 
-
         // Brand::whereStatus(1)->with('products:id,brand_id')->get();
         // Fetching recent, trend, and top products in a single query
         $productsQuery = Product::query()->active();
-        $trendProducts =  $productsQuery->where('trend', 1)->limit(5)->get();
 
-        $newProducts = $productsQuery->latest()->limit(5)->get();
+        // Check if there are any trending products
+        $trendProducts = (clone $productsQuery)
+                            ->where('trend', 1)
+                            ->limit(5)
+                            ->get();
+
+        
+        // Retrieve the latest products (new products)
+        $newProducts = (clone $productsQuery)
+                            ->latest()
+                            ->limit(5)
+                            ->get();
+        
+        // Paginate all active products
         $products = $productsQuery->paginate(5);
         return view('frontend.index', compact('mainBanner', 'rightTopBanner', 'rightBottomBanner', 'trendProducts', 'newProducts', 'products'));
     }
@@ -148,7 +159,7 @@ class PublicController extends Controller
         }
         $query->with('images', 'category', 'brand');
         // $products = $query->paginate(10);
-        $products = $query->paginate(10);
+        $products = $query->paginate(12);
         $brands = Brand::whereStatus(1)->get(['id', 'title']);
         $colors = Color::get(['id', 'name', 'code']);
         $size = Size::get(['id', 'name']);

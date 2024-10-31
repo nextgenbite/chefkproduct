@@ -34,7 +34,7 @@
                             </span>
                             <input type="text" id="customerName" name="name" value="{{ old('name') }}"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-primary-light focus:border-primary-light block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-light dark:focus:border-primary-light"
-                                placeholder="elonmusk">
+                                placeholder="Enter your name">
                         </div>
                         <label for="customerPhone"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
@@ -45,7 +45,7 @@
                             </span>
                             <input type="text" id="customerPhone" name="phone"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-primary-light focus:border-primary-light block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-light dark:focus:border-primary-light"
-                                placeholder="01700000000"  value="{{ old('phone') }}">
+                                placeholder="Enter your phone number"  value="{{ old('phone') }}">
                         </div>
                         <label for="customerEmail"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
