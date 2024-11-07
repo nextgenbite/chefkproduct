@@ -49,10 +49,10 @@
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-               <img src="/images/icons/money-back.svg" alt="Money Returns" class="lg:w-12 w-10 h-12 object-contain " />
+               <img src="/images/icons/certified.svg" alt="Money Returns" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg ">BBB & FDA Registered® </h4>
-                    <p class="text-gray-500 text-xs lg:text-sm capitalize">our products are certified from BBB & FDA </p>
+                    <p class="text-gray-500 text-xs lg:text-sm capitalize">we are certified from BBB & FDA </p>
                </div>
           </div>
           <!-- ----End  Single Features  ----- -->
@@ -60,7 +60,7 @@
           <div
                class="shadow-lg border border-gray-200 rounded px-3 lg:px-3 lg:py-6 py-2 flex justify-center items-center gap-3 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-               <img src="/images/icons/delivery-van.svg" alt="Free Shipping" class="lg:w-12 w-10 h-12 object-contain " />
+               <img src="/images/icons/halal.svg" alt="Free Shipping" class="lg:w-12 w-10 h-12 object-contain " />
                <div>
                     <h4 class="font-medium capitalize text-sm lg:text-lg">halal & no alcohol</h4>
                     <p class="text-gray-500 text-xs lg:text-sm capitalize">no preservatives or alcohol used </p>

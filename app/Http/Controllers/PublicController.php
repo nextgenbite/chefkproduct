@@ -178,6 +178,12 @@ class PublicController extends Controller
 
         return view('frontend.contact');
     }
+    public function AboutKaren()
+    {
+
+
+        return view('frontend.karen');
+    }
 
     public function contactStore(Request $request)
     {

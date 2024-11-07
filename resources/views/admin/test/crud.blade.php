@@ -1,111 +1,107 @@
 @extends('layouts.app')
 @push('title')
-{{ isset($settings['app_name']) ? $title[0]. ' | '. $settings['app_name'] : '' . ' ' . $title[0] }}
+    {{ isset($settings['app_name']) ? $title[0] . ' | ' . $settings['app_name'] : '' . ' ' . $title[0] }}
 @endpush
 @push('css')
-<!-- Include Tailwind CSS -->
-<link href="https://cdn.datatables.net/1.13.9/css/dataTables.tailwindcss.min.css" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('plugins/fileUpload/fileUpload.css')}}">
-<!-- Material Icons -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
-
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.datatables.net/1.13.9/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugins/fileUpload/fileUpload.css') }}">
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
 @endpush
 @section('content')
-
-
-<div
-    class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
-    <div class="w-full mb-1">
-        <div class="mb-4">
-            <nav class="flex mb-5" aria-label="Breadcrumb">
-                <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
-                    <li class="inline-flex items-center">
-                        <a href="{{ url('/admin') }}"
-                            class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
-                            <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
-                                </path>
-                            </svg>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <a href="#"
-                                class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{
-                                $title[0]}}</a>
-                        </div>
-                    </li>
-                </ol>
-            </nav>
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0]}} List</h1>
-        </div>
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-            <div class="w-full md:w-1/2">
-                <form class="flex items-center">
-                    <label for="simple-search" class="sr-only">Search</label>
-                    <div class="relative w-full">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <input type="text" id="simple-search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Search" required="">
-                    </div>
-                </form>
+    <div
+        class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full mb-1">
+            <div class="mb-4">
+                <nav class="flex mb-5" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
+                        <li class="inline-flex items-center">
+                            <a href="{{ url('/admin') }}"
+                                class="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white">
+                                <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                    </path>
+                                </svg>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <a href="#"
+                                    class="ml-1 text-gray-700 hover:text-primary md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ $title[0] }}</a>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ $title[0] }} List</h1>
             </div>
-            <div
-                class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                <button type="button" id="createData" data-modal-target="data-modal" data-modal-toggle="data-modal"
-                    class="flex items-center justify-center text-white bg-primary-700  hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
-                    <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path clip-rule="evenodd" fill-rule="evenodd"
-                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-                    </svg>
-                    Add {{$title[0]}}
-                </button>
-                <div class="flex items-center space-x-3 w-full md:w-auto">
-                    <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
-                        class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                        type="button">
-                        <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div class="w-full md:w-1/2">
+                    <form class="flex items-center">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-full">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input type="text" id="simple-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Search" required="">
+                        </div>
+                    </form>
+                </div>
+                <div
+                    class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                    <button type="button" id="createData" data-modal-target="data-modal" data-modal-toggle="data-modal"
+                        class="flex items-center justify-center text-white bg-primary-700  hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                        <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Actions
+                        Add {{ $title[0] }}
                     </button>
-                    <div id="actionsDropdown"
-                        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="actionsDropdownButton">
-                            {{-- <li>
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
+                            class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                            type="button">
+                            <svg class="-ml-1 mr-1.5 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path clip-rule="evenodd" fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                            </svg>
+                            Actions
+                        </button>
+                        <div id="actionsDropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="actionsDropdownButton">
+                                {{-- <li>
                                 <a href="#"
                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mass
                                     Edit</a>
                             </li> --}}
-                        </ul>
-                        <div class="py-1">
-                            <a href="javascript:void(0)" id="multi-delete"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
-                            </a>
+                            </ul>
+                            <div class="py-1">
+                                <a href="javascript:void(0)" id="multi-delete"
+                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    {{-- <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
+                        {{-- <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown"
                         class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-4 w-4 mr-2 text-gray-400"
@@ -160,13 +156,13 @@
                             </li>
                         </ul>
                     </div> --}}
+                    </div>
+                    <!-- Rest of the buttons and dropdowns -->
                 </div>
-                <!-- Rest of the buttons and dropdowns -->
             </div>
         </div>
     </div>
-</div>
-{{-- <div class="flex flex-col">
+    {{-- <div class="flex flex-col">
     <div class="overflow-x-auto">
         <div class="inline-block min-w-full align-middle">
 
@@ -181,115 +177,246 @@
         </div>
     </div>
 </div> --}}
-<div class="container mx-auto">
-    <div class="overflow-x-auto mx-2">
-        <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
-            data-columns="{{json_encode($columns)}}" data-url="{{request()->url()}}">
-            <tbody>
-            </tbody>
-        </table>
+    <div class="container mx-auto">
+        <div class="overflow-x-auto mx-2">
+            <table id="dataTable" class=" overflow-x-auto dark:text-white" width="70%"
+                data-columns="{{ json_encode($columns) }}" data-url="{{ request()->url() }}">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<!-- Add Data Modal -->
-<div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-    id="data-modal">
-    <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
-            <!-- Modal header -->
-            <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
-                <h3 class="text-xl font-semibold dark:text-white" id="modelHeading">
-                    Add new data
-                </h3>
-                <button type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
-                    data-modal-toggle="data-modal">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-            <form id="dataForm" data-form="{{json_encode($form)}}" enctype="multipart/form-data">
-                <!-- Modal body -->
-                <div class="p-6 space-y-6">
-                    <div class="grid grid-cols-6 gap-6">
-                        @foreach ($form as $item)
-                        @php
-                            $class = array_key_exists('class', $item) ? $item['class'] : 'col-span-6';
-                        @endphp
-                        @if($item['type'] === 'select')
-                        <div class="col-span-6 {{'lg:'. $class}}">
+    <!-- Add Data Modal -->
+    <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+        id="data-modal">
+        <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
+                    <h3 class="text-xl font-semibold dark:text-white" id="modelHeading">
+                        Add new data
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
+                        data-modal-toggle="data-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form id="dataForm" data-form="{{ json_encode($form) }}" enctype="multipart/form-data">
+                    <!-- Modal body -->
+                    <div class="p-6 space-y-6">
+                        <div class="grid grid-cols-6 gap-6">
+                            @foreach ($form as $item)
+                                @php
+                                    $class = array_key_exists('class', $item) ? $item['class'] : 'col-span-6';
+                                @endphp
+                                @if ($item['type'] === 'select')
+                                    <div class="col-span-6 {{ 'lg:' . $class }}">
 
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
+                                        <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
 
-                            <select name="{{$item['name']}}" id="{{ $item['name'] }}"
-                                class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <select name="{{ $item['name'] }}" id="{{ $item['name'] }}"
+                                            class="select-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <option selected disabled>Select {{$item['label']}}</option>
-                                @forelse ($item['data'] as $option)
-                                <option value="{{ $option['id'] }}">{{ ucwords($option[$item['key']]) }}</option>
-                                @empty
-                                @endforelse
-                            </select>
-                        </div>
-                        @elseif($item['type'] === 'textarea')
-                        <div class="col-span-6 {{'lg:'. $class}}">
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <textarea rows="4" name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="textarea shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Enter {{$item['label']}}" required></textarea>
-                        </div>
-                        @elseif($item['type'] === 'image')
+                                            <option selected disabled>Select {{ $item['label'] }}</option>
+                                            @forelse ($item['data'] as $option)
+                                                <option value="{{ $option['id'] }}">{{ ucwords($option[$item['key']]) }}
+                                                </option>
+                                            @empty
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                @elseif($item['type'] === 'textarea')
+                                    <div class="col-span-6 {{ 'lg:' . $class }}">
 
-                        <div class="col-span-6 {{'lg:'. $class}}">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                for="{{$item['name']}}">{{$item['label']}}</label>
-                            <div class="relative">
-                                <input accept="image/*" name="{{$item['name']}}"
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    aria-describedby="file_input_help" id="{{$item['name']}}" type="file">
-                                <img class="absolute top-0 right-0 w-10 h-10 rounded preview"
-                                    src="{{asset('/images/no-image.png')}}" alt="{{$item['name']}}">
-                            </div>
-                            @if (isset($item['helper_text']))
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
-                            @endif
-                        </div>
-                        @elseif($item['type'] === 'multi-image')
-                        <div class="col-span-6 {{'lg:'. $class}}">
-                            <label for="{{$item['name']}}"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <div id="fileUpload" class="file-container ">
-                                <label for="fileUpload-1" class="file-upload dark:bg-gray-700">
-                                  <div class="dark:bg-slate-400">
-                                    <i class="material-icons-outlined">cloud_upload</i>
-                                    <p>Drag &amp; Drop Files Here</p>
-                                    <span>OR</span>
-                                    <div>Browse Files</div>
-                                  </div>
-                                  <input type="file" accept="image/*" id="fileUpload-1" name="images[]" multiple="" hidden="">
-                                </label>
-                              </div>
-                              @if (isset($item['helper_text']))
-                              <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">{{$item['helper_text']}}</p>
-                              @endif
-                        </div>
-                        @else
-                        <div class="col-span-6 {{'lg:'. $class}}">
-                            <label for="{{$item['name']}}"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$item['label']}}</label>
-                            <input type="{{$item['type'] ?? 'text'}}" name="{{$item['name']}}" id="{{$item['name']}}"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="Enter {{$item['label']}}" required>
-                        </div>
-                        @endif
-                        @endforeach
-               
-                        {{-- <div class="col-span-6">
+                                        <div
+                                            class="w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                            <div class="px-3 py-2 border-b dark:border-gray-600">
+                                                <div class="flex flex-wrap items-center">
+                                                    <div class="flex items-center space-x-1 rtl:space-x-reverse flex-wrap">
+                                                        <button id="toggleLeftAlignButton" type="button"
+                                                            data-tooltip-target="tooltip-left-align"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="none" viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="M6 6h8m-8 4h12M6 14h8m-8 4h12" />
+                                                            </svg>
+                                                            <span class="sr-only">Align left</span>
+                                                        </button>
+                                                        <div id="tooltip-left-align" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Align left
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+                                                        <button id="toggleCenterAlignButton" type="button"
+                                                            data-tooltip-target="tooltip-center-align"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="none" viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="M8 6h8M6 10h12M8 14h8M6 18h12" />
+                                                            </svg>
+                                                            <span class="sr-only">Align center</span>
+                                                        </button>
+                                                        <div id="tooltip-center-align" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Align center
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+                                                        <button id="toggleRightAlignButton" type="button"
+                                                            data-tooltip-target="tooltip-right-align"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="none" viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="M18 6h-8m8 4H6m12 4h-8m8 4H6" />
+                                                            </svg>
+                                                            <span class="sr-only">Align right</span>
+                                                        </button>
+                                                        <div id="tooltip-right-align" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Align right
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+                                                        <button id="toggleJustifyButton" type="button"
+                                                            data-tooltip-target="tooltip-justify"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="none" viewBox="0 0 24 24">
+                                                                <path stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2"
+                                                                    d="M18 6H6m12 4H6m12 4H6m12 4H6" />
+                                                            </svg>
+                                                            <span class="sr-only">Justify</span>
+                                                        </button>
+                                                        <div id="tooltip-justify" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Justify text
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+                                                        <button id="addImageButton" type="button"
+                                                            data-tooltip-target="tooltip-image"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M13 10a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2H14a1 1 0 0 1-1-1Z"
+                                                                    clip-rule="evenodd" />
+                                                                <path fill-rule="evenodd"
+                                                                    d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12c0 .556-.227 1.06-.593 1.422A.999.999 0 0 1 20.5 20H4a2.002 2.002 0 0 1-2-2V6Zm6.892 12 3.833-5.356-3.99-4.322a1 1 0 0 0-1.549.097L4 12.879V6h16v9.95l-3.257-3.619a1 1 0 0 0-1.557.088L11.2 18H8.892Z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                            <span class="sr-only">Add image</span>
+                                                        </button>
+                                                        <div id="tooltip-image" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Add image
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+
+                                                        <button id="addVideoButton" type="button"
+                                                            data-tooltip-target="tooltip-video"
+                                                            class="p-1.5 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                                                            <svg class="w-5 h-5" aria-hidden="true"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M14 7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7Zm2 9.387 4.684 1.562A1 1 0 0 0 22 17V7a1 1 0 0 0-1.316-.949L16 7.613v8.774Z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                            <span class="sr-only">Add video</span>
+                                                        </button>
+                                                        <div id="tooltip-video" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                            Add video
+                                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
+
+                                                <div
+                                                    id="wysiwyg-alignment-example"class="block w-full px-0  text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
+                                        <textarea rows="4" name="{{ $item['name'] }}" id="{{ $item['name'] }}"
+                                            class="textarea shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Enter {{ $item['label'] }}" required></textarea>
+                                    </div>
+                                @elseif($item['type'] === 'image')
+                                    <div class="col-span-6 {{ 'lg:' . $class }}">
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                            for="{{ $item['name'] }}">{{ $item['label'] }}</label>
+                                        <div class="relative">
+                                            <input accept="image/*" name="{{ $item['name'] }}"
+                                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                aria-describedby="file_input_help" id="{{ $item['name'] }}"
+                                                type="file">
+                                            <img class="absolute top-0 right-0 w-10 h-10 rounded preview"
+                                                src="{{ asset('/images/no-image.png') }}" alt="{{ $item['name'] }}">
+                                        </div>
+                                        @if (isset($item['helper_text']))
+                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                                                {{ $item['helper_text'] }}</p>
+                                        @endif
+                                    </div>
+                                @elseif($item['type'] === 'multi-image')
+                                    <div class="col-span-6 {{ 'lg:' . $class }}">
+                                        <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">{{ $item['label'] }}</label>
+                                        <div id="fileUpload" class="file-container ">
+                                            <label for="fileUpload-1" class="file-upload dark:bg-gray-700">
+                                                <div class="dark:bg-slate-400">
+                                                    <i class="material-icons-outlined">cloud_upload</i>
+                                                    <p>Drag &amp; Drop Files Here</p>
+                                                    <span>OR</span>
+                                                    <div>Browse Files</div>
+                                                </div>
+                                                <input type="file" accept="image/*" id="fileUpload-1" name="images[]"
+                                                    multiple="" hidden="">
+                                            </label>
+                                        </div>
+                                        @if (isset($item['helper_text']))
+                                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                                                {{ $item['helper_text'] }}</p>
+                                        @endif
+                                    </div>
+                                @else
+                                    <div class="col-span-6 {{ 'lg:' . $class }}">
+                                        <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
+                                        <input type="{{ $item['type'] ?? 'text' }}" name="{{ $item['name'] }}"
+                                            id="{{ $item['name'] }}"
+                                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            placeholder="Enter {{ $item['label'] }}" required>
+                                    </div>
+                                @endif
+                            @endforeach
+
+                            {{-- <div class="col-span-6">
                             <label for="body"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Content</label>
                             <textarea type="text" name="body" id="body"
@@ -298,304 +425,350 @@
                         </div> --}}
 
 
+                        </div>
+
+                        @include('components.ajax-btn')
+
                     </div>
 
-                    @include('components.ajax-btn')
-
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @push('scripts')
-<!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.9/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
-{{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
-<script src="{{asset('plugins/fileUpload/fileUpload.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        $(function(){ 
-  $("#fileUpload").fileUpload();
-});
-    /*------------------------------------------
-    --------------------------------------------
-    Pass Header Token
-    --------------------------------------------
-    --------------------------------------------*/
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    /*------------------------------------------
-    --------------------------------------------
-    All checkbox select 
-    --------------------------------------------
-    --------------------------------------------*/    
-    $(document).on('click', '#selectAll', function (e) {
-        var table = $(e.target).closest('table');
-        $('td input:checkbox.select', table).prop('checked', this.checked);
-    })
-    /*------------------------------------------
-    --------------------------------------------
-    Preview image on file selection for each file input
-    --------------------------------------------
-    --------------------------------------------*/
-    $('input[type="file"]').on('change', function () {
-        var file = this.files[0];
-        var $preview = $(this).closest('.relative').find('.preview'); // Find the corresponding preview image
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $preview.attr('src', e.target.result);
-            }
-            reader.readAsDataURL(file);
-        } else {
-            // If no file is selected, revert to default image
-            $preview.attr('src', "{{asset('/images/no-image.png')}}");
-        }
-    });
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.9/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
+    {{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
+    <script src="{{ asset('plugins/fileUpload/fileUpload.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $(function() {
+                $("#fileUpload").fileUpload();
+            });
+            /*------------------------------------------
+            --------------------------------------------
+            Pass Header Token
+            --------------------------------------------
+            --------------------------------------------*/
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            /*------------------------------------------
+            --------------------------------------------
+            All checkbox select 
+            --------------------------------------------
+            --------------------------------------------*/
+            $(document).on('click', '#selectAll', function(e) {
+                var table = $(e.target).closest('table');
+                $('td input:checkbox.select', table).prop('checked', this.checked);
+            })
+            /*------------------------------------------
+            --------------------------------------------
+            Preview image on file selection for each file input
+            --------------------------------------------
+            --------------------------------------------*/
+            $('input[type="file"]').on('change', function() {
+                var file = this.files[0];
+                var $preview = $(this).closest('.relative').find(
+                    '.preview'); // Find the corresponding preview image
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $preview.attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    // If no file is selected, revert to default image
+                    $preview.attr('src', "{{ asset('/images/no-image.png') }}");
+                }
+            });
 
-    // Trigger change event for each file input if there's already a file selected (for initial preview)
-    $('input[type="file"]').trigger('change');
-
-
-    $(document).on('change', 'input[name="status"]', function () {
-        let data_id = $(this).data('id');
-        let url = $(this).data('url');
-        $.ajax({
-            data: { id: data_id, status: $(this).val() },
-            url: "{{ url('/admin/'.$title[1].'/status') }}",
-            type: 'post',
-            dataType: 'json',
-            success: function (response) {
-                // table.draw()
-                console.log(response.message);
-                showFrontendAlert('success', response.message);
-
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
+            // Trigger change event for each file input if there's already a file selected (for initial preview)
+            $('input[type="file"]').trigger('change');
 
 
-
-    /*------------------------------------------
-    --------------------------------------------
-    Render DataTable
-    --------------------------------------------
-    --------------------------------------------*/
-    let table = $('#dataTable').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{request()->url()}}",
-    });
-
-    /*------------------------------------------
-    --------------------------------------------
-    Click to Create Button
-    --------------------------------------------
-    --------------------------------------------*/
-    $(document).on('click', '#createData', function () {
-        $('#ajax-btn').val("create-data");
-        $('#ajax-btn').text("Create");
-        $('#data_id').val('');
-        $('#dataForm').trigger("reset");
-        $('.preview').attr('src', "{{asset('/images/no-image.png')}}");
-        $('#modelHeading').text("Create New data");
-        window
-            .FlowbiteInstances
-            .getInstance('Modal', 'data-modal')
-            ?.show();
-    });
-
-/*------------------------------------------
---------------------------------------------
-Click to Edit Button
---------------------------------------------
---------------------------------------------*/
-$(document).on('click', '.editData', function () {
-    var data_id = $(this).data('id');
-    // let form = $('#dataForm').data('form');
-    
-    $.get("{{ url('/admin/'.$title[1]) }}/" + data_id, function (data) {
-        $('#modelHeading').html("Edit Data");
-        $('#ajax-btn').val("edit-Data");
-        
-        window.FlowbiteInstances
-            .getInstance('Modal', 'data-modal')
-            ?.show();
-        
-        $('#dataForm').data('id', data.data.id);
-        
-        const form = JSON.parse(document.getElementById('dataForm').dataset.form);
-
-form.forEach(element => {
-    const elementType = element.type;  // Use 'type' to determine the type of form element
-    const elementId = element.name;    // The ID of the form element is still based on 'name'
-    const elementValue = data.data[elementId]; // The value we need to set
-    if (elementValue) {
-    if (['image', 'file'].includes(elementType)) {
-        // Handle file input by updating the image preview
-        var $preview = $('#' + elementId).closest('.relative').find('.preview');
-        $preview.attr('src', `{{ asset('${elementValue}') }}`);
-    } else if (elementType === 'select') {
-        // Handle select input by setting the selected option
-            console.log(elementValue);
-            
-            $(`#${elementId}`).val(elementValue).change();
-       
-    } else {
-        // Handle other input types like text, number, etc.
-        $('#' + elementId).val(elementValue);
-    }
-    }
-});
-
-
-    });
-});
-
-
-
-    /*------------------------------------------
-    --------------------------------------------
-    Create Data Code
-    --------------------------------------------
-    --------------------------------------------*/
-    $('#ajax-btn').click(function (e) {
-        var $btn = $(this);
-        let spinner = $('#ajax-spinner');
-        spinner.removeClass('hidden');
-        spinner.addClass('inline');
-        $btn.prop('disabled', true);
-        e.preventDefault();
-        if ($btn.val() == 'edit-Data') {
-            let id = $('#dataForm').data('id')
-            url = `{{ url('/admin/'.$title[1].'/${id}') }}`;
-            method = 'PUT';
-        } else {
-            url = `{{ url('/admin/'.$title[1]) }}`;
-            method = 'POST';
-
-        }
-        var formElement = document.getElementById('dataForm');
-        var formData = new FormData(formElement);
-        if (method === 'PUT') {
-    formData.append('_method', 'PUT');
-}
-        $.ajax({
-            data: formData,
-            url,
-            type: 'POST',
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                 showFrontendAlert('success', data.message);
-                table.draw()
-                spinner.addClass('hidden');
-                $btn.prop('disabled', false);
-                window.FlowbiteInstances.getInstance('Modal', 'data-modal')?.hide();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-                showFrontendAlert('danger', data);
-                $btn.prop('disabled', false);
-                $('#ajax-btn').html('Save Changes');
-            }
-        });
-    });
-
-    /*------------------------------------------
-    --------------------------------------------
-    Delete Data Code
-    --------------------------------------------
-    --------------------------------------------*/ 
-    $(document).on('click', '#delete', function(e) {
-        e.preventDefault();
-        let data_id = $(this).data('id');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "Delete This Data?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
+            $(document).on('change', 'input[name="status"]', function() {
+                let data_id = $(this).data('id');
+                let url = $(this).data('url');
                 $.ajax({
-                    url: '{{ url('/admin/'.$title[1]) }}' +'/'  + data_id,
-                    type: 'delete',
-                    dataType: 'json',
-                    success: function (response) {
-                        table.draw()
-                        
+                    data: {
+                        id: data_id,
+                        status: $(this).val()
                     },
-                    error: function (data) {
+                    url: "{{ url('/admin/' . $title[1] . '/status') }}",
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(response) {
+                        // table.draw()
+                        console.log(response.message);
+                        showFrontendAlert('success', response.message);
+
+                    },
+                    error: function(data) {
                         console.log('Error:', data);
                     }
                 });
-                   
+            });
+            $(document).on('click', '#btn-cancel, #btn-delivery', function() {
+                let data_id = $(this).data('id');
+                let status = $(this).data('status');                
+                $.ajax({
+                    data: {
+                        id: data_id,
+                        status: status
+                    },
+                    url: "{{ url('/admin/' . $title[1] . '/status') }}",
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(response) {
+                        showFrontendAlert('success', response.message);
+                        table.draw()
+
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
+            });
+
+
+
+            /*------------------------------------------
+            --------------------------------------------
+            Render DataTable
+            --------------------------------------------
+            --------------------------------------------*/
+            let table = $('#dataTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ request()->url() }}",
+            });
+            table.on('draw', function() {
+                $('[data-dropdown-toggle]').each(function() {
+                    const targetId = $(this).attr('data-dropdown-toggle');
+                    const $targetEl = document.getElementById(targetId);
+                    const $triggerEl = this;
+                    const DropdownOptions = {
+                        placement: 'left-start',
+                        triggerType: 'click',
+                        offsetSkidding: 0,
+                        offsetDistance: 10,
+                        delay: 300
+                    }
+                    // Initialize a new Flowbite Dropdown instance
+                let dropdown=    new Dropdown($targetEl, $triggerEl, DropdownOptions);
+                });
+            });
+            /*------------------------------------------
+            --------------------------------------------
+            Click to Create Button
+            --------------------------------------------
+            --------------------------------------------*/
+            $(document).on('click', '#createData', function() {
+                $('#ajax-btn').val("create-data");
+                $('#ajax-btn').text("Create");
+                $('#data_id').val('');
+                $('#dataForm').trigger("reset");
+                $('.preview').attr('src', "{{ asset('/images/no-image.png') }}");
+                $('#modelHeading').text("Create New data");
+                window
+                    .FlowbiteInstances
+                    .getInstance('Modal', 'data-modal')
+                    ?.show();
+            });
+
+            /*------------------------------------------
+            --------------------------------------------
+            Click to Edit Button
+            --------------------------------------------
+            --------------------------------------------*/
+            $(document).on('click', '.editData', function() {
+                var data_id = $(this).data('id');
+                // let form = $('#dataForm').data('form');
+
+                $.get("{{ url('/admin/' . $title[1]) }}/" + data_id, function(data) {
+                    $('#modelHeading').html("Edit Data");
+                    $('#ajax-btn').val("edit-Data");
+
+                    window.FlowbiteInstances
+                        .getInstance('Modal', 'data-modal')
+                        ?.show();
+
+                    $('#dataForm').data('id', data.data.id);
+
+                    const form = JSON.parse(document.getElementById('dataForm').dataset.form);
+
+                    form.forEach(element => {
+                        const elementType = element
+                            .type; // Use 'type' to determine the type of form element
+                        const elementId = element
+                            .name; // The ID of the form element is still based on 'name'
+                        const elementValue = data.data[
+                            elementId]; // The value we need to set
+                        if (elementValue) {
+                            if (['image', 'file'].includes(elementType)) {
+                                // Handle file input by updating the image preview
+                                var $preview = $('#' + elementId).closest('.relative').find(
+                                    '.preview');
+                                $preview.attr('src', `{{ asset('${elementValue}') }}`);
+                            } else if (elementType === 'select') {
+                                // Handle select input by setting the selected option
+                                console.log(elementValue);
+
+                                $(`#${elementId}`).val(elementValue).change();
+
+                            } else {
+                                // Handle other input types like text, number, etc.
+                                $('#' + elementId).val(elementValue);
+                            }
+                        }
+                    });
+
+
+                });
+            });
+
+
+
+            /*------------------------------------------
+            --------------------------------------------
+            Create Data Code
+            --------------------------------------------
+            --------------------------------------------*/
+            $('#ajax-btn').click(function(e) {
+                var $btn = $(this);
+                let spinner = $('#ajax-spinner');
+                spinner.removeClass('hidden');
+                spinner.addClass('inline');
+                $btn.prop('disabled', true);
+                e.preventDefault();
+                if ($btn.val() == 'edit-Data') {
+                    let id = $('#dataForm').data('id')
+                    url = `{{ url('/admin/' . $title[1] . '/${id}') }}`;
+                    method = 'PUT';
+                } else {
+                    url = `{{ url('/admin/' . $title[1]) }}`;
+                    method = 'POST';
+
+                }
+                var formElement = document.getElementById('dataForm');
+                var formData = new FormData(formElement);
+                if (method === 'PUT') {
+                    formData.append('_method', 'PUT');
+                }
+                $.ajax({
+                    data: formData,
+                    url,
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        showFrontendAlert('success', data.message);
+                        table.draw()
+                        spinner.addClass('hidden');
+                        $btn.prop('disabled', false);
+                        window.FlowbiteInstances.getInstance('Modal', 'data-modal')?.hide();
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                        showFrontendAlert('danger', data);
+                        $btn.prop('disabled', false);
+                        $('#ajax-btn').html('Save Changes');
+                    }
+                });
+            });
+
+            /*------------------------------------------
+            --------------------------------------------
+            Delete Data Code
+            --------------------------------------------
+            --------------------------------------------*/
+            $(document).on('click', '#delete', function(e) {
+                e.preventDefault();
+                let data_id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete This Data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ url('/admin/' . $title[1]) }}' + '/' + data_id,
+                            type: 'delete',
+                            dataType: 'json',
+                            success: function(response) {
+                                table.draw()
+
+                            },
+                            error: function(data) {
+                                console.log('Error:', data);
+                            }
+                        });
+
                         showFrontendAlert('success', 'Your file has been deleted.');
                     }
                 })
-                
-                
+
+
             });
-            
+
             /*------------------------------------------
             --------------------------------------------
             Delete Multiple Data Code
             --------------------------------------------
-            --------------------------------------------*/ 
-                $('#multi-delete').on('click', function() {
-                    var selectedItems = $('.select:checked').map(function() {
-                        return $(this).data('id');
-                    }).get();
-    
-                    if (selectedItems.length === 0) {
-                        alert('Please select at least one item.');
-                        return;
-                    }
-             Swal.fire({
-                                title: "Are you sure?",
-                                text: "You won't be able to revert this!",
-                                icon: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#3085d6",
-                                cancelButtonColor: "#d33",
-                                confirmButtonText: "Yes, delete it!"
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    $.ajax({
-                                        url: '{{ route('multiple.'.$title[1].'.delete') }}',
-                                        type: 'delete',
-                                        data: {
-                                            selected_ids: selectedItems
-                                        },
-                                        success: function(data) {
-                                            table.draw(); // Reload the page or update the UI as needed
-                                            // Handle success (e.g., show a success message)
-                                            showFrontendAlert('success', 'Your files has been deleted.');
+            --------------------------------------------*/
+            $('#multi-delete').on('click', function() {
+                var selectedItems = $('.select:checked').map(function() {
+                    return $(this).data('id');
+                }).get();
 
-                                            
-                                        },
-                                        error: function(xhr, status, error) {
-                                            // Handle error (e.g., show an error message)
-                                            console.error(error);
-                                        }
-                                    });
-    
-                                }
-                            });
-    
+                if (selectedItems.length === 0) {
+                    alert('Please select at least one item.');
+                    return;
+                }
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '{{ route('multiple.' . $title[1] . '.delete') }}',
+                            type: 'delete',
+                            data: {
+                                selected_ids: selectedItems
+                            },
+                            success: function(data) {
+                                table
+                                    .draw(); // Reload the page or update the UI as needed
+                                // Handle success (e.g., show a success message)
+                                showFrontendAlert('success',
+                                    'Your files has been deleted.');
+
+
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle error (e.g., show an error message)
+                                console.error(error);
+                            }
+                        });
+
+                    }
                 });
+
+            });
         });
-</script>
+    </script>
 @endpush

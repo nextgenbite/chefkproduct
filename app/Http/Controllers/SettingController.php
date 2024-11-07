@@ -13,44 +13,56 @@ class SettingController extends Controller
     private $title = ['Setting', 'setting'];
     private $imgLocation = 'images/settings/';
 
-    public function overWriteEnvFile($type, $val)
-    {
-        if(env('DEMO_MODE') != 'On'){
-            $path = base_path('.env');
-            if (file_exists($path)) {
-                $val = '"'.trim($val).'"';
-                if(is_numeric(strpos(file_get_contents($path), $type)) && strpos(file_get_contents($path), $type) >= 0){
-                    file_put_contents($path, str_replace(
-                        $type.'="'.env($type).'"', $type.'='.$val, file_get_contents($path)
-                    ));
-                }
-                else{
-                    file_put_contents($path, file_get_contents($path)."\r\n".$type.'='.$val);
-                }
-            }
-        }
-    }
-
-        /**
+    /**
      * Update the API key's for other methods.
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function env_key_update(Request $request)
+    public function updateEnvKeys(Request $request)
     {
-        foreach ($request->types as $key => $type) {
-                $this->overWriteEnvFile($type, $request[$type]);
+        try {
+              $request->validate([
+            'key' => 'required|array',
+        ]);
+            foreach ($request->key as $key => $value) {
+    
+                $envKey = strtoupper($key);
+                $envValue = '"' . trim($value) . '"';
+    
+                $envFilePath = base_path('.env');
+                if (file_exists($envFilePath)) {
+                    $envContent = file_get_contents($envFilePath);
+    
+                    if (strpos($envContent, $envKey) !== false) {
+                        $envContent = preg_replace(
+                            '/^' . $envKey . '.*/m',
+                            $envKey . '=' . $envValue,
+                            $envContent
+                        );
+                    } else {
+                        $envContent .= "\n" . $envKey . '=' . $envValue;
+                    }
+    
+                    if (file_put_contents($envFilePath, $envContent) === false) {
+                        throw new \Exception('Failed to write to .env file');
+                    }
+                } else {
+                    throw new \Exception('.env file not found');
+                }
+            }
+    
+            return redirect()->back()->with([
+                'message'     => 'Settings updated successfully',
+                'alert-type'  => 'success'
+            ]);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+            return redirect()->back()->with([
+                'message'     => 'Failed to update settings: ' . $e->getMessage(),
+                'alert-type'  => 'error'
+            ]);
         }
-
-        // flash(translate("Settings updated successfully"))->success();
-        return back();
     }
-
-
-
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -58,74 +70,50 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $title = $this-> title;
-   
+        $title = $this->title;
+
         $settings = Setting::all()->pluck('svalue', 'skey');
 
-        return view('admin.settings.index', compact('title','settings'));
+        return view('admin.settings.index', compact('title', 'settings'));
     }
 
-        /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function social()
     {
+        $title = ["Social Media Link"];
 
+        $settings = Setting::all()->pluck('svalue', 'skey');
 
-        $setting = Setting::first();
-        if (isset($setting)) {
-            $data =$setting;
-        } else {
-            $data = new Setting;
-        }
-
-
-         $data->app_name=$request->app_name;
-         $data->email=$request->email;
-         $data->address=$request->address;
-         $data->facebook=$request->facebook;
-         $data->twitter=$request->twitter;
-         $data->instagram=$request->instagram;
-         $data->linkedin=$request->linkedin;
-
-                   // Handle image update
-    if ($request->newFavicon) {
-        $this->deleteImage($data->favicon);
-
-        $newFavicon= $this->uploadBase64Image($request->newFavicon, $this->imgLocation, 'png');
-
-        $data->favicon  = $newFavicon;
-    }
-    if ($request->newLogo) {
-        $this->deleteImage($data->logo);
-
-        $newLogo= $this->uploadBase64Image($request->newLogo, $this->imgLocation,'png');
-
-        $data->logo  = $newLogo;
-    }
-    if (isset($setting)) {
-        $data->update();
-    } else {
-        $data->save();
-    }
-    if ($data) {
-        return response()->json(['message' => 'Data Update successfully', 'data'=> $data] ,200);
-    } else {
-        return response()->json(['message'=> 'Data Update Failed'] ,404);
+        return view('admin.settings.social_media', compact('title', 'settings'));
     }
 
+    public function plugins()
+    {
+        $title = ["Plugin Setup"];
 
+        $settings = Setting::all()->pluck('svalue', 'skey');
+        $data = collect([
+            'mail_mailer' => config('mail.mailers.smtp.transport'),
+            'mail_host' => config('mail.mailers.smtp.host'),
+            'mail_port' => config('mail.mailers.smtp.port'),
+            'mail_encryption' => config('mail.mailers.smtp.encryption'),
+            'mail_username' => config('mail.mailers.smtp.username'),
+            'mail_password' => config('mail.mailers.smtp.password'),
+            'mail_password' => config('mail.mailers.smtp.password'),
+            'mail_from_address' => config('mail.from.address'),
+            
+            'fedex_client_id' => config('fedex.client_id'),
+            'fedex_secret_id' => config('fedex.secret_id'),
+            'fedex_account_number' => config('fedex.account_number'),
+        ])->all();
+        return view('admin.settings.plugins', compact('title', 'settings', 'data'));
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
             'key' => 'required|array',
         ]);
-//  return $request->dd();
         foreach ($request->key as $key => $value) {
             if ($key == 'logo' || $key == 'favicon') {
                 // Process image upload

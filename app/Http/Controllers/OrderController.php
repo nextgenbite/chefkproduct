@@ -51,19 +51,14 @@ class OrderController extends Controller
                     return $this->CrudCheckbox($row);
                 })
 
-                ->addColumn('payment_method', function ($row) {
-                    return $this->OrderPaymentMethod($row);
-                })
-                ->addColumn('payment_status', function ($row) {
-                    return $this->OrderPaymentStatus($row);
-                })
+
                 ->addColumn('status', function ($row) {
                     return $this->OrderStatus($row);
                 })
                 ->addColumn('action', function ($row) {
                     return $this->OrderAction($row);
                 })
-                ->rawColumns(['checkbox', 'payment_method', 'payment_status', 'status',  'action'])
+                ->rawColumns(['checkbox',  'status',  'action'])
                 ->make(true);
         }
         $columns = [
@@ -88,11 +83,16 @@ class OrderController extends Controller
                 'orderable' => false,
                 'searchable' => false
             ],
+            [
+                'data' => 'user.email',
+                'name' => 'user.email',
+                'title' => 'Email',
+                'orderable' => false,
+                'searchable' => false
+            ],
             ['data' => 'phone', 'name' => 'phone', 'title' => 'Phone'],
             ['data' => 'total', 'name' => 'total', 'title' => 'Total', 'sClass' => 'text-right'],
-            ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method', 'sClass' => 'text-center'],
-            ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status', 'sClass' => 'text-center'],
-            ['data' => 'status', 'name' => 'status', 'title' => 'Delivery Status', 'sClass' => 'text-center'],
+            ['data' => 'status', 'name' => 'status', 'title' => 'Status', 'sClass' => 'text-center'],
 
             [
                 'data' => 'action',
@@ -170,7 +170,7 @@ class OrderController extends Controller
                 "order_date" => date("d/m/Y"),
                 "order_month" => date("m"),
                 "order_year" => date("Y"),
-                // 'payment_method' => $request->payment_method
+                'payment_method' => $request->payment_method
             ]);
 
             // Add order items and decrement product stock
@@ -256,17 +256,6 @@ class OrderController extends Controller
     {
         // $order->code = date('Ymd-His') . rand(10, 99);
     }
-    public function status(Request $request, $id)
-    {
-        $data = Order::findOrFail($id)->update([
-            'status' => $request->status
-        ]);
-        if ($data) {
-            return response()->json(['message' => 'Data Update successfully', 'data' => $data], 200);
-        } else {
-            return response()->json(['message' => 'Data Update Failed'], 404);
-        }
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -276,8 +265,13 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Order::findOrFail($id)->delete();
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Data Update Failed'], 404);
+        }
     }
+
     public function multipleDelete(Request $request)
     {
         //    return  dd($request->selected_ids);
@@ -294,13 +288,17 @@ class OrderController extends Controller
     public function statusUpdate(Request $request)
     {
 
-        $page = Order::findOrFail($request->id);
-        $page->status = !$page->status;
-        $data = $page->save();
-        if ($data) {
-            return response()->json(['message' => $this->title[0] . ' update successfully', 'data' => $data], 200);
-        } else {
-            return response()->json(['message' => $this->title[0] . ' Get Failed'], 404);
+        try {
+            $data = Order::findOrFail($request->id)->update([
+                'status' => $request->status
+            ]);
+            if ($data) {
+                return response()->json(['message' => 'Data Update successfully', 'data' => $data], 200);
+            } else {
+                return response()->json(['message' => 'Data Update Failed'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Data Update Failed'], 404);
         }
     }
     public function OrderPaymentMethod($row)
@@ -333,30 +331,92 @@ class OrderController extends Controller
     {
         switch ($row->status) {
             case 'pending':
-                return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+                return '<span class="bg-red-100 text-yellow-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
+                break;
+            case 'canceled':
+                return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Canceled</span>';
                 break;
             case 'completed':
                 return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Completed</span>';
+                break;
+            case 'delivered':
+                return '<span class="bg-green-100 text-green-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Delivered</span>';
                 break;
             default:
                 return '<span class="bg-red-100 text-red-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Pending</span>';
         }
     }
-
     public function OrderAction($row)
     {
-        return ' <div class="inline-flex rounded-md shadow-sm" role="group">
-                 <a href="/admin/orders/invoice/' . $row->id . '" class="inline-flex items-center px-2 py-1 text-sm font-medium text-green-600 bg-transparent border border-gray-900 rounded-s-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                     <span class="material-symbols-sharp w-1 h-1 ">visibility</span>
-                 </a>
-                 <button title="edit" data-id="' . $row->id . '" type="button" class="editData inline-flex items-center px-2 py-1 text-sm font-medium text-teal-600 bg-transparent border-t border-b border-gray-900 hover:bg-gray-800 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                     <span class="material-symbols-sharp w-1 h-1 ">edit_note</span>
-                 </button>
-                 <button type="button" data-id="' . $row->id . '" id="delete" class="inline-flex items-center px-2 py-1 text-sm font-medium text-red-600 bg-transparent border border-gray-900 rounded-e-lg hover:bg-gray-900 hover:text-primary-800 focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
-                     <span class="material-symbols-sharp w-1 h-1 ">delete</span>
-                 </button>
-             </div>';
+        $dropdownId = "dropdownDotsHorizontal{$row->id}";
+        $buttonId = "dropdownMenuIconHorizontalButton{$row->id}";
+
+        // Start building the dropdown button and menu
+        $actionHtml = "
+<button id='{$buttonId}' data-dropdown-toggle='{$dropdownId}' 
+    class='p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
+    type='button'>
+    <i class='fa-solid fa-ellipsis'></i>
+</button>
+
+<!-- Dropdown menu -->
+<div id='{$dropdownId}' class='z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600'>
+    <ul class='text-sm text-gray-700 dark:text-gray-200 text-left divide-y divide-dotted divide-gray-200' aria-labelledby='{$buttonId}'>
+      <li>
+        <a href='/admin/orders/invoice/{$row->id}' title='Order details' class='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
+            <i class='fa-solid fa-eye w-4 h-4 mr-2'></i>View
+        </a>
+      </li>";
+
+        // Only show "Cancel" and "Delivery" options if the status is "Pending"
+        if ($row->status == 'pending') {
+            $actionHtml .= "
+      <li>
+        <a href='javascript:void(0)' title='Cancel' id='btn-cancel' data-status='canceled' data-id='{$row->id}' class='block px-4 py-2 text-red-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
+            <i class='fa-solid fa-ban mr-2'></i>Cancel
+        </a>
+      </li>
+      <li>
+        <a href='javascript:void(0)' title='Delivery' id='btn-delivery' data-status='delivered' data-id='{$row->id}' class='block px-4 py-2 text-green-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
+            <i class='fa-solid fa-truck mr-2'></i>Delivery
+        </a>
+      </li>";
+        }
+
+        // Delete option
+        $actionHtml .= "
+      <li>
+        <a href='javascript:void(0)' data-id='{$row->id}' class='block px-4 py-2 text-red-500 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
+            <i class='fa-solid fa-trash mr-2'></i>Delete
+        </a>
+      </li>
+    </ul>
+</div>";
+
+        return $actionHtml;
     }
+
+
+    // public function OrderAction($row)
+    // {
+    //     return '        
+    //          <div class="inline-flex rounded-md shadow-sm" role="group">
+    //      <a href="/admin/orders/invoice/' . $row->id . '"  class="view-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    //      <i class="fa-solid fa-eye w-4 h-4 mr-2"></i>
+    //      </a>
+    //      <button type="button" title="edit" data-id="' . $row->id . '"  class="editData px-4 py-2 text-sm font-medium text-gray-900 bg-white border-r border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    //      <i class="fa-solid fa-pencil w-4 h-4 mr-2"></i>
+    //      </button>
+    //      <button title="cancel" data-status="cancel" data-id="' . $row->id . '"  class="editData px-4 py-2 text-sm font-medium text-gray-900  bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    //      <i class="fa-solid fa-ban w-4 h-4 mr-2"></i>
+    //      </button>
+    //      <button type="button"  data-id="' . $row->id . '" id="delete" class="delete-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+    //      <i class="fa-solid fa-trash w-4 h-4 mr-2"></i>
+    //      </button>
+    //    </div>
+    //          ';
+    // }
+
 
     public function calculateShippingRate(Request $request)
     {
@@ -437,8 +497,8 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => true,
-                'total_price' => formatcurrency($cart['shipping_cost'] +  $cart['total_price']),
-                'shipping_cost' =>   formatcurrency($cart['shipping_cost']),
+                'total_price' => formatcurrency($cart['shipping_cost'] +  $cart['total_price']) + 3,
+                'shipping_cost' =>   formatcurrency($cart['shipping_cost']) + 3,
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

@@ -63,45 +63,19 @@
     <div class="p-6 space-y-6">
         <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , [ 'name'=> 'key[app_name]', 'label'=> 'name' , 'value'=> old('app_name', $settings['app_name'] ?? '')])
+                @include('components.input-text' , [ 'name'=> 'key[facebook]', 'label'=> 'facebook' , 'value'=> old('facebook', $settings['facebook'] ?? '')])
             </div>
             <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , ['type'=>'tel', 'name'=> 'key[phone]', 'label'=> 'phone', 'value'=> old('phone', $settings['phone'] ?? '')])
+                @include('components.input-text' , [ 'name'=> 'key[twitter]', 'label'=> 'twitter' , 'value'=> old('twitter', $settings['twitter'] ?? '')])
             </div>
             <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , ['type'=>'email', 'name'=> 'key[email]', 'label'=> 'email', 'value'=> old('email', $settings['email'] ?? '')])
+                @include('components.input-text' , [ 'name'=> 'key[instagram]', 'label'=> 'instagram' , 'value'=> old('instagram', $settings['instagram'] ?? '')])
             </div>
+            
             <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , [ 'name'=> 'key[address]', 'label'=> 'address', 'value'=> old('address', $settings['address'] ?? '')])
+                @include('components.input-text' , [ 'name'=> 'key[linkedin]', 'label'=> 'linkedin' , 'value'=> old('linkedin', $settings['linkedin'] ?? '')])
             </div>
-
-            <div class="col-span-6 sm:col-span-3">
-                <div>
-                    @include('components.input-file' , [ 'name'=> 'key[logo]', 'label'=> 'logo', 'value'=> old('logo', $settings['logo'] ?? '')])
-
-          
-                </div>
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                <div>
-                    @include('components.input-file' , [ 'name'=> 'key[favicon]', 'label'=> 'favicon', 'value'=> old('favicon', $settings['favicon'] ?? '')])
-                </div>
-            </div>
-            <div class="col-span-6">
-              
-                @include('components.input-textarea' , [ 'name'=> 'key[about]', 'label'=> 'about', 'value'=> old('about', $settings['about'] ?? '')])
-
-            </div>
-           
-            <div class="col-span-6">
-                @include('components.input-text' , ['type'=>'text', 'name'=> 'key[currency_symbol]', 'label'=> 'currency symbol',  'value'=> old('color', $settings['currency_symbol'] ?? '')])
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , ['type'=>'color', 'name'=> 'key[color]', 'label'=> 'color', 'class'=> 'p-0', 'value'=> old('color', $settings['color'] ?? '')])
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-                @include('components.input-text' , ['type'=>'color', 'name'=> 'key[hover_color]', 'label'=> 'hover color','class'=> 'p-0', 'value'=> old('hover_color', $settings['hover_color'] ?? '')])
-            </div>
+            
         
         </div>
 @include('components.btn-loading',  ['type'=>'submit'])

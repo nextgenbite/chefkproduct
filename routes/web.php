@@ -29,8 +29,7 @@ use Illuminate\Support\Facades\Artisan;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/bkash/payment/create', [App\Http\Controllers\BkashController::class, 'createPayment']);
-Route::post('/bkash/payment/execute', [App\Http\Controllers\BkashController::class,'executePayment']);
+
 // Tasks
 Route::prefix('tasks')->group(function() {
 
@@ -73,13 +72,6 @@ Route::prefix('tasks')->group(function() {
 });
 
 // Frontend
-Route::get('/mail',function(){
-    
-    $data = App\Models\Order::with('orderitem')->first();
-    return view('emails.contact', compact('data'));
-});
-
-// Route::get('/rate', [OrderController::class, 'calculateShippingRate'])->name('calculateShippingRate');
 
 Route::get('/', [PublicController::class, 'index'])->name('frontend.home');
 Route::get('/categories/{slug}', [PublicController::class, 'categoriesView'])->name('categories.show');
@@ -95,6 +87,7 @@ Route::get('/be-a-partner-with-us', [PublicController::class, 'partnership'])->n
 Route::post('/be-a-partner-with-us', [PublicController::class, 'partnershipStore'])->name('partnership.store');
 Route::get('/about-us', [PublicController::class, 'about'])->name('about');
 Route::get('/stores', [PublicController::class, 'stores'])->name('stores');
+Route::get('/karen-alexis-williams', [PublicController::class, 'AboutKaren']);
 
 // Cart
 Route::post('/cart/add', [CartController::class, 'addToCart']);
@@ -192,7 +185,6 @@ Route::delete('/sliders/multiple/delete', [App\Http\Controllers\SliderController
 Route::get('/orders', [OrderController::class, 'index']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::put('/orders/{id}', [OrderController::class, 'update']);
-Route::put('/orders/status/{id}', [OrderController::class, 'status']);
 Route::get('/orders/{id}', [OrderController::class, 'show']);
 Route::get('/orders/invoice/{id}', [OrderController::class, 'invoice']);
 Route::get('/orders/invoice/download/{id}', [OrderController::class, 'invoiceDownload']);
@@ -203,6 +195,8 @@ Route::delete('/orders/multiple/delete', [OrderController::class, 'multipleDelet
 
 
 Route::get('/site-settings', [SettingController::class, 'index']);
+Route::get('/settings/social-media', [SettingController::class, 'social']);
+Route::get('/settings/plugins', [SettingController::class, 'plugins']);
 Route::post('/site-settings', [SettingController::class, 'store']);
 
 
@@ -248,7 +242,7 @@ Route::prefix('/test')->group(function(){
 // Route::delete('/pages/{id}', [PageController::class, 'destroy']);
 //Settings
 Route::resource('/settings', App\Http\Controllers\SettingController::class)->only('index', 'store');
-
+Route::post('/settings/plugins-store', [SettingController::class, 'updateEnvKeys'])->name('settings.plugin.store');
 });
 
 

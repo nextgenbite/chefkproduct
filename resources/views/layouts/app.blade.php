@@ -24,6 +24,7 @@
  body{
   width: 100vw;
   overflow-x: hidden;
+  font-size: 1em !important
  }
       :root {
         /* --primary-light: 30, 66, 159; */

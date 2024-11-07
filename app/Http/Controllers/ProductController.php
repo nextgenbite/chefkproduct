@@ -58,19 +58,25 @@ class ProductController extends Controller
                 'searchable' => false
             ],
             [
-                'data' => 'DT_RowIndex', 'name' => 'DT_RowIndex', 'title' => 'Sl',
+                'data' => 'DT_RowIndex',
+                'name' => 'DT_RowIndex',
+                'title' => 'Sl',
                 'orderable' => false,
                 'searchable' => false,
                 'width' => '5%'  // Set width for checkbox column
             ],
             [
-                'data' => 'thumbnail', 'name' => 'thumbnail', 'title' => 'Thumbnail',
+                'data' => 'thumbnail',
+                'name' => 'thumbnail',
+                'title' => 'Thumbnail',
                 'orderable' => false,
                 'searchable' => false,
                 'width' => '10%'
             ],
             [
-                'data' => 'category.title', 'name' => 'category.title', 'title' => 'Category',
+                'data' => 'category.title',
+                'name' => 'category.title',
+                'title' => 'Category',
                 'width' => '20%'
             ],
             [
@@ -81,17 +87,25 @@ class ProductController extends Controller
                 'sClass' => 'truncate w-25'
             ],
             [
-                'data' => 'stock', 'name' => 'stock', 'title' => 'Stock',
+                'data' => 'stock',
+                'name' => 'stock',
+                'title' => 'Stock',
                 'orderable' => false,
                 'searchable' => false
             ],
             [
-                'data' => 'status', 'name' => 'status', 'title' => 'Status', 'sClass' => 'text-center',
+                'data' => 'status',
+                'name' => 'status',
+                'title' => 'Status',
+                'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
             [
-                'data' => 'action', 'name' => 'action', 'title' => 'Action', 'sClass' => 'text-center',
+                'data' => 'action',
+                'name' => 'action',
+                'title' => 'Action',
+                'sClass' => 'text-center',
                 'orderable' => false,
                 'searchable' => false
             ],
@@ -100,6 +114,10 @@ class ProductController extends Controller
         $brands = Brand::active()->latest()->get();
         $colors = Color::get();
         $sizes = Size::get();
+        $feature = collect([
+            ["id" => 0,"name" => "Deactive"],
+            ["id" => 1,"name" => "Active"]
+        ]);
         $form = [
             [
                 'type' => 'text',
@@ -116,7 +134,7 @@ class ProductController extends Controller
                 'child' =>  'children',
                 'mode' =>  'select-single',
                 'class' => 'col-span-2',
-                
+
             ],
             [
                 'type' => 'select',
@@ -182,6 +200,15 @@ class ProductController extends Controller
                 'label' =>  'Description',
                 'class' => 'col-span-6',
             ],
+            [
+                'type' => 'select',
+                'name' => 'trend',
+                'label' =>  'Feature Product',
+                'data' =>  $feature,
+                'key' =>  'name',
+                'class' => 'col-span-6',
+                // 'mode' =>  'select-mulitple',
+            ],
 
         ];
         return view('admin.product.crud', compact('title', 'data', 'columns', 'form'));
@@ -215,7 +242,7 @@ class ProductController extends Controller
         if ($request->has('images')) {
             foreach ($request->file('images') as $image) {
                 // Calling the improved uploadImage method
-                $uploadImage = $this->uploadImage( $image, $this->imgLocation, 800, 800);
+                $uploadImage = $this->uploadImage($image, $this->imgLocation, 800, 800);
 
                 if ($uploadImage) {
                     $magesData =   ProductImages::create([
@@ -271,11 +298,10 @@ class ProductController extends Controller
         // Handle image update
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);
-            $data->thumbnail =$this->uploadImage($request->thumbnail, $this->imgLocation, 600, 600);
-  
+            $data->thumbnail = $this->uploadImage($request->thumbnail, $this->imgLocation, 600, 600);
         }
         $data->update();
-        $magesData ='';
+        $magesData = '';
         if ($request->has('images')) {
             $productImages = ProductImages::where('product_id', $id)->get();
             if (!$productImages->isEmpty()) {

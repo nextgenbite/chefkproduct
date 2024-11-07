@@ -495,8 +495,7 @@
 
             if (country.val() === '') {
                 country.toggleClass('has-error', true);
-                // showFrontendAlert('error', 'Unsuccessful to Place order');
-                alert('Unsuccessful to Place order')
+                showFrontendAlert('error', 'Unsuccessful to Place order');
                 constantValue = 1;
             } else {
                 country.toggleClass('has-error', false);
@@ -525,6 +524,7 @@
                             'address': customerAddress.val(),
                             'country': country,
                             'state': state,
+                            'payment_method': 'stripe',
                         },
                         success: function(data) {
                             // <!--Payment Modal-- >

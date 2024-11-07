@@ -69,6 +69,14 @@
                               </div>
                           </div>
                          <div class="mt-4 space-y-4 ">
+                              <a title="Store" href="{{  url('/stores')}}"
+                                   class="text-base text-gray-500 capitalize hover:text-primary-light block font-semibold ">
+                                   Find Our Product in these Stores
+                              </a>
+                              <a title="About" href="{{  url('/about-us')}}"
+                                   class="text-base text-gray-500 capitalize hover:text-primary-light block font-semibold ">
+                                   About
+                              </a>
                               @forelse ($pages as $item)
 
                               <a title="{{ $item->title}}" href="{{  url('/page/'.$item->slug)}}"
