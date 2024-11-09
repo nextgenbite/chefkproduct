@@ -34,7 +34,7 @@ class StripeService
 
                     "source" => $token,
 
-                    "description" => "Test payment from nextgenbite.com."
+                    "description" => "Order payment from".config('app.name')
 
                 ]);
                 return $data;

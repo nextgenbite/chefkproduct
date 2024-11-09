@@ -17,6 +17,9 @@ window.addEventListener("load", function () {
                     class: "format lg:format-lg dark:format-invert focus:outline-none format-blue",
                 },
             },
+            onUpdate: ({ editor }) => {
+                document.getElementById("editorContent").value = editor.getHTML();
+            }
         });
 
         

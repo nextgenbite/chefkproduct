@@ -75,10 +75,10 @@
                         data-drawer-placement="right" aria-controls="drawer-right-cart">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="mr-1"
-                            id="cartPrice">{{ formatCurrency(array_sum(array_column(session('cart')['data'] ?? [], 'price')) ?? 0) }}
+                            id="cartPrice">{{ formatCurrency($cartItems->subtotal ?? 0) }}
                         </span>
                         <span
-                            id="cartItemCount">({{ count(session('cart')['data'] ?? []) > 0 ? count(session('cart')['data']) : 0 }}
+                            id="cartItemCount">({{ $cartItems ? count($cartItems->items) : 0 }}
                             items)</span>
                     </button>
 
@@ -126,7 +126,7 @@
     <hr>
     <div id="sidebar-cart">
 
-        @include('frontend.partials.sidebar_cart')
+        @include('frontend.partials.sidebar_cart' , ['cart'=>$cartItems])
     </div>
 
 </div>

@@ -17,7 +17,7 @@
     <!-- ---- End BreadCrum --->
 
     <!-- ---- Shpping Cart Wrapper--->
-    @if (isset($cart) && count($cart['data']) > 0)
+    @if (isset($cartItems) && count($cartItems->items) > 0)
         <form action="{{ url('/place-order') }}" method="post" id="payment-form">
             @csrf
             <div class="container items-start grid-cols-12 gap-6 pt-4 pb-16 lg:grid ">
@@ -29,7 +29,7 @@
                         <div class="flex mb-2">
                             <span
                                 class="inline-flex items-center px-3 text-sm text-white bg-primary-light border rounded-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                            
+
                                 <i class="fa fa-user-circle " aria-hidden="true" style="font-size: 1.2rem"></i>
                             </span>
                             <input type="text" id="customerName" name="name" value="{{ old('name') }}"
@@ -45,7 +45,7 @@
                             </span>
                             <input type="text" id="customerPhone" name="phone"
                                 class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-primary-light focus:border-primary-light block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-light dark:focus:border-primary-light"
-                                placeholder="Enter your phone number"  value="{{ old('phone') }}">
+                                placeholder="Enter your phone number" value="{{ old('phone') }}">
                         </div>
                         <label for="customerEmail"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email</label>
@@ -68,7 +68,9 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-light focus:border-primary-light block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-light dark:focus:border-primary-light">
                                     <option selected disabled>Choose a country</option>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" {{old('category') ==  $country->id ? 'selected' : ''}}>{{ $country->name }}</option>
+                                        <option value="{{ $country->id }}"
+                                            {{ old('category') == $country->id ? 'selected' : '' }}>{{ $country->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -122,22 +124,26 @@
                                         <span class="sr-only">Image</span>
                                     </th>
                                     <th scope="col" class="px-1 md:px-2 py-2">Product</th>
-                                    <th scope="col" class=" md:px-2 py-2 text-center">Qty</th>
                                     <th scope="col" class="px-1 md:px-2 py-2">Price</th>
+                                    <th scope="col" class=" md:px-2 py-2 text-center">Qty</th>
+                                    <th scope="col" class="px-1 md:px-2 py-2">Total</th>
                                     <th scope="col" class="px-1 md:px-2 py-2 text-left">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($cart['data'] as $item)
+                                @forelse ($cartItems->items as $item)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="p-2 hidden md:inline">
-                                            <img src="{{ asset($item['thumbnail']) }}"
+                                            <img src="{{ asset($item->product->thumbnail) }}"
                                                 class="md:w-16 md:ml-2 max-w-full max-h-full rounded"
                                                 alt="{{ $item['title'] }}" />
                                         </td>
                                         <td class="px-2 md:px-3 py-1 font-semibold text-gray-900 dark:text-white text">
-                                            {{ $item['title'] }}
+                                            {{ $item->product->title }}
+                                        </td>
+                                        <td class="px-2 py-1 font-semibold text-gray-900 dark:text-white">
+                                            {{ formatcurrency($item->product->price) }}
                                         </td>
                                         <td class=" md:px-2 py-1">
                                             <div class="relative flex items-center max-w-[6rem]">
@@ -166,8 +172,9 @@
                                                 </button>
                                             </div>
                                         </td>
+
                                         <td class="px-2 py-1 font-semibold text-gray-900 dark:text-white cart-price">
-                                            {{ formatcurrency($item['price'] * $item['quantity']) }}
+                                            {{ formatcurrency($item->product->price * $item['quantity']) }}
                                         </td>
                                         <td class="px-1 md:px-2 py-1">
                                             <button type="button" data-product-id="{{ $item['product_id'] }}"
@@ -197,23 +204,23 @@
                     <div class="pb-3 space-y-1 text-gray-600 border-b border-gray-200 ">
                         <div class="flex justify-between font-medium">
                             <p>Subtotal</p>
-                            <p class="sub-total"> {{ formatcurrency($cart['total_price']) }}</p>
+                            <p class="sub-total"> {{ formatcurrency($cartItems->subtotal) }}</p>
                         </div>
 
                         <div class="flex justify-between font-medium">
                             <p>Shipping + Handling</p>
-                            <p id="shipping_price">{{ formatcurrency(0) }}</p>
+                            <p id="shipping_price">{{ formatcurrency($cartItems->shipping_cost) }}</p>
                         </div>
                         <div class="flex justify-between font-medium">
-                            <p>Tax</p>
-                            <p>0%</p>
+                            <p>Tax <span class="tax_percentage">0%</span></p>
+                            <p>{{formatcurrency($cartItems->tax)}}</p>
                         </div>
                     </div>
 
                     <div class="flex justify-between my-3 font-semibold text-gray-800 uppercase">
                         <div>Total</div>
                         {{-- <h4>৳{{ parseFloat(carts.cartTotal + forms.shipping_cost).toFixed(2) }}</h4> --}}
-                        <div id="total_price"> {{ formatcurrency($cart['total_price']) }}</div>
+                        <div id="total_price"> {{ formatcurrency( $cartItems->total) }}</div>
                     </div>
 
                     <!-- ---- Coupon --->
@@ -374,78 +381,70 @@
             });
 
             $('input[name=zip]').change(function() {
-    const country = $('#country option:selected:enabled').val(); // Get value, not the jQuery object
-    const state = $('#state option:selected:enabled').val();     // Get value, not the jQuery object
-    const zip = $(this).val();                                  // Get the value of zip input
+                const country = $('#country option:selected:enabled')
+                    .val(); // Get value, not the jQuery object
+                const state = $('#state option:selected:enabled').val(); // Get value, not the jQuery object
+                const zip = $(this).val(); // Get the value of zip input
 
-    if (country && state && zip) { // Check if all values are present
-        $.ajax({
-            type: 'post',
-            url: "{{ url('/shipping-price') }}", // Ensure URL is correct
-            data: {
-                country: country,
-                state: state,
-                zip: zip
-            },
-            success: function(response) {
-                if (response.success) {
+                if (country && state && zip) { // Check if all values are present
+                    $.ajax({
+                        type: 'post',
+                        url: "{{ url('/cart/shipping-price') }}", // Ensure URL is correct
+                        data: {
+                            country: country,
+                            state: state,
+                            zip: zip
+                        },
+                        success: function(response) {
+                            if (response.success) {
                                 $('#shipping_price').text(response.shipping_cost);
                                 $('#total_price').text(response.total_price);
                             } else {
                                 console.error(response.error);
                             }
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                alert("An error occurred. Please try again.");
-            }
-        });
-    } else {
-        alert("Please select valid country, state, and zip code.");
-    }
-});
-
-        });
-
-        function updateCart(action, productId, row) {
-            var quantityInput = row.find('.quantity');
-            var itemPrice = row.find('.cart-price');
-            var subTotal = $('.sub-total');
-
-            $.ajax({
-                type: 'post',
-                url: "{{ url('/cart') }}" + '/' + action,
-                data: {
-                    id: productId
-                },
-                success: function(response) {
-                    showFrontendAlert('success', response.message);
-                    quantityInput.val(response.quantity);
-                    itemPrice.text(response.item_price);
-                    subTotal.text(response.total_price);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                    alert("An error occurred. Please try again.");
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                            // alert("An error occurred. Please try again.");
+                        }
+                    });
+                } else {
+                    alert("Please select valid country, state, and zip code.");
                 }
             });
-        }
-
-        $(document).ready(function() {
-            $('.increment-cart').on('click', function() {
-                var productId = $(this).data('product-id');
-                var row = $(this).closest('tr');
-                updateCart('increment', productId, row);
-            });
-
-            $('.decrement-cart').on('click', function() {
-                var productId = $(this).data('product-id');
-                var row = $(this).closest('tr');
-                updateCart('decrement', productId, row);
-            });
-
 
         });
+
+        // function updateCart(action, productId, row) {
+        //     const quantityInput = row.find('.quantity');
+        //     const itemPrice = row.find('.cart-price');
+        //     const subTotal = $('.sub-total');
+
+        //     $.post("{{ url('/cart') }}/" + action, {
+        //             id: productId
+        //         })
+        //         .done((response) => {
+        //             showFrontendAlert('success', response.message);
+        //             quantityInput.val(response.quantity);
+        //             itemPrice.text(response.item_price);
+        //             subTotal.text(response.subtotal);
+
+        //             $('#shipping_price').text(response.shipping_cost);
+        //             $('#total_price').text(response.total);
+
+        //             $('#sidebar-cart').html(response.sidebar);
+        //             $('#cartPrice').text(response.subtotal);
+        //             $('#cartItemCount').text(`(${response.count} items)`);
+        //             $('#footer_cart_icon').text(response.count);
+
+        //         })
+        //         .fail((xhr, status, error) => {
+        //             console.error(error);
+        //             alert("An error occurred. Please try again.");
+        //         });
+        // }
+
+
 
 
         // Order confirmation
@@ -551,9 +550,11 @@
         });
 
         // pixel
+        @if (isset($settings['pixel_id']) && $cart)
         fbq('track', 'InitiateCheckout', {
-        value: "{{round($cart['total_price'])}}", // Total order value
-        currency: 'USD'
-    });
+            value: "{{ round($cart->total) }}", // Total order value
+            currency: 'USD'
+        });
+        @endif
     </script>
 @endpush

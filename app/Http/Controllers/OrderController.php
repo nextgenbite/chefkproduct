@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderMail;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\SiteSetting;
-use App\Models\State;
 use App\Models\User;
-use App\Services\FedexService;
-use App\Services\StripeService;
 use App\Traits\BaseTrait;
 use Illuminate\Http\Request;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as MPDF;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\{Mail, Session, Log, Hash, View};
+use App\Services\StripeService;
 use Exception;
 
 
@@ -27,10 +26,9 @@ class OrderController extends Controller
     private $title = ['Order', 'orders'];
     protected $stripeService;
     protected $fedexService;
-    public function __construct(StripeService $stripeService, FedexService $fedexService)
+    public function __construct(StripeService $stripeService)
     {
         $this->stripeService = $stripeService;
-        $this->fedexService = $fedexService;
     }
 
     /**
@@ -132,16 +130,22 @@ class OrderController extends Controller
         $this->validate($request, [
             "name" => ["required", "min:3"],
             // "phone" => ["required", "min:11"],
-            // // "email" => ["required"],
-            // // "city" => ["required"],
-            // // "state" => ["required"],
-            // "address" => ["required"],
+            "email" => ["required"],
+            "city" => ["required"],
+            "state" => ["required"],
+            "address" => ["required"],
         ]);
 
-        $cart = session('cart');
-        $totalQuantity = array_sum(array_column($cart['data'], 'quantity'));
-        if (isset($cart['data']) && is_array($cart['data']) &&  $totalQuantity > 5) {
-
+        $cart = $this->getUserCart();
+        $totalQuantity = $cart->items()->sum('quantity');
+        if ($cart &&  $totalQuantity > 5) {
+            if ($cart->shipping_cost || $cart->shipping_cost = '0.00') {
+                $notification = array(
+                    'messege' => 'Address is not validate!',
+                    'alert-type' => 'error'
+                );
+                return redirect()->back()->withInput()->with($notification);
+            }
             // Find or create the user
             $user = User::firstOrNew(['phone' => $request->phone], [
                 "name" => $request->name,
@@ -165,7 +169,7 @@ class OrderController extends Controller
                 "city" => $request->city,
                 "state" => $request->street,
                 "address" => $request->address,
-                "total" => $cart['total_price'],
+                "total" => $cart['total'],
                 // "shipping_cost" => $cart['shipping_cost'],
                 "order_date" => date("d/m/Y"),
                 "order_month" => date("m"),
@@ -174,7 +178,7 @@ class OrderController extends Controller
             ]);
 
             // Add order items and decrement product stock
-            foreach ($cart['data'] as $item) {
+            foreach ($cart->items as $item) {
                 $product = Product::findOrFail($item['product_id']);
                 $product->decrement('stock', $item['quantity']);
 
@@ -182,19 +186,22 @@ class OrderController extends Controller
                     "order_id" => $order->id,
                     "product_id" => $item['product_id'],
                     "qty" => $item['quantity'],
-                    "total" => $item['price'] * $item['quantity'],
+                    "total" => $item->product->price * $item['quantity'],
                 ]);
             }
 
             // Handle payment based on the selected method
-            return  $this->stripeService->createPayment($order, $request->stripeToken);
-            if ($data->status == "succeeded") {
+            $strip =  $this->stripeService->createPayment($order, $request->stripeToken);
+            if ($strip->status == "succeeded") {
                 $order->update(['payment_status' => 'paid']);
-                Session::flash('success', 'Payment successful!');
-                return view('frontend.order_success', compact('order'));
+                $notification = array(
+                    'messege' => 'Payment successful!!',
+                    'alert-type' => 'success'
+                );
+                return view('frontend.order_success', compact('order'))->with($notification);
             } else {
                 Session::flash('success', 'Payment faild!');
-                Log::error('Failed to create stripe payment:', ['response' => $data]);
+                Log::error('Failed to create stripe payment:', ['response' => $strip]);
                 throw new Exception('Failed to create stripe payment: ' . ($data['errorMessage'] ?? 'Unknown error'));
             }
             $recipients = [
@@ -396,128 +403,10 @@ class OrderController extends Controller
         return $actionHtml;
     }
 
-
-    // public function OrderAction($row)
-    // {
-    //     return '        
-    //          <div class="inline-flex rounded-md shadow-sm" role="group">
-    //      <a href="/admin/orders/invoice/' . $row->id . '"  class="view-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-    //      <i class="fa-solid fa-eye w-4 h-4 mr-2"></i>
-    //      </a>
-    //      <button type="button" title="edit" data-id="' . $row->id . '"  class="editData px-4 py-2 text-sm font-medium text-gray-900 bg-white border-r border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-    //      <i class="fa-solid fa-pencil w-4 h-4 mr-2"></i>
-    //      </button>
-    //      <button title="cancel" data-status="cancel" data-id="' . $row->id . '"  class="editData px-4 py-2 text-sm font-medium text-gray-900  bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-    //      <i class="fa-solid fa-ban w-4 h-4 mr-2"></i>
-    //      </button>
-    //      <button type="button"  data-id="' . $row->id . '" id="delete" class="delete-data px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-    //      <i class="fa-solid fa-trash w-4 h-4 mr-2"></i>
-    //      </button>
-    //    </div>
-    //          ';
-    // }
-
-
-    public function calculateShippingRate(Request $request)
+    private function getUserCart()
     {
-        $validated = $request->validate([
-            'country' => 'required|string',
-            'state' => 'required|string',
-            'zip' => 'required|string',
-        ]);
-        $state = State::whereName($request->state)->with('country')->first();
-        // return $this->fedexService->authorize();
-        // Fake data for the shipper
-        $shipper = [
-            'contact' => [
-                'personName' => 'John Doe',
-                'companyName' => 'Example Shipper Inc.',
-                'phoneNumber' => '1234567890',
-            ],
-            'address' => [
-                'streetLines' => [' 2266 5TH AVENUE, SUITE 486'],
-                'city' => 'New York',
-                'stateOrProvinceCode' => 'NY',
-                'postalCode' => '10037',
-                'countryCode' => 'US',
-            ],
-        ];
-
-        // Fake data for the recipient
-        $recipient = [
-            // 'contact' => [
-            //     'personName' => 'Jane Smith',
-            //     'companyName' => 'Example Recipient LLC',
-            //     'phoneNumber' => '0987654321',
-            // ],
-            'address' => [
-                // 'streetLines' => ['456 Recipient Rd.'],
-                // 'city' => 'New York',
-                'stateOrProvinceCode' => $state->code,
-                'postalCode' => $request->zip,
-                'countryCode' => $state->country->code,
-            ],
-        ];
-        // Prepare the request data based on the selected country and state
-        $requestedShipment = [
-            "shipper" =>  $shipper,
-            "recipient" => $recipient,
-            "serviceType" => "FEDEX_GROUND", // Adjust as necessary
-            "pickupType" => "DROPOFF_AT_FEDEX_LOCATION",
-            "rateRequestType" => [
-                "ACCOUNT", // Use this if you are requesting rates associated with your account
-                "LIST"     // You can include multiple types by adding them to the array
-            ],
-            "requestedPackageLineItems" => [
-                [
-                    "weight" => [
-                        "units" => "LB",
-                        "value" => 0.5, // Adjust weight as needed
-                    ]
-                    // Add other package details as required
-                ],
-            ],
-            // Add the rest of your parameters
-        ];
-
-
-
-        // Call getRate method to retrieve the rates
-        try {
-            $rates = $this->fedexService->getRateQuotes($requestedShipment);
-            // Extract and return the rate as needed
-            $rate = isset($rates['output']['rateReplyDetails'][0]) ?
-                $rates['output']['rateReplyDetails'][0]['ratedShipmentDetails'][0]['totalNetCharge'] : 0;
-
-            $cart = session('cart', []);
-            $cart['shipping_cost'] = $rate;
-
-            // Store the updated cart in the session
-            session(['cart' => $cart]);
-
-            return response()->json([
-                'success' => true,
-                'total_price' => formatcurrency($cart['shipping_cost'] +  $cart['total_price']) + 3,
-                'shipping_cost' =>   formatcurrency($cart['shipping_cost']) + 3,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    function formatFedExRateResponse($apiResponse)
-    {
-        // Extracting necessary details
-        $rateDetails = $apiResponse['output']['rateReplyDetails'][0] ?? null;
-        $estimatedDeliveryDate = "November 1, 2024 11:59 pm"; // replace with actual dynamic date if available
-
-        if ($rateDetails) {
-            $totalNetCharge = $rateDetails['ratedShipmentDetails'][0]['totalNetCharge'] ?? 0;
-
-            // Format the response as desired
-            return sprintf("FedEx: $%.2f\nEst. Delivery: %s", $totalNetCharge, $estimatedDeliveryDate);
-        } else {
-            return "Rate information unavailable.";
-        }
+        return Cart::firstOrCreate(
+            ['guest_id' => session()->getId(), 'user_id' => auth()->id()]
+        );
     }
 }

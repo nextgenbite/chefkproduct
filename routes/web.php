@@ -79,7 +79,6 @@ Route::get('/product/{slug}', [PublicController::class, 'view'])->name('product.
 Route::get('/page/{slug}', [PublicController::class, 'pageView'])->name('page.view');
 Route::get('/shop', [PublicController::class, 'shop'])->name('shop');
 Route::get('/checkout', [PublicController::class, 'checkout'])->name('checkout');
-Route::post('/shipping-price', [OrderController::class, 'calculateShippingRate'])->name('shppinig.price');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/contact', [PublicController::class, 'contactStore'])->name('contact.store');
 Route::post('/nav/search/', [PublicController::class, 'navSearch'])->name('nav_search');
@@ -90,12 +89,17 @@ Route::get('/stores', [PublicController::class, 'stores'])->name('stores');
 Route::get('/karen-alexis-williams', [PublicController::class, 'AboutKaren']);
 
 // Cart
-Route::post('/cart/add', [CartController::class, 'addToCart']);
-// Route::patch('/cart/update/', [CartController::class, 'cartUpdated']);
-Route::post('/cart/increment', [CartController::class, 'increment'])->name('cart.increment');
-Route::post('/cart/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
-Route::post('/cart/remove', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::post('/cart/update-shipping', [CartController::class, 'updateShipping'])->name('cart.update-shipping');
+
+Route::prefix('cart')->group(function () {
+    Route::post('view', [CartController::class, 'viewCart']);
+    Route::post('add', [CartController::class, 'addToCart']);
+    Route::post('increment', [CartController::class, 'increment'])->name('cart.increment');
+    Route::post('decrement', [CartController::class, 'decrement'])->name('cart.decrement');
+    Route::post('remove', [CartController::class, 'removeFromCart'])->name('cart.destroy');
+    Route::post('update-shipping', [CartController::class, 'updateShipping'])->name('cart.update-shipping');
+    Route::post('shipping-price', [CartController::class, 'shipping_cost'])->name('shppinig.price');
+
+});
 
 // Order
 Route::post('/place-order', [OrderController::class, 'store']);
@@ -126,12 +130,6 @@ Route::prefix('admin')->middleware(['auth', 'role:superadmin|admin|Admin'])->gro
 
 
     // brands
-// Route::get('/brands', [BrandController::class, 'index']);
-// Route::post('/brands', [BrandController::class, 'store']);
-// Route::put('/brands/{id}', [BrandController::class, 'update']);
-// Route::delete('/brands/{id}', [BrandController::class, 'destroy']);
-// Route::post('/brands/status', [BrandController::class, 'statusUpdate']);
-// Route::delete('/brands/multiple/delete', [BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');
 Route::resource('/brands', App\Http\Controllers\BrandController::class);
 Route::post('/brands/status', [App\Http\Controllers\BrandController::class, 'statusUpdate']);
 Route::delete('/brands/multiple/delete', [App\Http\Controllers\BrandController::class, 'multipleDelete'])->name('multiple.brands.delete');

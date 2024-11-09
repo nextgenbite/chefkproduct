@@ -1,20 +1,20 @@
 <div class="w-full bg-white shadow-md py-3   transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
-    @if (session()->has('cart') && isset(session('cart')['data']) && count(session('cart')['data']) > 0)
+    @if ($cart->items)
         <table class="w-full">
 
-            @foreach (session('cart')['data'] as $item)
+            @foreach ($cart->items as $item)
                 <!-- ---- Start single category ----- -->
                 <tr title="{{ $item['title'] }}"
                     class="p-2 flex items-center justify-between {{ $loop->last ? '' : 'border-b' }}  border-gray-400 hover:bg-gray-200 transition">
                     <td>
 
-                        <img src="{{ asset($item['thumbnail']) }}" alt="category thumb"
+                        <img src="{{ asset($item->product->thumbnail) }}" alt="category thumb"
                             class="w-6 md:w-10 ml-1 md:ml-2 max-w-full max-h-full rounded object-contain" />
                     </td>
                     <td class="px-2 w-40">
-                        <p class="text-gray-700 text-xs font-semibold truncate">{{ $item['title'] }}</p>
+                        <p class="text-gray-700 text-xs font-semibold truncate">{{ $item->product->title }}</p>
                         <div class="text-gray-700 text-xs font-semibold">
-                            {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item['price']) }}
+                            {{ $item['quantity'] }}&nbsp;x&nbsp;{{ formatcurrency($item->product->price) }}
                         </div>
                     </td>
                     <td>

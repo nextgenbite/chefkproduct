@@ -172,6 +172,8 @@ return [
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         // \sbamtr\LaravelSourceEncrypter\SourceEncryptServiceProvider::class,
 
+        App\Providers\CartServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

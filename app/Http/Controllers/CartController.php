@@ -2,170 +2,246 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\ShippingCost;
+use App\Models\{Cart, Product,State};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Exception;
+use App\Services\FedexService;
+
 
 class CartController extends Controller
 {
-    function index()
+    protected $stripeService;
+    protected $fedexService;
+    public function __construct( FedexService $fedexService)
     {
-        $cart = session('cart', []);
-
-        return response()->json($cart, 200);
+        $this->fedexService = $fedexService;
     }
-
-    function addToCart(Request $request)
-    {
-        $productId = $request->product_id;
-        $quantity = $request->quantity;
-
-
-        // Retrieve existing cart data from session
-        $cart = session('cart', []);
-        // Find the product in the cart
-         $productIndex = $this->findProductIndex($cart, $productId);
-
-        if ($productIndex !== false) {
-            // Update quantity if the product is already in the cart
-            $cart['data'][$productIndex]['quantity'] += $quantity;
-        } else {
-            // Retrieve product details from the database
-            $product = Product::find($productId);
-
-            if (!$product) {
-                return response()->json(['message' => 'Product not found'], 404);
-            }
-
-            // Add the product to the cart
-            $cart['data'][] = [
-                'product_id' => $productId,
-                'title' => $product->title,
-                'thumbnail' => $product->thumbnail,
-                'price' => $product->price,
-                'quantity' => $quantity,
-            ];
-        }
-
-        // Calculate the total price for the cart
-        $totalPrice = $this->calculateTotalPrice($cart);
-        $cart['total_price'] = $totalPrice;
-        $cart['currency_total_price'] = formatCurrency($totalPrice);
-
-        // Store the updated cart in the session
-        $cart['sidebar'] = view('frontend.partials.sidebar_cart',compact('cart'))->render();
-        session(['cart' => $cart]);
-        return response()->json(['message' => 'Item added to the cart', 'data' =>  $cart]);
-    }
-
-    private function calculateTotalPrice($cart)
-    {
-        $totalPrice = 0;
-
-        foreach ($cart['data'] as $product) {
-            $totalPrice += $product['price'] * $product['quantity'];
-        }
-
-        return $totalPrice;
-    }
-
-    private function findProductIndex($cart, $productId)
-    {
-        if (isset($cart['data']) && is_array($cart['data'])) {
-            foreach ($cart['data'] as $index => $item) {
-                if ($item['product_id'] == $productId) {
-                    return $index;
-                }
-            }
-        }
-
-        return false;
-    }
-
-
-    public function increment(Request $request)
-    {
-        return $this->updateQuantity($request->id, 1);
-        
-    }
-    
-    public function decrement(Request $request)
-    {
-        return $this->updateQuantity($request->id, -1);
-    }
-
-    private function updateQuantity($productId, $change)
+    public function viewCart()
 {
-    // Retrieve existing cart data from session
-    $cart = session('cart', []);
-
-    // Find the index of the product in the cart
-    $productIndex = $this->findProductIndex($cart, $productId);
-
-    if ($productIndex !== false) {
-        // Update the quantity of the product in the cart
-        $cart['data'][$productIndex]['quantity'] += $change;
-
-        // Ensure the quantity does not go below 1
-        if ($cart['data'][$productIndex]['quantity'] < 1) {
-            $cart['data'][$productIndex]['quantity'] = 1;
-        }
-
-        // Update the total price in the cart
-        $cart['total_price'] = $this->calculateTotalPrice($cart);
-
-        // Store the updated cart in the session
-        session(['cart' => $cart]);
-
-             // Return the updated cart data
-             return [
-                'message' => 'Cart updated',
-                'quantity' => $cart['data'][$productIndex]['quantity'],
-                'item_price' => $cart['data'][$productIndex]['quantity'] * $cart['data'][$productIndex]['price'],
-                'total_price' => $cart['total_price'],
-            ];
-    }
-
-    return response()->json(['message' => 'Product not found in the cart'], 404);
+    $cart = $this->getUserCart();
+    return response()->json($cart->load('items.product'));
 }
 
-public function destroy(Request $request)
+public function addToCart(Request $request)
 {
-        // Retrieve existing cart data from session
-        $cart = session('cart', []);
+    try {
+    $cart = $this->getUserCart();
+    $product_id = $request->input('product_id');
+    $quantity = $request->input('quantity', 1);
 
-        // Find the index of the product in the cart
-        $productIndex = $this->findProductIndex($cart, $request->id);
-    
-        if ($productIndex !== false) {
-             // Remove the product from the cart
-        array_splice($cart['data'], $productIndex, 1);
+    $cartItem = $cart->items()->firstOrCreate(
+        ['product_id' => $product_id],
+        ['quantity' => 0, 'price' => Product::find($product_id)->price]
+    );
+    $cartItem->quantity += $quantity;
+    $cartItem->save();
 
-        // Update the total price in the cart
-        $cart['total_price'] = $this->calculateTotalPrice($cart);
-        
-        // Store the updated cart in the session
-        session(['cart' => $cart]);
+    $this->updateCartTotals($cart);
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Successfully added to cart',
+        'data' =>$cart->load('items.product'),
+        'sidebar' => view('frontend.partials.sidebar_cart',compact('cart'))->render()
+    ]);
 
-        return response()->json(['message' => 'Product removed from the cart', 'total_price' => $cart['total_price']]);
-        }
-        return response()->json(['message' => 'Product not found in the cart'], 404);
+} catch (Exception $e) {
+    return response()->json(['error' => $e->getMessage()], 500);
+}
 }
 
-public function updateShipping(Request $request)
-{
- 
-    $shippingCost = ShippingCost::findOrFail($request->id);
-    $cart = session('cart', []);
-    $cart['shipping_cost'] = $shippingCost->cost;
 
-    // Store the updated cart in the session
-    session(['cart' => $cart]);
+
+public function increment(Request $request)
+{
+    try {
+    $cart = $this->getUserCart();
+    $product_id = $request->input('product_id');
+
+    $cartItem = $cart->items()->where('product_id', $product_id)->first();
+    if ($cartItem) {
+        $cartItem->increment('quantity');
+        $cartItem->save();
+        $this->updateCartTotals($cart);
+    }
 
     return response()->json([
-        'success' => true,
-        'total_price' => formatcurrency($cart['shipping_cost'] +  $cart['total_price']) ,
-        'shipping_cost' =>   formatcurrency($cart['shipping_cost']),
+        'status' => 'success',
+        'message' => 'Successfully increment cart',
+        'data' =>$cart->load('items.product'),
+        'sidebar' => view('frontend.partials.sidebar_cart',compact('cart'))->render()
     ]);
+
+} catch (Exception $e) {
+    return response()->json(['error' => $e->getMessage()], 500);
 }
+}
+
+public function decrement(Request $request)
+{
+    try{
+    $cart = $this->getUserCart();
+    $product_id = $request->input('product_id');
+
+    $cartItem = $cart->items()->where('product_id', $product_id)->first();
+    if ($cartItem) {
+        if ($cartItem->quantity > 1) {
+            $cartItem->decrement('quantity');
+        } else {
+            $cartItem->delete();
+        }
+        $this->updateCartTotals($cart);
+    }
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Successfully decrement cart',
+        'data' =>$cart->load('items.product'),
+        'sidebar' => view('frontend.partials.sidebar_cart',compact('cart'))->render()
+    ]);
+
+} catch (Exception $e) {
+    return response()->json(['error' => $e->getMessage()], 500);
+}
+}
+
+public function removeFromCart(Request $request)
+{
+    try{
+    $cart = $this->getUserCart();
+    $product_id = $request->input('product_id');
+
+    $cart->items()->where('product_id', $product_id)->delete();
+    $this->updateCartTotals($cart);
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Successfully decrement cart',
+        'data' =>$cart->load('items.product'),
+        'sidebar' => view('frontend.partials.sidebar_cart',compact('cart'))->render()
+    ]);
+
+} catch (Exception $e) {
+    return response()->json(['error' => $e->getMessage()], 500);
+}
+}
+
+public function updateCartTotals($cart)
+{
+    $subtotal = $cart->items->sum(fn($item) => $item->price * $item->quantity);
+    $weight = $cart->items->sum(fn($item) => $item->product->weight * $item->quantity);
+    $tax = $subtotal * ($cart->tax / 100);
+    $total = $subtotal + $cart->shipping_cost + $tax - $cart->discount;
+
+    $cart->update(compact('subtotal', 'weight', 'total'));
+}
+
+private function getUserCart()
+{
+    return Cart::firstOrCreate(
+        ['guest_id' => session()->getId(), 'user_id' => Auth::id()]
+    );
+}
+
+
+public function shipping_cost(Request $request)
+{
+    $validated = $request->validate([
+        'country' => 'required|string',
+        'state' => 'required|string',
+        'zip' => 'required|string',
+    ]);
+    $cart = $this->getUserCart();
+    $state = State::whereName($request->state)->with('country')->first();
+    // return $this->fedexService->authorize();
+    // Fake data for the shipper
+    $shipper = [
+        // 'contact' => [
+        //     'personName' => 'John Doe',
+        //     'companyName' => 'Example Shipper Inc.',
+        //     'phoneNumber' => '1234567890',
+        // ],
+        'address' => [
+            'streetLines' => [' 2266 5TH AVENUE, SUITE 486'],
+            'city' => 'New York',
+            'stateOrProvinceCode' => 'NY',
+            'postalCode' => '10037',
+            'countryCode' => 'US',
+        ],
+    ];
+
+    // Fake data for the recipient
+    $recipient = [
+          'address' => [
+            // 'streetLines' => ['456 Recipient Rd.'],
+            'city' => $request->city,
+            'stateOrProvinceCode' => $state->code,
+            'postalCode' => $request->zip,
+            'countryCode' => $state->country->code,
+        ],
+    ];
+    // Prepare the request data based on the selected country and state
+    $requestedShipment = [
+        "shipper" =>  $shipper,
+        "recipient" => $recipient,
+        "serviceType" => "FEDEX_GROUND", // Adjust as necessary
+        "pickupType" => "DROPOFF_AT_FEDEX_LOCATION",
+        "rateRequestType" => [
+            "ACCOUNT", // Use this if you are requesting rates associated with your account
+            "LIST"     // You can include multiple types by adding them to the array
+        ],
+        "requestedPackageLineItems" => [
+            [
+                "weight" => [
+                    "units" => "LB",
+                    "value" => $cart->weight ?? 0.5, // Adjust weight as needed
+                ]
+                // Add other package details as required
+            ],
+        ],
+        // Add the rest of your parameters
+    ];
+
+
+
+    // Call getRate method to retrieve the rates
+    try {
+        $rates = $this->fedexService->getRateQuotes($requestedShipment);
+        // Extract and return the rate as needed
+        $rate = isset($rates['output']['rateReplyDetails'][0]) ?
+            $rates['output']['rateReplyDetails'][0]['ratedShipmentDetails'][0]['totalNetCharge'] : 0;
+
+            $cart = $this->getUserCart();
+        $cart['shipping_cost'] = $rate +3;
+        $cart->save();
+        // Store the updated cart in the session
+        $this->updateCartTotals($cart);
+
+        return response()->json([
+            'success' => true,
+            'total_price' => formatcurrency($cart['shipping_cost'] +  $cart['total']),
+            'shipping_cost' =>   formatcurrency($cart['shipping_cost']),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+    
+}
+
+function formatFedExRateResponse($apiResponse)
+{
+    // Extracting necessary details
+    $rateDetails = $apiResponse['output']['rateReplyDetails'][0] ?? null;
+    $estimatedDeliveryDate = "November 1, 2024 11:59 pm"; // replace with actual dynamic date if available
+
+    if ($rateDetails) {
+        $totalNetCharge = $rateDetails['ratedShipmentDetails'][0]['totalNetCharge'] ?? 0;
+
+        // Format the response as desired
+        return sprintf("FedEx: $%.2f\nEst. Delivery: %s", $totalNetCharge, $estimatedDeliveryDate);
+    } else {
+        return "Rate information unavailable.";
+    }
+}
+
 }

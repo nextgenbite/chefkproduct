@@ -234,6 +234,8 @@
                                     </div>
                                 @elseif($item['type'] === 'textarea')
                                     <div class="col-span-6 {{ 'lg:' . $class }}">
+                                        <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
 
                                         <div
                                             class="w-full border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
@@ -359,12 +361,12 @@
                                             </div>
                                         </div>
 
-
-                                        <label for="{{ $item['name'] }}"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label>
-                                        <textarea rows="4" name="{{ $item['name'] }}" id="{{ $item['name'] }}"
+                                        <input type="hidden" name="{{ $item['name'] }}" id="editorContent">
+                                        {{-- <label for="{{ $item['name'] }}"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ $item['label'] }}</label> --}}
+                                        {{-- <textarea rows="4" name="{{ $item['name'] }}" id="{{ $item['name'] }}"
                                             class="textarea shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Enter {{ $item['label'] }}" required></textarea>
+                                            placeholder="Enter {{ $item['label'] }}" required></textarea> --}}
                                     </div>
                                 @elseif($item['type'] === 'image')
                                     <div class="col-span-6 {{ 'lg:' . $class }}">
@@ -442,6 +444,7 @@
     <script src="https://cdn.datatables.net/1.13.9/js/dataTables.tailwindcss.js"></script>
     {{-- <script src="{{asset('/js/crud.js')}}"></script> --}}
     <script src="{{ asset('plugins/fileUpload/fileUpload.js') }}"></script>
+    <script src="{{ asset('js/editor.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(function() {
@@ -515,7 +518,7 @@
             });
             $(document).on('click', '#btn-cancel, #btn-delivery', function() {
                 let data_id = $(this).data('id');
-                let status = $(this).data('status');                
+                let status = $(this).data('status');
                 $.ajax({
                     data: {
                         id: data_id,
@@ -560,7 +563,7 @@
                         delay: 300
                     }
                     // Initialize a new Flowbite Dropdown instance
-                let dropdown=    new Dropdown($targetEl, $triggerEl, DropdownOptions);
+                    let dropdown = new Dropdown($targetEl, $triggerEl, DropdownOptions);
                 });
             });
             /*------------------------------------------
@@ -620,6 +623,12 @@
                                 console.log(elementValue);
 
                                 $(`#${elementId}`).val(elementValue).change();
+
+                            } else if (elementType === 'textarea') {
+                                // Handle select input by setting the selected option
+                                console.log(elementValue);
+
+                                $('.tiptap.ProseMirror').html(elementValue).change();
 
                             } else {
                                 // Handle other input types like text, number, etc.

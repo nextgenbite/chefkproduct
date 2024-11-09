@@ -4,7 +4,7 @@ import "flowbite";
 
 // import './flowbiteTable';
 import "./dark-mood";
-import "./editor";
+// import "./editor";
 
 // Import SweetAlert
 import Swal from "sweetalert2";

@@ -73,7 +73,7 @@
             @if ($rightTopBanner && $rightTopBanner->count() > 0)
             <a href="/categories/{{ $rightTopBanner->category_id }}" class="block overflow-hidden">
                 <img src="{{ asset('/images/placeholder-image.png') }}" height="100" width="100" data-src="{{ $rightTopBanner->thumbnail }}"
-                    alt="{{ $rightTopBanner->title }}" loading="lazy" class="w-full h-auto object-cover aspect-[9/6] rounded-lg">
+                    alt="{{ $rightTopBanner->title }}" loading="lazy" class="w-full h-auto object-cover aspect-[9/6] rounded-xl">
             </a>
             @else
             <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">

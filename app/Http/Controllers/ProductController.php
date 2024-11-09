@@ -237,6 +237,7 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'discount' => $request->discount,
             'thumbnail' => $thumbnail,
+            'trend' => $request->trend,
         ]);
         $magesData = '';
         if ($request->has('images')) {
@@ -295,6 +296,7 @@ class ProductController extends Controller
         $data->price = $request->price;
         $data->discount = $request->discount;
         $data->description = $request->description;
+        $data->trend = $request->trend;
         // Handle image update
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);

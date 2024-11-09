@@ -24,3 +24,7 @@ mix.js(['resources/js/app.js'], 'public/js')
     ])
     .minify('public/js/app.js')
     .minify('public/css/app.css');
+
+    mix.js('resources/js/editor.js', 'public/js')
+    .minify('public/js/editor.js');
+

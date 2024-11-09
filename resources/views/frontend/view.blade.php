@@ -285,7 +285,7 @@
                         @endif
                     </div>
                     <!-- ---- Size filter --->
-                    @if ($product->variations && $product->variations->whereNotNull('size')->isNotEmpty())
+                    {{-- @if ($product->variations && $product->variations->whereNotNull('size')->isNotEmpty())
 
                     <p class="text-md text-gray-800">Sizes</p>
                     <div class="inline-flex items-center gap-2 col-span-3">
@@ -308,11 +308,11 @@
                         <!-- ---- End No Sizes Available --->
                         @endforelse
                     </div>
-                    @endif
+                    @endif --}}
                     <!-- ---- End Size filter --->
 
                     <!-- ----  Color filter --->
-                    @if ($product->variations && $product->variations->whereNotNull('color')->isNotEmpty())
+                    {{-- @if ($product->variations && $product->variations->whereNotNull('color')->isNotEmpty())
                     <p class="text-md text-gray-800">Colors</p>
                     <div class="inline-flex items-center gap-2 col-span-3">
                         @forelse ($product->variations->whereNotNull('color') as $item)
@@ -335,7 +335,7 @@
                         <!-- ----  End No Colors Available --->
                         @endforelse
                     </div>
-                    @endif
+                    @endif --}}
                     <!-- ---- End Color filter --->
                     <!-- ---- Quantity --->
                     <p for="quantity-input" class="text-md text-gray-800">Quantity</p>
@@ -422,12 +422,12 @@
                     id="dashboard-styled-tab" data-tabs-target="#styled-review" type="button" role="tab"
                     aria-controls="dashboard" aria-selected="false">REVIEWS</button>
             </li>
-            <li class="me-2" role="presentation">
+            {{-- <li class="me-2" role="presentation">
                 <button
                     class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                     id="settings-styled-tab" data-tabs-target="#styled-settings" type="button" role="tab"
                     aria-controls="settings" aria-selected="false">SHIPPING INFO</button>
-            </li>
+            </li> --}}
         </ul>
     </div>
     <div id="default-styled-tab-content">
@@ -952,14 +952,14 @@ if (isTouchSupported) {
     });
 }
 });
-
+@if (isset($settings['pixel_id']))
 fbq('track', 'ViewContent', {
             content_ids: ['{{ $product->id }}'],
             content_type: 'product',
             value: {{ round($product->discount ?: $product->price) }},
             currency: 'USD'
         });
-
+@endif
         // (function($) {
            
         // })(jQuery);
