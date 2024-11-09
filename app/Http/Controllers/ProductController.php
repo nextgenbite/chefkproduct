@@ -150,6 +150,7 @@ class ProductController extends Controller
                 'label' =>  'Price',
                 'class' => 'col-span-2',
             ],
+      
             [
                 'type' => 'number',
                 'name' => 'discount',
@@ -206,8 +207,14 @@ class ProductController extends Controller
                 'label' =>  'Feature Product',
                 'data' =>  $feature,
                 'key' =>  'name',
-                'class' => 'col-span-6',
+                'class' => 'col-span-3',
                 // 'mode' =>  'select-mulitple',
+            ],
+            [
+                'type' => 'number',
+                'name' => 'weight',
+                'label' =>  'Weight',
+                'class' => 'col-span-3',
             ],
 
         ];
@@ -238,6 +245,7 @@ class ProductController extends Controller
             'discount' => $request->discount,
             'thumbnail' => $thumbnail,
             'trend' => $request->trend,
+            'weight' => $request->weight,
         ]);
         $magesData = '';
         if ($request->has('images')) {
@@ -297,6 +305,7 @@ class ProductController extends Controller
         $data->discount = $request->discount;
         $data->description = $request->description;
         $data->trend = $request->trend;
+        $data->weight = $request->weight;
         // Handle image update
         if ($request->has('thumbnail')) {
             $this->deleteImage($data->thumbnail);

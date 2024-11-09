@@ -8,7 +8,7 @@
                          class="w-60 mx-auto lg:mx-0" />
                          <p class="text-gray-500 text-base px-3 font-roboto text-justify line-clamp-2 lg:text-left"> {{isset($settings['about']) ? $settings['about'] :
                          '' }}</p>
-                    <div class="flex space-x-5 justify-center lg:justify-start ">
+                    <div class="flex space-x-5 justify-center lg:justify-start lg:ml-3 ">
            
                          <a title="facebook" href="{{isset($settings['facebook']) ? $settings['facebook'] : ''}}"  class="text-blue-600 bg-white  hover:rotate-360  hover:animate-pulse transition-transform duration-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 me-2 text-center inline-flex justify-center items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                               <i class="fab fa-facebook-f w-4 h-4"></i>
