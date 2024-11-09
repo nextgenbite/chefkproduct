@@ -1,16 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class State extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-}
+bolt_decrypt( __FILE__ , 'S4fNmx'); return 0;
+##!!!##KiqOgY2Fk5CBg4VAYZCQfG2PhIWMk1sqKpWThUBpjIyVjYmOgZSFfGSBlIGCgZOFfGWMj5GVhY6UfGaBg5SPkomFk3xogZNmgYOUj5KZWyqVk4VAaYyMlY2JjoGUhXxkgZSBgoGThXxljI+RlYWOlHxtj4SFjFsqKoOMgZOTQHOUgZSFQIWYlIWOhJNAbY+EhYwqmypAQEBAlZOFQGiBk2aBg5SPkplbKkBAQECQko+UhYOUhYRARIeVgZKEhYRAXUB7fVsqQEBAQJCVgoyJg0CGlY6DlImPjkCDj5WOlJKZSEkqQEBAQJsqQEBAQEBAQECShZSVko5ARJSIiZNNXoKFjI+Oh5N0j0hjj5WOlJKZWlqDjIGTk0lbKkBAQECdKp0q

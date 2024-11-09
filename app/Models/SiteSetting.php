@@ -1,12 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class SiteSetting extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-}
+bolt_decrypt( __FILE__ , 'p47vhT'); return 0;
+##!!!##GhcaF3tuenKAfW5wci1OfX1pWnxxcnmASBoXGheCgHItVnl5gnp2e26BcmlRboFub26AcmlSeXx+gnJ7gWlTbnCBfH92coBpVW6AU25wgXx/hkgaF4KAci1WeXmCenZ7boFyaVFugW5vboByaVJ5fH6CcnuBaVp8cXJ5SBoXGhdweW6AgC1gdoFyYHKBgXZ7dC1yhYFye3GALVp8cXJ5GheIGhctLS0tgoByLVVugFNucIF8f4ZIGhctLS0tfX98gXJwgXJxLTF0gm5/cXJxLUotaGpIGheKGhc=

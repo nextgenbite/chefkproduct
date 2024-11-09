@@ -1,37 +1,3 @@
 <?php
-
-namespace App\Mail;
-
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-
-class ContactMail extends Mailable
-{
-    use Queueable, SerializesModels;
-
-    public $data;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->from($this->data['email'])
-                    ->subject('Chefkproduct - New Contact Form Submission')
-                    ->view('emails.contact')
-                    ->with(['data' => $this->data]);
-    }
-}
+bolt_decrypt( __FILE__ , 'xVZfHw'); return 0;
+##!!!##WldaV7uuurLAva6wsm2Ovb2pmq62uYhaV1pXwsCybZa5ucK6truuwbKpj8LAqZ7CssKyrq+5sohaV8LAsm2WubnCura7rsGyqZC8u8G/rrDBwKmewrLCsqmgtbzCubGewrLCsohaV8LAsm2WubnCura7rsGyqZqutrmpmq62ua6vubKIWlfCwLJtlrm5wrq2u67BsqmewrLCsqmgsr+2rrm2x7LAmryxsrnAiFpXWlewua7AwG2QvLvBrrDBmq62uW2yxcGyu7HAbZqutrmur7myWlfIWldtbW1twsCybZ7CssKyrq+5snltoLK/tq65tseywJq8sbK5wIhaV1pXbW1tbb3Cr7m2sG1xsa7BrohaV21tbW18d3daV21tbW1td22Qv7KuwbJtrm27ssRturLAwK60sm22u8DBrruwsntaV21tbW1td1pXbW1tbW13bY2/ssHCv7ttw7y2sVpXbW1tbW13fFpXbW1tbb3Cr7m2sG2zwruwwba8u22srLC8u8DBv8KwwXVxsa7BrnZaV21tbW3IWldtbW1tbW1tbXHBtbbAeouxrsGubYptcbGuwa6IWldtbW1tylpXWldtbW1tfHd3WldtbW1tbXdtj8K2ubFtwbWybbqywMCutLJ7WldtbW1tbXdaV21tbW1td22Nv7LBwr+7bXHBtbbAWldtbW1tbXd8WldtbW1tvcKvubawbbPCu7DBtry7ba/CtrmxdXZaV21tbW3IWldtbW1tbW1tbb+ywcK/u21xwbW2wHqLs7+8unVxwbW2wHqLsa7Brqh0srqutrl0qnZaV21tbW1tbW1tbW1tbW1tbW1tbW1teovAwq+3srDBdXSQtbKzuL2/vLHCsMFtem2bssRtkLy7wa6wwW2TvL+6baDCr7q2wMC2vLt0dlpXbW1tbW1tbW1tbW1tbW1tbW1tbW16i8O2ssR1dLK6rra5wHuwvLvBrrDBdHZaV21tbW1tbW1tbW1tbW1tbW1tbW1teovEtsG1dah0sa7BrnRtiottccG1tsB6i7Guwa6qdohaV21tbW3KWlfKWlc=

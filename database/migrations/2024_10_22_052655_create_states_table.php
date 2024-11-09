@@ -1,37 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateStatesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('states', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
-            $table->string('code')->nullable()->unique();
-            $table->string('code_2')->nullable()->unique();
-            $table->string('code_3')->nullable()->unique();
-            $table->string('name')->unique();
-            $table->boolean('status')->nullable()->default(0);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('states');
-    }
-}
+bolt_decrypt( __FILE__ , '1u0VUa'); return 0;
+##!!!##7OxXVUcCK05OV09LUENWRz4mQ1ZDRENVRz4vS0lUQ1ZLUVBVPi9LSVRDVktRUB3sV1VHAitOTldPS1BDVkc+JkNWQ0RDVUc+NUVKR09DPiROV0dSVEtQVh3sV1VHAitOTldPS1BDVkc+NVdSUlFUVj4oQ0VDRkdVPjVFSkdPQx3s7EVOQ1VVAiVUR0NWRzVWQ1ZHVTZDRE5HAkdaVkdQRlUCL0tJVENWS1FQ7F3sAgICAhEMDOwCAgICAgwCNFdQAlZKRwJPS0lUQ1ZLUVBVEOwCAgICAgzsAgICAgIMAiJUR1ZXVFACWFFLRuwCAgICAgwR7AICAgJSV0ROS0UCSFdQRVZLUVACV1IKC+wCAgICXewCAgICAgICAjVFSkdPQxwcRVRHQ1ZHCglVVkNWR1UJDgJIV1BFVktRUAIKJE5XR1JUS1BWAgZWQ0RORwsCXewCAgICAgICAgICAgIGVkNETkcPIEtGCgsd7AICAgICAgICAgICAgZWQ0RORw8gSFFUR0tJUCtGCglFUVdQVlRbQUtGCQsPIEVRUFVWVENLUEdGCglFUVdQVlRLR1UJCw8gUVAmR05HVkcKCUVDVUVDRkcJCx3sAgICAgICAgICAgICBlZDRE5HDyBVVlRLUEkKCUVRRkcJCw8gUFdOTkNETkcKCw8gV1BLU1dHCgsd7AICAgICAgICAgICAgZWQ0RORw8gVVZUS1BJCglFUUZHQRQJCw8gUFdOTkNETkcKCw8gV1BLU1dHCgsd7AICAgICAgICAgICAgZWQ0RORw8gVVZUS1BJCglFUUZHQRUJCw8gUFdOTkNETkcKCw8gV1BLU1dHCgsd7AICAgICAgICAgICAgZWQ0RORw8gVVZUS1BJCglQQ09HCQsPIFdQS1NXRwoLHewCAgICAgICAgICAgIGVkNETkcPIERRUU5HQ1AKCVVWQ1ZXVQkLDyBQV05OQ0RORwoLDyBGR0hDV05WChILHewCAgICAgICAgICAgIGVkNETkcPIFZLT0dVVkNPUlUKCx3sAgICAgICAgJfCx3sAgICAl/s7AICAgIRDAzsAgICAgIMAjRHWEdUVUcCVkpHAk9LSVRDVktRUFUQ7AICAgICDOwCAgICAgwCIlRHVldUUAJYUUtG7AICAgICDBHsAgICAlJXRE5LRQJIV1BFVktRUAJGUVlQCgvsAgICAl3sAgICAgICAgI1RUpHT0McHEZUUVIrSCdaS1VWVQoJVVZDVkdVCQsd7AICAgJf7F/s

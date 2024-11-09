@@ -1,35 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateCouponsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('coupons', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->integer('discount');
-            $table->string('validity');
-            $table->boolean('status')->default(true);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('coupons');
-    }
-}
+bolt_decrypt( __FILE__ , 'w3pTRv'); return 0;
+##!!!##Q0BDQKupm1Z/oqKro5+kl6qbknqXqpeYl6mbkoOfnaiXqp+lpKmSg5+dqJeqn6WkcUNAq6mbVn+ioqujn6SXqpuSepeql5iXqZuSiZmem6OXkniiq5umqJ+kqnFDQKupm1Z/oqKro5+kl6qbkomrpqalqKqSfJeZl5qbqZKJmZ6bo5dxQ0BDQJmil6mpVnmom5eqm3mlq6alpKmKl5iim1abrqqbpJqpVoOfnaiXqp+lpENAsUNAVlZWVmVgYENAVlZWVlZgVoirpFaqnptWo5+dqJeqn6WkqWRDQFZWVlZWYENAVlZWVlZgVnaom6qrqKRWrKWfmkNAVlZWVlZgZUNAVlZWVqarmKKfmVacq6SZqp+lpFarpl5fQ0BWVlZWsUNAVlZWVlZWVlaJmZ6bo5dwcJmom5eqm15dmaWrpqWkqV1iVpyrpJmqn6WkVl54oqubpqifpKpWWqqXmKKbX1axQ0BWVlZWVlZWVlZWVlZaqpeYoptjdJ+aXl9xQ0BWVlZWVlZWVlZWVlZaqpeYoptjdKmqqJ+knV5dqp+qoptdX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0n6Sqm52bqF5dmp+pmaWrpKpdX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0qaqon6SdXl2sl6Kfmp+qr11fcUNAVlZWVlZWVlZWVlZWWqqXmKKbY3SYpaWim5ekXl2pqpeqq6ldX2N0mpucl6uiql6qqKubX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0qp+jm6mql6OmqV5fcUNAVlZWVlZWVlazX3FDQFZWVlazQ0BDQFZWVlZlYGBDQFZWVlZWYFaIm6ybqKmbVqqem1ajn52ol6qfpaSpZENAVlZWVlZgQ0BWVlZWVmBWdqibqquopFaspZ+aQ0BWVlZWVmBlQ0BWVlZWpquYop+ZVpyrpJmqn6WkVpqlraReX0NAVlZWVrFDQFZWVlZWVlZWiZmem6OXcHCaqKWmf5x7rp+pqqleXZmlq6alpKldX3FDQFZWVlazQ0CzQ0A=

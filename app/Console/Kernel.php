@@ -1,32 +1,3 @@
 <?php
-
-namespace App\Console;
-
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
-class Kernel extends ConsoleKernel
-{
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
-    protected function schedule(Schedule $schedule)
-    {
-        // $schedule->command('inspire')->hourly();
-    }
-
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        $this->load(__DIR__.'/Commands');
-
-        require base_path('routes/console.php');
-    }
-}
+bolt_decrypt( __FILE__ , 'pi9oMD'); return 0;
+##!!!##HxwfHIBzf3eFgnN1dzJTgoJuVYGAhYF+d00fHB8ch4V3Mlt+fod/e4BzhnduVYGAhYF+d25ldXp3dod+e4B5bmV1end2h353TR8ch4V3Mlt+fod/e4BzhnduWIGHgHZzhnuBgG5VgYCFgX53bl13hIB3fjJzhTJVgYCFgX53XXeEgHd+TR8cHxx1fnOFhTJdd4SAd34yd4qGd4B2hTJVgYCFgX53XXeEgHd+HxyNHxwyMjIyQTw8HxwyMjIyMjwyVnd4e4B3MoZ6dzJzgoJ+e3VzhnuBgDmFMnWBf39zgHYyhXV6d3aHfndAHxwyMjIyMjwfHDIyMjIyPDJSgnOEc38yMm5bfn6Hf3uAc4Z3blWBgIWBfnduZXV6d3aHfnuAeW5ldXp3dod+dzIyNoV1end2h353HxwyMjIyMjwyUoR3hoeEgDKIgXt2HxwyMjIyMjxBHxwyMjIygoSBhnd1hnd2MniHgHWGe4GAMoV1end2h353OmV1end2h353MjaFdXp3dod+dzsfHDIyMjKNHxwyMjIyMjIyMkFBMjaFdXp3dod+dz9QdYF/f3OAdjo5e4CFgnuEdzk7P1B6gYeEfos6O00fHDIyMjKPHxwfHDIyMjJBPDwfHDIyMjIyPDJkd3l7hYZ3hDKGencydYF/f3OAdoUyeIGEMoZ6dzJzgoJ+e3VzhnuBgEAfHDIyMjIyPB8cMjIyMjI8MlKEd4aHhIAyiIF7dh8cMjIyMjI8QR8cMjIyMoKEgYZ3dYZ3djJ4h4B1hnuBgDJ1gX9/c4B2hTo7HxwyMjIyjR8cMjIyMjIyMjI2hnp7hT9QfoFzdjpxcVZbZHFxQDlBVYF/f3OAdoU5O00fHB8cMjIyMjIyMjKEd4OHe4R3MnRzhXdxgnOGejo5hIGHhneFQXWBgIWBfndAgnqCOTtNHxwyMjIyjx8cjx8c

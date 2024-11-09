@@ -1,36 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateFailedJobsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('failed_jobs');
-    }
-}
+bolt_decrypt( __FILE__ , '5V3VwD'); return 0;
+##!!!##3Nnc2URCNO8YOztEPDg9MEM0KxMwQzAxMEI0Kxw4NkEwQzg+PUIrHDg2QTBDOD49CtzZREI07xg7O0Q8OD0wQzQrEzBDMDEwQjQrIjI3NDwwKxE7RDQ/QTg9Qwrc2URCNO8YOztEPDg9MEM0KyJEPz8+QUMrFTAyMDM0QisiMjc0PDAK3Nnc2TI7MEJC7xJBNDBDNBUwODs0Mxk+MUIjMDE7NO80R0M0PTNC7xw4NkEwQzg+PdzZStzZ7+/v7/75+dzZ7+/v7+/57yFEPe9DNzTvPDg2QTBDOD49Qv3c2e/v7+/v+dzZ7+/v7+/57w9BNENEQT3vRT44M9zZ7+/v7+/5/tzZ7+/v7z9EMTs4Mu81RD0yQzg+Pe9EP/f43Nnv7+/vStzZ7+/v7+/v7+8iMjc0PDAJCTJBNDBDNPf2NTA4OzQzLjk+MUL2++81RD0yQzg+Pe/3ETtEND9BOD1D7/NDMDE7NPjvStzZ7+/v7+/v7+/v7+/v80MwMTs0/A04M/f4CtzZ7+/v7+/v7+/v7+/v80MwMTs0/A1CQ0E4PTb39kREODP2+PwNRD04QEQ09/gK3Nnv7+/v7+/v7+/v7+/zQzAxOzT8DUM0R0P39jI+PT00MkM4Pj32+Arc2e/v7+/v7+/v7+/v7/NDMDE7NPwNQzRHQ/f2QEQ0RDT2+Arc2e/v7+/v7+/v7+/v7/NDMDE7NPwNOz49NiM0R0P39j8wSDs+MDP2+Arc2e/v7+/v7+/v7+/v7/NDMDE7NPwNOz49NiM0R0P39jRHMjQ/Qzg+Pfb4CtzZ7+/v7+/v7+/v7+/v80MwMTs0/A1DODw0QkMwPD/39jUwODs0My4wQ/b4/A1EQjQSREFBND1D9/gK3Nnv7+/v7+/v70z4CtzZ7+/v70zc2dzZ7+/v7/75+dzZ7+/v7+/57yE0RTRBQjTvQzc07zw4NkEwQzg+PUL93Nnv7+/v7/nc2e/v7+/v+e8PQTRDREE970U+ODPc2e/v7+/v+f7c2e/v7+8/RDE7ODLvNUQ9MkM4Pj3vMz5GPff43Nnv7+/vStzZ7+/v7+/v7+8iMjc0PDAJCTNBPj8YNRRHOEJDQvf2NTA4OzQzLjk+MUL2+Arc2e/v7+9M3NlM3Nk=

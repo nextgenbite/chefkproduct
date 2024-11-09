@@ -1,13 +1,3 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
-
-class Controller extends BaseController
-{
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-}
+bolt_decrypt( __FILE__ , 'GDBnrB'); return 0;
+##!!!##/Pn8+V1QXFRiX1BSVA8wX19LN2NjX0syXl1jYV5bW1RhYir8+fz5ZGJUDzhbW2RcWF1QY1RLNV5kXVNQY1heXUswZGNXSzBSUlRiYkswZGNXXmFYaVRiQVRgZFRiY2Iq/PlkYlQPOFtbZFxYXVBjVEs1XmRdU1BjWF5dSzFkYkszWGJfUGNSV1RiOV5RYir8+WRiVA84W1tkXFhdUGNUSzVeZF1TUGNYXl1LRVBbWFNQY1heXUtFUFtYU1BjVGJBVGBkVGJjYir8+WRiVA84W1tkXFhdUGNUS0FeZGNYXVZLMl5dY2FeW1tUYQ9QYg8xUGJUMl5dY2FeW1tUYSr8+fz5UltQYmIPMl5dY2FeW1tUYQ9UZ2NUXVNiDzFQYlQyXl1jYV5bW1Rh/Plq/PkPDw8PZGJUDzBkY1deYVhpVGJBVGBkVGJjYhsPM1hiX1BjUldUYjleUWIbD0VQW1hTUGNUYkFUYGRUYmNiKvz5bPz5

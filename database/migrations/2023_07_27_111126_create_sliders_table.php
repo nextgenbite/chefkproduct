@@ -1,37 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateSlidersTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('sliders', function (Blueprint $table) {
-            $table->id();
-            $table->string('thumbnail');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->string('title')->nullable();
-            $table->string('slug')->nullable();
-            $table->string('position')->nullable();
-            $table->boolean('status')->default(false);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('sliders');
-    }
-}
+bolt_decrypt( __FILE__ , 'j8ozYa'); return 0;
+##!!!##Uk9ST7q4qmWOsbG6sq6zprmqoYmmuaanpriqoZKurLemua60s7ihkq6st6a5rrSzgFJPuriqZY6xsbqyrrOmuaqhiaa5pqemuKqhmKitqrKmoYexuqq1t66zuYBST7q4qmWOsbG6sq6zprmqoZi6tbW0t7mhi6aopqmquKGYqK2qsqaAUk9ST6ixpri4ZYi3qqa5qpixrqmqt7iZpqexqmWqvbmqs6m4ZZKurLemua60s1JPwFJPZWVlZXRvb1JPZWVlZWVvZZe6s2W5raplsq6st6a5rrSzuHNST2VlZWVlb1JPZWVlZWVvZYW3qrm6t7Nlu7SuqVJPZWVlZWVvdFJPZWVlZbW6p7GuqGWrurOoua60s2W6tW1uUk9lZWVlwFJPZWVlZWVlZWWYqK2qsqZ/f6i3qqa5qm1suLGuqaq3uGxxZau6s6i5rrSzZW2Hsbqqtbeus7llabmmp7GqbmXAUk9lZWVlZWVlZWVlZWVpuaansapyg66pbW6AUk9lZWVlZWVlZWVlZWVpuaansapyg7i5t66zrG1sua26sqezpq6xbG6AUk9lZWVlZWVlZWVlZWVpuaansapyg6u0t6qurLOOqW1sqKa5qqy0t76krqlsbnKDqLSzuLm3pq6zqqltbKimuaqstLeuqrhsbnKDtLOJqrGquaptbKimuKimqapsboBST2VlZWVlZWVlZWVlZWm5pqexqnKDuLm3rrOsbWy5rrmxqmxucoOzurGxpqexqm1ugFJPZWVlZWVlZWVlZWVlabmmp7GqcoO4ubeus6xtbLixuqxsbnKDs7qxsaansaptboBST2VlZWVlZWVlZWVlZWm5pqexqnKDuLm3rrOsbWy1tLiuua60s2xucoOzurGxpqexqm1ugFJPZWVlZWVlZWVlZWVlabmmp7GqcoOntLSxqqazbWy4uaa5urhsbnKDqaqrprqxuW2rprG4qm6AUk9lZWVlZWVlZWVlZWVpuaansapyg7musqq4uaaytbhtboBST2VlZWVlZWVlwm6AUk9lZWVlwlJPUk9lZWVldG9vUk9lZWVlZW9ll6q7qre4qmW5raplsq6st6a5rrSzuHNST2VlZWVlb1JPZWVlZWVvZYW3qrm6t7Nlu7SuqVJPZWVlZWVvdFJPZWVlZbW6p7GuqGWrurOoua60s2WptLyzbW5ST2VlZWXAUk9lZWVlZWVlZZioraqypn9/qbe0tY6rir2uuLm4bWy4sa6pqre4bG6AUk9lZWVlwlJPwlJP

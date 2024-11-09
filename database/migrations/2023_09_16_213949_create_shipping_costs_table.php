@@ -1,34 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateShippingCostsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('shipping_costs', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->decimal("cost", 10,2)->default(0.00);
-            $table->boolean('status')->default(false);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('shipping_costs');
-    }
-}
+bolt_decrypt( __FILE__ , 'KIxbNX'); return 0;
+##!!!##IR4hHomHeTRdgICJgX2CdYh5cFh1iHV2dYd5cGF9e4Z1iH2DgodwYX17hnWIfYOCTyEeiYd5NF2AgImBfYJ1iHlwWHWIdXZ1h3lwZ3d8eYF1cFaAiXmEhn2CiE8hHomHeTRdgICJgX2CdYh5cGeJhISDhohwWnV3dXh5h3Bnd3x5gXVPIR4hHneAdYeHNFeGeXWIeWd8fYSEfYJ7V4OHiIdodXaAeTR5jIh5gniHNGF9e4Z1iH2DgiEejyEeNDQ0NEM+PiEeNDQ0NDQ+NGaJgjSIfHk0gX17hnWIfYOCh0IhHjQ0NDQ0PiEeNDQ0NDQ+NFSGeYiJhoI0ioN9eCEeNDQ0NDQ+QyEeNDQ0NISJdoB9dzR6iYJ3iH2DgjSJhDw9IR40NDQ0jyEeNDQ0NDQ0NDRnd3x5gXVOTneGeXWIeTw7h3x9hIR9gntzd4OHiIc7QDR6iYJ3iH2DgjQ8VoCJeYSGfYKINDiIdXaAeT00jyEeNDQ0NDQ0NDQ0NDQ0OIh1doB5QVJ9eDw9TyEeNDQ0NDQ0NDQ0NDQ0OIh1doB5QVKHiIZ9gns8O4h9iIB5Oz1PIR40NDQ0NDQ0NDQ0NDQ4iHV2gHlBUnh5d32BdYA8NneDh4g2QDRFREBGPUFSeHl6dYmAiDxEQkREPU8hHjQ0NDQ0NDQ0NDQ0NDiIdXaAeUFSdoODgHl1gjw7h4h1iImHOz1BUnh5enWJgIg8enWAh3k9TyEeNDQ0NDQ0NDQ0NDQ0OIh1doB5QVKIfYF5h4h1gYSHPD1PIR40NDQ0NDQ0NJE9TyEeNDQ0NJEhHiEeNDQ0NEM+PiEeNDQ0NDQ+NGZ5inmGh3k0iHx5NIF9e4Z1iH2DgodCIR40NDQ0ND4hHjQ0NDQ0PjRUhnmIiYaCNIqDfXghHjQ0NDQ0PkMhHjQ0NDSEiXaAfXc0eomCd4h9g4I0eIOLgjw9IR40NDQ0jyEeNDQ0NDQ0NDRnd3x5gXVOTniGg4RdelmMfYeIhzw7h3x9hIR9gntzd4OHiIc7PU8hHjQ0NDSRIR6RIR4=

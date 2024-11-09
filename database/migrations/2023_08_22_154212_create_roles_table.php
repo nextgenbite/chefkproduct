@@ -1,32 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateRolesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        // Schema::create('roles', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->timestamps();
-        // });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        // Schema::dropIfExists('roles');
-    }
-}
+bolt_decrypt( __FILE__ , 'iTBFIe'); return 0;
+##!!!##AP0A/WhmWBM8X19oYFxhVGdYTzdUZ1RVVGZYT0BcWmVUZ1xiYWZPQFxaZVRnXGJhLgD9aGZYEzxfX2hgXGFUZ1hPN1RnVFVUZlhPRlZbWGBUTzVfaFhjZVxhZy4A/WhmWBM8X19oYFxhVGdYT0ZoY2NiZWdPOVRWVFdYZk9GVltYYFQuAP0A/VZfVGZmEzZlWFRnWEViX1hmR1RVX1gTWGtnWGFXZhNAXFplVGdcYmEA/W4A/RMTExMiHR0A/RMTExMTHRNFaGETZ1tYE2BcWmVUZ1xiYWYhAP0TExMTEx0A/RMTExMTHRMzZVhnaGVhE2liXFcA/RMTExMTHSIA/RMTExNjaFVfXFYTWWhhVmdcYmETaGMbHAD9ExMTE24A/RMTExMTExMTIiITRlZbWGBULS1WZVhUZ1gbGmViX1hmGh8TWWhhVmdcYmETGzVfaFhjZVxhZxMXZ1RVX1gcE24A/RMTExMTExMTIiITExMTExdnVFVfWCAxXFcbHC4A/RMTExMTExMTIiITExMTExdnVFVfWCAxZmdlXGFaGxphVGBYGhwuAP0TExMTExMTEyIiExMTExMXZ1RVX1ggMWdcYFhmZ1RgY2YbHC4A/RMTExMTExMTIiITcBwuAP0TExMTcAD9AP0TExMTIh0dAP0TExMTEx0TRVhpWGVmWBNnW1gTYFxaZVRnXGJhZiEA/RMTExMTHQD9ExMTExMdEzNlWGdoZWETaWJcVwD9ExMTExMdIgD9ExMTE2NoVV9cVhNZaGFWZ1xiYRNXYmphGxwA/RMTExNuAP0TExMTExMTEyIiE0ZWW1hgVC0tV2ViYzxZOGtcZmdmGxplYl9YZhocLgD9ExMTE3AA/XAA/Q==

@@ -1,18 +1,3 @@
 <?php
-
-namespace App\View\Components;
-
-use Illuminate\View\Component;
-
-class AppLayout extends Component
-{
-    /**
-     * Get the view / contents that represents the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        return view('layouts.app');
-    }
-}
+bolt_decrypt( __FILE__ , '2Lv4WP'); return 0;
+##!!!##2dk9MDw0Qj8wMjTvED8/KyU4NEYrEj48Pz49ND1DQgrZ2URCNO8YOztEPDg9MEM0KyU4NEYrEj48Pz49ND1DCtnZMjswQkLvED8/GzBIPkRD7zRHQzQ9M0LvEj48Pz49ND1D2UrZ7+/v7/75+dnv7+/v7/nvFjRD70M3NO9FODRG7/7vMj49QzQ9Q0LvQzcwQ+9BND9BNEI0PUNC70M3NO8yPjw/Pj00PUP92e/v7+/v+dnv7+/v7/nvD0E0Q0RBPe8rGDs7RDw4PTBDNCslODRGKyU4NEbZ7+/v7+/5/tnv7+/vP0QxOzgy7zVEPTJDOD4970E0PTM0Qff42e/v7+9K2e/v7+/v7+/vQTRDREE970U4NEb39jswSD5EQ0L9MD8/9vgK2e/v7+9M2UzZ

@@ -1,21 +1,3 @@
 <?php
-
-namespace Database\Seeders;
-
-use App\Models\Permission;
-use Illuminate\Database\Seeder;
-
-class PermissionSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Permission::create(['name' => 'catgory.create']);
-        Permission::create(['name' => 'catgory.update']);
-        Permission::create(['name' => 'catgory.delete']);
-    }
-}
+bolt_decrypt( __FILE__ , 'Mp0q1c'); return 0;
+##!!!##//z//GBTX1dlYlNVVxI2U2ZTVFNlV05FV1dWV2RlLf/8//xnZVcSM2JiTj9hVldeZU5CV2RfW2VlW2FgLf/8Z2VXEjteXmdfW2BTZldONlNmU1RTZVdORVdXVldkLf/8//xVXlNlZRJCV2RfW2VlW2FgRVdXVldkEldqZldgVmUSRVdXVldk//xt//wSEhISIRwc//wSEhISEhwSRGdgEmZaVxJWU2ZTVFNlVxJlV1dWZSD//BISEhISHP/8EhISEhIcEjJkV2ZnZGASaGFbVv/8EhISEhIcIf/8EhISEmJnVF5bVRJYZ2BVZlthYBJkZ2AaG//8EhISEm3//BISEhISEhISQldkX1tlZVthYCwsVWRXU2ZXGk0ZYFNfVxkSLzASGVVTZllhZGsgVWRXU2ZXGU8bLf/8EhISEhISEhJCV2RfW2VlW2FgLCxVZFdTZlcaTRlgU19XGRIvMBIZVVNmWWFkayBnYlZTZlcZTxst//wSEhISEhISEkJXZF9bZWVbYWAsLFVkV1NmVxpNGWBTX1cZEi8wEhlVU2ZZYWRrIFZXXldmVxlPGy3//BISEhJv//xv//w=

@@ -1,21 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Slider extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'id');
-    }
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , '4gvgdR'); return 0;
+##!!!##Ozg7OJyPm5Ohno+Rk05vnp6Ke52Sk5qhaTs4OzijoZNOd5qao5uXnI+ik4pyj6KPkI+hk4pzmp2fo5Ocoop0j5GinaCXk6GKdo+hdI+Rop2gp2k7OKOhk053mpqjm5ecj6KTinKPoo+Qj6GTinOanZ+jk5yiinudkpOaaTs4OziRmo+hoU6BmpeSk6BOk6aik5ySoU57nZKTmjs4qTs4Tk5OTqOhk052j6F0j5GinaCnaTs4Tk5OTp6gnaKTkaKTkk5SlaOPoJKTkk5rTomLaTs4OzhOTk5OnqOQmpeRTpSjnJGil52cTpGPopOVnaCnVlc7OE5OTk6pOzhOTk5OTk5OTqCToqOgnE5SopaXoVtskJOanZyVoYKdVnGPopOVnaCnaGiRmo+hoVpOVZGPopOVnaCnjZeSVVpOVZeSVVdpOzhOTk5Oqzs4Tk5OTp6jkJqXkU6Uo5yRopednE6hkZ2ek2+Ropekk1ZSn6OToKdXOzhOTk5OqTs4Tk5OTk5OTk6gk6KjoJxOUp+jk6CnW2yllpOgk1ZVoaKPoqOhVVpOX1dpOzhOTk5Oqzs4qzs4

@@ -1,37 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateCategoriesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('parent_id')->constrained('categories')->onDelete('cascade');
-            $table->string('title');
-            $table->string('slug');
-            $table->string('icon')->nullable();
-            $table->string('thumbnail')->default('images/no-image.png');
-            $table->boolean('status')->default(false);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('categories');
-    }
-}
+bolt_decrypt( __FILE__ , 'Hm1hfR'); return 0;
+##!!!##ExATEHt5ayZPcnJ7c290Z3prYkpnemdoZ3lrYlNvbXhnem91dHliU29teGd6b3V0QRMQe3lrJk9ycntzb3RnemtiSmd6Z2hneWtiWWlua3NnYkhye2t2eG90ekETEHt5ayZPcnJ7c290Z3prYll7dnZ1eHpiTGdpZ2preWJZaW5rc2dBExATEGlyZ3l5Jkl4a2d6a0lnemttdXhva3laZ2hyayZrfnprdGp5JlNvbXhnem91dBMQgRMQJiYmJjUwMBMQJiYmJiYwJlh7dCZ6bmsmc29teGd6b3V0eTQTECYmJiYmMBMQJiYmJiYwJkZ4a3p7eHQmfHVvahMQJiYmJiYwNRMQJiYmJnZ7aHJvaSZse3Rpem91dCZ7di4vExAmJiYmgRMQJiYmJiYmJiZZaW5rc2dAQGl4a2d6ay4taWd6a211eG9reS0yJmx7dGl6b3V0Ji5IcntrdnhvdHomKnpnaHJrLyaBExAmJiYmJiYmJiYmJiYqemdocmszRG9qLi9BExAmJiYmJiYmJiYmJiYqemdocmszRGx1eGtvbXRPai4tdmd4a3R6ZW9qLS8zRGl1dHl6eGdvdGtqLi1pZ3prbXV4b2t5LS8zRHV0Smtya3prLi1pZ3lpZ2prLS9BExAmJiYmJiYmJiYmJiYqemdocmszRHl6eG90bS4tem96cmstL0ETECYmJiYmJiYmJiYmJip6Z2hyazNEeXp4b3RtLi15cnttLS9BExAmJiYmJiYmJiYmJiYqemdocmszRHl6eG90bS4tb2l1dC0vM0R0e3JyZ2hyay4vQRMQJiYmJiYmJiYmJiYmKnpnaHJrM0R5enhvdG0uLXpue3NodGdvci0vM0Rqa2xne3J6Li1vc2dta3k1dHUzb3NnbWs0dnRtLS9BExAmJiYmJiYmJiYmJiYqemdocmszRGh1dXJrZ3QuLXl6Z3p7eS0vM0Rqa2xne3J6LmxncnlrL0ETECYmJiYmJiYmJiYmJip6Z2hyazNEem9za3l6Z3N2eS4vQRMQJiYmJiYmJiaDL0ETECYmJiaDExATECYmJiY1MDATECYmJiYmMCZYa3xreHlrJnpuayZzb214Z3pvdXR5NBMQJiYmJiYwExAmJiYmJjAmRnhrent4dCZ8dW9qExAmJiYmJjA1ExAmJiYmdntocm9pJmx7dGl6b3V0Jmp1fXQuLxMQJiYmJoETECYmJiYmJiYmWWlua3NnQEBqeHV2T2xLfm95enkuLWlnemttdXhva3ktL0ETECYmJiaDExCDExA=

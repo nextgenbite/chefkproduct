@@ -1,36 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreatePersonalAccessTokensTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('personal_access_tokens');
-    }
-}
+bolt_decrypt( __FILE__ , 'l9vYtT'); return 0;
+##!!!##SUZJRrGvoVyFqKixqaWqnbChmICdsJ2ena+hmImlo66dsKWrqq+YiaWjrp2wpauqd0lGsa+hXIWoqLGppaqdsKGYgJ2wnZ6dr6GYj5+koamdmH6osaGsrqWqsHdJRrGvoVyFqKixqaWqnbChmI+xrKyrrrCYgp2fnaChr5iPn6ShqZ13SUZJRp+ona+vXH+uoZ2woYyhrq+rqp2ofZ+foa+vkKunoaqvkJ2eqKFcobSwoaqgr1yJpaOunbClq6pJRrdJRlxcXFxrZmZJRlxcXFxcZlyOsapcsKShXKmlo66dsKWrqq9qSUZcXFxcXGZJRlxcXFxcZlx8rqGwsa6qXLKrpaBJRlxcXFxcZmtJRlxcXFyssZ6opZ9corGqn7Clq6pcsaxkZUlGXFxcXLdJRlxcXFxcXFxcj5+koamddnafrqGdsKFkY6yhrq+rqp2om52fn6Gvr5uwq6ehqq9jaFyisaqfsKWrqlxkfqixoayupaqwXGCwnZ6ooWVct0lGXFxcXFxcXFxcXFxcYLCdnqihaXqloGRld0lGXFxcXFxcXFxcXFxcYLCdnqihaXqpq66spK9kY7Crp6GqnZ6ooWNld0lGXFxcXFxcXFxcXFxcYLCdnqihaXqvsK6lqqNkY6qdqaFjZXdJRlxcXFxcXFxcXFxcXGCwnZ6ooWl6r7CupaqjZGOwq6ehqmNoXHJwZWl6saqlrbGhZGV3SUZcXFxcXFxcXFxcXFxgsJ2eqKFperChtLBkY52epailsKWhr2NlaXqqsaionZ6ooWRld0lGXFxcXFxcXFxcXFxcYLCdnqihaXqwpamhr7CdqaxkY6idr7Cbsa+hoJudsGNlaXqqsaionZ6ooWRld0lGXFxcXFxcXFxcXFxcYLCdnqihaXqwpamhr7CdqayvZGV3SUZcXFxcXFxcXLlld0lGXFxcXLlJRklGXFxcXGtmZklGXFxcXFxmXI6hsqGur6FcsKShXKmlo66dsKWrqq9qSUZcXFxcXGZJRlxcXFxcZlx8rqGwsa6qXLKrpaBJRlxcXFxcZmtJRlxcXFyssZ6opZ9corGqn7Clq6pcoKuzqmRlSUZcXFxct0lGXFxcXFxcXFyPn6ShqZ12dqCuq6yFooG0pa+wr2RjrKGur6uqnaibnZ+foa+vm7Crp6Gqr2Nld0lGXFxcXLlJRrlJRg==

@@ -1,29 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Variation extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function color()
-    {
-        return $this->belongsTo(Color::class);
-    }
-
-    public function size()
-    {
-        return $this->belongsTo(Size::class);
-    }
-}
+bolt_decrypt( __FILE__ , 'MIzg7Q'); return 0;
+##!!!##DAkMCW1gbGRyb2BiZB9Ab29bTG5jZGtyOgwJDAl0cmQfSGtrdGxobWBzZFtDYHNgYWByZFtEa25wdGRtc1tFYGJzbnFoZHJbR2ByRWBic25xeDoMCXRyZB9Ia2t0bGhtYHNkW0Ngc2BhYHJkW0RrbnB0ZG1zW0xuY2RrOgwJDAlia2Bych9VYHFoYHNobm0fZHdzZG1jch9MbmNkawwJegwJHx8fH3RyZB9HYHJFYGJzbnF4OgwJDAkfHx8fb3Fuc2Ric2RjHyNmdGBxY2RjHzwfWlw6DAkMCQwJHx8fH290YWtoYh9ldG1ic2hubR9vcW5jdGJzJygMCR8fHx96DAkfHx8fHx8fH3Fkc3RxbR8jc2dociw9YWRrbm1mclNuJ09xbmN0YnM5OWJrYHJyKDoMCR8fHx98DAkMCR8fHx9vdGFraGIfZXRtYnNobm0fYm5rbnEnKAwJHx8fH3oMCR8fHx8fHx8fcWRzdHFtHyNzZ2hyLD1hZGtubWZyU24nQm5rbnE5OWJrYHJyKDoMCR8fHx98DAkMCR8fHx9vdGFraGIfZXRtYnNobm0fcmh5ZCcoDAkfHx8fegwJHx8fHx8fHx9xZHN0cW0fI3NnaHIsPWFka25tZnJTbidSaHlkOTlia2Bycig6DAkfHx8ffAwJfAwJ

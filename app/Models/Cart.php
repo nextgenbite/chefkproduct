@@ -1,20 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Cart extends Model
-{
-    use HasFactory;
-
-    protected $fillable = [
-        'guest_id', 'user_id', 'items', 'subtotal', 'shipping_cost', 'tax', 'discount', 'total', 'weight'
-    ];
-
-    public function items()
-    {
-        return $this->hasMany(CartItem::class);
-    }
-}
+bolt_decrypt( __FILE__ , 'NESB1B'); return 0;
+##!!!##paUJ/AgADgv8/gC73AsL9+gK/wAHDtalpRAOALvkBwcQCAQJ/A8A99/8D/z9/A4A9+AHCgwQAAkP9+H8/g8KDQQADvfj/A7h/P4PCg0U1qUQDgC75AcHEAgECfwPAPff/A/8/fwOAPfgBwoMEAAJD/foCv8AB9alpf4H/A4Ou978DQ+7ABMPAAn/DrvoCv8AB6UWpbu7u7sQDgC74/wO4fz+DwoNFNalpbu7u7sLDQoPAP4PAP+7vwEEBwf8/QcAu9i79qW7u7u7u7u7u8ICEAAOD/oE/8LHu8IQDgAN+gT/wse7wgQPAAgOwse7wg4Q/Q8KD/wHwse7wg4DBAsLBAkC+v4KDg/Cx7vCD/wTwse7wv8EDv4KEAkPwse7wg8KD/wHwse7whIABAIDD8Klu7u7u/jWpaW7u7u7CxD9BwT+uwEQCf4PBAoJuwQPAAgOw8Slu7u7uxalu7u7u7u7u7sNAA8QDQm7vw8DBA7I2QP8Duj8CRTD3vwND+QPAAjV1f4H/A4OxNalu7u7uxilGKU=

@@ -1,30 +1,3 @@
 <?php
-
-namespace App\Http\Controllers\Auth;
-
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
-class VerifyEmailController extends Controller
-{
-    /**
-     * Mark the authenticated user's email address as verified.
-     *
-     * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(EmailVerificationRequest $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
-        }
-
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
-
-        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
-    }
-}
+bolt_decrypt( __FILE__ , 'gRSfl1'); return 0;
+##!!!##GRl9cHx0gn9wcnQvUH9/a1eDg39rUn59g4F+e3t0gYJrUISDd0oZGYSCdC9Qf39rV4ODf2tSfn2DgX57e3SBgmtSfn2DgX57e3SBShmEgnQvUH9/a1+BfoV4c3SBgmthfoSDdGJ0gYV4cnRfgX6FeHN0gUoZhIJ0L1h7e4R8eH1wg3RrUISDd2tUhXR9g4JrZXSBeHV4dHNKGYSCdC9Ye3uEfHh9cIN0a1V+hH1zcIN4fn1rUISDd2tUfHB4e2V0gXh1eHJwg3h+fWF0gIR0goNKGRlye3CCgi9ldIF4dYhUfHB4e1J+fYOBfnt7dIEvdIeDdH1zgi9Sfn2DgX57e3SBGYoZLy8vLz45ORkvLy8vLzkvXHCBei+Dd3QvcISDd3R9g3hycIN0cy+EgnSBNoIvdHxweHsvcHNzgXSCgi9wgi+FdIF4dXh0cz0ZLy8vLy85GS8vLy8vOS9Pf3CBcHwvL2tYe3uEfHh9cIN0a1V+hH1zcIN4fn1rUISDd2tUfHB4e2V0gXh1eHJwg3h+fWF0gIR0goMvLzOBdICEdIKDGS8vLy8vOS9PgXSDhIF9L2tYe3uEfHh9cIN0a1eDg39rYXRzeIF0coNhdIJ/fn2CdBkvLy8vLzk+GS8vLy9/hHF7eHIvdYR9coN4fn0vbm54fYV+enQ3VHxweHtldIF4dXhycIN4fn1hdICEdIKDLzOBdICEdIKDOBkvLy8vihkvLy8vLy8vL3h1LzczgXSAhHSCgzxNhIJ0gTc4PE13cIJldIF4dXh0c1R8cHh7Nzg4L4oZLy8vLy8vLy8vLy8vgXSDhIF9L4F0c3iBdHKDNzg8TXh9g3R9c3RzN2F+hIN0YnSBhXhydF+BfoV4c3SBSUlXXlxUPTZOhXSBeHV4dHNMQDY4ShkvLy8vLy8vL4wZGS8vLy8vLy8veHUvNzOBdICEdIKDPE2EgnSBNzg8TXxwgXpUfHB4e1CCZXSBeHV4dHM3ODgvihkvLy8vLy8vLy8vLy90hXR9gzd9dIYvZXSBeHV4dHM3M4F0gIR0goM8TYSCdIE3ODg4ShkvLy8vLy8vL4wZGS8vLy8vLy8vgXSDhIF9L4F0c3iBdHKDNzg8TXh9g3R9c3RzN2F+hIN0YnSBhXhydF+BfoV4c3SBSUlXXlxUPTZOhXSBeHV4dHNMQDY4ShkvLy8vjBmMGQ==

@@ -1,18 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class CartItem extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-    
-    public function product()
-{
-    return $this->belongsTo(Product::class);
-}
-}
+bolt_decrypt( __FILE__ , 'Un1LVp'); return 0;
+##!!!##EBB0Z3NreXZnaWsmR3Z2YlN1amtyeUEQEHt5ayZPcnJ7c290Z3prYkpnemdoZ3lrYktydXd7a3R6YkxnaXp1eG9reWJOZ3lMZ2l6dXh/QRB7eWsmT3Jye3NvdGd6a2JKZ3pnaGd5a2JLcnV3e2t0emJTdWprckEQEGlyZ3l5JklneHpPemtzJmt+emt0ankmU3Vqa3IQgRAmJiYme3lrJk5neUxnaXp1eH9BEBAmJiYmdnh1emtpemtqJipte2d4amtqJkMmYWNBECYmJiYQJiYmJnZ7aHJvaSZse3Rpem91dCZ2eHVqe2l6Li8QgRAmJiYmeGt6e3h0Jip6bm95M0Roa3J1dG15WnUuVnh1antpekBAaXJneXkvQRCDEIMQ

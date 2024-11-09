@@ -1,12 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class ShippingCost extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-}
+bolt_decrypt( __FILE__ , '1fJY7O'); return 0;
+##!!!##zcrNyi4hLSUzMCEjJeABMDAcDS8kJSwz+83Kzco1MyXgCSwsNS0pLiE0JRwEITQhIiEzJRwFLC8xNSUuNBwGISM0LzIpJTMcCCEzBiEjNC8yOfvNyjUzJeAJLCw1LSkuITQlHAQhNCEiITMlHAUsLzE1JS40HA0vJCUs+83KzcojLCEzM+ATKCkwMCkuJwMvMzTgJTg0JS4kM+ANLyQlLM3KO83K4ODg4DUzJeAIITMGISM0LzI5+83K4ODg4DAyLzQlIzQlJODkJzUhMiQlJOD94Bsd+83KPc3K

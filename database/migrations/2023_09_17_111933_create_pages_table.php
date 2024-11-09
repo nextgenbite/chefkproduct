@@ -1,35 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreatePagesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('pages', function (Blueprint $table) {
-            $table->id();
-            $table->string('title')->uniqid();
-            $table->string('slug');
-            $table->longText("body")->nullable();
-            $table->boolean('status')->default(false);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('pages');
-    }
-}
+bolt_decrypt( __FILE__ , 'Fru9Vz'); return 0;
+##!!!##Q0BDQKupm1Z/oqKro5+kl6qbknqXqpeYl6mbkoOfnaiXqp+lpKmSg5+dqJeqn6WkcUNAq6mbVn+ioqujn6SXqpuSepeql5iXqZuSiZmem6OXkniiq5umqJ+kqnFDQKupm1Z/oqKro5+kl6qbkomrpqalqKqSfJeZl5qbqZKJmZ6bo5dxQ0BDQJmil6mpVnmom5eqm4aXnZupipeYoptWm66qm6SaqVaDn52ol6qfpaRDQLFDQFZWVlZlYGBDQFZWVlZWYFaIq6RWqp6bVqOfnaiXqp+lpKlkQ0BWVlZWVmBDQFZWVlZWYFZ2qJuqq6ikVqyln5pDQFZWVlZWYGVDQFZWVlamq5iin5lWnKukmaqfpaRWq6ZeX0NAVlZWVrFDQFZWVlZWVlZWiZmem6OXcHCZqJuXqpteXaaXnZupXWJWnKukmaqfpaRWXniiq5umqJ+kqlZaqpeYoptfVrFDQFZWVlZWVlZWVlZWVlqql5iim2N0n5peX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0qaqon6SdXl2qn6qim11fY3SrpJ+nn5peX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0qaqon6SdXl2poqudXV9xQ0BWVlZWVlZWVlZWVlZaqpeYoptjdKKlpJ2Km66qXliYpZqvWF9jdKSroqKXmKKbXl9xQ0BWVlZWVlZWVlZWVlZaqpeYoptjdJilpaKbl6ReXamql6qrqV1fY3Sam5yXq6KqXpyXoqmbX3FDQFZWVlZWVlZWVlZWVlqql5iim2N0qp+jm6mql6OmqV5fcUNAVlZWVlZWVlazX3FDQFZWVlazQ0BDQFZWVlZlYGBDQFZWVlZWYFaIm6ybqKmbVqqem1ajn52ol6qfpaSpZENAVlZWVlZgQ0BWVlZWVmBWdqibqquopFaspZ+aQ0BWVlZWVmBlQ0BWVlZWpquYop+ZVpyrpJmqn6WkVpqlraReX0NAVlZWVrFDQFZWVlZWVlZWiZmem6OXcHCaqKWmf5x7rp+pqqleXaaXnZupXV9xQ0BWVlZWs0NAs0NA

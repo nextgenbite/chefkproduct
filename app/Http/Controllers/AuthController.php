@@ -1,33 +1,3 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use App\Models\User;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
-class AuthController extends Controller
-{
-    public function redirectToGoogle()
-{
-    return Socialite::driver('google')->redirect();
-}
-
-public function handleGoogleCallback()
-{
-    try {
-        $user = Socialite::driver('google')->user();
-        
-        // Here you have access to the user data, so you can proceed to authenticate the user or handle as needed.
-        // For example:
-        $authenticatedUser = User::findOrCreateUser($user);
-        Auth::login($authenticatedUser);
-
-        // Redirect the user after login
-        return redirect()->intended('/dashboard');
-    } catch (\Exception $e) {
-        // Handle any exceptions
-        return redirect()->route('login')->with('error', 'Unable to login with Google. Please try again.');
-    }
-}
-}
+bolt_decrypt( __FILE__ , 'soj4wF'); return 0;
+##!!!##R0ernqqisK2eoKJdfq2tmYWxsa2ZgKyrsa+sqamir7B4R0eysKJdfq2tmYqsoaKpsJmSsKKveEeysKJdhqmpsqqmq56xopmFsbGtmY+irrKisLF4R7Kwol2Jnq+es6KpmZCsoKaeqaaxopmDnqCeoaKwmZCsoKaeqaaxonhHsrCiXYapqbKqpquesaKZkLKtrayvsZmDnqCeoaKwmX6ysaV4R6CpnrCwXX6ysaWArKuxr6ypqaKvXaK1saKrobBdgKyrsa+sqamir0e4R11dXV2tsp+ppqBdo7KroLGmrKtdr6Khpq+ioLGRrISsrKSpomVmR7hHXV1dXa+isbKvq12QrKCmnqmmsaJ3d6GvprOir2VkpKyspKmiZGZqe6+ioaavoqCxZWZ4R7pHR62yn6mmoF2jsqugsaasq12lnquhqaKErKykqaKAnqmpn56gqGVmR7hHXV1dXbGvtl24R11dXV1dXV1dYbKwoq9del2QrKCmnqmmsaJ3d6GvprOir2VkpKyspKmiZGZqe7Kwoq9lZnhHXV1dXV1dXV1HXV1dXV1dXV1sbF2Foq+iXbassl2lnrOiXZ6goKKwsF2xrF2xpaJdsrCir12hnrGeaV2wrF22rLJdoJ6rXa2vrKCioqFdsaxdnrKxpaKrsaagnrGiXbGlol2ysKKvXayvXaWeq6Gpol2esF2roqKhoqFrR11dXV1dXV1dbGxdg6yvXaK1nqqtqaJ3R11dXV1dXV1dYZ6ysaWiq7GmoJ6xoqGSsKKvXXpdkrCir3d3o6aroYyvgK+inrGikrCir2VhsrCir2Z4R11dXV1dXV1dfrKxpXd3qaykpqtlYZ6ysaWiq7GmoJ6xoqGSsKKvZnhHR11dXV1dXV1dbGxdj6Khpq+ioLFdsaWiXbKwoq9dnqOxoq9dqaykpqtHXV1dXV1dXV2vorGyr6tdr6Khpq+ioLFlZmp7pquxoquhoqFlZGyhnrCln6yer6FkZnhHXV1dXbpdoJ6xoKVdZZmCtaCirbGmrKtdYaJmXbhHXV1dXV1dXV1sbF2FnquhqaJdnqu2XaK1oKKtsaasq7BHXV1dXV1dXV2vorGyr6tdr6Khpq+ioLFlZmp7r6yysaJlZKmspKarZGZqe7SmsaVlZKKvr6yvZGldZJKrnp+pol2xrF2prKSmq120prGlXYSsrKSpomtdjaminrCiXbGvtl2epJ6mq2tkZnhHXV1dXbpHuke6Rw==

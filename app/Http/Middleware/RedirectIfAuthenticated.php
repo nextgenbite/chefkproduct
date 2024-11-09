@@ -1,35 +1,3 @@
 <?php
-
-namespace App\Http\Middleware;
-
-use App\Providers\RouteServiceProvider;
-use Closure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-class RedirectIfAuthenticated
-{
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function handle($request, Closure $next, $guard = null)
-    {
-        if (Auth::check()) {
-     
-            // Redirect authenticated users based on their role
-            if (Auth::user()->hasRole(['admin', 'Admin', 'superadmin'])) {
-                return redirect('/admin');
-                // return $next($request);
-            } else {
-                return redirect('/user/profile');
-            }
-        
-        }
-        return $next($request);
-    }
-}
+bolt_decrypt( __FILE__ , 'vzF7pS'); return 0;
+##!!!##PTo9Op6RnZWjoJGTlVBxoKCMeKSkoIx9mZSUnJWnkaKVaz06PTqlo5VQcaCgjICin6aZlJWio4yCn6WklYOVoqaZk5WAop+mmZSVoms9OqWjlVBznJ+jpaKVaz06paOVUHmcnKWdmZ6RpJWMeKSkoIyClaGllaOkaz06paOVUHmcnKWdmZ6RpJWMg6WgoJ+ipIx2kZORlJWjjHGlpJhrPTo9OpOckaOjUIKVlJmilZOkeZZxpaSYlZ6kmZORpJWUPTqrPTpQUFBQX1paPTpQUFBQUFpQeJGelJyVUJGeUJmek5+dmZ6XUKKVoaWVo6RePTpQUFBQUFo9OlBQUFBQWlBwoJGikZ1QUIx5nJylnZmekaSVjHikpKCMgpWhpZWjpFBQVKKVoaWVo6Q9OlBQUFBQWlBwoJGikZ1QUIxznJ+jpaKVWIx5nJylnZmekaSVjHikpKCMgpWhpZWjpFlqUFiMeZycpZ2ZnpGklYx4pKSgjIKVo6CfnqOVrIx5nJylnZmekaSVjHikpKCMgpWUmaKVk6SClaOgn56jlVlQUFSelaikPTpQUFBQUFpQcKCRopGdUFCjpKKZnpesnqWcnFBQXl5eVJelkaKUoz06UFBQUFBaUHCilaSlop5QjHmcnKWdmZ6RpJWMeKSkoIyClaOgn56jlayMeZycpZ2ZnpGklYx4pKSgjIKVlJmilZOkgpWjoJ+eo5U9OlBQUFBQWl89OlBQUFCgpZKcmZNQlqWek6SZn55QmJGelJyVWFSilaGllaOkXFBznJ+jpaKVUFSelaikXFBUl6WRopRQbVCepZycWT06UFBQUKs9OlBQUFBQUFBQmZZQWHGlpJhqapOYlZObWFlZUKs9OlBQUFBQPTpQUFBQUFBQUFBQUFBfX1CClZSZopWTpFCRpaSYlZ6kmZORpJWUUKWjlaKjUJKRo5WUUJ+eUKSYlZmiUKKfnJU9OlBQUFBQUFBQUFBQUJmWUFhxpaSYamqlo5WiWFldbpiRo4KfnJVYi1eRlJ2ZnldcUFdxlJ2ZnldcUFejpaCVopGUnZmeV41ZWVCrPTpQUFBQUFBQUFBQUFBQUFBQopWkpaKeUKKVlJmilZOkWFdfkZSdmZ5XWWs9OlBQUFBQUFBQUFBQUFBQUFBfX1CilaSlop5QVJ6VqKRYVKKVoaWVo6RZaz06UFBQUFBQUFBQUFBQrVCVnKOVUKs9OlBQUFBQUFBQUFBQUFBQUFCilaSlop5QopWUmaKVk6RYV1+lo5WiX6Cin5aZnJVXWWs9OlBQUFBQUFBQUFBQUK09OlBQUFBQUFBQPTpQUFBQUFBQUK09OlBQUFBQUFBQopWkpaKeUFSelaikWFSilaGllaOkWWs9OlBQUFCtPTqtPTo=

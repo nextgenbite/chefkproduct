@@ -1,33 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateSettingsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('skey');
-            $table->longText('svalue')->nullable();
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('settings');
-    }
-}
+bolt_decrypt( __FILE__ , 'ow8woR'); return 0;
+##!!!##YGDLybt2n8LCy8O/xLfKu7Kat8q3uLfJu7Kjv73It8q/xcTJsqO/vci3yr/FxJFgy8m7dp/CwsvDv8S3yruymrfKt7i3ybuyqbm+u8O3spjCy7vGyL/EypFgy8m7dp/CwsvDv8S3yruyqcvGxsXIyrKct7m3urvJsqm5vrvDt5FgYLnCt8nJdpnIu7fKu6m7ysq/xL3Jqre4wrt2u87Ku8S6yXajv73It8q/xcRg0WB2dnZ2hYCAYHZ2dnZ2gHaoy8R2yr67dsO/vci3yr/FxMmEYHZ2dnZ2gGB2dnZ2doB2lsi7ysvIxHbMxb+6YHZ2dnZ2gIVgdnZ2dsbLuMK/uXa8y8S5yr/FxHbLxn5/YHZ2dnbRYHZ2dnZ2dnZ2qbm+u8O3kJC5yLu3yrt+fcm7ysq/xL3JfYJ2vMvEucq/xcR2fpjCy7vGyL/EynZ6yre4wrt/dtFgdnZ2dnZ2dnZ2dnZ2esq3uMK7g5S/un5/kWB2dnZ2dnZ2dnZ2dnZ6yre4wruDlMnKyL/EvX59ycG7z31/kWB2dnZ2dnZ2dnZ2dnZ6yre4wruDlMLFxL2qu87Kfn3JzLfCy7t9f4OUxMvCwre4wrt+f5FgdnZ2dnZ2dnZ2dnZ2esq3uMK7g5TKv8O7ycq3w8bJfn+RYHZ2dnZ2dnZ203+RYHZ2dnbTYGB2dnZ2hYCAYHZ2dnZ2gHaou8y7yMm7dsq+u3bDv73It8q/xcTJhGB2dnZ2doBgdnZ2dnaAdpbIu8rLyMR2zMW/umB2dnZ2doCFYHZ2dnbGy7jCv7l2vMvEucq/xcR2usXNxH5/YHZ2dnbRYHZ2dnZ2dnZ2qbm+u8O3kJC6yMXGn7ybzr/Jysl+fcm7ysq/xL3JfX+RYHZ2dnbTYNNg

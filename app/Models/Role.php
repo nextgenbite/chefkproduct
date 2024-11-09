@@ -1,24 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Role extends Model
-{
-    use HasFactory;
-    protected $fillable = ['name'];
-
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
-
-    public function users()
-    {
-        return $this->hasMany(User::class, 'role_id', 'id');
-    }
-
-}
+bolt_decrypt( __FILE__ , 'J2z1Mb'); return 0;
+##!!!##4+Dj4EQ3QztJRjc5O/YXRkYyI0U6O0JJEePg4+BLSTv2H0JCS0M/RDdKOzIaN0o3ODdJOzIbQkVHSztESjIcNzlKRUg/O0kyHjdJHDc5SkVITxHj4EtJO/YfQkJLQz9EN0o7Mho3Sjc4N0k7MhtCRUdLO0RKMiNFOjtCEePg4+A5QjdJSfYoRUI79jtOSjtEOkn2I0U6O0Lj4FHj4Pb29vZLSTv2HjdJHDc5SkVITxHj4Pb29vZGSEVKOzlKOzr2+jw/QkI3OEI79hP2Mf1EN0M7/TMR4+Dj4OPg9vb29kZLOEI/OfY8S0Q5Sj9FRPZGO0hDP0lJP0VESf7/4+D29vb2UePg9vb29vb29vZIO0pLSET2+ko+P0kDFDg7QkVEPUkqRSM3RE/+JjtIQz9JST9FRBAQOUI3SUn/EePg9vb29lPj4OPg9vb29kZLOEI/OfY8S0Q5Sj9FRPZLSTtISf7/4+D29vb2UePg9vb29vb29vZIO0pLSET2+ko+P0kDFD43SSM3RE/+K0k7SBAQOUI3SUkC9v1IRUI7NT86/QL2/T86/f8R4+D29vb2U+Pg4+BT4+A=

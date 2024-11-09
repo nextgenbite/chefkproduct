@@ -1,21 +1,3 @@
 <?php
-
-namespace App\Providers;
-
-use Illuminate\Support\Facades\Broadcast;
-use Illuminate\Support\ServiceProvider;
-
-class BroadcastServiceProvider extends ServiceProvider
-{
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        Broadcast::routes();
-
-        require base_path('routes/channels.php');
-    }
-}
+bolt_decrypt( __FILE__ , '6u8FYL'); return 0;
+##!!!##29jb2DwvOzNBPi8xM+4PPj4qHkA9RDcyM0BBCdvY29hDQTPuFzo6Qzs3PC9CMyohQz4+PUBCKhQvMS8yM0EqEEA9LzIxL0FCCdvYQ0Ez7hc6OkM7NzwvQjMqIUM+Pj1AQiohM0BENzEzHkA9RDcyM0AJ29jb2DE6L0FB7hBAPS8yMS9BQiEzQEQ3MTMeQD1ENzIzQO4zRkIzPDJB7iEzQEQ3MTMeQD1ENzIzQNvYSdvY7u7u7v34+NvY7u7u7u747hA9PUJBQkAvPu4vPEfuLz4+OjcxL0I3PTzuQTNARDcxM0H829ju7u7u7vjb2O7u7u7u+O4OQDNCQ0A87kQ9NzLb2O7u7u7u+P3b2O7u7u4+QzA6NzHuNEM8MUI3PTzuMD09Qvb329ju7u7uSdvY7u7u7u7u7u4QQD0vMjEvQUIICEA9Q0IzQfb3CdvY29ju7u7u7u7u7kAzP0M3QDPuMC9BMy0+L0I29vVAPUNCM0H9MTYvPDwzOkH8PjY+9fcJ29ju7u7uS9vYS9vY

@@ -1,34 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateProductStocksTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('product_stocks', function (Blueprint $table) {
-            $table->id();
-            $table->mediumInteger("product_id");
-            $table->mediumInteger("variation_id");
-            $table->integer("quantity" )->default(0);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('product_stocks');
-    }
-}
+bolt_decrypt( __FILE__ , 'tYFRQx'); return 0;
+##!!!##Ozg7OKOhk053mpqjm5ecj6KTinKPoo+Qj6GTinuXlaCPopednKGKe5eVoI+il52caTs4o6GTTneamqObl5yPopOKco+ij5CPoZOKgZGWk5uPinCao5OeoJecomk7OKOhk053mpqjm5ecj6KTioGjnp6doKKKdI+Rj5KToYqBkZaTm49pOzg7OJGaj6GhTnGgk4+ik36gnZKjkaKBop2RmaGCj5Cak06TpqKTnJKhTnuXlaCPopednDs4qTs4Tk5OTl1YWDs4Tk5OTk5YToCjnE6ilpNOm5eVoI+il52coVw7OE5OTk5OWDs4Tk5OTk5YTm6gk6KjoJxOpJ2Xkjs4Tk5OTk5YXTs4Tk5OTp6jkJqXkU6Uo5yRopednE6jnlZXOzhOTk5OqTs4Tk5OTk5OTk6BkZaTm49oaJGgk4+ik1ZVnqCdkqORoo2hop2RmaFVWk6Uo5yRopednE5WcJqjk56gl5yiTlKij5Cak1dOqTs4Tk5OTk5OTk5OTk5OUqKPkJqTW2yXklZXaTs4Tk5OTk5OTk5OTk5OUqKPkJqTW2ybk5KXo5t3nKKTlZOgVlCeoJ2So5GijZeSUFdpOzhOTk5OTk5OTk5OTk5Soo+QmpNbbJuTkpejm3ecopOVk6BWUKSPoJePopednI2XklBXaTs4Tk5OTk5OTk5OTk5OUqKPkJqTW2yXnKKTlZOgVlCfo4+copeip1BOV1tskpOUj6OaolZeV2k7OE5OTk5OTk5OTk5OTlKij5Cak1tsopebk6Gij5ueoVZXaTs4Tk5OTk5OTk6rV2k7OE5OTk6rOzg7OE5OTk5dWFg7OE5OTk5OWE6Ak6SToKGTTqKWk06bl5Wgj6KXnZyhXDs4Tk5OTk5YOzhOTk5OTlhObqCToqOgnE6knZeSOzhOTk5OTlhdOzhOTk5OnqOQmpeRTpSjnJGil52cTpKdpZxWVzs4Tk5OTqk7OE5OTk5OTk5OgZGWk5uPaGiSoJ2ed5RzppehoqFWVZ6gnZKjkaKNoaKdkZmhVVdpOzhOTk5Oqzs4qzs4

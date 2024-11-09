@@ -1,32 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class AddWeightToProductTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::table('products', function (Blueprint $table) {
-            $table->decimal('weight', 8, 2)->default(0)->after('stock');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('weight');
-        });
-    }
-}
+bolt_decrypt( __FILE__ , '0Exq8c'); return 0;
+##!!!##AwNubF4ZQmVlbmZiZ1ptXlU9Wm1aW1psXlVGYmBrWm1iaGdsVUZiYGtabWJoZzQDbmxeGUJlZW5mYmdabV5VPVptWltabF5VTFxhXmZaVTtlbl5pa2JnbTQDbmxeGUJlZW5mYmdabV5VTG5paWhrbVU/WlxaXV5sVUxcYV5mWjQDA1xlWmxsGTpdXVBeYmBhbU1oSWtoXW5cbU1aW2VeGV5xbV5nXWwZRmJga1ptYmhnA3QDGRkZGSgjIwMZGRkZGSMZS25nGW1hXhlmYmBrWm1iaGdsJwMZGRkZGSMDGRkZGRkjGTlrXm1ua2cZb2hiXQMZGRkZGSMoAxkZGRlpbltlYlwZX25nXG1iaGcZbmkhIgMZGRkZdAMZGRkZGRkZGUxcYV5mWjMzbVpbZV4hIGlraF1uXG1sICUZX25nXG1iaGcZITtlbl5pa2JnbRkdbVpbZV4iGXQDGRkZGRkZGRkZGRkZHW1aW2VeJjddXlxiZlplISBwXmJgYW0gJRkxJRkrIiY3XV5fWm5lbSEpIiY3Wl9tXmshIGxtaFxkICI0AxkZGRkZGRkZdiI0AxkZGRl2AwMZGRkZKCMjAxkZGRkZIxlLXm9ea2xeGW1hXhlmYmBrWm1iaGdsJwMZGRkZGSMDGRkZGRkjGTlrXm1ua2cZb2hiXQMZGRkZGSMoAxkZGRlpbltlYlwZX25nXG1iaGcZXWhwZyEiAxkZGRl0AxkZGRkZGRkZTFxhXmZaMzNtWltlXiEgaWtoXW5cbWwgJRlfbmdcbWJoZxkhO2VuXmlrYmdtGR1tWltlXiIZdAMZGRkZGRkZGRkZGRkdbVpbZV4mN11raGk8aGVuZmchIHBeYmBhbSAiNAMZGRkZGRkZGXYiNAMZGRkZdgN2Aw==

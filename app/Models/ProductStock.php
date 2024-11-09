@@ -1,13 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class ProductStock extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-}
+bolt_decrypt( __FILE__ , 'aiZ7PB'); return 0;
+##!!!##+vf691tOWlJgXU5QUg0uXV1JOlxRUllgKPr3+vdiYFINNllZYlpWW05hUkkxTmFOT05gUkkyWVxeYlJbYUkzTlBhXF9WUmBJNU5gM05QYVxfZij692JgUg02WVliWlZbTmFSSTFOYU5PTmBSSTJZXF5iUlthSTpcUVJZKPr3+vdQWU5gYA09X1xRYlBhQGFcUFgNUmVhUltRYA06XFFSWfr3aPr3DQ0NDWJgUg01TmAzTlBhXF9mKPr3+vcNDQ0NXV9cYVJQYVJRDRFUYk5fUVJRDSoNSEoo+vdq+vc=

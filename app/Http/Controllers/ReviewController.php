@@ -1,26 +1,3 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Product;
-use Illuminate\Http\Request;
-
-class ReviewController extends Controller
-{
-    public function store(Request $request, Product $product)
-    {
-        $request->validate([
-            'star_rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string|max:255',
-        ]);
-
-        $product->reviews()->create([
-            'user_id' => auth()->id(),
-            'star_rating' => $request->input('star_rating'),
-            'comment' => $request->input('comment'),
-        ]);
-
-        return redirect()->back()->with('success', 'Rating submitted successfully.');
-    }
-
-}
+bolt_decrypt( __FILE__ , '9FSIB1'); return 0;
+##!!!##m5ibmPzv+/MB/u/x867P/v7q1gIC/urR/fwCAP36+vMAAcmbmJuYAwHzrs/+/urb/fLz+gHq3gD98gPxAsmbmAMB867X+voD+/f87wLz6tYCAv7q4PP/A/MBAsmbmJuY8frvAQGu4PME9/MF0f38AgD9+vrzAK7zBgLz/PIBrtH9/AIA/fr68wCbmAmbmK6urq7+A/D69/Gu9AP88QL3/fyuAQL9APO24PP/A/MBAq6yAPP/A/MBArqu3gD98gPxAq6y/gD98gPxArebmK6urq4Jm5iurq6urq6urrIA8/8D8wECu8wE7/r38u8C87bpm5iurq6urq6urq6urq61AQLvAO0A7wL3/PW1rsvMrrUA8/8D9wDz8gr3/ALz9fMACvv3/Mi/CvvvBsjDtbqbmK6urq6urq6urq6urrXx/fv78/wCta7LzK61/AP6+u/w+vMKAQIA9/z1CvvvBsjAw8O1upuYrq6urq6urq7rt8mbmJuYrq6urq6urq6y/gD98gPxArvMAPME9/MFAba3u8zxAPPvAvO26ZuYrq6urq6urq6urq6utQMB8wDt9/K1rsvMru8DAva2t7vM9/K2t7qbmK6urq6urq6urq6urrUBAu8A7QDvAvf89bWuy8yusgDz/wPzAQK7zPf8/gMCtrUBAu8A7QDvAvf89bW3upuYrq6urq6urq6urq6utfH9+/vz/AK1rsvMrrIA8/8D8wECu8z3/P4DAra18f37+/P8ArW3upuYrq6urq6urq7rt8mbmJuYrq6urq6urq4A8wIDAPyuAPPy9wDz8QK2t7vM8O/x+ba3u8wF9wL2trUBA/Hx8wEBtbquteDvAvf89a4BA/D79wIC8/KuAQPx8fMBAfQD+voHvLW3yZuYrq6urgubmJuYC5uY

@@ -1,35 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateVariationsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('variations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('color_id')->constrained('colors')->onDelete('cascade');
-            $table->foreignId('size_id')->constrained('sizes')->onDelete('cascade');
-            $table->decimal('price', 8, 2)->default(0.00);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('variations');
-    }
-}
+bolt_decrypt( __FILE__ , 'jx27kf'); return 0;
+##!!!##KSYpJpGPgTxliIiRiYWKfZCBeGB9kH1+fY+BeGmFg459kIWLio94aYWDjn2QhYuKVykmkY+BPGWIiJGJhYp9kIF4YH2QfX59j4F4b3+EgYl9eF6IkYGMjoWKkFcpJpGPgTxliIiRiYWKfZCBeG+RjIyLjpB4Yn1/fYCBj3hvf4SBiX1XKSYpJn+IfY+PPF+OgX2QgXJ9joV9kIWLio9wfX6IgTyBlJCBioCPPGmFg459kIWLiikmlykmPDw8PEtGRikmPDw8PDxGPG6RijyQhIE8iYWDjn2QhYuKj0opJjw8PDw8RikmPDw8PDxGPFyOgZCRjoo8kouFgCkmPDw8PDxGSykmPDw8PIyRfoiFfzyCkYp/kIWLijyRjERFKSY8PDw8lykmPDw8PDw8PDxvf4SBiX1WVn+OgX2QgURDkn2OhX2QhYuKj0NIPIKRin+QhYuKPEReiJGBjI6FipA8QJB9foiBRTyXKSY8PDw8PDw8PDw8PDxAkH1+iIFJWoWAREVXKSY8PDw8PDw8PDw8PDxAkH1+iIFJWoKLjoGFg4plgERDjI6LgJF/kHuFgENFSVp/i4qPkI59hYqBgERDjI6LgJF/kI9DRUlai4pggYiBkIFEQ399j399gIFDRVcpJjw8PDw8PDw8PDw8PECQfX6IgUlagouOgYWDimWAREN/i4iLjnuFgENFSVp/i4qPkI59hYqBgERDf4uIi46PQ0VJWouKYIGIgZCBREN/fY9/fYCBQ0VXKSY8PDw8PDw8PDw8PDxAkH1+iIFJWoKLjoGFg4plgERDj4WWgXuFgENFSVp/i4qPkI59hYqBgERDj4WWgY9DRUlai4pggYiBkIFEQ399j399gIFDRVcpJjw8PDw8PDw8PDw8PECQfX6IgUlagIF/hYl9iERDjI6Ff4FDSDxUSDxORUlagIGCfZGIkERMSkxMRVcpJjw8PDw8PDw8PDw8PECQfX6IgUlakIWJgY+QfYmMj0RFVykmPDw8PDw8PDyZRVcpJjw8PDyZKSYpJjw8PDxLRkYpJjw8PDw8RjxugZKBjo+BPJCEgTyJhYOOfZCFi4qPSikmPDw8PDxGKSY8PDw8PEY8XI6BkJGOijySi4WAKSY8PDw8PEZLKSY8PDw8jJF+iIV/PIKRin+QhYuKPICLk4pERSkmPDw8PJcpJjw8PDw8PDw8b3+EgYl9VlaAjouMZYJhlIWPkI9EQ5J9joV9kIWLio9DRVcpJjw8PDyZKSaZKSY=

@@ -1,30 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Category extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-
-    public function parent()
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-
-    public function children()
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'category_id');
-    }
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , 'auKpRn'); return 0;
+##!!!##XlteW7+yvrbEwbK0tnGSwcGtnsC1tr3EjF5bXlvGxLZxmr29xr66v7LFtq2VssWys7LEtq2WvcDCxra/xa2XsrTFwMO6tsStmbLEl7K0xcDDyoxeW8bEtnGavb3Gvrq/ssW2rZWyxbKzssS2rZa9wMLGtr/FrZ7Atba9jF5bXlu0vbLExHGUssW2uMDDynG2ycW2v7XEcZ7Atba9XlvMXltxcXFxxsS2cZmyxJeytMXAw8qMXltxcXFxwcPAxba0xba1cXW4xrLDtba1cY5xrK6MXlteW3FxcXHBxrO9urRxt8a/tMW6wL9xwbLDtr/FeXpeW3FxcXHMXltxcXFxcXFxccO2xcbDv3F1xbm6xH6Ps7a9wL+4xKXAeZSyxba4wMPKi4u0vbLExH1xeMGyw7a/xbC6tXh6jF5bcXFxcc5eW15bcXFxccHGs726tHG3xr+0xbrAv3G0ubq9tcO2v3l6XltxcXFxzF5bcXFxcXFxcXHDtsXGw79xdcW5usR+j7myxJ6yv8p5lLLFtrjAw8qLi7S9ssTEfXF4wbLDtr/FsLq1eHqMXltxcXFxzl5bcXFxccHGs726tHG3xr+0xbrAv3HBw8C1xrTFxHl6XltxcXFxzF5bcXFxcXFxcXHDtsXGw79xdcW5usR+j7myxJ6yv8p5ocPAtca0xYuLtL2yxMR9cXi0ssW2uMDDyrC6tXh6jF5bcXFxcc5eW3FxcXHBxrO9urRxt8a/tMW6wL9xxLTAwbaStMW6x7Z5dcLGtsPKel5bcXFxccxeW3FxcXFxcXFxw7bFxsO/cXXCxrbDyn6PyLm2w7Z5eMTFssXGxHh9cYJ6jF5bcXFxcc5eW85eWw==

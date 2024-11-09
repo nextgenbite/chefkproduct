@@ -1,37 +1,3 @@
 <?php
-
-namespace App\Mail;
-
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-
-class PartnershipMail extends Mailable
-{
-    use Queueable, SerializesModels;
-
-    public $data;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->from($this->data['email'])
-                    ->subject('Chefkproduct - Partnership')
-                    ->view('emails.be_partner')
-                    ->with(['data' => $this->data]);
-    }
-}
+bolt_decrypt( __FILE__ , 'wt9YvV'); return 0;
+##!!!##U1O3qrauvLmqrK5pirm5pZaqsrWEU1O+vK5pkrW1vrayt6q9rqWLvrylmr6uvq6qq7WuhFO+vK5pkrW1vrayt6q9rqWMuLe9u6qsvbylmr6uvq6lnLG4vrWtmr6uvq6EU768rmmStbW+trK3qr2upZaqsrWllqqytaqrta6EU768rmmStbW+trK3qr2upZq+rr6upZyuu7KqtbLDrryWuK2utbyEU1Ostaq8vGmZqru9t667vLGyuZaqsrVprsG9rretvGmWqrK1qqu1rlPEU2lpaWm+vK5pmr6uvq6qq7WudWmcrruyqrWyw668lritrrW8hFNTaWlpabm+q7WyrGltraq9qoRTaWlpaXhzc1NpaWlpaXNpjLuuqr2uaappt67AabauvLyqsK5psre8vaq3rK53U2lpaWlpc1NpaWlpaXNpibuuvb67t2m/uLKtU2lpaWlpc3hTaWlpabm+q7WyrGmvvresvbK4t2moqKy4t7y9u76svXFtraq9qnJTaWlpacRTaWlpaWlpaWltvbGyvHaHraq9qmmGaW2tqr2qhFNpaWlpxlNTaWlpaXhzc1NpaWlpaXNpi76yta1pvbGuabauvLyqsK53U2lpaWlpc1NpaWlpaXNpibuuvb67t2ltvbGyvFNpaWlpaXN4U2lpaWm5vqu1sqxpr763rL2yuLdpq76yta1xclNpaWlpxFNpaWlpaWlpabuuvb67t2ltvbGyvHaHr7u4tnFtvbGyvHaHraq9qqRwrraqsrVwpnJTaWlpaWlpaWlpaWlpaWlpaWlpaWl2h7y+q7OurL1xcIyxrq+0ubu4rb6svWl2aZmqu723rru8sbK5cHJTaWlpaWlpaWlpaWlpaWlpaWlpaWl2h7+yrsBxcK62qrK1vHerrqi5qru9t667cHJTaWlpaWlpaWlpaWlpaWlpaWlpaWl2h8CyvbFxpHCtqr2qcGmGh2ltvbGyvHaHraq9qqZyhFNpaWlpxlPGUw==

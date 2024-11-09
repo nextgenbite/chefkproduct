@@ -1,12 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class ProductImages extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-}
+bolt_decrypt( __FILE__ , 'Q8GjBa'); return 0;
+##!!!##6ufq50s+SkJQTT5AQv0eTU05KkxBQklQGOrn6udSUEL9JklJUkpGSz5RQjkhPlE+Pz5QQjkiSUxOUkJLUTkjPkBRTE9GQlA5JT5QIz5AUUxPVhjq51JQQv0mSUlSSkZLPlFCOSE+UT4/PlBCOSJJTE5SQktROSpMQUJJGOrn6udAST5QUP0tT0xBUkBRJko+REJQ/UJVUUJLQVD9KkxBQknq51jq5/39/f1SUEL9JT5QIz5AUUxPVhjq5/39/f1NT0xRQkBRQkH9AURSPk9BQkH9Gv04Ohjq51rq5w==

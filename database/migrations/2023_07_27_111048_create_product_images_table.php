@@ -1,33 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateProductImagesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('product_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('path');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('product_images');
-    }
-}
+bolt_decrypt( __FILE__ , 'wJiZgN'); return 0;
+##!!!##RkNGQ66snlmCpaWupqKnmq2elX2arZqbmqyelYaioKuaraKop6yVhqKgq5qtoqindEZDrqyeWYKlpa6moqearZ6VfZqtmpuarJ6VjJyhnqaalXulrp6pq6KnrXRGQ66snlmCpaWupqKnmq2elYyuqamoq62Vf5qcmp2erJWMnKGeppp0RkNGQ5ylmqysWXyrnpqtnomrqJ2unK2CppqgnqyNmpulnlmesa2ep52sWYaioKuaraKop0ZDtEZDWVlZWWhjY0ZDWVlZWVljWYuup1mtoZ5ZpqKgq5qtoqinrGdGQ1lZWVlZY0ZDWVlZWVljWXmrnq2uq6dZr6iinUZDWVlZWVljaEZDWVlZWamum6WinFmfrqecraKop1muqWFiRkNZWVlZtEZDWVlZWVlZWVmMnKGepppzc5yrnpqtnmFgqauona6crZiippqgnqxgZVmfrqecraKop1lhe6WunqmroqetWV2tmpulnmJZtEZDWVlZWVlZWVlZWVlZXa2am6WeZneinWFidEZDWVlZWVlZWVlZWVlZXa2am6WeZnefqKueoqCngp1hYKmrqJ2unK2Yop1gYmZ3nKinrK2rmqKnnp1hYKmrqJ2unK2sYGJmd6infZ6lnq2eYWCcmqycmp2eYGJ0RkNZWVlZWVlZWVlZWVldrZqbpZ5md6ytq6KnoGFgqZqtoWBidEZDWVlZWVlZWVlZWVlZXa2am6WeZnetoqaerK2apqmsYWJ0RkNZWVlZWVlZWbZidEZDWVlZWbZGQ0ZDWVlZWWhjY0ZDWVlZWVljWYuer56rrJ5ZraGeWaaioKuaraKop6xnRkNZWVlZWWNGQ1lZWVlZY1l5q56trqunWa+oop1GQ1lZWVlZY2hGQ1lZWVmprpulopxZn66nnK2iqKdZnaiwp2FiRkNZWVlZtEZDWVlZWVlZWVmMnKGepppzc52rqKmCn36xoqytrGFgqauona6crZiippqgnqxgYnRGQ1lZWVm2RkO2RkM=

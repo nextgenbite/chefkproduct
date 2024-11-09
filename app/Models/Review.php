@@ -1,20 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Review extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-
-    public function product(){
-        return $this->belongsTo(Product::class,'product_id','id');
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-}
+bolt_decrypt( __FILE__ , 'BB3f9D'); return 0;
+##!!!##p6SnpAj7B/8NCvv9/7rbCgr25wn+/wYN1aekp6QPDf+64wYGDwcDCPsO//be+w77/PsN//bfBgkLD/8IDvbg+/0OCQwD/w324vsN4Pv9DgkME9WnpA8N/7rjBgYPBwMI+w7/9t77Dvv8+w3/9t8GCQsP/wgO9ucJ/v8G1aekp6T9BvsNDbrs/xAD/xG6/xIO/wj+DbrnCf7/BqekFaekurq6ug8N/7ri+w3g+/0OCQwT1aekurq6ugoMCQ7//Q7//rq+AQ/7DP7//rrXuvX31aekp6S6urq6Cg/8BgP9ugAPCP0OAwkIugoMCf4P/Q7CwxWnpLq6urq6urq6DP8ODwwIur4OAgMNx9j8/wYJCAEN7gnC6gwJ/g/9DtTU/Qb7DQ3GwQoMCf4P/Q75A/7BxsED/sHD1aekurq6uhenpLq6uroKD/wGA/26AA8I/Q4DCQi6Dw3/DMLDp6S6urq6Faekurq6urq6uroM/w4PDAi6vg4CAw3H2Pz/BgkIAQ3uCcLvDf8M1NT9BvsNDcPVp6S6urq6F6ekF6ek

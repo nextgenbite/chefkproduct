@@ -1,16 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Coupon extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , 'bdvJXE'); return 0;
+##!!!##MC0wLZGEkIiWk4SGiENkk5N/cJKHiI+WXjAtMC2YlohDbI+PmJCMkYSXiH9nhJeEhYSWiH9oj5KUmIiRl39phIaXkpWMiJZ/a4SWaYSGl5KVnF4wLZiWiENsj4+YkIyRhJeIf2eEl4SFhJaIf2iPkpSYiJGXf3CSh4iPXjAtMC2Gj4SWlkNmkpiTkpFDiJuXiJGHlkNwkoeIjzAtnjAtQ0NDQ5iWiENrhJZphIaXkpWcXjAtQ0NDQ5OVkpeIhpeIh0NHipiElYeIh0NgQ36AXjAtQ0NDQ5OYhY+MhkOJmJGGl4ySkUOWhpKTiGSGl4yZiEtHlJiIlZxMMC1DQ0NDnjAtQ0NDQ0NDQ0OViJeYlZFDR5SYiJWcUGGai4iViEtKlpeEl5iWSk9DVExeMC1DQ0NDoDAtoDAt

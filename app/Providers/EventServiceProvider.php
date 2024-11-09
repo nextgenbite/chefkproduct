@@ -1,32 +1,3 @@
 <?php
-
-namespace App\Providers;
-
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
-
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event listener mappings for the application.
-     *
-     * @var array<class-string, array<int, class-string>>
-     */
-    protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-    ];
-
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-}
+bolt_decrypt( __FILE__ , '0gWrcA'); return 0;
+##!!!##EQ4RDnJlcWl3dGVnaSRFdHRgVHZzem1oaXZ3PxEOEQ55d2kkTXBweXFtcmV4aWBFeXhsYEl6aXJ4d2BWaWttd3hpdmloPxEOeXdpJE1wcHlxbXJleGlgRXl4bGBQbXd4aXJpdndgV2lyaElxZW1wWml2bWptZ2V4bXNyUnN4bWptZ2V4bXNyPxEOeXdpJE1wcHlxbXJleGlgSnN5cmhleG1zcmBXeXR0c3Z4YFR2c3ptaGl2d2BJemlyeFdpdnptZ2lUdnN6bWhpdiRldyRXaXZ6bWdpVHZzem1oaXY/EQ55d2kkTXBweXFtcmV4aWBXeXR0c3Z4YEplZ2VoaXdgSXppcng/EQ4RDmdwZXd3JEl6aXJ4V2l2em1naVR2c3ptaGl2JGl8eGlyaHckV2l2em1naVR2c3ptaGl2EQ5/EQ4kJCQkMy4uEQ4kJCQkJC4kWGxpJGl6aXJ4JHBtd3hpcml2JHFldHRtcmt3JGpzdiR4bGkkZXR0cG1nZXhtc3IyEQ4kJCQkJC4RDiQkJCQkLiREemV2JGV2dmV9QGdwZXd3MXd4dm1yazAkZXZ2ZX1AbXJ4MCRncGV3dzF3eHZtcmtCQhEOJCQkJCQuMxEOJCQkJHR2c3hpZ3hpaCQocG13eGlyJEEkXxEOJCQkJCQkJCRWaWttd3hpdmloPj5ncGV3dyRBQiRfEQ4kJCQkJCQkJCQkJCRXaXJoSXFlbXBaaXZtam1nZXhtc3JSc3htam1nZXhtc3I+PmdwZXd3MBEOJCQkJCQkJCRhMBEOJCQkJGE/EQ4RDiQkJCQzLi4RDiQkJCQkLiRWaWttd3hpdiRlcn0kaXppcnh3JGpzdiR9c3l2JGV0dHBtZ2V4bXNyMhEOJCQkJCQuEQ4kJCQkJC4kRHZpeHl2ciR6c21oEQ4kJCQkJC4zEQ4kJCQkdHlmcG1nJGp5cmd4bXNyJGZzc3gsLREOJCQkJH8RDiQkJCQkJCQkMzMRDiQkJCSBEQ6BEQ4=

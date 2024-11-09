@@ -1,18 +1,3 @@
 <?php
-
-namespace App\View\Components;
-
-use Illuminate\View\Component;
-
-class GuestLayout extends Component
-{
-    /**
-     * Get the view / contents that represents the component.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function render()
-    {
-        return view('layouts.guest');
-    }
-}
+bolt_decrypt( __FILE__ , '6vu7WK'); return 0;
+##!!!##BARoW2dfbWpbXV8aO2pqVlBjX3FWPWlnamloX2hubTUEBG9tXxpDZmZvZ2NoW25fVlBjX3FWPWlnamloX2huNQQEXWZbbW0aQW9fbW5GW3Npb24aX3JuX2hebRo9aWdqaWhfaG4EdQQaGhoaKSQkBBoaGhoaJBpBX24abmJfGnBjX3EaKRpdaWhuX2hubRpuYltuGmxfamxfbV9obm0abmJfGl1pZ2ppaF9obigEGhoaGhokBBoaGhoaJBo6bF9ub2xoGlZDZmZvZ2NoW25fVlBjX3FWUGNfcQQaGhoaGiQpBBoaGhpqb1xmY10aYG9oXW5jaWgabF9oXl9sIiMEGhoaGnUEGhoaGhoaGhpsX25vbGgacGNfcSIhZltzaW9ubShhb19tbiEjNQQaGhoadwR3BA==

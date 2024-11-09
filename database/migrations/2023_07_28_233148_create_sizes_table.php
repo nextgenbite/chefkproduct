@@ -1,32 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateSizesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('sizes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('sizes');
-    }
-}
+bolt_decrypt( __FILE__ , 'ws0DKQ'); return 0;
+##!!!##BwQHBG9tXxpDZmZvZ2NoW25fVj5bbltcW21fVkdjYWxbbmNpaG1WR2NhbFtuY2loNQcEb21fGkNmZm9nY2hbbl9WPltuW1xbbV9WTV1iX2dbVjxmb19qbGNobjUHBG9tXxpDZmZvZ2NoW25fVk1vamppbG5WQFtdW15fbVZNXWJfZ1s1BwQHBF1mW21tGj1sX1tuX01jdF9tTltcZl8aX3JuX2hebRpHY2FsW25jaWgHBHUHBBoaGhopJCQHBBoaGhoaJBpMb2gabmJfGmdjYWxbbmNpaG0oBwQaGhoaGiQHBBoaGhoaJBo6bF9ub2xoGnBpY14HBBoaGhoaJCkHBBoaGhpqb1xmY10aYG9oXW5jaWgab2oiIwcEGhoaGnUHBBoaGhoaGhoaTV1iX2dbNDRdbF9bbl8iIW1jdF9tISYaYG9oXW5jaWgaIjxmb19qbGNobhoebltcZl8jGnUHBBoaGhoaGhoaGhoaGh5uW1xmXyc4Y14iIzUHBBoaGhoaGhoaGhoaGh5uW1xmXyc4bW5sY2hhIiFoW2dfISM1BwQaGhoaGhoaGhoaGhoebltcZl8nOG5jZ19tbltnam0iIzUHBBoaGhoaGhoadyM1BwQaGhoadwcEBwQaGhoaKSQkBwQaGhoaGiQaTF9wX2xtXxpuYl8aZ2NhbFtuY2lobSgHBBoaGhoaJAcEGhoaGhokGjpsX25vbGgacGljXgcEGhoaGhokKQcEGhoaGmpvXGZjXRpgb2hdbmNpaBpeaXFoIiMHBBoaGhp1BwQaGhoaGhoaGk1dYl9nWzQ0XmxpakNgP3JjbW5tIiFtY3RfbSEjNQcEGhoaGncHBHcHBA==

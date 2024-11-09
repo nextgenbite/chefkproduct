@@ -1,22 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Order extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-
-    public function orderitem()
-    {
-        return $this->hasMany(OrderItem::class, 'order_id', 'id');
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-}
+bolt_decrypt( __FILE__ , 'IMApPw'); return 0;
+##!!!##GxgbGHxve3OBfm9xcy5Pfn5qW31yc3qBSRsYGxiDgXMuV3p6g3t3fG+Cc2pSb4JvcG+Bc2pTen1/g3N8gmpUb3GCfYB3c4FqVm+BVG9xgn2Ah0kbGIOBcy5XenqDe3d8b4JzalJvgm9wb4FzalN6fX+Dc3yCalt9cnN6SRsYGxhxem+BgS5dgHJzgC5zhoJzfHKBLlt9cnN6GxiJGxguLi4ug4FzLlZvgVRvcYJ9gIdJGxguLi4ufoB9gnNxgnNyLjJ1g2+AcnNyLksuaWtJGxgbGC4uLi5+g3B6d3EudIN8cYJ3fXwufYByc4B3gnN7NjcbGC4uLi6JGxguLi4uLi4uLoBzgoOAfC4ygnZ3gTtMdm+BW298hzZdgHJzgFeCc3tISHF6b4GBOi41fYByc4Btd3I1Oi41d3I1N0kbGC4uLi6LGxguLi4ufoNwendxLnSDfHGCd318LoOBc4A2NxsYLi4uLokbGC4uLi4uLi4ugHOCg4B8LjKCdneBO0xwc3p9fHWBYn02Y4FzgEhIcXpvgYE6LjWDgXOAbXdyNTdJGxguLi4uixsYGxiLGxg=

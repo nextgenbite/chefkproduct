@@ -1,37 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateOrderItemsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products');
-            $table->string('color')->nullable();
-            $table->string('size')->nullable();
-            $table->string('qty');
-            $table->float('total',8,2);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('order_items');
-    }
-}
+bolt_decrypt( __FILE__ , 'YFMEgD'); return 0;
+##!!!##6ebp5lFPQfwlSEhRSUVKPVBBOCA9UD0+PU9BOClFQ049UEVLSk84KUVDTj1QRUtKF+nmUU9B/CVISFFJRUo9UEE4ID1QPT49T0E4Lz9EQUk9OB5IUUFMTkVKUBfp5lFPQfwlSEhRSUVKPVBBOC9RTExLTlA4Ij0/PUBBTzgvP0RBST0X6ebp5j9IPU9P/B9OQT1QQStOQEFOJVBBSU8wPT5IQfxBVFBBSkBP/ClFQ049UEVLSunmV+nm/Pz8/AsGBunm/Pz8/PwG/C5RSvxQREH8SUVDTj1QRUtKTwrp5vz8/Pz8Bunm/Pz8/PwG/BxOQVBRTkr8UktFQOnm/Pz8/PwGC+nm/Pz8/ExRPkhFP/xCUUo/UEVLSvxRTAQF6eb8/Pz8V+nm/Pz8/Pz8/PwvP0RBST0WFj9OQT1QQQQDS05AQU47RVBBSU8DCPxCUUo/UEVLSvwEHkhRQUxORUpQ/ABQPT5IQQX8V+nm/Pz8/Pz8/Pz8/Pz8AFA9PkhBCRpFQAQFF+nm/Pz8/Pz8/Pz8/Pz8AFA9PkhBCRpCS05BRUNKJUAEA0tOQEFOO0VAAwUJGj9LSk9QTj1FSkFABANLTkBBTk8DBQkaS0ogQUhBUEEEAz89Tz89QEEDBRfp5vz8/Pz8/Pz8/Pz8/ABQPT5IQQkaQktOQUVDSiVABANMTktAUT9QO0VAAwUJGj9LSk9QTj1FSkFABANMTktAUT9QTwMFF+nm/Pz8/Pz8/Pz8/Pz8AFA9PkhBCRpPUE5FSkMEAz9LSEtOAwUJGkpRSEg9PkhBBAUX6eb8/Pz8/Pz8/Pz8/PwAUD0+SEEJGk9QTkVKQwQDT0VWQQMFCRpKUUhIPT5IQQQFF+nm/Pz8/Pz8/Pz8/Pz8AFA9PkhBCRpPUE5FSkMEA01QVQMFF+nm/Pz8/Pz8/Pz8/Pz8AFA9PkhBCRpCSEs9UAQDUEtQPUgDCBQIDgUX6eb8/Pz8/Pz8/Pz8/PwAUD0+SEEJGlBFSUFPUD1JTE8EBRfp5vz8/Pz8/Pz8WQUX6eb8/Pz8Wenm6eb8/Pz8CwYG6eb8/Pz8/Ab8LkFSQU5PQfxQREH8SUVDTj1QRUtKTwrp5vz8/Pz8Bunm/Pz8/PwG/BxOQVBRTkr8UktFQOnm/Pz8/PwGC+nm/Pz8/ExRPkhFP/xCUUo/UEVLSvxAS1NKBAXp5vz8/PxX6eb8/Pz8/Pz8/C8/REFJPRYWQE5LTCVCIVRFT1BPBANLTkBBTjtFUEFJTwMFF+nm/Pz8/Fnp5lnp5g==

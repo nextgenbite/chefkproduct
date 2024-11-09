@@ -1,12 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Setting extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-}
+bolt_decrypt( __FILE__ , '3PnlSB'); return 0;
+##!!!##/PxgU19XZWJTVVcSM2JiTj9hVldeZS38/GdlVxI7Xl5nX1tgU2ZXTjZTZlNUU2VXTjdeYWNnV2BmTjhTVWZhZFtXZU46U2U4U1VmYWRrLfxnZVcSO15eZ19bYFNmV042U2ZTVFNlV043XmFjZ1dgZk4/YVZXXi38/FVeU2VlEkVXZmZbYFkSV2pmV2BWZRI/YVZXXvxt/BISEhJnZVcSOlNlOFNVZmFkay38EhISEmJkYWZXVWZXVhIWWWdTZFZXVhIvEk1PLfxv/A==

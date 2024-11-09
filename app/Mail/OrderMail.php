@@ -1,35 +1,3 @@
 <?php
-
-namespace App\Mail;
-
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
-
-class OrderMail extends Mailable
-{
-    use Queueable, SerializesModels;
-
-    public $data;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($data)
-    {
-        $this->data = $data;
-    }
-
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
-    {
-        return $this->view($this->data);
-    
-    }
-}
+bolt_decrypt( __FILE__ , 'dBtkgu'); return 0;
+##!!!##a2vPws7G1NHCxMaBotHRva7Cys2ca2vW1MaBqs3N1s7Kz8LVxr2j1tS9stbG1sbCw83GnGvW1MaBqs3N1s7Kz8LVxr2k0M/V08LE1dS9stbG1sa9tMnQ1s3FstbG1saca9bUxoGqzc3WzsrPwtXGva7Cys29rsLKzcLDzcaca9bUxoGqzc3WzsrPwtXGvbLWxtbGvbTG08rCzcrbxtSu0MXGzdSca2vEzcLU1IGw08XG067Cys2BxtnVxs/F1IGuwsrNwsPNxmvca4GBgYHW1MaBstbG1sbCw83GjYG0xtPKws3K28bUrtDFxs3UnGtrgYGBgdHWw83KxIGFxcLVwpxrgYGBgZCLi2uBgYGBgYuBpNPGwtXGgcKBz8bYgc7G1NTCyMaBys/U1cLPxMaPa4GBgYGBi2uBgYGBgYuBodPG1dbTz4HX0MrFa4GBgYGBi5BrgYGBgdHWw83KxIHH1s/E1crQz4HAwMTQz9TV09bE1YmFxcLVwoprgYGBgdxrgYGBgYGBgYGF1cnK1I6fxcLVwoGegYXFwtXCnGuBgYGB3mtrgYGBgZCLi2uBgYGBgYuBo9bKzcWB1cnGgc7G1NTCyMaPa4GBgYGBi2uBgYGBgYuBodPG1dbTz4GF1cnK1GuBgYGBgYuQa4GBgYHR1sPNysSBx9bPxNXK0M+Bw9bKzcWJimuBgYGB3GuBgYGBgYGBgdPG1dbTz4GF1cnK1I6f18rG2ImF1cnK1I6fxcLVwoqca4GBgYFrgYGBgd5r3ms=

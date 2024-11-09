@@ -1,19 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Size extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-
-
-    public function variants()
-    {
-        return $this->hasMany(Variation::class);
-    }
-}
+bolt_decrypt( __FILE__ , 'AZso06'); return 0;
+##!!!##8O3w7VFEUEhWU0RGSAMkU1M/MFJHSE9WHvDt8O1YVkgDLE9PWFBMUURXSD8nRFdERURWSD8oT1JUWEhRVz8pREZXUlVMSFY/K0RWKURGV1JVXB7w7VhWSAMsT09YUExRRFdIPydEV0RFRFZIPyhPUlRYSFFXPzBSR0hPHvDt8O1GT0RWVgM2TF1IA0hbV0hRR1YDMFJHSE/w7V7w7QMDAwNYVkgDK0RWKURGV1JVXB7w7fDtAwMDA1NVUldIRldIRwMHSlhEVUdIRwMgAz5AHvDt8O3w7QMDAwNTWEVPTEYDSVhRRldMUlEDWURVTERRV1YLDPDtAwMDA17w7QMDAwMDAwMDVUhXWFVRAwdXS0xWECFLRFYwRFFcCzlEVUxEV0xSUR0dRk9EVlYMHvDtAwMDA2Dw7WDw7Q==

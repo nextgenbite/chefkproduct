@@ -1,19 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class OrderItem extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-
-    public function product(){
-       return $this->belongsTo(Product::class,'product_id','id');
-   }
-    public function order(){
-       return $this->belongsTo(Order::class,'order_id','id');
-   }
-}
+bolt_decrypt( __FILE__ , 'hzWvtM'); return 0;
+##!!!##fXp9et7R3dXj4NHT1ZCx4ODMvd/U1dzjq316fXrl49WQudzc5d3Z3tHk1cy00eTR0tHj1cy13N/h5dXe5My20dPk3+LZ1ePMuNHjttHT5N/i6at9euXj1ZC53Nzl3dne0eTVzLTR5NHS0ePVzLXc3+Hl1d7kzL3f1NXcq316fXrT3NHj45C/4tTV4rnk1d2Q1ejk1d7U45C939TV3H166316kJCQkOXj1ZC40eO20dPk3+Lpq316kJCQkODi3+TV0+TV1JCU1+XR4tTV1JCtkMvNq316fXqQkJCQ4OXS3NnTkNbl3tPk2d/ekODi39Tl0+SYmet9epCQkJCQkJDi1eTl4t6QlOTY2eOdrtLV3N/e1+PE35jA4t/U5dPkqqrT3NHj45yX4OLf1OXT5M/Z1Jecl9nUl5mrfXqQkJDtfXqQkJCQ4OXS3NnTkNbl3tPk2d/ekN/i1NXimJnrfXqQkJCQkJCQ4tXk5eLekJTk2Nnjna7S1dzf3tfjxN+Yv+LU1eKqqtPc0ePjnJff4tTV4s/Z1Jecl9nUl5mrfXqQkJDtfXrtfXo=

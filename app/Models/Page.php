@@ -1,18 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Page extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , 'XIzfpg'); return 0;
+##!!!##ZWJlYsa5xb3LyLm7vXiZyMi0pce8vcTLk2ViZWLNy714ocTEzcXBxrnMvbScucy5urnLvbSdxMfJzb3GzLSeubvMx8rBvcu0oLnLnrm7zMfK0ZNlYs3LvXihxMTNxcHGucy9tJy5zLm6ucu9tJ3Ex8nNvcbMtKXHvL3Ek2ViZWK7xLnLy3ioub+9eL3QzL3GvMt4pce8vcRlYtNlYnh4eHjNy714oLnLnrm7zMfK0ZNlYmVieHh4eMjKx8y9u8y9vHh8v825yry9vHiVeLO1k2ViZWJ4eHh4yM26xMG7eL7NxrvMwcfGeMu7x8i9mbvMwc69gHzJzb3K0YFlYnh4eHjTZWJ4eHh4eHh4eMq9zM3Kxnh8yc29ytGFls/Avcq9gH/LzLnMzct/hHiJgZNlYnh4eHjVZWLVZWI=

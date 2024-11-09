@@ -1,23 +1,3 @@
 <?php
-
-namespace App\Http\Controllers\Auth;
-
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\Request;
-
-class EmailVerificationPromptController extends Controller
-{
-    /**
-     * Display the email verification prompt.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
-     */
-    public function __invoke(Request $request)
-    {
-        return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(RouteServiceProvider::HOME)
-                    : view('auth.verify-email');
-    }
-}
+bolt_decrypt( __FILE__ , 'SyFSSD'); return 0;
+##!!!##BgZqXWlhb2xdX2EcPWxsWERwcGxYP2tqcG5raGhhbm9YPXFwZDcGBnFvYRw9bGxYRHBwbFg/a2pwbmtoaGFub1g/a2pwbmtoaGFuNwZxb2EcPWxsWExua3JlYGFub1hOa3FwYU9hbnJlX2FMbmtyZWBhbjcGcW9hHEVoaHFpZWpdcGFYRHBwbFhOYW1xYW9wNwYGX2hdb28cQWldZWhSYW5lYmVfXXBla2pMbmtpbHA/a2pwbmtoaGFuHGF0cGFqYG8cP2tqcG5raGhhbgZ3BhwcHBwrJiYGHBwcHBwmHEBlb2xoXXUccGRhHGFpXWVoHHJhbmViZV9dcGVrahxsbmtpbHAqBhwcHBwcJgYcHBwcHCYcPGxdbl1pHBxYRWhocWllal1wYVhEcHBsWE5hbXFhb3AcHCBuYW1xYW9wBhwcHBwcJhw8bmFwcW5qHGlldGFgBhwcHBwcJisGHBwcHGxxXmhlXxxicWpfcGVrahxbW2VqcmtnYSROYW1xYW9wHCBuYW1xYW9wJQYcHBwcdwYcHBwcHBwcHG5hcHFuahwgbmFtcWFvcCk6cW9hbiQlKTpkXW9SYW5lYmVhYEFpXWVoJCUGHBwcHBwcHBwcHBwcHBwcHBwcHBw7HG5hYGVuYV9wJCUpOmVqcGFqYGFgJE5rcXBhT2FucmVfYUxua3JlYGFuNjZES0lBJQYcHBwcHBwcHBwcHBwcHBwcHBwcHDYccmVhcyQjXXFwZCpyYW5lYnUpYWldZWgjJTcGHBwcHHkGeQY=

@@ -1,34 +1,3 @@
 <?php
-
-namespace App\Http\Middleware;
-
-use Closure;
-use Illuminate\Http\Request;
-
-class Role
-{
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function handle(Request $request, Closure $next, ...$roles)
-    {
-        // Check if user is authenticated
-        if (!$request->user()) {
-            return redirect()->route('login');
-        }
-
-        // Check if user has the required role
-        // foreach ($roles as $role) {
-        //     if (strtolower($request->user()->role->name) === strtolower($role)) {
-                return $next($request);
-        //     }
-        // }
-
-        // User doesn't have the required role, redirect or abort as needed
-        return abort(403, 'Unauthorized');
-    }
-}
+bolt_decrypt( __FILE__ , 'JzZOZh'); return 0;
+##!!!##PDk8OZ2QnJSin5CSlE9wn5+Ld6Ojn4t8mJOTm5SmkKGUajw5PDmkopRPcpueoqShlGo8OaSilE94m5uknJidkKOUi3ejo5+LgZSgpJSio2o8OTw5kpuQoqJPgZ6blDw5qjw5T09PT15ZWTw5T09PT09ZT3eQnZOblE+QnU+YnZKenJidlk+hlKCklKKjXTw5T09PT09ZPDlPT09PT1lPb5+QoZCcT0+LeJubpJyYnZCjlIt3o6Ofi4GUoKSUoqNPT1OhlKCklKKjPDlPT09PT1lPb5+QoZCcT0+LcpueoqShlFeLeJubpJyYnZCjlIt3o6Ofi4GUoKSUoqNYaU9Xi3ibm6ScmJ2Qo5SLd6Ojn4uBlKKfnp2ilKuLeJubpJyYnZCjlIt3o6Ofi4GUk5ihlJKjgZSin56dopRYT09TnZSnozw5T09PT09ZT2+hlKOkoZ1Pi3ibm6ScmJ2Qo5SLd6Ojn4uBlKKfnp2ilKuLeJubpJyYnZCjlIt3o6Ofi4GUk5ihlJKjgZSin56dopQ8OU9PT09PWV48OU9PT0+fpJGbmJJPlaSdkqOYnp1Pl5Cdk5uUV4GUoKSUoqNPU6GUoKSUoqNbT3KbnqKkoZRPU52Up6NbT11dXVOhnpuUolg8OU9PT0+qPDlPT09PT09PT15eT3KXlJKaT5iVT6SilKFPmKJPkKSjl5Sdo5iSkKOUkzw5T09PT09PT0+YlU9XUFOhlKCklKKjXG2kopShV1hYT6o8OU9PT09PT09PT09PT6GUo6ShnU+hlJOYoZSSo1dYXG2hnqSjlFdWm56WmJ1WWGo8OU9PT09PT09PrDw5PDlPT09PT09PT15eT3KXlJKaT5iVT6SilKFPl5CiT6OXlE+hlKCkmKGUk0+hnpuUPDlPT09PT09PT15eT5WeoZSQkpdPV1OhnpuUok+Qok9ToZ6blFhPqjw5T09PT09PT09eXk9PT09PmJVPV6KjoaOem56mlKFXU6GUoKSUoqNcbaSilKFXWFxtoZ6blFxtnZCclFhPbGxsT6KjoaOem56mlKFXU6Gem5RYWE+qPDlPT09PT09PT09PT09PT09PoZSjpKGdT1OdlKejV1OhlKCklKKjWGo8OU9PT09PT09PXl5PT09PT6w8OU9PT09PT09PXl5PrDw5PDlPT09PT09PT15eT4SilKFPk56Uop1Wo0+XkKWUT6OXlE+hlKCkmKGUk0+hnpuUW0+hlJOYoZSSo0+eoU+QkZ6ho0+Qok+dlJSTlJM8OU9PT09PT09PoZSjpKGdT5CRnqGjV2NfYltPVoSdkKSjl56hmKmUk1ZYajw5T09PT6w8Oaw8OQ==

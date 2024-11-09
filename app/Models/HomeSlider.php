@@ -1,16 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class HomeSlider extends Model
-{
-    use HasFactory;
-    
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , 'lbAApn'); return 0;
+##!!!##Ozg7OJyPm5Ohno+Rk05vnp6Ke52Sk5qhaTs4OzijoZNOd5qao5uXnI+ik4pyj6KPkI+hk4pzmp2fo5Ocoop0j5GinaCXk6GKdo+hdI+Rop2gp2k7OKOhk053mpqjm5ecj6KTinKPoo+Qj6GTinOanZ+jk5yiinudkpOaaTs4OziRmo+hoU52nZuTgZqXkpOgTpOmopOckqFOe52Sk5o7OKk7OE5OTk6joZNOdo+hdI+Rop2gp2k7OE5OTk47OE5OTk6eo5Cal5FOlKOckaKXnZxOoZGdnpNvkaKXpJNWUp+jk6CnVzs4Tk5OTqk7OE5OTk5OTk5OoJOio6CcTlKfo5Ogp1tspZaToJNWVaGij6KjoVVaTl9XaTs4Tk5OTqs7OKs7OA==

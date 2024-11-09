@@ -1,33 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateColorsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('code');
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('colors');
-    }
-}
+bolt_decrypt( __FILE__ , 'zu1Hyv'); return 0;
+##!!!##ZGFkYczKvHegw8PMxMDFuMu8s5u4y7i5uMq8s6TAvsm4y8DGxcqzpMC+ybjLwMbFkmRhzMq8d6DDw8zEwMW4y7yzm7jLuLm4yryzqrq/vMS4s5nDzLzHycDFy5JkYczKvHegw8PMxMDFuMu8s6rMx8fGycuznbi6uLu8yrOqur+8xLiSZGFkYbrDuMrKd5rJvLjLvJrGw8bJyqu4ucO8d7zPy7zFu8p3pMC+ybjLwMbFZGHSZGF3d3d3hoGBZGF3d3d3d4F3qczFd8u/vHfEwL7JuMvAxsXKhWRhd3d3d3eBZGF3d3d3d4F3l8m8y8zJxXfNxsC7ZGF3d3d3d4GGZGF3d3d3x8y5w8C6d73MxbrLwMbFd8zHf4BkYXd3d3fSZGF3d3d3d3d3d6q6v7zEuJGRusm8uMu8f366xsPGycp+g3e9zMW6y8DGxXd/mcPMvMfJwMXLd3vLuLnDvIB30mRhd3d3d3d3d3d3d3d3e8u4ucO8hJXAu3+AkmRhd3d3d3d3d3d3d3d3e8u4ucO8hJXKy8nAxb5/fsW4xLx+gJJkYXd3d3d3d3d3d3d3d3vLuLnDvISVysvJwMW+f366xru8foCSZGF3d3d3d3d3d3d3d3d7y7i5w7yElcvAxLzKy7jEx8p/gJJkYXd3d3d3d3d31ICSZGF3d3d31GRhZGF3d3d3hoGBZGF3d3d3d4F3qbzNvMnKvHfLv7x3xMC+ybjLwMbFyoVkYXd3d3d3gWRhd3d3d3eBd5fJvMvMycV3zcbAu2Rhd3d3d3eBhmRhd3d3d8fMucPAune9zMW6y8DGxXe7xs7Ff4BkYXd3d3fSZGF3d3d3d3d3d6q6v7zEuJGRu8nGx6C9nM/AysvKf366xsPGycp+gJJkYXd3d3fUZGHUZGE=

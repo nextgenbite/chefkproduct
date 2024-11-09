@@ -1,20 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Color extends Model
-{
-    use HasFactory;
-
-    protected $guarded = [];
-
-
-    public function variants()
-    {
-        return $this->hasMany(Variation::class);
-    }
-
-}
+bolt_decrypt( __FILE__ , 'maTEQr'); return 0;
+##!!!##NzQ3NJiLl4+dmouNj0prmpqGd5mOj5adZTc0NzSfnY9Kc5aWn5eTmIuej4Zui56LjIudj4Zvlpmbn4+YnoZwi42emZyTj52GcoudcIuNnpmco2U3NJ+dj0pzlpafl5OYi56Phm6LnouMi52Phm+WmZufj5iehneZjo+WZTc0NzSNloudnUptmZaZnEqPop6PmI6dSneZjo+WNzSlNzRKSkpKn52PSnKLnXCLjZ6ZnKNlNzQ3NEpKSkqanJmej42ej45KTpGfi5yOj45KZ0qFh2U3NDc0NzRKSkpKmp+MlpONSpCfmI2ek5mYSqCLnJOLmJ6dUlM3NEpKSkqlNzRKSkpKSkpKSpyPnp+cmEpOnpKTnVdokoudd4uYo1KAi5yTi56TmZhkZI2Wi52dU2U3NEpKSkqnNzQ3NKc3NA==

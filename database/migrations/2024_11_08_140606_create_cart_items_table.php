@@ -1,36 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateCartItemsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('cart_items', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('cart_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity')->default(1);
-            $table->decimal('price', 10, 2);
-        
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('cart_items');
-    }
-}
+bolt_decrypt( __FILE__ , 'r5c8s0'); return 0;
+##!!!##7+9aWEoFLlFRWlJOU0ZZSkEpRllGR0ZYSkEyTkxXRllOVFNYQTJOTFdGWU5UUyDvWlhKBS5RUVpSTlNGWUpBKUZZRkdGWEpBOEhNSlJGQSdRWkpVV05TWSDvWlhKBS5RUVpSTlNGWUpBOFpVVVRXWUErRkhGSUpYQThITUpSRiDv70hRRlhYBShXSkZZSihGV1kuWUpSWDlGR1FKBUpdWUpTSVgFMk5MV0ZZTlRT72DvBQUFBRQPD+8FBQUFBQ8FN1pTBVlNSgVSTkxXRllOVFNYE+8FBQUFBQ/vBQUFBQUPBSVXSllaV1MFW1ROSe8FBQUFBQ8U7wUFBQVVWkdRTkgFS1pTSFlOVFMFWlUNDu8FBQUFYO8FBQUFBQUFBThITUpSRh8fSFdKRllKDQxIRldZRE5ZSlJYDBEFS1pTSFlOVFMFDSdRWkpVV05TWQUJWUZHUUoOBWDvBQUFBQUFBQUFBQUFCVlGR1FKEiNOSQ0OIO8FBQUFBQUFBQUFBQUJWUZHUUoSI0tUV0pOTFMuSQ0MSEZXWUROSQwOEiNIVFNYWVdGTlNKSQ0OEiNUUylKUUpZSg0MSEZYSEZJSgwOIO8FBQUFBQUFBQUFBQUJWUZHUUoSI0tUV0pOTFMuSQ0MVVdUSVpIWUROSQwOEiNIVFNYWVdGTlNKSQ0OEiNUUylKUUpZSg0MSEZYSEZJSgwOIO8FBQUFBQUFBQUFBQUJWUZHUUoSI05TWUpMSlcNDFZaRlNZTlleDA4SI0lKS0ZaUVkNFg4g7wUFBQUFBQUFBQUFBQlZRkdRShIjSUpITlJGUQ0MVVdOSEoMEQUWFREFFw4g7wUFBQUFBQUF7wUFBQUFBQUFBQUFBQlZRkdRShIjWU5SSlhZRlJVWA0OIO8FBQUFBQUFBWIOIO8FBQUFYu/vBQUFBRQPD+8FBQUFBQ8FN0pbSldYSgVZTUoFUk5MV0ZZTlRTWBPvBQUFBQUP7wUFBQUFDwUlV0pZWldTBVtUTknvBQUFBQUPFO8FBQUFVVpHUU5IBUtaU0hZTlRTBUlUXFMNDu8FBQUFYO8FBQUFBQUFBThITUpSRh8fSVdUVS5LKl1OWFlYDQxIRldZRE5ZSlJYDA4g7wUFBQVi72Lv

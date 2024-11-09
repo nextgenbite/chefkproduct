@@ -1,35 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateBrandsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->string('thumbnail')->default('images/no-image.png');
-            $table->boolean('status')->default(false);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('brands');
-    }
-}
+bolt_decrypt( __FILE__ , 'MdIlWM'); return 0;
+##!!!##FxQXFH99bypTdnZ/d3N4a35vZk5rfmtsa31vZldzcXxrfnN5eH1mV3NxfGt+c3l4RRcUf31vKlN2dn93c3hrfm9mTmt+a2xrfW9mXW1yb3drZkx2f296fHN4fkUXFH99bypTdnZ/d3N4a35vZl1/enp5fH5mUGtta25vfWZdbXJvd2tFFxQXFG12a319Kk18b2t+b0x8a3hufV5rbHZvKm+Cfm94bn0qV3NxfGt+c3l4FxSFFxQqKioqOTQ0FxQqKioqKjQqXH94Kn5ybyp3c3F8a35zeXh9OBcUKioqKio0FxQqKioqKjQqSnxvfn98eCqAeXNuFxQqKioqKjQ5FxQqKioqen9sdnNtKnB/eG1+c3l4Kn96MjMXFCoqKiqFFxQqKioqKioqKl1tcm93a0REbXxva35vMjFsfGt4bn0xNipwf3htfnN5eCoyTHZ/b3p8c3h+Ki5+a2x2bzMqhRcUKioqKioqKioqKioqLn5rbHZvN0hzbjIzRRcUKioqKioqKioqKioqLn5rbHZvN0h9fnxzeHEyMX5zfnZvMTNFFxQqKioqKioqKioqKioufmtsdm83SH1+fHN4cTIxfXZ/cTEzRRcUKioqKioqKioqKioqLn5rbHZvN0h9fnxzeHEyMX5yf3dseGtzdjEzN0hub3Brf3Z+MjFzd2txb305eHk3c3drcW84enhxMTNFFxQqKioqKioqKioqKioufmtsdm83SGx5eXZva3gyMX1+a35/fTEzN0hub3Brf3Z+MnBrdn1vM0UXFCoqKioqKioqKioqKi5+a2x2bzdIfnN3b31+a3d6fTIzRRcUKioqKioqKiqHM0UXFCoqKiqHFxQXFCoqKio5NDQXFCoqKioqNCpcb4BvfH1vKn5ybyp3c3F8a35zeXh9OBcUKioqKio0FxQqKioqKjQqSnxvfn98eCqAeXNuFxQqKioqKjQ5FxQqKioqen9sdnNtKnB/eG1+c3l4Km55gXgyMxcUKioqKoUXFCoqKioqKioqXW1yb3drRERufHl6U3BPgnN9fn0yMWx8a3hufTEzRRcUKioqKocXFIcXFA==

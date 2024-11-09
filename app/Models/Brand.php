@@ -1,20 +1,3 @@
 <?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Brand extends Model
-{
-    use HasFactory;
-    protected $guarded = [];
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'brand_id', 'id');
-    }
-    public function scopeActive($query)
-    {
-        return $query->where('status', 1);
-    }
-}
+bolt_decrypt( __FILE__ , 'J9GTqW'); return 0;
+##!!!##8/Dz8FRHU0tZVkdJSwYnVlZCM1VKS1JZIfPw8/BbWUsGL1JSW1NPVEdaS0IqR1pHSEdZS0IrUlVXW0tUWkIsR0laVVhPS1lCLkdZLEdJWlVYXyHz8FtZSwYvUlJbU09UR1pLQipHWkdIR1lLQitSVVdbS1RaQjNVSktSIfPw8/BJUkdZWQYoWEdUSgZLXlpLVEpZBjNVSktS8/Bh8/AGBgYGW1lLBi5HWSxHSVpVWF8h8/AGBgYGVlhVWktJWktKBgpNW0dYSktKBiMGQUMh8/AGBgYGVltIUk9JBkxbVElaT1VUBlZYVUpbSVpZDg/z8AYGBgZh8/AGBgYGBgYGBlhLWltYVAYKWk5PWRMkTkdZM0dUXw42WFVKW0laICBJUkdZWRIGDUhYR1RKRU9KDRIGDU9KDQ8h8/AGBgYGY/PwBgYGBlZbSFJPSQZMW1RJWk9VVAZZSVVWSydJWk9cSw4KV1tLWF8P8/AGBgYGYfPwBgYGBgYGBgZYS1pbWFQGCldbS1hfEyRdTktYSw4NWVpHWltZDRIGFw8h8/AGBgYGY/PwY/Pw

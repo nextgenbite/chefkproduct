@@ -1,33 +1,3 @@
 <?php
-
-namespace Database\Factories;
-
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
-class UserFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'phone' => '01715808563',
-            'role_id' => 1,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
-        ];
-    }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-
-}
+bolt_decrypt( __FILE__ , 'SDZOs9'); return 0;
+##!!!##+fb59lpNWVFfXE1PUQwwTWBNTk1fUUgyTU9gW15VUV8n+fb59mFfUQw1WFhhWVVaTWBRSDBNYE1OTV9RSDFYW11hUVpgSDJNT2BbXlVRX0gyTU9gW15lJ/n2YV9RDDVYWGFZVVpNYFFIP2FcXFteYEg/YF4n+fb59k9YTV9fDEFfUV4yTU9gW15lDFFkYFFaUF8MMk1PYFteZfn2Z/n2DAwMDBsWFvn2DAwMDAwWDDBRUlVaUQxgVFEMWVtQUVgTXwxQUVJNYVhgDF9gTWBRGvn2DAwMDAwW+fYMDAwMDBYMLF5RYGFeWgxNXl5NZfn2DAwMDAwWG/n2DAwMDFxhTlhVTwxSYVpPYFVbWgxQUVJVWlVgVVtaFBX59gwMDAxn+fYMDAwMDAwMDF5RYGFeWgxH+fYMDAwMDAwMDAwMDAwTWk1ZURMMKSoME01QWVVaExj59gwMDAwMDAwMDAwMDBNRWU1VWBMMKSoME01QWVVaLE1QWVVaGk9bWRMY+fYMDAwMDAwMDAwMDAwTXFRbWlETDCkqDBMcHSMdISQcJCEiHxMY+fYMDAwMDAwMDAwMDAwTXltYUUtVUBMMKSoMHRj59gwMDAwMDAwMDAwMDBNcTV9fY1teUBMMKSoMExAeZRAdHBAlHjVEQTpcV1Y7HF47PSFOZTlVGkVRIFs3WzFNHz5bJVhYLxsaW1MbTWAeGmFUUUMzG1VTVRMYDBsbDFxNX19jW15Q+fYMDAwMDAwMDAwMDAwTXlFZUVlOUV5LYFtXUVoTDCkqDD9gXiYmXk1aUFtZFB0cFRj59gwMDAwMDAwMSSf59gwMDAxp+fb59gwMDAwbFhb59gwMDAwMFgw1WlBVT01gUQxgVE1gDGBUUQxZW1BRWBNfDFFZTVVYDE1QUF5RX18MX1RbYVhQDE5RDGFaYlFeVVJVUVAa+fYMDAwMDBb59gwMDAwMFgwsXlFgYV5aDEg1WFhhWVVaTWBRSDBNYE1OTV9RSDFYW11hUVpgSDJNT2BbXlVRX0gyTU9gW15l+fYMDAwMDBYb+fb59mn59g==

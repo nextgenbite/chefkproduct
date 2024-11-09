@@ -1,36 +1,3 @@
 <?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateReviewsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users');
-            $table->longText('comments')->nullable();
-            $table->unsignedTinyInteger('star_rating');
-            $table->enum('status', ['active', 'deactive']);
-            $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('reviews');
-    }
-}
+bolt_decrypt( __FILE__ , 'JWonq6'); return 0;
+##!!!##Mi8yL5qYikVukZGako6ThpmKgWmGmYaHhpiKgXKOjJeGmY6Uk5iBco6Ml4aZjpSTYDIvmpiKRW6RkZqSjpOGmYqBaYaZhoeGmIqBeIiNipKGgWeRmoqVl46TmWAyL5qYikVukZGako6ThpmKgXialZWUl5mBa4aIhomKmIF4iI2KkoZgMi8yL4iRhpiYRWiXioaZineKm46KnJh5hoeRikWKnZmKk4mYRXKOjJeGmY6UkzIvoDIvRUVFRVRPTzIvRUVFRUVPRXeak0WZjYpFko6Ml4aZjpSTmFMyL0VFRUVFTzIvRUVFRUVPRWWXipmal5NFm5SOiTIvRUVFRUVPVDIvRUVFRZWah5GOiEWLmpOImY6Uk0WalU1OMi9FRUVFoDIvRUVFRUVFRUV4iI2KkoZfX4iXioaZik1Ml4qbjoqcmExRRYuak4iZjpSTRU1nkZqKlZeOk5lFSZmGh5GKTkWgMi9FRUVFRUVFRUVFRUVJmYaHkYpSY46JTU5gMi9FRUVFRUVFRUVFRUVJmYaHkYpSY4uUl4qOjJNuiU1MlZeUiZqImYSOiUxOUmOIlJOYmZeGjpOKiU1MlZeUiZqImZhMTlJjlJNpipGKmYpNTIiGmIiGiYpMTmAyL0VFRUVFRUVFRUVFRUmZhoeRilJji5SXio6Mk26JTUyamIqXhI6JTE5SY4iUk5iZl4aOk4qJTUyamIqXmExOYDIvRUVFRUVFRUVFRUVFSZmGh5GKUmORlJOMeYqdmU1MiJSSkoqTmZhMTlJjk5qRkYaHkYpNTmAyL0VFRUVFRUVFRUVFRUmZhoeRilJjmpOYjoyTiol5jpOebpOZioyKl01MmJmGl4SXhpmOk4xMTmAyL0VFRUVFRUVFRUVFRUmZhoeRilJjipOakk1MmJmGmZqYTFFFgEyGiJmOm4pMUUVMiYqGiJmOm4pMgk5gMi9FRUVFRUVFRUVFRUVJmYaHkYpSY5mOkoqYmYaSlZhNTmAyL0VFRUVFRUVFok5gMi9FRUVFojIvMi9FRUVFVE9PMi9FRUVFRU9Fd4qbipeYikWZjYpFko6Ml4aZjpSTmFMyL0VFRUVFTzIvRUVFRUVPRWWXipmal5NFm5SOiTIvRUVFRUVPVDIvRUVFRZWah5GOiEWLmpOImY6Uk0WJlJyTTU4yL0VFRUWgMi9FRUVFRUVFRXiIjYqShl9fiZeUlW6Lap2OmJmYTUyXipuOipyYTE5gMi9FRUVFojIvojIv

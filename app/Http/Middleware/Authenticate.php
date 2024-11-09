@@ -1,21 +1,3 @@
 <?php
-
-namespace App\Http\Middleware;
-
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
-class Authenticate extends Middleware
-{
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
-    {
-        if (! $request->expectsJson()) {
-            return route('login');
-        }
-    }
-}
+bolt_decrypt( __FILE__ , 'xPkE7b'); return 0;
+##!!!##HhseG39yfnaEgXJ0djFSgYFtWYWFgW1eenV1fXaIcoN2TB4bHhuGhHYxWn19hn56f3KFdm1ShoV5bV56dXV9dohyg3ZtUoaFeXZ/hXp0coV2MXKEMV56dXV9dohyg3ZMHhseG3R9coSEMVKGhXl2f4V6dHKFdjF2iYV2f3WEMV56dXV9dohyg3YeG4weGzExMTFAOzseGzExMTExOzFYdoUxhXl2MYFyhXkxhXl2MYaEdoMxhHmAhn11MXN2MYN2dXqDdnSFdnUxhYAxiHl2fzGFeXaKMXKDdjF/gIUxcoaFeXZ/hXp0coV2dT8eGzExMTExOx4bMTExMTE7MVGBcoNyfjExbVp9fYZ+en9yhXZtWYWFgW1jdoKGdoSFMTE1g3aChnaEhR4bMTExMTE7MVGDdoWGg38xhIWDen94jX+GfX0eGzExMTExO0AeGzExMTGBg4CFdnSFdnUxd4Z/dIV6gH8xg3Z1eoN2dIVlgDk1g3aChnaEhToeGzExMTGMHhsxMTExMTExMXp3MTkyMTWDdoKGdoSFPk92iYF2dIWEW4SAfzk6OjGMHhsxMTExMTExMTExMTGDdoWGg38xg4CGhXY5OH2AeHp/ODpMHhsxMTExMTExMY4eGzExMTGOHhuOHhs=

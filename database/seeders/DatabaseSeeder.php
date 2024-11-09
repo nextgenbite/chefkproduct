@@ -1,22 +1,3 @@
 <?php
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-
-class DatabaseSeeder extends Seeder
-{
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // $this->call(JsonDataSeeder::class);
-
-        $this->call(PermissionSeeder::class);
-        $this->call(RoleSeeder::class);
-        \App\Models\User::factory()->create();
-    }
-}
+bolt_decrypt( __FILE__ , 'IUzicx'); return 0;
+##!!!##aWZpZsq9ycHPzL2/wXygvdC9vr3PwbivwcHAwc7Pl2lmaWbRz8F8pcjI0cnFyr3QwbigvdC9vr3PwbivwcHAwc6XaWZpZr/Ivc/PfKC90L2+vc/Br8HBwMHOfMHU0MHKwM98r8HBwMHOaWbXaWZ8fHx8i4aGaWZ8fHx8fIZ8r8HBwHzQxMF8vczMyMW/vdDFy8qDz3zAvdC9vr3PwYppZnx8fHx8hmlmfHx8fHyGfJzOwdDRzsp80svFwGlmfHx8fHyGi2lmfHx8fMzRvsjFv3zC0cq/0MXLynzO0cqEhWlmfHx8fNdpZnx8fHx8fHx8i4t8gNDExc+Jmr+9yMiEps/LyqC90L2vwcHAwc6Wlr/Ivc/PhZdpZmlmfHx8fHx8fHyA0MTFz4mav73IyISswc7Jxc/PxcvKr8HBwMHOlpa/yL3Pz4WXaWZ8fHx8fHx8fIDQxMXPiZq/vcjIhK7LyMGvwcHAwc6Wlr/Ivc/PhZdpZnx8fHx8fHx8uJ3MzLipy8DByM+4sc/BzpaWwr2/0MvO1YSFiZq/zsG90MGEhZdpZnx8fHzZaWbZaWY=
